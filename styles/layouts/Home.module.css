@@ -1,0 +1,49 @@
+/**
+ * Introduction
+ */
+.introduction {
+  margin: 8em 0;
+}
+.introduction .grid2 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  margin: 5rem 0;
+}
+.introduction .introductionContent {
+  margin-right: 6em;
+}
+.introduction .introductionImage img {
+  filter: grayscale(50);
+  transition: filter .3s;
+  border-radius: 30px;
+}
+
+.introduction .introductionImage img:hover {
+  filter: grayscale(0);
+  transition: filter .3s;
+}
+
+/**
+ * technos & Tools
+ */
+.techoAndTools {}
+
+
+/**
+ * Introduction
+ */
+.about {
+
+}
+
+@media (max-width: 960px) {
+  .introduction .grid2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+  .introduction .introductionContent {
+    margin-right: 0;
+  }
+}
