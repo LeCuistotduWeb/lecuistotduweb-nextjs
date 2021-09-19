@@ -15,7 +15,7 @@
 }
 .introduction .introductionImage img {
   filter: grayscale(50);
-  transition: filter .3s;
+  transition: filter .5s;
   border-radius: 30px;
 }
 

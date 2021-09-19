@@ -1,20 +1,20 @@
+@import "../modules/switch";
+
 .footer {
   width: 100%;
-  height: 100px;
-  display: flex;
   background-color: var(--background-color);
 }
 
-.footer .col1 {
-  width: 40%;
-}
-.footer .col2 {
-  width: 60%;
+.footerContainer {
+  display: flex;
+  max-width: var(--container);
+  margin: auto;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+.footer .bloc1 {
+  width: 40%;
+}
+
+.footer .bloc2 {
+  width: 60%;
 }

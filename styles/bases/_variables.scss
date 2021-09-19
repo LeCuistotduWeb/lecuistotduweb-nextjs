@@ -1,0 +1,20 @@
+body {
+  --container: 1200px;
+  --color-primary: #d5d5d5;
+  --color-secondary: #4b76e5;
+  --color-accent: #e76161;
+
+  --text-color: #d5d5d5;
+  --text-color-default: #d5d5d5;
+  --text-color-secondary: #4b76e5;
+  --text-color-accent: #e76161;
+
+  --background-color: #171616;
+  --background-primary: #d5d5d5;
+  --background-seconadry: #4b76e5;
+  --background-accent:  #e76161;
+}
+body.theme-light {
+  --background-color: "#fff";
+  --text-color: #171616;
+}
