@@ -18,17 +18,17 @@ const Header = (props) => {
                 <ul className={styles.listItems}>
                     <li className={styles.listItem}>
                         <Link href="#skills">
-                            <a className={`${styles.listItemLink} ${router.asPath === "#skills" ? 'isActive' : ''}`}>Skills</a>
+                            <a className={`${styles.listItemLink}`}>Skills</a>
                         </Link>
                     </li>
                     <li className={styles.listItem}>
                         <Link href="#works">
-                            <a className={`${styles.listItemLink} ${router.asPath === "#works" ? 'isActive' : ''}`}>Works</a>
+                            <a className={`${styles.listItemLink}`}>Works</a>
                         </Link>
                     </li>
                     <li className={styles.listItem}>
                         <Link href="#contact">
-                            <a className={`${styles.listItemLink} ${router.asPath === "#contact" ? 'isActive' : ''}`}>Contact</a>
+                            <a className={`${styles.listItemLink}`}>Contact</a>
                         </Link>
                     </li>
                 </ul>

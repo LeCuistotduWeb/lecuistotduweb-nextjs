@@ -43,7 +43,7 @@ const RandomQuote = (props) => {
     }
 
     return (
-        <div>
+        <div style={{minHeight: "100px"}}>
             <strong>Citation aléatoire :</strong>
             <div>
                 {quote && (

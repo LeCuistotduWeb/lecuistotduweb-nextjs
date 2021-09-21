@@ -7,7 +7,7 @@ const SkillsSection = (props) => {
     const sizeLogo = 60;
 
     return (
-        <section className={styles.techoAndTools}>
+        <section className={styles.techoAndTools} id={"skills"}>
             <div className={"container"}>
                 <h2 className="sectionTitle">Technologies & Tools</h2>
                 <div className={styles.logoList}>
