@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/layouts/Home.module.css'
 import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
+import SkillsSection from "../components/homepage/SkillsSection";
 
 const Home = () => {
   return (
@@ -16,19 +17,11 @@ const Home = () => {
 
               <IntroductionSection/>
 
-              <section className={styles.techoAndTools}>
-                  <div className={"container"}>
-                      <h2>Technologies & Tools I work with</h2>
-                      <div className={styles.grid2}>
-
-                      </div>
-                  </div>
-              </section>
+              <SkillsSection/>
 
               <section className={styles.about}>
                   <div className={"container"}>
-                      <h2>About me</h2>
-
+                      <h2 className="sectionTitle">About me</h2>
                   </div>
               </section>
 

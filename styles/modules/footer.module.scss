@@ -1,4 +1,5 @@
 @import "../modules/switch";
+@import "../mixins/mixins";
 
 .footer {
   width: 100%;
@@ -6,9 +7,11 @@
 }
 
 .footerContainer {
-  display: flex;
   max-width: var(--container);
   margin: auto;
+  @include up(600){
+    display: flex;
+  }
 }
 
 .footer .bloc1 {

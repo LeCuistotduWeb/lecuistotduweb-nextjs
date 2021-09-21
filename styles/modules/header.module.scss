@@ -1,25 +1,15 @@
+@import "../mixins/mixins";
+
 .header {
   margin: 30px auto 0;
-  position: sticky;
-  top: 0;
-  left: 0;
-  right: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: var(--container);
-}
-
-.header .headerNav .listItems {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-left: auto;
-}
-
-.header .headerNav .listItem {
-  margin-left: 16px;
+  @include up($breakpoint-sm){
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--container);
+    padding: 0 var(--container-padding);
+    margin: 0 auto;
+  }
 }
 
 .header .brand {
@@ -38,6 +28,17 @@
   }
 }
 
-.header .headerNav .listItem:first-child {
-  margin-left: 0;
+@include up($breakpoint-sm){
+  .header .headerNav .listItems {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: auto;
+  }
+  .header .headerNav .listItem {
+    margin-left: 16px;
+  }
+  .header .headerNav .listItem:first-child {
+    margin-left: 0;
+  }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "../../styles/modules/footer.module.scss";
 import Link from "next/link";
 import SwitchTheme from "./SwitchTheme";
+import RandomQuote from "./RandomQuote";
 
 const Footer = (props) => {
 
@@ -28,9 +29,7 @@ const Footer = (props) => {
                   </ul>
                 </div>
                 <div className={styles.bloc2}>
-                    <strong>A propos :</strong>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
+                    <RandomQuote/>
                     <SwitchTheme/>
                 </div>
             </div>
