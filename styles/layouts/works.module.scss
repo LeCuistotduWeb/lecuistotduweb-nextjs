@@ -1,0 +1,156 @@
+//@import "../mixins//mixins";
+//
+//.worksContainer {
+//  margin: 30px 0;
+//  width: 100%;
+//}
+//
+//.worksList {
+//  position: relative;
+//}
+//.worksList::before {
+//  content: "";
+//  position: absolute;
+//  left: 0;
+//  right: 0;
+//  display: block;
+//  width: 3px;
+//  transform: translateX(3px/2);
+//  height: 100%;
+//  background-color: var(--border-color);
+//}
+//.worksListItem {
+//  position: relative;
+//}
+//.worksListItem::before {
+//  content: "";
+//  position: absolute;
+//  top: 0;
+//  right: 0;
+//  bottom: 0;
+//  left: 0;
+//  display: block;
+//  width: 15px;
+//  height: 15px;
+//  margin: auto 0;
+//  border-radius: 50%;
+//  background-color: var(--background-accent);
+//  transform: translateX(-50%);
+//}
+//
+//.card {
+//  margin: 1rem;
+//  padding: 1.5rem;
+//  text-align: left;
+//  color: inherit;
+//  text-decoration: none;
+//  border: 1px solid #eaeaea;
+//  border-radius: 10px;
+//  transition: color 0.15s ease, border-color 0.15s ease;
+//  max-width: 45%;
+//}
+//
+//.card:hover,
+//.card:focus,
+//.card:active {
+//  color: #0070f3;
+//  border-color: #0070f3;
+//}
+//
+//.card h2 {
+//  margin: 0 0 1rem 0;
+//  font-size: 1.5rem;
+//}
+//
+//.card p {
+//  margin: 0;
+//  font-size: 1.25rem;
+//  line-height: 1.5;
+//}
+//
+//.cardLeft {}
+//.cardRight {}
+//
+//@include up(600) {
+//  .worksList::before {
+//    margin: auto;
+//  }
+//  .worksListItem::before {
+//    width: 20px;
+//    height: 20px;
+//    margin: auto;
+//    transform: translate(0);
+//  }
+//}
+
+.timeline {
+    margin: 0 auto;
+    max-width: 750px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 3px 1fr;
+    font-family: "Fira Sans", sans-serif;
+    color: #777777;
+
+  .timelineComponent {
+    margin: 0 20px 20px 20px;
+  }
+
+  .timelineComponentBg {
+    padding: 1.5em;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 3px #106fb4;
+    border-radius: 10px;
+  }
+
+  /* LEAVE TILL LAST */
+  .timelineComponentBottom {
+    margin-bottom: 0;
+  }
+
+  .timelineMiddle {
+    position: relative;
+    background: #d6d6d6;
+  }
+
+  .timelinePoint {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 15px;
+    background: #3F8BC3;
+    border-radius: 50%;
+  }
+
+  /* LEAVE TILL LAST */
+  .timelinePointBottom {
+    top: initial;
+    bottom: 0;
+  }
+
+  .timelineDateRight {
+    text-align: right;
+    color: #106fb4;
+  }
+
+  .timelineTitle {
+    margin: 0;
+    font-size: 1.15em;
+    font-weight: bold;
+    color: #391472;
+  }
+
+  .timelineParagraph {
+    line-height: 1.5;
+  }
+
+  .timelineDate {
+    color: #106fb4;
+  }
+
+  .titol {
+    font-style: italic;
+  }
+}

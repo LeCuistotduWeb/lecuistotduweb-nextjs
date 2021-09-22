@@ -12,12 +12,17 @@ body {
   --text-color-secondary: #4b76e5;
   --text-color-accent: #e76161;
 
+  --border-color: #3d3d3d;
+
   --background-color: #171616;
   --background-primary: #d5d5d5;
   --background-seconadry: #4b76e5;
   --background-accent:  #e76161;
+  transition: background-color .2s;
 }
 body.theme-light {
   --background-color: "#fff";
   --text-color: #171616;
+  --border-color: #cfcfcf;
+  transition: background-color .2s;
 }

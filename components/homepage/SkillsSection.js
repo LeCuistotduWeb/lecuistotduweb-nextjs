@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from "../../styles/layouts/Home.module.css";
+import styles from "../../styles/layouts/home.module.css";
 import Image from "next/image";
 
 const SkillsSection = (props) => {

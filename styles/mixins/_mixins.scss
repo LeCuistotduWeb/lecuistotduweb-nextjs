@@ -40,7 +40,7 @@ $breakpoint-xl: 1920;
   width: 100%;
   padding-left: $padding;
   padding-right: $padding;
-
+ 
   @include up($width + 2 * $padding) {
     padding-left: calc(50vw - #{$width / 2});
     padding-right: calc(50vw - #{$width / 2});
