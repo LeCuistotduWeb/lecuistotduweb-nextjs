@@ -1,5 +1,20 @@
 @import "../mixins/mixins";
 
+.searchInputContainer {
+  .searchInput {
+    padding: 10px;
+    border: solid #f0f1f6 2px;
+    border-radius: 5px;
+  }
+  .searchButton {
+    background: #f0f1f6;
+    border: 2px solid #f0f1f6;
+    padding: 10px;
+    margin-left: 5px;
+    border-radius: 5px;
+  }
+}
+
 .adminLayout {
   background-color: #f0f1f6;
   min-height: 100vh;
@@ -60,7 +75,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
-    padding: 16px;
+    padding: 16px 32px;
     box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
   }
 

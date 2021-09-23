@@ -56,9 +56,9 @@ const AdminLayout = (props) => {
 
             <section className={styles.adminContent}>
                 <section className={styles.adminContentTop}>
-                    <form>
-                        <input type="search" placeholder="Search Pages..."/>
-                        <button type="submit" aria-label="submit form">
+                    <form className={styles.searchInputContainer}>
+                        <input className={styles.searchInput} type="search" placeholder="Search Pages..."/>
+                        <button className={styles.searchButton} type="submit" aria-label="submit form">
                             rechercher
                         </button>
                     </form>
