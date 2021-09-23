@@ -22,7 +22,7 @@ const Header = (props) => {
                         </Link>
                     </li>
                     <li className={styles.listItem}>
-                        <Link href="#works">
+                        <Link href="/works">
                             <a className={`${styles.listItemLink}`}>Works</a>
                         </Link>
                     </li>

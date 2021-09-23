@@ -4,6 +4,7 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
 import Link from 'next/link';
+import Button from "../components/buttons/Button";
 
 const Home = () => {
   return (
@@ -25,7 +26,7 @@ const Home = () => {
                       <h2 className="sectionTitle">Works & Experiences</h2>
                       <div className="text-center">
                       <Link href="works" passHref>
-                          <a>Voir</a>
+                          <Button>Voir</Button>
                       </Link>
                       </div>
                   </div>

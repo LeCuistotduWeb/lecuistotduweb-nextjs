@@ -1,0 +1,41 @@
+@import "../mixins//mixins";
+
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border-radius: 10px;
+  background-color: #2d2c2c;
+  box-shadow: 0 10px 24px -15px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
+  transition: all .3s;
+
+  &:hover,
+  &:focus,
+  &:active {
+    transform: translateY(2px);
+    transition: all .3s;
+  }
+}
+.cardTitle {
+  margin: 0;
+  font-size: 1.15em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+.cardContent {
+
+}
+.cardDate {
+  font-size: .9rem;
+}
+
+@include up(600) {
+  .card {
+    max-width: 45%;
+  }
+  .cardRight {
+    margin-left: auto;
+  }
+}

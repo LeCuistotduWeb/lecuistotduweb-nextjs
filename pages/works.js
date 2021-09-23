@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/layouts/works.module.scss'
 import DefaultLayout from "../layouts/DefaultLayout";
+import WorkCards from "../components/cards/WorkCards";
 
 const WorksPage = () => {
   return (
@@ -18,49 +19,34 @@ const WorksPage = () => {
                       <h2 className="sectionTitle">Works & experiences</h2>
                   </div>
 
-                  {/*<div className={"container"}>*/}
-                  {/*    <div className={styles.worksContainer}>*/}
-                  {/*        <ul className={styles.worksList}>*/}
-                  {/*            {[1,2,3].map(elt=>(*/}
-                  {/*                <li className={styles.worksListItem}>*/}
-                  {/*                <div className={styles.card}>*/}
-                  {/*                    <div className={styles.cardTtitle}>cart title</div>*/}
-                  {/*                    <div className={styles.cardContent}>this is the cart content</div>*/}
-                  {/*                    <div className={styles.cardDate}>2016 - 2018</div>*/}
-                  {/*                </div> */}
-                  {/*            </li>*/}
-                  {/*            ))}*/}
-                  {/*        </ul>*/}
-                  {/*    </div>*/}
-                  {/*</div>*/}
+                  <div className={"container"}>
+                      <div className={styles.worksContainer}>
+                          <ul className={styles.worksList}>
 
-                  <div className={styles.timeline}>
-                      <div className={styles.timelineComponent}>
-                          <div className={`${styles.timelineDate} ${styles.timelineDateRight}`}>2001</div>
-                      </div>
-                      <div className={styles.timelineMiddle}>
-                          <div className={styles.timelinePoint}></div>
-                      </div>
-                      <div className={`${styles.timelineComponent} ${styles.timelineComponentBg}`}>
-                          <h2 className={styles.timelineTitle}>The beggining</h2>
-                          <p className={styles.timelineParagraph}>
-                              RIETE is set up in 2001 with 25 Spanish physicians participating in sharing the data of
-                              their patients in a single database.
-                          </p>
-                      </div>
+                              <li className={styles.worksListDateItem}>
+                                  <div className={styles.dateItem}>2020</div>
+                              </li>
 
-                      <div className={`${styles.timelineComponent} ${styles.timelineComponentBg}`}>
-                          <h2 className={styles.timelineTitle}>The first article</h2>
-                          <p className={styles.timelineParagraph}>
-                              We publish our first original article, at <span className="titol">
-                              <a href="https://pubmed.ncbi.nlm.nih.gov/15529451/">The New England Journal of Medicine</a></span>.
-                          </p>
-                      </div>
+                              {[1,2,3,4,5,6].map((elt, index) =>(
+                                  <li className={styles.worksListItem}>
+                                  <WorkCards title="" content="" href="" onRight={index % 2} />
+                              </li>
+                              ))}
 
-                      <div className={styles.timelineMiddle}>
-                          <div className={styles.timelinePoint}></div>
+                              <li className={styles.worksListDateItem}>
+                                  <div className={styles.dateItem}>2016</div>
+                              </li>
+
+                              {[1,2,3,4].map((elt, index) =>(
+                                  <li className={styles.worksListItem}>
+                                      <WorkCards title="" content="" href="" onRight={index % 2} />
+                                  </li>
+                              ))}
+
+                          </ul>
                       </div>
                   </div>
+
               </section>
 
           </main>

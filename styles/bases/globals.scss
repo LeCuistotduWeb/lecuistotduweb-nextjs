@@ -2,8 +2,6 @@
 @import "reset";
 @import "../mixins/mixins";
 
-@import "../modules/buttons";
-
 .container {
   max-width: var(--container);
   padding: 0 var(--container-padding);
