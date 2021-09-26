@@ -9,6 +9,7 @@
 .footerContainer {
   max-width: var(--container);
   margin: auto;
+  padding: 0 var(--container-padding);
   @include up(600){
     display: flex;
   }

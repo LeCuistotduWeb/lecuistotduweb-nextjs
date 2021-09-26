@@ -19,11 +19,18 @@ body {
   --background-seconadry: #4b76e5;
   --background-accent:  #e76161;
 
+  --card-background-color: #2d2c2c;
+  --card-text-color: #d5d5d5;
+
   transition: background-color .2s;
 }
 body.theme-light {
   --background-color: "#fff";
   --text-color: #171616;
   --border-color: #cfcfcf;
+
+  --card-background-color: #fff;
+  --card-text-color: #171616;
+
   transition: background-color .2s;
 }

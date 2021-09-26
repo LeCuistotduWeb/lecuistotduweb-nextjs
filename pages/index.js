@@ -23,8 +23,8 @@ const Home = () => {
 
               <section className={styles.about}>
                   <div className={"container"}>
-                      <h2 className="sectionTitle">Works & Experiences</h2>
-                      <div className="text-center">
+                      <h2 className="sectionTitle">Works</h2>
+                      <div className="text-center" style={{margin: '30px 0'}}>
                       <Link href="works" passHref>
                           <Button>Voir</Button>
                       </Link>

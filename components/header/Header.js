@@ -17,17 +17,17 @@ const Header = (props) => {
             <nav className={styles.headerNav}>
                 <ul className={styles.listItems}>
                     <li className={styles.listItem}>
-                        <Link href="#skills">
-                            <a className={`${styles.listItemLink}`}>Skills</a>
-                        </Link>
-                    </li>
-                    <li className={styles.listItem}>
                         <Link href="/works">
                             <a className={`${styles.listItemLink}`}>Works</a>
                         </Link>
                     </li>
                     <li className={styles.listItem}>
-                        <Link href="#contact">
+                        <Link href="/experiences">
+                            <a className={`${styles.listItemLink}`}>Experiences</a>
+                        </Link>
+                    </li>
+                    <li className={styles.listItem}>
+                        <Link href="/contact">
                             <a className={`${styles.listItemLink}`}>Contact</a>
                         </Link>
                     </li>
