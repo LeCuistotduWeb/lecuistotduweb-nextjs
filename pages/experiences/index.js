@@ -172,7 +172,7 @@ const WorksPage = (props) => {
                                         <li key={index} className={styles.experiencesListItem}>
                                             <ExperienceCards
                                                 title={elt.title}
-                                                company={elt.compoany}
+                                                company={elt.company}
                                                 date={elt.date}
                                                 content={elt.content}
                                                 onRight={elt.position === 'right'}
