@@ -1,11 +1,31 @@
 import React, {useState} from 'react';
 import styles from "../styles/layouts/admin.module.scss";
 import Link from "next/link";
+import useAuth from "../auth/authContext";
 
 const AdminLayout = (props) => {
 
     const {} = props
     const [toggleMenu, setToggleMenu] = useState(false);
+    const {user, login, logout} = useAuth()
+
+    const handleSubmit = event => {
+        event.preventDefault()
+        login('lcdw', 'password')
+    }
+
+    const handleLogout = event => {
+        event.preventDefault()
+        logout()
+    }
+
+    if(!user) return (
+        <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="username"/>
+            <input type="password" placeholder="password"/>
+            <button type="submit">se connecter</button>
+        </form>
+    )
 
     return (
         <div className={styles.adminLayout}>
@@ -63,7 +83,7 @@ const AdminLayout = (props) => {
                         </button>
                     </form>
                     <div className="admin-profile">
-                        <a href="/logout">logout</a>
+                        <a onClick={handleLogout} href="/logout">logout</a>
                     </div>
                 </section>
 
