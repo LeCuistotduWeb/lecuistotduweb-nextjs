@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext} from "react";
+import React, {useState, useContext, createContext, useEffect} from "react";
 import Router from 'next/router'
 
 const AuthContext = createContext({
@@ -8,30 +8,31 @@ const AuthContext = createContext({
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null)
-    const [loading, setLoading] = useState(true)
 
     const login = async (username, password) => {
-        console.log({username}, {password}, process.env.USER_PASSWORD, process.env.USER_USERNAME, (process.env.USER_PASSWORD === password), (process.env.USER_USERNAME === username))
         if(sessionStorage.getItem('user')){
             setUser(JSON.parse(sessionStorage.getItem('user')))
+            await Router.push('/admin')
         }
         else if((process.env.NEXT_PUBLIC_USER_PASSWORD === password) && (process.env.NEXT_PUBLIC_USER_USERNAME === username)){
-            const userData = {
-                username,
-                isLogged: true,
-            }
-            setUser({username})
+            const userData = {username}
+            setUser(userData)
             sessionStorage.setItem('user', JSON.stringify(userData))
-            // await Router.push('/')
-        } else {
+            await Router.push('/admin')
+        }
+        else {
             setUser(null)
         }
     }
 
+    useEffect(() => {
+        login()
+    }, []);
+
     const logout = async () => {
         sessionStorage.removeItem('user')
         setUser(null)
-        Router.push('/')
+        Router.push('/login')
     }
 
     return (

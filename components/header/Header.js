@@ -1,12 +1,9 @@
 import * as React from 'react';
 import styles from '../../styles/modules/header.module.scss'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 const Header = (props) => {
-    const router = useRouter();
-    console.log(router.asPath)
-
+    const {} = props
     return (
         <div className={styles.header}>
             <div className={styles.brand}>
