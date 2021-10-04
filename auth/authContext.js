@@ -12,7 +12,6 @@ export const AuthProvider = ({children}) => {
     const login = async (username, password) => {
         if(sessionStorage.getItem('user')){
             setUser(JSON.parse(sessionStorage.getItem('user')))
-            await Router.push('/admin')
         }
         else if((process.env.NEXT_PUBLIC_USER_PASSWORD === password) && (process.env.NEXT_PUBLIC_USER_USERNAME === username)){
             const userData = {username}
