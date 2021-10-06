@@ -1,14 +1,18 @@
+.main {
+  margin: 0 0 90px;
+}
+
 /**
  * Introduction
  */
 .introduction {
-  margin: 8em 0;
+  padding: var(--padding-section) 0;
 }
 .introduction .grid2 {
   display: grid;
   grid-template-columns: 2fr 1fr;
   align-items: center;
-  margin: 5rem 0;
+  //margin: 5rem 0;
 }
 .introduction .introductionContent {
   margin-right: 6em;
@@ -26,41 +30,46 @@
 /**
  * technos & Tools
  */
-.techoAndTools {
-  margin-bottom: 32px;
+.technoAndTools {
+  padding: var(--padding-section) 0;
 }
-.techoAndTools .logoList ul {
+.technoAndTools .logoList ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   max-width: 760px;
   margin: auto;
 }
-.techoAndTools .logoList ul li {
+.technoAndTools .logoList ul li {
   margin: 32px;
 }
-.techoAndTools .logoList .logo {
+.technoAndTools .logoList .logo {
   object-fit: cover;
   filter: grayscale(100);
   transition: filter .3s;
 }
-.techoAndTools .logoList .logo:hover {
+.technoAndTools .logoList .logo:hover {
   object-fit: cover;
   filter: grayscale(0);
   transition: filter .3s;
 }
 
 /**
- * Introduction
+ * About
  */
 .about {
-
+  padding: var(--padding-section) 0;
+}
+.aboutContainer {
+  max-width: 600px;
+  padding: 0 var(--container-padding);
+  margin: 0 auto;
 }
 
 @media (min-width: 961px) {
   .introduction {
     max-width: 85%;
-    margin: 8em auto;
+    margin: 0 auto;
   }
 }
 @media (max-width: 960px) {
@@ -73,6 +82,10 @@
     flex-direction: column;
     text-align: center;
     margin-bottom: 0;
+  }
+  .introduction .introductionImage {
+    max-width: 80%;
+    margin: 20px auto 0;
   }
   .introduction .introductionContent {
     margin-right: 0;

@@ -12,13 +12,18 @@
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0;
+  &:hover {
+    border-color: var(--background-primary);
+  }
 }
 
 .buttonPrimary {
-  background-color: white;
-  color: black;
-  border: 2px solid #4CAF50;
+  border: 2px solid #fff;
+  padding: 16px;
+  margin: 16px;
+  display: inline-block;
+  border-radius: 6px;
 }
 
 .buttonPrimary:hover {

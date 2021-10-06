@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/layouts/home.module.scss'
+import stylesButton from '../styles/modules/buttons.module.scss'
 import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
@@ -21,13 +22,13 @@ const Home = () => {
               <SkillsSection/>
 
               <section className={styles.about}>
-                  <div className={"container"}>
+                  <div className={styles.aboutContainer}>
                       <h2 className="sectionTitle">Experiences</h2>
                       <div className="text-center" style={{margin: '30px 0'}}>
                           <p>Vous voulez en savoir plus sur les différentes expériences professionnel et formations que je mène et celle que j'ai pu mener.</p>
-                      <Link href="/experiences" passHref>
-                          <a>mes expériences</a>
-                      </Link>
+                          <Link href="/experiences" passHref>
+                              <a className={stylesButton.button}>mes expériences</a>
+                          </Link>
                       </div>
                   </div>
               </section>
