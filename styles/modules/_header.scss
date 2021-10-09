@@ -1,0 +1,7 @@
+.header {
+
+  @include up(600) {
+    display: flex;
+    justify-content: space-between;
+  }
+}

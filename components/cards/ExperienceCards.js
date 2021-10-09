@@ -1,5 +1,4 @@
 import React, {} from 'react';
-import styles from "../../styles/modules/cards.module.scss";
 import Link from "next/link";
 
 const ExperienceCards = (props) => {
@@ -8,16 +7,16 @@ const ExperienceCards = (props) => {
 
     const ExperienceCardContent = () => {
         return (
-            <div className={`${styles.card} ${onRight ? styles.cardRight : styles.cardLeft}`}>
-                {logo && <img className={styles.cardLogo} src={logo} alt={title}/>}
+            <div className={`${"card"} ${onRight ? "cardRight" : "cardLeft"}`}>
+                {logo && <img className={"cardLogo"} src={logo} alt={title}/>}
 
-                {date && <div className={styles.cardDate} dangerouslySetInnerHTML={{__html: date}}/>}
+                {date && <div className={"cardDate"} dangerouslySetInnerHTML={{__html: date}}/>}
 
-                {title && <div className={styles.cardTitle} dangerouslySetInnerHTML={{__html: title}}/>}
+                {title && <div className={"cardTitle"} dangerouslySetInnerHTML={{__html: title}}/>}
 
-                {company && <div className={styles.cardCompagny} dangerouslySetInnerHTML={{__html: company}}/>}
+                {company && <div className={"cardCompagny"} dangerouslySetInnerHTML={{__html: company}}/>}
 
-                {content && <div className={styles.cardContent}>{content}</div>}
+                {content && <div className={"cardContent"}>{content}</div>}
             </div>
         )
     }

@@ -1,0 +1,18 @@
+body {
+  font-family: $font;
+  font-size: 16px;
+  color: var(--color);
+  line-height: 1.6;
+  background: var(--background);
+  min-height: 100vh;
+  //scroll-margin: 100px 0 0 0;
+  word-break: break-word;
+}
+
+body.light {
+  background: var(--background-light);
+}
+
+p {
+  color: var(--color-light);
+}

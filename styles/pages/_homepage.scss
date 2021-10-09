@@ -1,0 +1,27 @@
+.homepage {
+}
+
+.introduction {
+  margin: 3em 0;
+}
+.introduction .introduction-image {
+  max-width: 80%;
+  margin: 20px auto 0;
+}
+.introduction .introduction-image img {
+  border-radius: 15px;
+}
+.introduction .introduction-content {
+  margin-right: 0;
+}
+
+@include up(961) {
+  .introduction {
+    max-width: 85%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    min-height: 60vh;
+  }
+}

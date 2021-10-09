@@ -1,0 +1,69 @@
+/**
+ * STYLESHEETS
+ * author: Gaëtan Boyron
+ * username: LeCuistotduWeb
+ */
+
+// Variables
+// ==================
+:root {
+  --red: #f25353;
+  --green: #178E56;
+  --yellow: #F3AF2D;
+  --blue: #0070C0;
+
+  --color: #253c59;
+  --color-light: #253c59;
+  --color-accent: #f25353;
+
+  --gap: 20px;
+  --space: 8px;
+
+  --border-color: #1C2A3A;
+
+  --background: #f7ebd3;
+
+  --container-width: 1200px;
+
+  --card-bg-color: #f5efe0;
+}
+
+// Tools
+// ==================
+@import 'tools/functions';
+@import 'tools/mixins';
+@import 'tools/layout';
+@import 'tools/typography';
+@import 'tools/animations';
+
+// Dark mode
+// =============
+@include dark {
+  --color: #fff;
+  --color-light: #a1adbc;
+  --border: #1C2A3A;
+  --background: #121E2A;
+  --background-light: #172231;
+
+  --card-bg-color: #1C2A3A;
+}
+
+// Reset
+// ==================
+@import 'bases/reset';
+
+// Bases
+// ==================
+@import "bases/bases.scss";
+
+
+// Modules
+// ==================
+@import "modules/cards";
+@import "modules/experiences";
+@import "modules/header";
+
+
+// Pages
+// ==================
+@import "pages/homepage";

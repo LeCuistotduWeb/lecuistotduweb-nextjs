@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import Head from 'next/head'
-import styles from '../../styles/layouts/experiences.module.scss'
 import DefaultLayout from "../../layouts/DefaultLayout";
 import ExperienceCards from "../../components/cards/ExperienceCards";
 
@@ -161,15 +160,15 @@ const WorksPage = (props) => {
                     </div>
 
                     <div className={"container"}>
-                        <div className={styles.experiencesContainer}>
-                            <ul className={styles.experiencesList}>
+                        <div className={"experiencesContainer"}>
+                            <ul className={"experiencesList"}>
                                 {data.map((elt, index) => (
-                                    elt.type == 'title' ? (
-                                        <li key={index} className={styles.experiencesListTitle}>
-                                            <div className={styles.dateItem}>{elt.title}</div>
+                                    elt.type === 'title' ? (
+                                        <li key={index} className={"experiencesListTitle"}>
+                                            <div className={"dateItem"}>{elt.title}</div>
                                         </li>
                                     ) : (
-                                        <li key={index} className={styles.experiencesListItem}>
+                                        <li key={index} className={"experiencesListItem"}>
                                             <ExperienceCards
                                                 title={elt.title}
                                                 company={elt.company}

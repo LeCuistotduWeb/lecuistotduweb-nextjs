@@ -1,15 +1,10 @@
-import '../styles/bases/globals.scss'
-import {AuthProvider} from "../context/authContext"
+import '../styles/app.scss';
 import {ThemeProvider} from "../context/themeContext";
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({ Component, pageProps }) {
   return (
       <ThemeProvider>
-          <AuthProvider>
-            <Component {...pageProps} />
-          </AuthProvider>
+          <Component {...pageProps} />
       </ThemeProvider>
   )
 }
-
-export default MyApp
