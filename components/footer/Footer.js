@@ -30,7 +30,6 @@ const Footer = (props) => {
                 </div>
                 <div className={styles.bloc2}>
                     <RandomQuote/>
-                    <SwitchTheme/>
                 </div>
             </div>
         </footer>

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styles from "../styles/layouts/admin.module.scss";
 import Link from "next/link";
-import useAuth from "../auth/authContext";
+import useAuth from "../context/authContext";
 import Router from "next/router";
 
 const AdminLayout = (props) => {

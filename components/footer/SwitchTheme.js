@@ -1,26 +1,17 @@
-import * as React from 'react';
-import styles from "../../styles/modules/footer.module.scss";
-import {useEffect, useState} from "react";
+import React from 'react';
+import useTheme from "../../context/themeContext";
 
 const SwitchTheme = (props) => {
+    const {toggleTheme, isDark} = useTheme()
 
-    const [theme, setTheme] = useState("dark")
-
-    const toggleTheme = () => {
-        setTheme(theme === 'light' ? 'dark' : 'light')
+    const handleToggleTheme = () => {
+        toggleTheme(!isDark);
     }
-
-    useEffect(() => {
-        document.body.className = `theme-${theme}`;
-        return () => { document.body.className = ''; }
-    }, [theme]);
 
     return (
         <div>
-            <strong><span>Theme</span></strong>
-            <div className={styles.switch}>
-                <input id="toggleDarkMode" checked={theme === 'dark'} onChange={toggleTheme} name="toggleDarkMode" type="checkbox"/>
-                <label htmlFor="toggleDarkMode"/>
+            <div className="switch">
+                <button onClick={handleToggleTheme}>{isDark ? '☀️' : '🌙'}</button>
             </div>
         </div>
     )

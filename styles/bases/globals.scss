@@ -1,11 +1,43 @@
 @import "variables";
 @import "reset";
-@import "../mixins/mixins";
 
-.container {
-  max-width: var(--container);
-  padding: 0 var(--container-padding);
-  margin: 0 auto;
+/* Modules */
+@import "styles/modules/switch";
+
+body, body.theme-dark {
+  --container: $container;
+  --container-width: $container-width;
+  --container-padding: $container-padding;
+  --padding-section: 2em;
+  --spacing: 8;
+  --color-primary: #d5d5d5;
+  --color-secondary: #4b76e5;
+  --color-accent: #e76161;
+
+  --text-color: #d5d5d5;
+  --text-color-default: #d5d5d5;
+  --text-color-secondary: #4b76e5;
+  --text-color-accent: #e76161;
+
+  --border-color: #3d3d3d;
+
+  --background-color: #242424;
+  --background-primary: #d5d5d5;
+  --background-seconadry: #4b76e5;
+  --background-accent:  #e76161;
+
+  --card-background-color: #2d2c2c;
+  --card-text-color: #d5d5d5;
+
+  transition: background-color .2s;
+}
+
+body.theme-light {
+  --background-color: "#fff";
+  --text-color: #171616;
+  --border-color: #cfcfcf;
+  --card-background-color: #fff;
+  --card-text-color: #171616;
 }
 
 .title {

@@ -1,10 +1,8 @@
 import Head from 'next/head'
-import styles from '../styles/layouts/home.module.scss'
-import stylesButton from '../styles/modules/buttons.module.scss'
 import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
-import Link from 'next/link';
+import AboutSection from "../components/homepage/AboutSection";
 
 const Home = () => {
   return (
@@ -15,23 +13,13 @@ const Home = () => {
               <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <main className={styles.main}>
+          <main >
 
               <IntroductionSection/>
 
               <SkillsSection/>
 
-              <section className={styles.about}>
-                  <div className={styles.aboutContainer}>
-                      <h2 className="sectionTitle">Experiences</h2>
-                      <div className="text-center" style={{margin: '30px 0'}}>
-                          <p>Vous voulez en savoir plus sur les différentes expériences professionnel et formations que je mène et celle que j'ai pu mener.</p>
-                          <Link href="/experiences" passHref>
-                              <a className={stylesButton.button}>mes expériences</a>
-                          </Link>
-                      </div>
-                  </div>
-              </section>
+              <AboutSection/>
 
           </main>
 

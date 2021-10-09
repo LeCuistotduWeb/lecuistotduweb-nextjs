@@ -34,13 +34,18 @@ $breakpoint-xl: 1920;
   }
 }
 
+.title {
+  color: var(--text-color-accent);
+}
+
 // Espacement
 // ==================
-@mixin container($width, $padding) {
+@mixin container($width: 1200px, $padding: 16px) {
   width: 100%;
   padding-left: $padding;
   padding-right: $padding;
- 
+  margin: 0 auto;
+
   @include up($width + 2 * $padding) {
     padding-left: calc(50vw - #{$width / 2});
     padding-right: calc(50vw - #{$width / 2});

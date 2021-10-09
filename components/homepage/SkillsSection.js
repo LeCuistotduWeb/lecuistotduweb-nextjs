@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from "../../styles/layouts/home.module.scss";
+import styles from "../../styles/pages/homepage/skills.module.scss";
 import Image from "next/image";
 
 const SkillsSection = (props) => {
@@ -7,7 +7,7 @@ const SkillsSection = (props) => {
     const sizeLogo = 60;
 
     return (
-        <section className={styles.technoAndTools} id={"skills"}>
+        <section className={styles.skills} id={"skills"}>
             <div className={"container"}>
                 <h2 className="sectionTitle">Technologies & Tools</h2>
                 <div className={styles.logoList}>

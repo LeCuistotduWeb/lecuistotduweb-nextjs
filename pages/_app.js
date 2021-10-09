@@ -1,11 +1,14 @@
 import '../styles/bases/globals.scss'
-import {AuthProvider} from "../auth/authContext";
+import {AuthProvider} from "../context/authContext"
+import {ThemeProvider} from "../context/themeContext";
 
 function MyApp({ Component, pageProps }) {
   return (
-      <AuthProvider>
-        <Component {...pageProps} />
-      </AuthProvider>
+      <ThemeProvider>
+          <AuthProvider>
+            <Component {...pageProps} />
+          </AuthProvider>
+      </ThemeProvider>
   )
 }
 

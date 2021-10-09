@@ -1,0 +1,23 @@
+@import '../../mixins/mixins';
+
+.introduction {
+  padding: var(--padding-section) 0;
+  @include container();
+  margin: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+}
+
+.introduction .introductionContent {
+  margin-right: 6em;
+}
+.introduction .introductionImage img {
+  filter: grayscale(50);
+  transition: filter .5s;
+  border-radius: 30px;
+}
+.introduction .introductionImage img:hover {
+  filter: grayscale(0);
+  transition: filter .3s;
+}

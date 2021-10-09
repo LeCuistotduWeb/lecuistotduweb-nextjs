@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from '../../styles/modules/header.module.scss'
 import Link from 'next/link'
+import SwitchTheme from "../footer/SwitchTheme";
 
 const MenuBurgerIcon = () => (
     <svg className={styles.burgerIcon} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 34 27" enableBackground="new 0 0 34 27">
@@ -50,6 +51,9 @@ const Header = (props) => {
                         <Link href="/contact">
                             <a className={`${styles.listItemLink}`}>Contact</a>
                         </Link>
+                    </li>
+                    <li className={styles.listItem}>
+                        <SwitchTheme/>
                     </li>
                 </ul>
             </nav>
