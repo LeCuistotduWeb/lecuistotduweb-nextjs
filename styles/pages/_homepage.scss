@@ -1,24 +1,38 @@
-.homepage {
-}
+.homepage {}
 
 .introduction {
   margin: 3em 0;
 }
 .introduction .introduction-image {
-  max-width: 80%;
-  margin: 20px auto 0;
+  max-width: 600px;
+  margin: auto;
+  margin-bottom: space(3);
 }
 .introduction .introduction-image img {
   border-radius: 15px;
 }
 .introduction .introduction-content {
-  margin-right: 0;
+  max-width: 600px;
+  margin: auto;
+}
+.introduction .introduction-content .btn {
+  margin-top: space(2);
+
+  &:first-child {
+    margin-right: space(3);
+  }
 }
 
-@include up(961) {
+@include up(1070) {
+
+  .introduction .introduction-image {
+    max-width: 80%;
+    margin: 20px auto 0;
+    display: block;
+  }
   .introduction {
     max-width: 85%;
-    margin: 0 auto;
+    margin: 5rem auto 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;

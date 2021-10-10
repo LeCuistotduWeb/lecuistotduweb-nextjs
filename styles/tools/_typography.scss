@@ -1,2 +1,13 @@
 $font: 'Inter', sans-serif;
 $font-alt: 'Inter', sans-serif;
+
+.section-title {
+  font-size: 2.2rem;
+  line-height: 3rem;
+  margin-bottom: space(3);
+
+  @include up(600){
+    font-size: 3rem;
+    line-height: 3.5rem;
+  }
+}

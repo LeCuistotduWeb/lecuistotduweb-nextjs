@@ -153,7 +153,6 @@ const WorksPage = (props) => {
             </Head>
 
             <main>
-
                 <section>
                     <div className={"container"}>
                         <h1 className="sectionTitle">Experiences</h1>

@@ -1,4 +1,6 @@
 .header {
+  position: relative;
+  padding: space(2) space(2);
 
   @include up(600) {
     display: flex;
