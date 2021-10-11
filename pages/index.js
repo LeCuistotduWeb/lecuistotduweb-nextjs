@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
+import SkillsSection from "../components/homepage/SkillsSection";
+import AboutSection from "../components/homepage/AboutSection";
 
 const Home = () => {
   return (
@@ -13,6 +15,10 @@ const Home = () => {
 
           <main className="homepage">
               <IntroductionSection/>
+
+              <SkillsSection/>
+
+              <AboutSection></AboutSection>
           </main>
 
       </DefaultLayout>

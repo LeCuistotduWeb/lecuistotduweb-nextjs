@@ -1,0 +1,53 @@
+// Introduction
+// ==================
+.introduction {
+    margin: 3em 0;
+}
+.introduction .introduction-image {
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: space(3);
+}
+.introduction .introduction-image img {
+    border-radius: 15px;
+}
+.introduction .introduction-content {
+    max-width: 600px;
+    margin: auto;
+}
+.introduction .introduction-content .btn {
+    margin-top: space(2);
+
+    &:first-child {
+        margin-right: space(3);
+    }
+}
+
+@include up(1070) {
+
+    .introduction .introduction-image {
+        max-width: 80%;
+        margin: 20px auto 0;
+        display: block;
+    }
+    .introduction {
+        //max-width: 85%;
+        margin: 5rem auto 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: 60vh;
+    }
+}
+
+.profileSvg {
+    path.cls-1{fill:#fcdcbe;}
+    path.cls-2{fill:#ffe2c0;}
+    path.cls-3{fill:#eaceac;}
+    path.cls-4{fill:#a86b51;}
+    path.cls-5{fill:#371d1e;}
+    path.cls-6{fill:#fff;}
+    path.cls-7{fill:#f70d0d;}
+    path.cls-8{fill:#774713;}
+    path.cls-9{fill:#494949;}
+}

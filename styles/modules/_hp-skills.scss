@@ -1,0 +1,18 @@
+// Skills
+// ==================
+.skills  {}
+
+.skills .logo-list ul  {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skills .logo-list ul li  {
+    padding: space(2);
+}
+
+@include up(1070) {
+    .skills .logo-list ul  {
+        justify-content: space-between;
+    }
+}
