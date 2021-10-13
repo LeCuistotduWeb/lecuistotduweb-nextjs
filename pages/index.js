@@ -18,7 +18,7 @@ const Home = () => {
 
               <SkillsSection/>
 
-              <AboutSection></AboutSection>
+              <AboutSection/>
           </main>
 
       </DefaultLayout>

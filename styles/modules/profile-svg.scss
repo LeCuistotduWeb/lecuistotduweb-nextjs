@@ -1,0 +1,97 @@
+.profile-svg-container {
+  position: relative;
+  cursor: pointer;
+}
+.profileSvg {
+  path {@extend %transition-all}
+  .oreille-gauche{fill:#fcdcbe;}
+  .oreille-droite{fill:#fcdcbe;}
+  .visage {fill:#ffe2c0;}
+  .nez{fill:#eaceac;}
+  .barbe{fill:#a86b51;}
+  .bouche-interieur{fill:#371d1e;}
+  .langue{fill:#f70d0d;}
+  .oeil-gauche-fond{fill:#fff;}
+  .oeil-droit-fond{fill:#fff;}
+  .oeil-droit-inter{fill:#000;}
+  .oeil-gauche-inter{fill:#000;}
+  .sourcil-gauche {fill:#774713;}
+  .sourcil-droite {fill:#774713;}
+  .cheveux {fill:#774713;}
+  .lunette{fill:#494949;}
+  .oeil-gauche-color {fill:#774713;}
+  .oeil-droite-color {fill:#774713;}
+  &.hulk {
+    .cheveux {
+      fill: #1c371c;
+    }
+    .oreille-droite,
+    .oreille-gauche,
+    .visage {
+      fill:green;
+    }
+    .nez, .barbe {fill:darkgreen;}
+    .oeil-droit-color,
+    .oeil-gauche-color {
+      fill: darkred;
+    }
+    path {@extend %transition-all}
+  }
+  &.terminator {
+    .oeil-gauche-inter {fill: red;}
+    .oeil-gauche-color {fill: black;}
+    path {@extend %transition-all}
+  }
+}
+.profile-svg-settings {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--card-bg-color);
+  border: 2px solid var(--card-border-color);
+  padding: space(4);
+  border-radius: 15px;
+  text-align: left;
+  z-index: var(--z-app-bar);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 500px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
+  margin-top: space(4);
+}
+.profile-svg-form {
+  margin-bottom: space(2);
+}
+.profile-svg-form .profile-svg-form-label{
+  margin-right: space(2);
+}
+.profile-svg-form .profile-svg-form-input{}
+.svg-container .profile-svg-text {
+  @extend %transition-all;
+}
+.svg-container:hover .profile-svg-text {
+  opacity: 1;
+  @extend %transition-all;
+}
+.profile-svg-text {
+  position: absolute;
+  left: auto;
+  top: 0;
+  bottom: 0;
+  transform: rotate(180deg);
+  writing-mode: vertical-rl;
+  color: var(--color-light);
+  opacity: .5;
+  font-size: .8rem;
+}
+
+@include up(600) {
+  .profile-svg-settings {
+    left: 0;
+  }
+}

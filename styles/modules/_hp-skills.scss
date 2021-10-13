@@ -3,16 +3,29 @@
 .skills  {}
 
 .skills .logo-list ul  {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
 }
 
-.skills .logo-list ul li  {
-    padding: space(2);
+.skills .logo-list ul li div  {
+    background-color: var(--card-bg-color);
+    @extend .flex-center;
 }
 
-@include up(1070) {
+.skills .logo-list ul li img  {
+    object-fit: contain;
+}
+
+@include up($breakpoint-sm) {
     .skills .logo-list ul  {
-        justify-content: space-between;
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@include up($breakpoint-md) {
+    .skills .logo-list ul  {}
+    .skills .logo-list ul  {
+        grid-template-columns: repeat(8, 1fr);
     }
 }

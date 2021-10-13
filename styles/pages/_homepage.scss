@@ -1,1 +1,10 @@
-.homepage {}
+.homepage {
+  .section {
+    margin-top: 3rem;
+  }
+  @include up(768){
+    .section {
+      margin-top: 5rem;
+    }
+  }
+}

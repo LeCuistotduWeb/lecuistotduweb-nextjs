@@ -9,18 +9,13 @@
   position: fixed;
   top: space(2);
   right: space(2);
-  z-index: 999;
+  z-index: var(--z-app-bar);
 }
 
 .settings-toggle {
-  height: 50px;
-  width: 50px;
+  @extend .btn-rounded;
+  @extend %flex-center;
   background-color: var(--bg-toggle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
 }
 .settings-controls-container.open .settings-toggle {
   background-color: transparent;

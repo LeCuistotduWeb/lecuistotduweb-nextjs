@@ -7,7 +7,7 @@ const ExperienceCards = (props) => {
 
     const ExperienceCardContent = () => {
         return (
-            <div className={`${"card"} ${onRight ? "cardRight" : "cardLeft"}`}>
+            <div className={`card card-experience ${onRight ? "cardRight" : "cardLeft"}`}>
                 {logo && <img className={"cardLogo"} src={logo} alt={title}/>}
 
                 {date && <div className={"cardDate"} dangerouslySetInnerHTML={{__html: date}}/>}

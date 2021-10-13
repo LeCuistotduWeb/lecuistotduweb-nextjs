@@ -8,13 +8,14 @@
 @media only screen and (min-width: 900px) {
   :root {
     --container-padding: 32px;
+    --container-width: 768px;
   }
 }
 
 @media only screen and (min-width: 1370px) {
   :root {
     --container-padding: 20px;
-    --container-width: 1330px;
+    --container-width: 992px;
   }
 }
 
@@ -27,4 +28,11 @@
   width: 100%;
   padding-left: calc(50% - var(--container-width) / 2);
   padding-right: calc(50% - var(--container-width) / 2);
+}
+
+%flex-center,
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

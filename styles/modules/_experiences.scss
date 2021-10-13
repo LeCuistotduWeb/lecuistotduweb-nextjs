@@ -53,6 +53,11 @@
   padding-left: 30px;
 }
 
+.card-experience {
+  margin: 1rem;
+}
+
+
 @include up(600) {
   .experiencesList::before {
     margin: auto;
@@ -70,5 +75,11 @@
     text-align: right;
     padding-right: 30px;
     padding-left: 0;
+  }
+  .card-experience {
+    max-width: 45%;
+  }
+  .card-experience.cardRight {
+    margin-left: auto;
   }
 }
