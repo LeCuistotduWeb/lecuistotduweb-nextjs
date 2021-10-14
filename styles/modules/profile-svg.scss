@@ -54,7 +54,7 @@
   padding: space(4);
   border-radius: 15px;
   text-align: left;
-  z-index: var(--z-app-bar);
+  z-index: var(--z-modal);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -92,6 +92,23 @@
 
 @include up(600) {
   .profile-svg-settings {
-    left: 0;
+    left: 100%;
+    top: 0;
+    margin-top: 0;
+  }
+}
+
+.overlay {
+  background-color: var(--background);
+  opacity: .6;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  visibility: hidden;
+  &.is-show {
+    z-index: var(--z-modal-overlay);
+    visibility: visible;
   }
 }

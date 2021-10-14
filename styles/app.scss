@@ -50,6 +50,7 @@
 
   --z-app-bar: 1100;
   --z-modal: 1300;
+  --z-modal-overlay: calc(var(--z-modal) - 1 );
   --z-tooltip: 1500;
 }
 
