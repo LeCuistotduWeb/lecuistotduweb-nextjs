@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from "next/image";
 import Svg from "../svg/Svg";
 
 const Footer = ({}) => {
@@ -9,17 +8,17 @@ const Footer = ({}) => {
             <div className="container">
                 <ul className="footer-social-items">
                     <li className="footer-social-item">
-                        <a href="https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/" rel="noopener">
+                        <a href="https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/" rel="noopener" title="linkedin">
                             <Svg name="linkedin"/>
                         </a>
                     </li>
                     <li className="footer-social-item">
-                        <a href="https://github.com/LeCuistotduWeb" rel="noopener">
+                        <a href="https://github.com/LeCuistotduWeb" rel="noopener" title="github">
                             <Svg name="github"/>
                         </a>
                     </li>
                     <li className="footer-social-item">
-                        <a href="https://codepen.io/your-work/" rel="noopener">
+                        <a href="https://codepen.io/your-work/" rel="noopener" title="codepen">
                             <Svg name="codepen"/>
                         </a>
                     </li>

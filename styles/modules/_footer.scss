@@ -25,7 +25,13 @@
 
 .footer .footer-social-item svg {
   margin-right: space(2);
+  opacity: .6;
+  @extend %transition-all;
   &:last-child {
     margin-right: 0;
+  }
+  &:hover {
+    @extend %transition-all;
+    opacity: 1;
   }
 }
