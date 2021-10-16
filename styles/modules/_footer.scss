@@ -11,6 +11,12 @@
   margin-top: space(4);
 }
 
+.footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .footer .footer-social-items {
   display: flex;
   justify-content: flex-end;
@@ -25,11 +31,20 @@
 
 .footer .footer-social-item svg {
   margin-right: space(2);
+  fill: var(--color-light);
   opacity: .6;
   @extend %transition-all;
   &:last-child {
     margin-right: 0;
   }
+  &:hover {
+    @extend %transition-all;
+    opacity: 1;
+  }
+}
+
+.footer .copyright {
+  color: var(--color-light);
   &:hover {
     @extend %transition-all;
     opacity: 1;

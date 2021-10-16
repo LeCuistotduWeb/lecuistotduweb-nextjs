@@ -3,7 +3,7 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
 import AboutSection from "../components/homepage/AboutSection";
-import RandomQuote from "../components/footer/RandomQuote";
+import RandomQuoteSection from "../components/homepage/RandomQuoteSection";
 
 const Home = () => {
   return (
@@ -21,11 +21,7 @@ const Home = () => {
 
               <AboutSection/>
 
-              <div className="section container">
-                  <div className="card">
-                      <RandomQuote/>
-                  </div>
-              </div>
+              <RandomQuoteSection/>
           </main>
 
       </DefaultLayout>

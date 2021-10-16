@@ -1,0 +1,42 @@
+.random-quote {
+  position: relative;
+  min-height: 300px;
+  padding: space(2);
+  @extend %transition-all;
+  .quote-title {
+    margin-bottom: space(2);
+    font-size: 1.5rem;
+  }
+  .quote-author {
+    text-align: right;
+    display: block;
+    padding-top: space(2);
+  }
+  .quote-content {}
+  .quote-icon {
+    position: absolute;
+    svg {
+      fill: var(--card-text-color);
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .icon-quote-start {
+    transform: translate(-50%, -50px);
+    top: 0;
+    left: 0;
+  }
+  .icon-quote-end {
+    transform: translate(50%, 50px);
+    bottom: 0;
+    right: 0;
+  }
+
+  @include up(600){
+    padding: space(4);
+    .quote-icon svg {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

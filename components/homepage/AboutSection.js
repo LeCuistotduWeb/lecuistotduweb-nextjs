@@ -9,7 +9,7 @@ const AboutSection = (props) => {
                 <div className="text-center" style={{margin: '30px 0'}}>
                     <p>Vous voulez en savoir plus sur les différentes expériences professionnel et formations que je mène et celle que j'ai pu mener.</p>
                     <Link href="/experiences" passHref>
-                        <a>mes expériences</a>
+                        <a className="btn btn-primary">mes expériences</a>
                     </Link>
                 </div>
             </div>

@@ -6,6 +6,9 @@ const Footer = ({}) => {
     return (
         <footer className="footer">
             <div className="container">
+                <div className="copyright">
+                    @LeCuistotduWeb{new Date().getFullYear()}
+                </div>
                 <ul className="footer-social-items">
                     <li className="footer-social-item">
                         <a href="https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/" rel="noopener" title="linkedin">

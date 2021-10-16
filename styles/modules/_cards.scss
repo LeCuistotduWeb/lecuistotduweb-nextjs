@@ -33,3 +33,9 @@
 .cardLogo {
   width: 150px;
 }
+
+.card.rainbow {
+  border: 5px solid transparent;
+  border-image: linear-gradient(149deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+  border-image-slice: 1;
+}
