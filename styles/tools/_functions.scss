@@ -20,7 +20,7 @@
 
 // Espacements
 // ==================
-@function space($i) {
+@function space($i:1) {
   @return calc(#{$i} * var(--space));
 }
 

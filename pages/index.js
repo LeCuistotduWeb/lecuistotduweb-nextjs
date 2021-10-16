@@ -2,8 +2,8 @@ import Head from 'next/head'
 import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
-import AboutSection from "../components/homepage/AboutSection";
 import RandomQuoteSection from "../components/homepage/RandomQuoteSection";
+import WorksSection from "../components/homepage/WorksSection";
 
 const Home = () => {
   return (
@@ -19,7 +19,7 @@ const Home = () => {
 
               <SkillsSection/>
 
-              <AboutSection/>
+              <WorksSection/>
 
               <RandomQuoteSection/>
           </main>

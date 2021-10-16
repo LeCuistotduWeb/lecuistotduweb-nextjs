@@ -12,9 +12,9 @@ const IntroductionSection = (props) => {
             <div className={"introduction-content"}>
                 <h1 className="section-title">I'm LeCuistotduWeb.</h1>
                 <p>Animé par l’envie de travailler en équipe et de développer ma créativité au quotidien, j’ai commencé mon chemin professionnel dans l’univers de la restauration. Si ces valeurs sont toujours primordiales pour moi, j’ai aujourd’hui décidé de me reconvertir et de vivre de ma passion : le développement web.</p>
-                <div style={{display: "flex"}}>
+                <div>
                     <Link href="/experiences" passHref>
-                        <a className="btn btn-secondary">Expériences</a>
+                        <a className="btn btn-secondary">Mes expériences</a>
                     </Link>
                 </div>
             </div>

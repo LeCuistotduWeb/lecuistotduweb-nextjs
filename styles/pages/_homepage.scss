@@ -1,6 +1,11 @@
+@import "../modules/hp-introduction";
+@import "../modules/hp-skills";
+@import "../modules/hp-works";
+@import "../modules/hp-about";
+
 .homepage {
   .random-quote-section {
-    margin-top: 5rem;
+    margin-top: 7rem;
     margin-bottom: 5rem;
   }
 }

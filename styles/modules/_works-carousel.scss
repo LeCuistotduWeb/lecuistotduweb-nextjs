@@ -1,0 +1,28 @@
+.works-carousel {
+  .works-container {
+    display: flex;
+    overflow-x: scroll;
+  }
+
+  .card-works {
+    width: 70vw;
+    height: auto;
+    margin-right: space(3);
+    box-shadow: 0 10px 24px -15px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
+  }
+  .card-works img {
+    border-radius: 10px;
+  }
+
+  @include up(600){
+    .works-container {
+      padding-left: calc(50% - var(--container-width) / 2);
+      & li:first-child {
+        margin-left: 10vw;
+      }
+    }
+    .card-works {
+      width: 350px;
+    }
+  }
+}
