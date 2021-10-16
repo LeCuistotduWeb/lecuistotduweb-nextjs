@@ -77,8 +77,8 @@
   --btn-secondary-color: #253c59;
   --btn-secondary-bg-color: #f7ebd3;
   --btn-secondary-border-color: #f7ebd3;
-  --btn-secondary-bg-color-hover: #f5f0e4;
-  --btn-secondary-border-color-hover: #f5f0e4;
+  --btn-secondary-bg-color-hover: #d2c4a4;
+  --btn-secondary-border-color-hover: #d2c4a4;
 
   --link-color: #fff;
   --link-color-hover: #f25353;
@@ -101,6 +101,7 @@
 @import "modules/switch";
 @import "modules/experiences";
 @import "modules/header";
+@import "modules/footer";
 @import "modules/hp-introduction";
 @import "modules/hp-skills";
 @import "modules/profile-svg.scss";

@@ -1,0 +1,31 @@
+:root {
+  --footer-bg: #f3deb6;
+}
+@include dark(){
+  --footer-bg: #0f161e;
+}
+
+.footer {
+  background-color: var(--footer-bg);
+  padding: space(4) 0;
+  margin-top: space(4);
+}
+
+.footer .footer-social-items {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer .footer-social-item {
+  margin-right: space(3);
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.footer .footer-social-item svg {
+  margin-right: space(2);
+  &:last-child {
+    margin-right: 0;
+  }
+}

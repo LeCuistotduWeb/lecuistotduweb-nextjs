@@ -3,6 +3,7 @@ import DefaultLayout from "../layouts/DefaultLayout";
 import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
 import AboutSection from "../components/homepage/AboutSection";
+import RandomQuote from "../components/footer/RandomQuote";
 
 const Home = () => {
   return (
@@ -19,6 +20,12 @@ const Home = () => {
               <SkillsSection/>
 
               <AboutSection/>
+
+              <div className="section container">
+                  <div className="card">
+                      <RandomQuote/>
+                  </div>
+              </div>
           </main>
 
       </DefaultLayout>

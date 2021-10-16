@@ -6,5 +6,8 @@ module.exports = {
       use: 'raw-loader',
     })
     return config
+  },
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname
   }
 }
