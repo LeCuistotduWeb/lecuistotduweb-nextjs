@@ -2,7 +2,7 @@
 layout: work
 title: CRÉE LE SITE DE SA VILLE
 excerpt: Conception d'un site basé sous le CMS WordPress en respectant le cahier des charges.
-image: /assets/images/site-ville-livron-openclassroom/thumbnail-work-p1-openclassroom.jpg
+image: /images/works/site-ville-livron-openclassroom/thumbnail-work-p1-openclassroom.jpg
 image-alt: Image de présentation du site de la ville de Livron-sur-Drôme (projet openclassrooms)
 tags: ["HTML", "CSS", "WORDPRESS"]
 categories: [Développement Web]

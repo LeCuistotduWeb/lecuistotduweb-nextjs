@@ -1,0 +1,13 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tag {
+  background-color: var(--color-accent);
+  color: var(--color);
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all .3s;
+  margin-left: space(2);
+  margin-bottom: space(2);
+}

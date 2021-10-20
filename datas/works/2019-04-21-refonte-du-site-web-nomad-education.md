@@ -2,7 +2,7 @@
 layout: work
 title: Site Web Nomad Education
 excerpt: Refonte du site-vitrine de la start-up Nomad Education.
-image: /assets/images/nomad-education/thumbnail-worksite-web-nomad-education.jpg
+image: /images/works/nomad-education/thumbnail-worksite-web-nomad-education.jpg
 image-alt: mockup de la homepage du site nomadeducation.fr
 tags: [html, css, javascript, jekyll, travis] 
 categories: [Développement Web]

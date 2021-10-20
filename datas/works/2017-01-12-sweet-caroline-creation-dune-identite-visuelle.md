@@ -2,7 +2,7 @@
 layout: work
 title: SWEET CAROLINE
 excerpt: Conception d’une identité visuelle pour un restaurant de type American Diner.
-image: /assets/images/sweet-caroline/sweet-caroline-american-dinner-thumbnail.jpg
+image: /images/works/sweet-caroline/sweet-caroline-american-dinner-thumbnail.jpg
 image-alt: Image de présentation du projet Sweet Caroline restaurant American dinner(projet école Ariel Lyon)
 tags: ["PHOTOSHOP", "INDESIGN", "ILLUSTRATOR"]
 categories: [Infographie]

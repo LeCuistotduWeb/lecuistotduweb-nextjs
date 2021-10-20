@@ -2,7 +2,7 @@
 layout: work
 title: LES 100 BOUGIES DE CPW RUMILLY
 excerpt: L’usine CPW a fêté ses 100 ans en juin 2017.Pour marquer cet évènement, le groupe désirait créer un nouveau logotypeainsi qu’un slogan.
-image: /assets/images/nestle/nestle-cpw-logo-100-ans-render.jpg
+image: /images/works/nestle/nestle-cpw-logo-100-ans-render.jpg
 image-alt: logo crée pour les 100 ans de l'usine CPW (Neslté)
 tags: ["ILLUSTRATOR"]
 categories: [Infographie]

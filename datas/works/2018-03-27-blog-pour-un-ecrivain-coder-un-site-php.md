@@ -3,7 +3,7 @@ layout: work
 title: BLOG POUR UN ÉCRIVAIN
 excerpt: |
     Afin de valider mon projet n°3 sur le site Openclassrooms , j’ai du développer un site web dynamique en PHP Orienté Objet (POO) basé sur une structure de type modèle-vue-contrôleur (MVC).
-image: /assets/images/site-blog-php-mvc-openclassroom/thumbnail-work-blog-php-mvc.jpg
+image: /images/works/site-blog-php-mvc-openclassroom/thumbnail-work-blog-php-mvc.jpg
 image-alt: Image de présentation du blog Un billet simple pour l'Alaska pour un écrivain  (projet openclassrooms) 
 tags: ["HTML", "CSS", "JAVASCRIPT", "PHP", "SASS", "MVC"]
 categories: [Développement Web]

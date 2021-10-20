@@ -2,7 +2,7 @@
 layout: work
 title: ROUGH riders club
 excerpt: Créer un nouveau système de réservation et de gestion des tickets avec Symfony.
-image: /assets/images/rough/miniature-site-web-portfolio.jpg
+image: /images/works/rough/miniature-site-web-portfolio.jpg
 image-alt: Image de présentation du projet Rough riders (PFA école Aries)
 tags: ["HTML", "CSS", "JAVASCRIPT", "PHOTOSHOP", "INDESIGN", "ILLUSTRATOR", "SASS", "ADOBE", "XD"]
 categories: [Développement Web, Infographie, Webdesign]

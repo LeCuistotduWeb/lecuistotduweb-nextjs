@@ -1,13 +1,10 @@
 import React from 'react';
-import rehypeRaw from "rehype-raw";
-import ReactMarkdown from "react-markdown";
 
-const MarkdownContent = (props) => {
+const MarkdownContent = ({content}) => {
 
-    const {content} = props
-
+    if(!content) return null
     return (
-        <ReactMarkdown rehypePlugins={[rehypeRaw]} children={content} />
+        <div dangerouslySetInnerHTML={{__html: content}}/>
     );
 }
 

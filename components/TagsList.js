@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from '../styles/modules/tags.module.scss'
 
 const TagsList = (props) => {
 
@@ -8,9 +7,10 @@ const TagsList = (props) => {
     if(tags && tags.length <= 0)  null
 
     return (
-        <div className={styles.tagContainer}>
-            tags: {tags.map((tag, index) => (
-                <span className={styles.tag} key={index}>{tag}</span>
+        <div className="tags">
+            <div>Tags:</div>
+            {tags.map((tag, index) => (
+                <span className="tag" key={index}>{tag}</span>
             ))}
         </div>
     );

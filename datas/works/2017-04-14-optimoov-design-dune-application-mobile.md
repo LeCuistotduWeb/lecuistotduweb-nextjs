@@ -2,7 +2,7 @@
 layout: work
 title: OPTIMOOV’
 excerpt: Réalisation des interfaces de l’application mobile OPTIMOOV’ avec une arborescence ergonomique, clair et intuitive.
-image: /assets/images/optimoov/mockup-app-optimoov-webdesign.jpg
+image: /images/works/optimoov/mockup-app-optimoov-webdesign.jpg
 image-alt: mockup de visualisation de l’application mobile OPTIMOOV’ (projet école Aries Lyon)
 tags: [photoshop] 
 categories: [Infographie]

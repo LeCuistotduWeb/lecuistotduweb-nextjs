@@ -2,7 +2,7 @@
 layout: work
 title: MAIRIE DE MAUVES
 excerpt: Exercice d'integration de site-Web pour la mairie de Mauves.
-image: /assets/images//mairie-mauves-integration/projet-mairie-mauves-mockup.jpg
+image: /images/works/mairie-mauves-integration/projet-mairie-mauves-mockup.jpg
 image-alt: Image de présentation du site de la maire de Mauves  (projet école Aries Lyon)
 tags: ["HTML", "CSS", "JAVASCRIPT", "SASS"]
 categories: [Développement Web]
