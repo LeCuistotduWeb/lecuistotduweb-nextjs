@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout"
-import MarkdownContent from "../../components/MarkdownContent";
 import TagsList from "../../components/TagsList";
 
 const SingleWorkPage = ({work}) => {
@@ -15,7 +14,7 @@ const SingleWorkPage = ({work}) => {
 
             <main className="container">
                 <h1 className="sectionTitle">works single {title}</h1>
-                <MarkdownContent content={content}/>
+                <div dangerouslySetInnerHTML={{__html: content}}/>
                 <TagsList tags={tags}/>
             </main>
 

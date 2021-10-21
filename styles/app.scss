@@ -22,6 +22,7 @@
   --border-color: #1C2A3A;
 
   --background: #f7ebd3;
+  --background-light: #253c591f;
 
   --card-bg-color: #253c59;
   --card-text-color: #fff;
@@ -111,3 +112,4 @@
 // Pages
 // ==================
 @import "pages/homepage";
+@import "pages/works";

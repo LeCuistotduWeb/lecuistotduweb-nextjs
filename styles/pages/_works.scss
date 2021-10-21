@@ -1,0 +1,9 @@
+.works ul{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: space(2);
+
+  @include up($breakpoint-sm) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

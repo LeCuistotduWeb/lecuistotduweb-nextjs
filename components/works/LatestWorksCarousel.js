@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from "next/link";
+import WorkCard from "../cards/WorkCard";
 
 const LatestWorksCarousel = (props) => {
     const {works} = props
@@ -11,13 +11,7 @@ const LatestWorksCarousel = (props) => {
             <ul className="works-container">
                 {works.map((work, index)=>(
                     <li key={index}>
-                        <div className="card-works">
-                            <Link href={`/works/${work.url}`}>
-                                <a>
-                                    <img src={work.image} alt={work['image-alt']}/>
-                                </a>
-                            </Link>
-                        </div>
+                        <WorkCard work={work}/>
                     </li>
                 ))}
             </ul>

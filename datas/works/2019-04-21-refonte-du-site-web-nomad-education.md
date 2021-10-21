@@ -21,5 +21,5 @@ categories: [Développement Web]
 </p>
 
 <p class="center">
-    <img alt="mockup de la homepage du site nomadeducation.fr" src="{{ '/images/works/nomad-education/thumbnail-worksite-web-nomad-education.jpg' | relative_url }}" />
+    <img alt="mockup de la homepage du site nomadeducation.fr" src="/images/works/nomad-education/thumbnail-worksite-web-nomad-education.jpg" />
 </p>

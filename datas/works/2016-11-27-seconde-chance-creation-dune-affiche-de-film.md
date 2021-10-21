@@ -14,4 +14,4 @@ categories: [Infographie]
 
 <p>J&rsquo;ai souhait&eacute; illustrer une affiche de film &agrave; l&rsquo;ambiance post-apocalyptique, qui nous entra&icirc;nerait dans un monde compl&egrave;tement d&eacute;vast&eacute;, suite &agrave; une coupure g&eacute;n&eacute;rale du r&eacute;seau Internet.</p>
 
-<p style="text-align:center"><img alt="mockup de visualisation d'une affiche de film (projet école Aries Lyon)" height="720" src="{{ '/images/works/images/affiche-film-mockup.jpg' | relative_url }}" /></p>
+<p style="text-align:center"><img alt="mockup de visualisation d'une affiche de film (projet école Aries Lyon)" height="720" src="/images/works/affiche-film-mockup.jpg" /></p>

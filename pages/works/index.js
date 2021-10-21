@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout";
 import Link from 'next/link'
+import WorkCard from "../../components/cards/WorkCard";
 
 const WorksPage = ({works}) => {
+
+    console.log({works})
   return (
       <DefaultLayout>
           <Head>
@@ -11,14 +14,14 @@ const WorksPage = ({works}) => {
               <link rel="icon" href="/favicon.ico" />
           </Head>
 
-          <main className="works">
-              {works.map((work, index) => (
-                  <li key={index}>
-                      <Link href={`/works/${work.slug}`}>
-                          {work.title}
-                      </Link>
-                  </li>
-              ))}
+          <main className="container works">
+              <ul className="works-container">
+                  {works.map((work, index) => (
+                      <li key={index}>
+                          <WorkCard work={work}/>
+                      </li>
+                  ))}
+              </ul>
           </main>
 
       </DefaultLayout>
