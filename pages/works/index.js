@@ -1,11 +1,8 @@
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout";
 import Link from 'next/link'
-import fs from 'fs'
-import path from "path"
 
 const WorksPage = ({works}) => {
-
   return (
       <DefaultLayout>
           <Head>
@@ -18,7 +15,7 @@ const WorksPage = ({works}) => {
               {works.map((work, index) => (
                   <li key={index}>
                       <Link href={`/works/${work.slug}`}>
-                          {work.slug}
+                          {work.title}
                       </Link>
                   </li>
               ))}
@@ -29,14 +26,8 @@ const WorksPage = ({works}) => {
 }
 
 export async function getStaticProps() {
-    const files = fs.readdirSync(path.join('./datas/works'))
-    const works = files.map((filename) => {
-        const slug = filename.replace('.md', '')
-        return {
-            slug
-        }
-    })
-
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
+    const works = await res.json()
     return {
         props: {
             works,

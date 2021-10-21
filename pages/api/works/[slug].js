@@ -3,24 +3,21 @@ import path from 'path'
 import matter from "gray-matter";
 
 export default (req, res) => {
-    const dirRelativeToPublicFolder = 'works'
-    const dir = path.resolve('./datas', dirRelativeToPublicFolder);
-    const files = fs.readdirSync(dir)
-    const file = files.find(file => file.replace('.md','') === req.query.slug)
-    let data = []
+    let data;
+    let exist = fs.existsSync(`./datas/works/${req.query.slug}.md`)
 
-    if(file) {
-        const fullPath = path.join(dir, file)
-        const fileContents = fs.readFileSync(fullPath, {encoding:'utf8'})
-        const matterResult = matter(fileContents)
-        data.push({
-            ...matterResult.data,
-            url: file.replace('.md',''),
-        })
+    if(exist){
+        const fileData = fs.readFileSync(path.join(`./datas/works/${req.query.slug}.md`), 'utf-8')
+        const { data: frontmatter, content } = matter(fileData)
+        data = {
+            ...frontmatter,
+            slug: `${req.query.slug}.md`,
+            content,
+        }
         res.statusCode = 200
         res.json(data)
     } else {
         res.statusCode = 404
-        res.json({error: true, message: 'not found'})
+        res.json({error: true, message: 'no found'})
     }
 }

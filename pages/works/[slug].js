@@ -2,14 +2,9 @@ import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout"
 import MarkdownContent from "../../components/MarkdownContent";
 import TagsList from "../../components/TagsList";
-import matter from 'gray-matter'
-import fs from 'fs'
-import path from "path"
 
-const SingleWorkPage = (props) => {
-    const {frontmatter, slug, content,} = props
-    const { title, date, image, tags } = frontmatter
-    const imageAlt = frontmatter['image-alt'];
+const SingleWorkPage = ({work}) => {
+    const {content, title, tags, slug} = work
 
     return (
         <DefaultLayout>
@@ -19,7 +14,6 @@ const SingleWorkPage = (props) => {
             </Head>
 
             <main className="container">
-                <img src={image} alt={imageAlt}/>
                 <h1 className="sectionTitle">works single {title}</h1>
                 <MarkdownContent content={content}/>
                 <TagsList tags={tags}/>
@@ -30,10 +24,11 @@ const SingleWorkPage = (props) => {
 }
 
 export async function getStaticPaths() {
-    const files = fs.readdirSync(path.join('./datas/works'))
-    const paths = files.map((filename) => ({
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
+    const works = await res.json()
+    const paths = works.map((work) => ({
         params: {
-            slug: filename.replace('.md', ''),
+            slug: work.slug,
         },
     }))
 
@@ -44,18 +39,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-    const markdownWithMeta = fs.readFileSync(
-        path.join('./datas/works', slug + '.md'),
-        'utf-8'
-    )
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works/${slug}`)
+    const work = await res.json()
 
-    const { data: frontmatter, content } = matter(markdownWithMeta)
-    console.log({frontmatter})
     return {
         props: {
-            frontmatter,
-            slug,
-            content,
+            work
         },
     }
 }
