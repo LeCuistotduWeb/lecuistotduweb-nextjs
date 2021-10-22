@@ -16,9 +16,11 @@ const Header = (props) => {
     return (
         <header className="header">
             {router.pathname !== "/" && (
-                <button onClick={() => router.back()} className="btn-back btn btn-rounded">
-                    <ChevronLeftIcon/>
-                </button>
+                <div>
+                    <button onClick={() => router.back()} className="btn-back btn btn-rounded shadow">
+                        <ChevronLeftIcon/>
+                    </button>
+                </div>
             )}
             <SettingsControls/>
         </header>

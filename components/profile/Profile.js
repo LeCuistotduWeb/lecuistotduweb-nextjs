@@ -42,7 +42,7 @@ export default function ProfileSvg(props){
             )}
 
             <div className="svg-container">
-                <span className="profile-svg-text">Click me</span>
+                <span className="profile-svg-text" onClick={handleToggleSettings}>Click me</span>
                 <svg onClick={handleToggleSettings} className={`profileSvg ${useType}`} width={size} height={size} id="Calque_6" data-name="Calque 6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250">
                     <path data-name="oreille gauche" className="oreille-gauche" d="M206.72,149.2s-6.82,21.1-24,17.53,10.39-49.35,10.39-49.35S212.24,121,206.72,149.2Z"/>
                     <path data-name="oreille gauche" className="oreille-droite" d="M43.28,149.2s6.82,21.1,24,17.53-10.39-49.35-10.39-49.35S37.76,121,43.28,149.2Z"/>

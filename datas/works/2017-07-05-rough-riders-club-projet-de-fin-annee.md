@@ -14,12 +14,12 @@ categories: [Développement Web, Infographie, Webdesign]
 
 <p>La tonalit&eacute;&nbsp;<strong>Rock n Roll</strong>&nbsp;mise en avant permet de rappeler le cot&eacute; urbain et underground de ces disciplines.</p>
 
-<p style="text-align:center"><img alt="" height="800" src="/images/works/rough/mockup-site-rough-1.png" width="1200" /></p>
+<p><img alt="" height="800" src="/images/works/rough/mockup-site-rough-1.png" width="1200" /></p>
 
 <p style="text-align:center">
 <img alt="carte adherent " height="247" src="/images/works/rough/carte-adherent3.png" width="350" />
 &nbsp; &nbsp;
-<img alt="" height="241" src="/images/works/rough/brainstorming-01.jpg" width="350" />&nbsp; &nbsp;<img alt="" height="247" src="/images/works/rough/underground.jpg" width="350" />
+<img alt="brainstorming" height="241" src="/images/works/rough/brainstorming-01.jpg" width="350" />&nbsp; &nbsp;<img alt="" height="247" src="/images/works/rough/underground.jpg" width="350" />
 </p>
 
-<p style="text-align:center"><img alt="" height="3358" src="/images/works/rough/desktop.png" width="1200" /></p>
+<p><img alt="maquette homepage" height="3358" src="/images/works/rough/desktop.png" width="1200" /></p>

@@ -5,7 +5,6 @@ import WorkCard from "../../components/cards/WorkCard";
 
 const WorksPage = ({works}) => {
 
-    console.log({works})
   return (
       <DefaultLayout>
           <Head>
@@ -15,6 +14,7 @@ const WorksPage = ({works}) => {
           </Head>
 
           <main className="container works">
+              <h1 className="section-title">Works</h1>
               <ul className="works-container">
                   {works.map((work, index) => (
                       <li key={index}>

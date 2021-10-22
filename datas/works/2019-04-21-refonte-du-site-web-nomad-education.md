@@ -8,7 +8,7 @@ tags: [html, css, javascript, jekyll, travis]
 categories: [Développement Web]
 ---
 
-<p style="text-align:left">
+<p>
     <strong>Refonte du site-vitrine de la start-up Nomad Education.</strong>
 </p>
 
@@ -16,10 +16,10 @@ categories: [Développement Web]
 
 <p>Une des missions qui m'a été confiée était la refonte du site-vitrine de la start-up</p>
 
-<p class="center">
+<p>
     <a class="btn white-text" href="https://nomadeducation.fr/" target="_blank">Voir le site</a>
 </p>
 
-<p class="center">
+<p>
     <img alt="mockup de la homepage du site nomadeducation.fr" src="/images/works/nomad-education/thumbnail-worksite-web-nomad-education.jpg" />
 </p>

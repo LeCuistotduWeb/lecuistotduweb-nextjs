@@ -143,7 +143,7 @@ const WorksPage = (props) => {
 
     useEffect(() => {
         getCardPosition()
-    });
+    },[experiencesData]);
 
     return (
         <DefaultLayout>

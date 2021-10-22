@@ -8,10 +8,10 @@
     width: 70vw;
     height: auto;
     margin-right: space(3);
-    box-shadow: 0 10px 24px -15px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
   }
   .card-works img {
     border-radius: 10px;
+    box-shadow: 0 10px 24px -15px #000000, 5px 5px 15px 5px rgb(0 0 0 / 0%);
   }
 
   @include up(600){

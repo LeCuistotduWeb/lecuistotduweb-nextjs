@@ -1,11 +1,12 @@
 import React from 'react';
 import useTheme from "../../context/themeContext";
 
-const SwitchTheme = (props) => {
+const SwitchTheme = ({onClick=()=>{}}) => {
     const {toggleTheme, isDark} = useTheme()
 
     const handleToggleTheme = () => {
         toggleTheme(!isDark);
+        onClick()
     }
 
     const LightThemeIcon = () => (

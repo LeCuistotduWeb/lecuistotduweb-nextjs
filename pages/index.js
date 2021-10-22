@@ -6,7 +6,7 @@ import RandomQuoteSection from "../components/homepage/RandomQuoteSection";
 import WorksSection from "../components/homepage/WorksSection";
 
 const Home = ({works}) => {
-    console.log({works})
+
   return (
       <DefaultLayout>
           <Head>

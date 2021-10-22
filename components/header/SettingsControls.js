@@ -15,21 +15,17 @@ const SettingsControls = (props) => {
         setToggle(!toggle)
     }
 
-    useEffect(()=>{
-        // window.body.addEventListener('click', event => {
-        //     console.log(refContainer.target, refContainer.current)
-        //     event.target !== refContainer.current ? setToggle(false) : null
-        // })
-    },[])
-
     return (
-        <div ref={refContainer} className={`settings-controls-container ${toggle ? 'open' : '' }`}>
-            <div type="button" className="settings-toggle" onClick={handleClick}>
-                <OptionIcon/>
-            </div>
-            <div className="settings-controls">
-                <div className="setting setting-theme">
-                    <SwitchTheme/>
+        <div>
+            <span className={`overlay ${toggle ? 'is-show' : ''}`} onClick={e =>setToggle(false)}/>
+            <div ref={refContainer} className={`settings-controls-container ${toggle ? 'open' : '' }`}>
+                <div type="button" className="settings-toggle" onClick={handleClick}>
+                    <OptionIcon/>
+                </div>
+                <div className="settings-controls">
+                    <div className="setting setting-theme">
+                        <SwitchTheme onClick={e =>setToggle(false)}/>
+                    </div>
                 </div>
             </div>
         </div>
