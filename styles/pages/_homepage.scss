@@ -5,6 +5,10 @@
 
 .homepage {
   .random-quote-section {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+  }
+  @include up($breakpoint-sm){
     margin-top: 7rem;
     margin-bottom: 5rem;
   }

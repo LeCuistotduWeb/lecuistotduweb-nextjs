@@ -1,16 +1,15 @@
-import React from 'react';
+import React, {useRef,useEffect} from 'react';
 import WorkCard from "../cards/WorkCard";
 
 const LatestWorksCarousel = (props) => {
     const {works} = props
 
     if(!works) return null
-
     return (
-        <div className="works-carousel container">
-            <ul className="works-container">
+        <div className="carousel works-carousel container">
+            <ul className="works-container carousel-list">
                 {works.map((work, index)=>(
-                    <li key={index}>
+                    <li key={index} className="carousel-list-item">
                         <WorkCard work={work}/>
                     </li>
                 ))}

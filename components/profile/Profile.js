@@ -9,7 +9,7 @@ const defaultType = [
 
 export default function ProfileSvg(props){
     const {size=250, type="default"} = props
-    const [useType, setUseType] = useState('default');
+    const [useType, setUseType] = useState(type);
     const [toggleSettings, setToggleSettings] = useState(false);
 
     const handleChangeType = e => {
