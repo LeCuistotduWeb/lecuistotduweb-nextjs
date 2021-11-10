@@ -17,7 +17,7 @@ export default (req, res) => {
 
     if(data){
         res.statusCode = 200
-        res.json(data)
+        res.json(data.reverse())
     }else {
         res.statusCode = 404
         res.json({error: true, message: 'no found'})
