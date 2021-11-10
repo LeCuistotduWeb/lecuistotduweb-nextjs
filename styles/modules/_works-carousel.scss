@@ -2,6 +2,10 @@
   .works-container {
     display: flex;
     overflow-x: scroll;
+    padding-left: calc(50% - var(--container-width) / 2);
+    & li:first-child {
+      margin-left: 10vw;
+    }
   }
 
   .card-works {
@@ -16,10 +20,6 @@
 
   @include up(600){
     .works-container {
-      padding-left: calc(50% - var(--container-width) / 2);
-      & li:first-child {
-        margin-left: 10vw;
-      }
     }
     .card-works {
       width: 350px;

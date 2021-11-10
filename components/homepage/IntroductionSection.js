@@ -7,7 +7,7 @@ const IntroductionSection = (props) => {
     return (
         <section className={"introduction container section"}>
             <div className={"introduction-image"}>
-                <ProfileSvg type="hulk" />
+                <ProfileSvg type="default" />
             </div>
             <div className={"introduction-content"}>
                 <h1 className="section-title">I'm LeCuistotduWeb.</h1>

@@ -6,7 +6,7 @@ const LatestWorksCarousel = (props) => {
 
     if(!works) return null
     return (
-        <div className="carousel works-carousel container">
+        <div className="carousel works-carousel">
             <ul className="works-container carousel-list">
                 {works.map((work, index)=>(
                     <li key={index} className="carousel-list-item">

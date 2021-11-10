@@ -10,7 +10,7 @@ const WorksSection = ({works}) => {
                 <div className="work-content">
                     <p>Vous voulez en savoir plus sur les différentes expériences professionnel et formations que je mène et celle que j'ai pu mener.</p>
                     <Link href="/works" passHref>
-                        <a>Mes réalisations</a>
+                        <a className="btn btn-secondary">Mes réalisations</a>
                     </Link>
                 </div>
             </div>
