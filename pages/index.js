@@ -4,6 +4,7 @@ import IntroductionSection from "../components/homepage/IntroductionSection";
 import SkillsSection from "../components/homepage/SkillsSection";
 import RandomQuoteSection from "../components/homepage/RandomQuoteSection";
 import WorksSection from "../components/homepage/WorksSection";
+import ContactSection from "../components/homepage/ContactSection";
 
 const Home = ({works}) => {
 
@@ -22,7 +23,10 @@ const Home = ({works}) => {
 
               <WorksSection works={works}/>
 
+              <ContactSection/>
+
               <RandomQuoteSection/>
+
           </main>
 
       </DefaultLayout>

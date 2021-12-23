@@ -2,10 +2,11 @@
 @import "../modules/hp-skills";
 @import "../modules/hp-works";
 @import "../modules/hp-about";
+@import "../modules/hp-contact";
 
 .homepage {
   .random-quote-section {
-    margin-top: 4rem;
+    margin-top: 7rem;
     margin-bottom: 3rem;
   }
   @include up($breakpoint-sm){

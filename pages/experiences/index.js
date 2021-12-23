@@ -5,12 +5,31 @@ import ExperienceCards from "../../components/cards/ExperienceCards";
 
 const experiencesData = [
     {
-        id: 0,
+        id: 10,
+        type: "title",
+        title: "2019 / Aujourd'hui",
+    },
+    {
+        id: 9,
+        type: "card",
+        date: "2019 / Aujourd'hui",
+        title: "Développeur Web",
+        company: "Blissim.fr - ex Birchbox.fr (Paris)",
+        content: <>
+            <ul>
+                <li>- Migration du site sur une PWA Nextjs</li>
+                <li>- Développement de nouvelles fonctionnalités</li>
+                <li>- Développement d'outil interne'</li>
+            </ul>
+        </>
+    },
+    {
+        id: 8,
         type: "title",
         title: "2018",
     },
     {
-        id: 1,
+        id: 7,
         type: "card",
         date: "2018 / 2019 (octobre-avril)",
         title: "Stagiaire développeur web -",
@@ -27,12 +46,12 @@ const experiencesData = [
         </>
     },
     {
-        id: 2,
+        id: 6,
         type: "title",
         title: "2017",
     },
     {
-        id: 3,
+        id: 5,
         type: "card",
         date: "2017 / Ajourd’hui",
         title: "Développeur fullstack / Webdesigner",
@@ -72,12 +91,12 @@ const experiencesData = [
         </>
     },
     {
-        id: 5,
+        id: 3,
         type: "title",
         title: "2015",
     },
     {
-        id: 6,
+        id: 2,
         type: "card",
         date: "2015 / 2016",
         title: "Conducteur de machine de conditionnement en agroalimentaire",
@@ -98,12 +117,12 @@ const experiencesData = [
         </>
     },
     {
-        id: 7,
+        id: 1,
         type: "title",
         title: "2013",
     },
     {
-        id: 8,
+        id: 0,
         type: "card",
         date: "2013",
         title: "Chef de restauration",

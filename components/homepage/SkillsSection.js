@@ -7,7 +7,7 @@ const SkillsSection = (props) => {
 
     return (
         <section className="skills section" id={"skills"}>
-            <div className={"container"}>
+            <div className="container">
                 <h2 className="section-title">Technologies & Tools</h2>
                 <div className="logo-list">
                     <ul>

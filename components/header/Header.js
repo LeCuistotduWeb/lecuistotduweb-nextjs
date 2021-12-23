@@ -1,6 +1,8 @@
 import React from 'react';
 import SettingsControls from "./SettingsControls";
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Header = (props) => {
     const {} = props
@@ -16,7 +18,14 @@ const Header = (props) => {
     return (
         <header className="header">
             {router.pathname !== "/" && (
-                <div>
+                <div style={{display: 'flex'}}>
+                    <div>
+                        <Link href="/" passHref>
+                            <a title="Retour accueil" aria-label="Accueil">
+                                <Image width={50} height={50} src="/images/profile/perso.svg"/>
+                            </a>
+                        </Link>
+                    </div>
                     <button onClick={() => router.back()} className="btn-back btn btn-rounded shadow">
                         <ChevronLeftIcon/>
                     </button>
