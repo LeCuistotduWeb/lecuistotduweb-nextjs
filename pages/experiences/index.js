@@ -173,11 +173,11 @@ const WorksPage = (props) => {
 
             <main>
                 <section>
-                    <div className={"container"}>
-                        <h1 className="sectionTitle">Experiences</h1>
+                    <div className="container">
+                        <h1 className="section-title">Experiences</h1>
                     </div>
 
-                    <div className={"container"}>
+                    <div className="container">
                         <div className={"experiencesContainer"}>
                             <ul className={"experiencesList"}>
                                 {data.map((elt, index) => (

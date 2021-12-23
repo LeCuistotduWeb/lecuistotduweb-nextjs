@@ -28,7 +28,7 @@ const SkillsSection = (props) => {
                         </li>
                         <li>
                             <div className="card card-skill">
-                                <Image className="logo" width={sizeLogo} height={sizeLogo} src="/images/skills/jquery-logo.jpg" alt="logo html 5"/>
+                                <Image className="logo" width={sizeLogo} height={sizeLogo} src="/images/skills/jquery-logo.png" alt="logo html 5"/>
                             </div>
                         </li>
                         <li>
