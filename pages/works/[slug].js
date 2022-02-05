@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout"
 import TagsList from "../../components/TagsList";
+import WorksPage from "./index";
 
 const SingleWorkPage = ({work}) => {
     const {content, title, tags, slug} = work
@@ -37,7 +38,7 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({ params: { slug }, res }) {
+SingleWorkPage.getInitialProps = async ({ params: { slug }, res }) => {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works/${slug}`)
     const work = await response.json()
 
@@ -49,9 +50,7 @@ export async function getStaticProps({ params: { slug }, res }) {
     }
 
     return {
-        props: {
-            work
-        },
+        work
     }
 }
 

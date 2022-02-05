@@ -2,6 +2,7 @@ import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout";
 import Link from 'next/link'
 import WorkCard from "../../components/cards/WorkCard";
+import Home from "../index";
 
 const WorksPage = ({works}) => {
 
@@ -28,7 +29,7 @@ const WorksPage = ({works}) => {
   )
 }
 
-export async function getStaticProps(ctx) {
+WorksPage.getInitialProps = async (ctx) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
     const works = await res.json()
 
@@ -40,9 +41,7 @@ export async function getStaticProps(ctx) {
     }
 
     return {
-        props: {
-            works,
-        }
+        works,
     }
 }
 

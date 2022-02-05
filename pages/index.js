@@ -34,7 +34,7 @@ const Home = ({works}) => {
   )
 }
 
-export async function getStaticProps(ctx) {
+Home.getInitialProps = async (ctx) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
     const works = await res.json()
 
@@ -46,9 +46,7 @@ export async function getStaticProps(ctx) {
     }
 
     return {
-        props: {
-            works,
-        }
+        works,
     }
 }
 
