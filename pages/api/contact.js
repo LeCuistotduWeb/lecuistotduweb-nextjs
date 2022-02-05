@@ -1,4 +1,5 @@
 require('dotenv').config()
+
 export default function (req, res) {
 
     let nodemailer = require('nodemailer')

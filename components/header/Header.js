@@ -22,7 +22,7 @@ const Header = (props) => {
                     <div>
                         <Link href="/" passHref>
                             <a title="Retour accueil" aria-label="Accueil">
-                                <Image width={50} height={50} src="/images/profile/perso.svg"/>
+                                <Image alt="profile LeCuistotduWeb" width={50} height={50} src="/images/profile/perso.svg"/>
                             </a>
                         </Link>
                     </div>

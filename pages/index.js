@@ -37,6 +37,14 @@ const Home = ({works}) => {
 export async function getStaticProps(ctx) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
     const works = await res.json()
+
+    if(!works){
+        ctx.res.statusCode = 404;
+        return {
+            notFound: true,
+        }
+    }
+
     return {
         props: {
             works,

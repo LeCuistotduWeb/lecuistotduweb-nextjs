@@ -37,9 +37,16 @@ export async function getStaticPaths() {
     }
 }
 
-export async function getStaticProps({ params: { slug } }) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works/${slug}`)
-    const work = await res.json()
+export async function getStaticProps({ params: { slug }, res }) {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works/${slug}`)
+    const work = await response.json()
+
+    if(!work){
+        res.statusCode = 404;
+        return {
+            notFound: true,
+        }
+    }
 
     return {
         props: {
