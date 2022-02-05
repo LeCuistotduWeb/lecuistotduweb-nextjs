@@ -49,6 +49,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  margin: auto;
   background-color: var(--card-bg-color);
   border: 2px solid var(--card-border-color);
   padding: space(4);
@@ -91,7 +92,7 @@
   font-size: .8rem;
 }
 
-@include up(600) {
+@include up(1070) {
   .profile-svg-settings {
     left: 100%;
     top: 0;

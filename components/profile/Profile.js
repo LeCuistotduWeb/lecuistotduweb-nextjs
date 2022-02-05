@@ -1,5 +1,5 @@
 import propTypes from 'prop-types';
-import {useState} from "react";
+import {useState ,useEffect} from "react";
 
 const defaultType = [
     {label: 'Default', value: 'default'},
@@ -11,6 +11,7 @@ export default function ProfileSvg(props){
     const {size=250, type="default"} = props
     const [useType, setUseType] = useState(type);
     const [toggleSettings, setToggleSettings] = useState(false);
+    // const [mousePosition, setMousePosition] = useState({x:0, y:0})
 
     const handleChangeType = e => {
         if(e.target.value !== useType) {
@@ -18,6 +19,17 @@ export default function ProfileSvg(props){
             setToggleSettings(false)
         }
     }
+
+    // useEffect(() => {
+    //     document.addEventListener('mousemove', (e)=>{
+    //         setMousePosition({x: e.clientX, y:e.clientY })
+    //     })
+    //     return () => {
+    //         document.removeEventListener('mousemove');
+    //     };
+    // }, []);
+
+
 
     const handleToggleSettings = t => {
         setToggleSettings(!toggleSettings)

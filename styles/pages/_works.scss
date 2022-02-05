@@ -11,6 +11,9 @@
       filter: brightness(.8);
       transition: all .3s;
     }
+    & .card-works img {
+      border-radius: 5px;
+    }
     & .card-works:hover {
       transition: all .3s;
       filter: brightness(1);

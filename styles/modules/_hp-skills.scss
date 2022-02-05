@@ -29,3 +29,13 @@
         grid-template-columns: repeat(8, 1fr);
     }
 }
+
+.skillsList {margin-bottom: 90px}
+.skillsList li {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: indianred;
+    margin: 5px;
+    font-weight: 500;
+}

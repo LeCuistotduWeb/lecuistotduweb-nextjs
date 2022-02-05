@@ -39,7 +39,7 @@ const ContactSection = (props) => {
     return (
         <div className="section container-md section-contact">
             <div className="text-center">
-                <h2 className="section-title">Contact me</h2>
+                <h2 className="section-title">Contactez-moi</h2>
                 <p>Vous avez un projet ou opportunité ? Vous voulez me recruter ? Envoyez-moi un email à l'adrresse <a href="mailto:contact@lecuistotduweb.fr">contact@lecuistotduweb.fr</a></p>
             </div>
             {/*<form action="">*/}

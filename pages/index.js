@@ -17,6 +17,7 @@ const Home = ({works}) => {
           </Head>
 
           <main className="homepage">
+
               <IntroductionSection/>
 
               <SkillsSection/>
