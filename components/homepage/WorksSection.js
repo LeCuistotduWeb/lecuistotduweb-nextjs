@@ -8,7 +8,7 @@ const WorksSection = ({works}) => {
             <div className="container">
                 <h2 className="section-title">Réalisations</h2>
                 <div className="work-content">
-                    <p>Vous voulez en savoir plus sur les différentes expériences professionnel et formations que je mène et celle que j'ai pu mener.</p>
+                    <p>Vous voulez en savoir plus sur les différentes expériences professionnelles et formations que je mène et celle que j'ai pu mener ?</p>
                     <Link href="/works" passHref>
                         <a className="btn btn-secondary">Mes réalisations</a>
                     </Link>

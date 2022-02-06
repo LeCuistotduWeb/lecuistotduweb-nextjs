@@ -10,7 +10,9 @@ const IntroductionSection = (props) => {
                 <ProfileSvg type="default" />
             </div>
             <div className={"introduction-content"}>
-                <h1 className="section-title">I'm LeCuistotduWeb.</h1>
+                {/*<div>Hello ! Je suis gaëtan Boyron alias</div>*/}
+                <p className="subtitle">Développeur Front-End</p>
+                <h1 className="section-title">LeCuistotduWeb.</h1>
                 <p>Animé par l’envie de travailler en équipe et de développer ma créativité au quotidien, j’ai commencé mon chemin professionnel dans l’univers de la restauration. Si ces valeurs sont toujours primordiales pour moi, j’ai aujourd’hui décidé de me reconvertir et de vivre de ma passion : le développement web.</p>
                 <div>
                     <Link href="/experiences" passHref>
