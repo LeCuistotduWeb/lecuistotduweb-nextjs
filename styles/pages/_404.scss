@@ -1,0 +1,26 @@
+.page-404 {
+}
+
+.text-404 {
+  font-size: 2rem;
+  animation: colors 3s linear infinite;
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@include up(600px){
+  .text-404 {
+    font-size: 4rem;
+  }
+}
+
+@keyframes colors {
+  from {
+    background-image: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);;;
+  }
+  to {
+    background-image: linear-gradient(180deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);;;
+  }
+}
