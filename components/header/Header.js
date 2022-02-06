@@ -26,7 +26,7 @@ const Header = (props) => {
                             </a>
                         </Link>
                     </div>
-                    <button onClick={() => router.back()} className="btn-back btn btn-rounded shadow">
+                    <button onClick={() => router.back()} className="btn-back btn btn-rounded">
                         <ChevronLeftIcon/>
                     </button>
                 </div>

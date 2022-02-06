@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from "next/link";
+import Image from "next/image";
 
 const WorkCard = ({work}) => {
 
@@ -7,7 +8,7 @@ const WorkCard = ({work}) => {
         <div className="card-works">
             <Link href={`/works/${work.slug}`}>
                 <a>
-                    <img src={work.image} alt={work['image-alt']}/>
+                    <Image width={350} height={195} src={work.image} alt={work['image-alt']}/>
                 </a>
             </Link>
         </div>
