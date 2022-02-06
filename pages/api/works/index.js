@@ -1,12 +1,14 @@
-import fs from 'fs'
-import path from 'path'
+const { readFileSync, readdirSync } = require('fs')
+const { join } = require('path')
 import matter from "gray-matter";
 
 export default (req, res) => {
     let data = []
-    const files = fs.readdirSync(path.join('/_datas/works'))
+
+    const files = readdirSync(join(process.cwd(), '/_datas/works'))
+    // readFileSync(join(__dirname, '_files', 'ci.yml'), 'utf8')
     files.map((filename) => {
-        const fileData = fs.readFileSync(path.join(`/_datas/works/${filename}`), 'utf-8')
+        const fileData = readFileSync(join(process.cwd(), `/_datas/works/${filename}`), 'utf-8')
         const { data: frontmatter, content } = matter(fileData)
         data.push({
             ...frontmatter,
