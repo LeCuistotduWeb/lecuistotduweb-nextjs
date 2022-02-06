@@ -3,6 +3,7 @@ import DefaultLayout from "../../layouts/DefaultLayout";
 import WorkCard from "../../components/cards/WorkCard";
 import useSWR from "swr";
 import siteConfig from "../../siteConfig";
+import Link from "next/link";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
@@ -27,6 +28,11 @@ const WorksPage = ({works}) => {
                       </li>
                   ))}
               </ul>
+
+              <div>
+                  <p>Retrouver mon parcours et mes diverses experiences <Link href="/experiences">içi</Link></p>
+                  <p>Suivez-moi aussi sur mon <a rel="noopener" href="https://codepen.io/lecuistotduweb">Codepen</a>. Ou sur mon github <a rel="noopener" href="https://github.com/lecuistotduweb">LeCuistotduWeb</a>.</p>
+              </div>
           </main>
 
       </DefaultLayout>

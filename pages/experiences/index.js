@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout";
 import ExperienceCards from "../../components/cards/ExperienceCards";
+import Link from "next/link";
 
 const experiencesData = [
     {
@@ -201,6 +202,10 @@ const WorksPage = (props) => {
                         </div>
                     </div>
 
+                </section>
+
+                <section className="container">
+                    <p>Retrouver mes réalisations <Link href="/works">içi</Link></p>
                 </section>
 
             </main>
