@@ -4,9 +4,9 @@ import matter from "gray-matter";
 
 export default (req, res) => {
     let data = []
-    const files = fs.readdirSync(path.join('public/_datas/works'))
+    const files = fs.readdirSync(path.join('/_datas/works'))
     files.map((filename) => {
-        const fileData = fs.readFileSync(path.join(`public/_datas/works/${filename}`), 'utf-8')
+        const fileData = fs.readFileSync(path.join(`/_datas/works/${filename}`), 'utf-8')
         const { data: frontmatter, content } = matter(fileData)
         data.push({
             ...frontmatter,

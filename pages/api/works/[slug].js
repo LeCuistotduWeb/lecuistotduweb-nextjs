@@ -4,10 +4,10 @@ import matter from "gray-matter";
 
 export default (req, res) => {
     let data;
-    let exist = fs.existsSync(`public/_datas/works/${req.query.slug}.md`)
+    let exist = fs.existsSync(`/_datas/works/${req.query.slug}.md`)
 
     if(exist){
-        const fileData = fs.readFileSync(path.join(`public/_datas/works/${req.query.slug}.md`), 'utf-8')
+        const fileData = fs.readFileSync(path.join(`/_datas/works/${req.query.slug}.md`), 'utf-8')
         const { data: frontmatter, content } = matter(fileData)
         data = {
             ...frontmatter,
