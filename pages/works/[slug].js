@@ -24,7 +24,7 @@ const SingleWorkPage = (props) => {
             </Head>
 
             <main className="container">
-                <h1 className="sectionTitle">works single {data.title}</h1>
+                <h1 className="sectionTitle">{data.title}</h1>
                 <div dangerouslySetInnerHTML={{__html: data.content}}/>
                 <TagsList tags={data.tags}/>
             </main>
