@@ -1,6 +1,9 @@
 {
   "functions": {
-    "api/*": {
+    "api/works/index.js": {
+      "includeFiles": "_datas/**"
+    },
+    "api/works/[slug].js": {
       "includeFiles": "_datas/**"
     }
   }
