@@ -1,10 +1,15 @@
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout";
-import Link from 'next/link'
 import WorkCard from "../../components/cards/WorkCard";
-import Home from "../index";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
 
 const WorksPage = ({works}) => {
+
+    const { data, error } = useSWR('/api/works', fetcher)
+
+    if(!data) return null;
 
   return (
       <DefaultLayout>
@@ -17,7 +22,7 @@ const WorksPage = ({works}) => {
           <main className="container works">
               <h1 className="section-title">Works</h1>
               <ul className="works-container">
-                  {works.map((work, index) => (
+                  {data.map((work, index) => (
                       <li key={index}>
                           <WorkCard work={work}/>
                       </li>
@@ -27,22 +32,6 @@ const WorksPage = ({works}) => {
 
       </DefaultLayout>
   )
-}
-
-WorksPage.getInitialProps = async (ctx) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
-    const works = await res.json()
-
-    if(!works){
-        ctx.res.statusCode = 404;
-        return {
-            notFound: true,
-        }
-    }
-
-    return {
-        works,
-    }
 }
 
 export default WorksPage

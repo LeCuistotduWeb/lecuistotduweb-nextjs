@@ -1,10 +1,20 @@
 import Head from 'next/head'
 import DefaultLayout from "../../layouts/DefaultLayout"
 import TagsList from "../../components/TagsList";
-import WorksPage from "./index";
+import { useRouter } from 'next/router'
+import useSWR from "swr";
 
-const SingleWorkPage = ({work}) => {
-    const {content, title, tags, slug} = work
+const fetcher = (...args) => fetch(...args).then((res) => res.json())
+
+const SingleWorkPage = (props) => {
+    const router = useRouter()
+    const { slug } = router.query
+    const { data, error } = useSWR(`/api/works/${slug}`, fetcher)
+
+    if (error) return <div>Failed to load</div>
+    if (!data) return <div>Loading...</div>
+
+    const {content, title, tags} = data
 
     return (
         <DefaultLayout>
@@ -21,37 +31,6 @@ const SingleWorkPage = ({work}) => {
 
         </DefaultLayout>
     )
-}
-
-export async function getStaticPaths() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works`)
-    const works = await res.json()
-    const paths = works.map((work) => ({
-        params: {
-            slug: work.slug,
-        },
-    }))
-
-    return {
-        paths,
-        fallback: false,
-    }
-}
-
-SingleWorkPage.getInitialProps = async ({ params: { slug }, res }) => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/works/${slug}`)
-    const work = await response.json()
-
-    if(!work){
-        res.statusCode = 404;
-        return {
-            notFound: true,
-        }
-    }
-
-    return {
-        work
-    }
 }
 
 export default SingleWorkPage
