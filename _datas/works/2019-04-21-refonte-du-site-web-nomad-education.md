@@ -17,9 +17,5 @@ categories: [Développement Web]
 <p>Une des missions qui m'a été confiée était la refonte du site-vitrine de la start-up</p>
 
 <p>
-    <a class="btn white-text" href="https://nomadeducation.fr/" target="_blank">Voir le site</a>
-</p>
-
-<p>
     <img alt="mockup de la homepage du site nomadeducation.fr" src="/images/works/nomad-education/thumbnail-worksite-web-nomad-education.jpg" />
 </p>
