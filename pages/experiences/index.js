@@ -20,7 +20,7 @@ const experiencesData = [
             <ul>
                 <li>- Migration du site sur une PWA Nextjs</li>
                 <li>- Développement de nouvelles fonctionnalités</li>
-                <li>- Développement d'outil interne'</li>
+                <li>- Développement d'outil interne</li>
             </ul>
         </>
     },
