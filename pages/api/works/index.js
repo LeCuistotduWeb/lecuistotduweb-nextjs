@@ -7,7 +7,7 @@ export default (req, res) => {
 
     const files = readdirSync(join(process.cwd(), '/_datas/works'))
     // readFileSync(join(__dirname, '_files', 'ci.yml'), 'utf8')
-    files.map((filename) => {
+    files.map((filename, index) => {
         const fileData = readFileSync(join(process.cwd(), `/_datas/works/${filename}`), 'utf-8')
         const { data: frontmatter, content } = matter(fileData)
         data.push({
@@ -18,6 +18,12 @@ export default (req, res) => {
     })
 
     if(data){
+
+        if(req.query.limit){
+            res.statusCode = 200
+            res.json(data.reverse().slice(0,req.query.limit))
+        }
+
         res.statusCode = 200
         res.json(data.reverse())
     }else {
