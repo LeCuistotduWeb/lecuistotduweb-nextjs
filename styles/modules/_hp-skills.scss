@@ -39,4 +39,8 @@
     color: #fff;
     margin: 5px;
     font-weight: 500;
+    &:hover {
+        transform: rotate(15deg);
+        background: green;
+    }
 }
