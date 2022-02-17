@@ -10,12 +10,12 @@
   position: relative;
   z-index: 1;
 
-  &:hover,
-  &:focus,
-  &:active {
-    transform: translateY(2px);
-    transition: all .3s;
-  }
+  //&:hover,
+  //&:focus,
+  //&:active {
+  //  transform: translateY(2px);
+  //  transition: all .3s;
+  //}
 }
 .cardTitle {
   margin-top: 10px;
