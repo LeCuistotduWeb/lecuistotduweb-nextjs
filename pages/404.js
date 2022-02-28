@@ -11,7 +11,7 @@ export default function Custom404() {
                     <div className="text-404">404 Not Found</div>
                     <h1>Hey tu t'es perdu ?</h1>
                     <p>
-                        La page que tu as demandée n'a pas pu être localisée. Vérifie l'url ou <Link href="/">retourne sur
+                        La page que tu as demandé n'a pas pu être localisée. Vérifie l'url ou <Link href="/">retourne sur
                         la page d'accueil</Link>.
                     </p>
                 </div>
