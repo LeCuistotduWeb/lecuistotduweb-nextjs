@@ -2,6 +2,14 @@
   transition: all .3s;
 }
 
+.fadeIn {
+  animation: fadeIn 1s linear;
+}
+
+.fadeInTop {
+  animation: fadeInTop 1s linear;
+}
+
 // Keyframes
 // ==================
 @keyframes fadeIn {
@@ -10,6 +18,16 @@
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 @keyframes fadeOut {

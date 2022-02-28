@@ -33,7 +33,7 @@ const experiencesData = [
         id: 7,
         type: "card",
         date: "2018 / 2019 (octobre-avril)",
-        title: "Stagiaire développeur web -",
+        title: "Stagiaire développeur web",
         company: "Nomad Education (Paris)",
         content: <>
             <ul>
