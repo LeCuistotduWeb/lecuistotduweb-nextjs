@@ -2,7 +2,7 @@ const { readFileSync, readdirSync } = require('fs')
 const { join } = require('path')
 import matter from "gray-matter";
 
-export default (req, res) => {
+export default function handler(req, res) {
     let data = []
 
     const files = readdirSync(join(process.cwd(), '/_datas/works'))
