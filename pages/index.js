@@ -8,7 +8,7 @@ import ContactSection from "../components/homepage/ContactSection";
 import useSWR from 'swr'
 import siteConfig from "../siteConfig";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json())
+const fetcher = url => fetch(url).then(r => r.json());
 
 const Home = (props) => {
 
