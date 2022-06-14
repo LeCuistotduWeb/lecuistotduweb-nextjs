@@ -12,7 +12,7 @@ const fetcher = url => fetch(url).then(r => r.json());
 
 const Home = (props) => {
 
-    const { data, error } = useSWR(`/api/works?limit=6`, fetcher)
+    const { data, error } = useSWR(`/api/works`, fetcher)
 
     return (
         <DefaultLayout>
