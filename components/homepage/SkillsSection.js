@@ -10,7 +10,7 @@ const SkillsSection = (props) => {
         show: {
             opacity: 1,
             transition: {
-                delayChildren: 0.5,
+                delayChildren: 0,
                 staggerChildren: 0.05,
             }
         }
