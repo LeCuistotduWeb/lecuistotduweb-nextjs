@@ -12,7 +12,7 @@ const fetcher = url => fetch(url).then(r => r.json());
 
 const Home = (props) => {
 
-    const { data, error } = useSWR(`/api/works`, fetcher)
+    const { data, error } = useSWR(`/api/works/latest`, fetcher)
 
     return (
         <DefaultLayout>
