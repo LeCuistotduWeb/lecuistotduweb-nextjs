@@ -30,7 +30,7 @@ const WorksPage = ({works}) => {
               </ul>
 
               <div>
-                  <p>Retrouver mon parcours et mes diverses experiences <Link href="/experiences">içi</Link></p>
+                  <p>Retrouver mon parcours et mes diverses experiences <Link href="/experiences">ici</Link></p>
                   <p>Suivez-moi aussi sur mon <a rel="noopener" href="https://codepen.io/lecuistotduweb">Codepen</a>. Ou sur mon github <a rel="noopener" href="https://github.com/lecuistotduweb">LeCuistotduWeb</a>.</p>
               </div>
           </main>

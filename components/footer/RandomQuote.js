@@ -24,6 +24,9 @@ const quotes = [{
 }, {
     "quote": "Tu ne feras pas de mise en prod le vendredi.",
     "author": ""
+}, {
+    "quote": "Tout est possible en trois lignes de css.",
+    "author": "M"
 }]
 
 const RandomQuote = (props) => {
