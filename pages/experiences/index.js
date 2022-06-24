@@ -205,7 +205,7 @@ const WorksPage = (props) => {
                 </section>
 
                 <section className="container">
-                    <p>Retrouver mes réalisations <Link href="/works">ici</Link></p>
+                    <p>Retrouvez mes réalisations <Link href="/works">ici</Link></p>
                 </section>
 
             </main>
