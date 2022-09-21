@@ -26,7 +26,7 @@ const SingleWorkPage = (props) => {
             <main className="container">
                 <h1 className="sectionTitle">{data.title}</h1>
                 <div dangerouslySetInnerHTML={{__html: data.content}}/>
-                <TagsList tags={data.tags}/>
+                {data.tags && <TagsList tags={data.tags}/>}
             </main>
 
         </DefaultLayout>

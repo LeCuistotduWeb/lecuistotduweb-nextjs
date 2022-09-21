@@ -53,6 +53,10 @@
   --z-modal: 1300;
   --z-modal-overlay: calc(var(--z-modal) - 1 );
   --z-tooltip: 1500;
+
+  --scrollbar-track: #ebdebe;
+  --scrollbar-thumb: #d2c4a4;
+  --scrollbar-thumb-hover: #e6d3ae;
 }
 
 // Tools
@@ -83,6 +87,10 @@
 
   --link-color: #fff;
   --link-color-hover: #f25353;
+
+  --scrollbar-track: #1f3245;
+  --scrollbar-thumb: #67717d;
+  --scrollbar-thumb-hover: #515e66;
 }
 
 // Reset

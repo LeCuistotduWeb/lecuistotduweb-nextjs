@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Image from "next/image";
 import Link from "next/link";
 import ProfileSvg from "../profile/Profile";
+import {motion} from "framer-motion";
 
 const IntroductionSection = (props) => {
     return (
@@ -11,9 +11,14 @@ const IntroductionSection = (props) => {
             </div>
             <div className={"introduction-content"}>
                 {/*<div>Hello ! Je suis gaëtan Boyron alias</div>*/}
-                <p className="subtitle">Développeur Front-End</p>
+                <motion.p initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{
+                            duration: .3,
+                            delay: 0,
+                          }} className="subtitle">Développeur Front-End</motion.p>
                 <h1 className="section-title">LeCuistotduWeb.</h1>
-                <p>Animé par l’envie de travailler en équipe et de développer ma créativité au quotidien, j’ai commencé mon chemin professionnel dans l’univers de la restauration. Si ces valeurs sont toujours primordiales pour moi, j’ai aujourd’hui décidé de me reconvertir et de vivre de ma passion : le développement web.</p>
+                <p >Bienvenue sur mon portfolio. Je m'appelle Gaëtan Boyron (alias LeCuistotduWeb). Animé par l’envie de développer ma créativité et de paticiper à la conception du web de demain, j’ai décidé de me reconvertir en 2017 afin de vivre de ma passion : le développement Web.</p>
                 <div>
                     <Link href="/experiences" passHref>
                         <a className="btn btn-secondary">Mes expériences</a>
