@@ -1,8 +1,5 @@
 export const pageview = (url) => {
-  // @ts-ignore
-  console.log({url});
   if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
-    // @ts-ignore
     window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
       page_path: url,
     })
@@ -11,7 +8,6 @@ export const pageview = (url) => {
 
 // log specific events happening.
 export const event = ({ action, params }) => {
-  // @ts-ignore
   window.gtag('event', action, params)
 }
 
