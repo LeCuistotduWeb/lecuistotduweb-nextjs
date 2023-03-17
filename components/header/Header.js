@@ -20,10 +20,8 @@ const Header = (props) => {
             {router.pathname !== "/" && (
                 <div style={{display: 'flex'}}>
                     <div>
-                        <Link href="/" passHref>
-                            <a title="Retour accueil" aria-label="Accueil">
-                                <Image alt="profile LeCuistotduWeb" width={50} height={50} src="/images/profile/perso.svg"/>
-                            </a>
+                        <Link href="/" title="Retour accueil" aria-label="Accueil" passHref>
+                            <Image alt="profile LeCuistotduWeb" width={50} height={50} src="/images/profile/perso.svg"/>
                         </Link>
                     </div>
                     <button onClick={() => router.back()} className="btn-back btn btn-rounded">

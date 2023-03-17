@@ -24,9 +24,7 @@ const AdminLayout = (props) => {
 
             <header className={`${styles.adminHeader} ${!toggleMenu ? styles.adminHeaderClose : ""}`}>
                 <nav>
-                    <Link href="/" aria-label="forecastr logo" passHref>
-                        <a className={styles.logo}>Lecuistotduweb</a>
-                    </Link>
+                    <Link href="/" aria-label="forecastr logo" className={styles.logo}>Lecuistotduweb</Link>
                     <button onClick={e => setToggleMenu(!toggleMenu)} className={styles.toggleMobMenu} aria-expanded="false" aria-label="open menu">
                         {toggleMenu ? 'fermer' : 'menu'}
                     </button>
@@ -35,32 +33,22 @@ const AdminLayout = (props) => {
                             <h3>Pages</h3>
                         </li>
                         <li className={styles.adminMenuLink}>
-                            <Link href="/admin" passHref>
-                                <a>homepage</a>
-                            </Link>
+                            <Link href="/admin" passHref>homepage</Link>
                         </li>
                         <li className={styles.adminMenuLink}>
-                            <Link href="/admin/works" passHref>
-                                <a>works</a>
-                            </Link>
+                            <Link href="/admin/works" >works</Link>
                         </li>
                         <li className={styles.adminMenuLink}>
-                            <Link href="/admin/about" passHref>
-                                <a>about</a>
-                            </Link>
+                            <Link href="/admin/about" >about</Link>
                         </li>
                         <li className={styles.adminMenuLink}>
-                            <Link href="/admin/contact" passHref>
-                                <a>contact</a>
-                            </Link>
+                            <Link href="/admin/contact">contact</Link>
                         </li>
                         <li className={styles.adminMenuHeading}>
                             <h3>Settings</h3>
                         </li>
                         <li className={styles.adminMenuLink}>
-                            <Link href="/admin/options" passHref>
-                                <a>Options</a>
-                            </Link>
+                            <Link href="/admin/options">Options</Link>
                         </li>
                     </ul>
                 </nav>

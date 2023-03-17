@@ -20,9 +20,7 @@ const IntroductionSection = (props) => {
                 <h1 className="section-title">LeCuistotduWeb.</h1>
                 <p >Bienvenue sur mon portfolio. Je m'appelle Gaëtan Boyron (alias LeCuistotduWeb). Animé par l’envie de développer ma créativité et de paticiper à la conception du web de demain, j’ai décidé de me reconvertir en 2017 afin de vivre de ma passion : le développement Web.</p>
                 <div>
-                    <Link href="/experiences" passHref>
-                        <a className="btn btn-secondary">Mes expériences</a>
-                    </Link>
+                    <Link href="/experiences" className="btn btn-secondary">Mes expériences</Link>
                 </div>
             </div>
         </section>
