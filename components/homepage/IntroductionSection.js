@@ -31,9 +31,7 @@ const IntroductionSection = (props) => {
           ma passion : le développement Web.
         </p>
         <div className="btns-container">
-          <Link href="/experiences" passHref>
-            <a className="btn btn-secondary">Mes expériences</a>
-          </Link>
+          <Link href="/experiences" className="btn btn-secondary">Mes expériences</Link>
           <a
             href="/pdf/cv-2022.pdf"
             className="btn"

@@ -24,9 +24,7 @@ const ExperienceCards = (props) => {
     if(href) {
         return (
             <Link href={href} passHref>
-                <a>
-                    <ExperienceCardContent/>
-                </a>
+                <ExperienceCardContent/>
             </Link>
         )
     }
