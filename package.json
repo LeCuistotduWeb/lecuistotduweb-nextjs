@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "framer-motion": "^6.3.11",
+    "dotenv": "^16.0.3",
+    "framer-motion": "^10.12.10",
     "fs": "0.0.1-security",
     "gray-matter": "^4.0.3",
     "next": "^13.2.4",
@@ -20,7 +20,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.41.0",
-    "swr": "^1.2.1"
+    "swr": "^2.1.5"
   },
   "devDependencies": {
     "eslint": "^8.36.0",
