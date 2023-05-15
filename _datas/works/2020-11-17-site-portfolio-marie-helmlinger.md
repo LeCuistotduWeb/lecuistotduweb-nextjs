@@ -9,7 +9,7 @@ categories: [Développement Web]
 ---
 
 <p>
-    <strong>Développement du site pour Marie Helmlinger <a target="_blank" rel="nofollow" href="https://mariejade-hlg.fr">mariejade-hlg.fr</a></strong>
+    <strong>Développement du site pour Marie Helmlinger</strong>
 </p>
 
 <p>
