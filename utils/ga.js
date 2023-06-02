@@ -6,16 +6,30 @@ export const pageview = (url) => {
   }
 }
 
-// log specific events happening.
 export const event = ({ action, params }) => {
-  window.gtag('event', action, params)
+  if (typeof window !== 'undefined' && typeof window.gtag !== 'undefined') {
+    window.gtag('event', action, params)
+  }
 }
 
-export const addToCart = (productName) => {
+export const CVdownloaded = () => {
   event({
-    action: "add_to_cart",
-    params : {
-      product: productName
-    }
+    action: "cv_downloaded",
+    params : {}
   })
 }
+
+// export const addToCart = (productName) => {
+//   event({
+//     action: "add_to_cart",
+//     params : {
+//       product: productName
+//     }
+//   })
+// }
+
+const ga = {
+  CVdownloaded,
+}
+
+export default ga;

@@ -2,6 +2,7 @@ import React, {useLayoutEffect, useRef} from "react";
 import Link from "next/link";
 import ProfileSvg from "../profile/Profile";
 import { gsap } from "gsap";
+import ga from "../../utils/ga";
 
 const gsapBaseAnimation = {
   duration: .5,
@@ -58,6 +59,7 @@ const IntroductionSection = (props) => {
         <div ref={buttonsRef} className="btns-container">
           <Link href="/experiences" className="btn btn-secondary">Mes expériences</Link>
           <a
+            onClick={()=> ga.CVdownloaded()}
             href="/pdf/cv-2022.pdf"
             className="btn"
             target="_blank"
