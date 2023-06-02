@@ -1,36 +1,40 @@
 // Skills
 // ==================
-.skills  {}
+.skills {}
 
-.skills .logo-list ul  {
+.skills .logo-list ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 16px;
 }
 
-.skills .logo-list ul li div  {
+.skills .logo-list ul li div {
     background-color: var(--card-bg-color);
     @extend .flex-center;
 }
 
-.skills .logo-list ul li img  {
+.skills .logo-list ul li img {
     object-fit: contain;
 }
 
 @include up($breakpoint-sm) {
-    .skills .logo-list ul  {
+    .skills .logo-list ul {
         grid-template-columns: repeat(5, 1fr);
     }
 }
 
 @include up($breakpoint-md) {
-    .skills .logo-list ul  {}
-    .skills .logo-list ul  {
+    .skills .logo-list ul {}
+
+    .skills .logo-list ul {
         grid-template-columns: repeat(8, 1fr);
     }
 }
 
-.skillsList {margin-bottom: 90px}
+.skillsList {
+    margin-bottom: 90px
+}
+
 .skillsList li {
     display: inline-block;
     padding: 10px;
@@ -39,6 +43,7 @@
     color: #fff;
     margin: 5px;
     font-weight: 500;
+
     &:hover {
         transform: rotate(15deg);
         background: green;

@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import LatestWorksCarousel from '../works/LatestWorksCarousel'
+import { gsap } from 'gsap';
 
 const WorksSection = ({works}) => {
+    
     return (
         <section className="works-section section">
             <div className="container">
