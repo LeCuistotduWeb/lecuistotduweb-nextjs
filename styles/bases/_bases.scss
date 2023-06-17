@@ -19,6 +19,7 @@ body.light {
     transition: all .3s;
     text-decoration: none;
   }
+
   a:hover {
     color: var(--color-accent);
     transition: all .3s;
@@ -35,6 +36,7 @@ a {
   text-decoration: none;
   font-weight: 500;
 }
+
 a:hover {
   color: var(--link-color-hover);
   transition: all .3s;
@@ -46,7 +48,7 @@ a:hover {
 }
 
 .text-center {
-  text-align: center!important;
+  text-align: center !important;
 }
 
 /* Scrollbar width */

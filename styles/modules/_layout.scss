@@ -1,0 +1,26 @@
+.default-layout {
+  position: relative;
+
+  &:before,
+  &:after {
+    content: "";
+    width: 600px;
+    height: 600px;
+    background-color: var(--color-light-block);
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1;
+    filter: blur(350px);
+  }
+
+  &:before {
+    top: -300px;
+    left: -300px;
+  }
+
+  &:after {
+    bottom: 0;
+    right: -300px;
+  }
+
+}

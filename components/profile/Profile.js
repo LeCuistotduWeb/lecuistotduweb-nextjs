@@ -1,5 +1,5 @@
 import propTypes from 'prop-types';
-import {useState ,useEffect} from "react";
+import {useState} from "react";
 
 const defaultType = [
     {label: 'Default', value: 'default'},

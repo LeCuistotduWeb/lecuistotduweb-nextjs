@@ -16,6 +16,8 @@
   --color-light: #253c59;
   --color-accent: #b94e4e;
 
+  --color-light-block: #86734e;
+
   --gap: 20px;
   --space: 8px;
 
@@ -43,7 +45,7 @@
   --link-color: #f25353;
   --link-color-hover: #e85f5f;
 
-  --breakpoint-xs:0;
+  --breakpoint-xs: 0;
   --breakpoint-sm: 600;
   --breakpoint-md: 900;
   --breakpoint-lg: 1200;
@@ -51,7 +53,7 @@
 
   --z-app-bar: 1100;
   --z-modal: 1300;
-  --z-modal-overlay: calc(var(--z-modal) - 1 );
+  --z-modal-overlay: calc(var(--z-modal) - 1);
   --z-tooltip: 1500;
 
   --scrollbar-track: #ebdebe;
@@ -75,6 +77,7 @@
   --border: #1C2A3A;
   --background: #121E2A;
   --background-light: #172231;
+  --color-light-block: #396795;
 
   --card-bg-color: #1C2A3A;
   --card-text-color: #f7ebd3;
@@ -113,9 +116,9 @@
 @import "modules/quotes";
 @import "modules/tags";
 @import "modules/experiences";
-@import "modules/profile-svg.scss";
+@import "modules/profile-svg";
 @import "modules/works-carousel";
-
+@import "modules/layout";
 
 // Pages
 // ==================
