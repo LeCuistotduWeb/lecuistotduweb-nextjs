@@ -1,10 +1,7 @@
 import React from 'react';
 import RandomQuote from "../footer/RandomQuote";
 
-const RandomQuoteSection = (props) => {
-
-    const {} = props
-
+const RandomQuoteSection = ({}) => {
     return (
         <div className="random-quote-section section container">
             <div className="card rainbow">

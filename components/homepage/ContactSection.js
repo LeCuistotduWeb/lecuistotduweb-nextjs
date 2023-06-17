@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import RandomQuote from "../footer/RandomQuote";
 
 const ContactSection = (props) => {
-
-    const {} = props
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
-    const [submitted, setSubmitted] = useState(false)
+    
+    // const {} = props
+    // const [name, setName] = useState('')
+    // const [email, setEmail] = useState('')
+    // const [message, setMessage] = useState('')
+    // const [submitted, setSubmitted] = useState(false)
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()

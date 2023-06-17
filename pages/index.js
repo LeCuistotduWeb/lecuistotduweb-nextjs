@@ -7,6 +7,7 @@ import WorksSection from "../components/homepage/WorksSection";
 import ContactSection from "../components/homepage/ContactSection";
 import useSWR from 'swr'
 import siteConfig from "../siteConfig";
+import SectionAnimation from '../components/animations/SectionAnimation';
 
 const fetcher = url => fetch(url).then(r => r.json());
 
@@ -24,15 +25,25 @@ const Home = (props) => {
 
             <main className="homepage">
 
-                <IntroductionSection/>
+                <SectionAnimation>
+                    <IntroductionSection/>
+                </SectionAnimation>
 
-                <SkillsSection/>
+                <SectionAnimation>
+                    <SkillsSection/>
+                </SectionAnimation>
 
-                <WorksSection works={data}/>
+                <SectionAnimation>
+                    <WorksSection works={data}/>
+                </SectionAnimation>
 
-                <ContactSection/>
+                <SectionAnimation>
+                    <ContactSection/>
+                </SectionAnimation>
 
-                <RandomQuoteSection/>
+                <SectionAnimation>
+                    <RandomQuoteSection/>
+                </SectionAnimation>
 
             </main>
 
