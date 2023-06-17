@@ -1,5 +1,6 @@
 .default-layout {
   position: relative;
+  overflow: hidden;
 
   &:before,
   &:after {
