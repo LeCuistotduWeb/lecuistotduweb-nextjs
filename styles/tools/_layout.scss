@@ -47,8 +47,8 @@
 }
 
 .section {
-  margin-top: 3rem;
+  padding-top: 6rem;
   @include up(768){
-    margin-top: 7rem;
+    padding-top: 8rem;
   }
 }

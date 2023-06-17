@@ -1,6 +1,11 @@
 // Introduction
 // ==================
-.introduction {}
+.introduction {
+    padding-top: 4rem;
+    @include up($breakpoint-sm){
+      padding-top: 10rem;
+    }
+}
 
 .introduction .introduction-image {
     margin: auto;

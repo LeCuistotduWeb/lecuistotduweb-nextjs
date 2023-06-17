@@ -1,6 +1,12 @@
 .header {
   position: relative;
-  padding: space(2) space(2);
+  padding: 0 space(2);
+
+  .navigation {
+    display: flex;
+    gap: 0.5rem;
+    padding: space(2) 0;
+  }
 
   @include up(600) {
     display: flex;

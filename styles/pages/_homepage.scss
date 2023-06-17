@@ -4,14 +4,7 @@
 @import "../modules/hp-about";
 @import "../modules/hp-contact";
 
-.homepage {
-  .random-quote-section {
-    margin-top: 7rem;
-    margin-bottom: 3rem;
-  }
-  
-  @include up($breakpoint-sm){
-    margin-top: 7rem;
-    margin-bottom: 5rem;
-  }
+
+.section-random-quotes {
+  padding-bottom: 4rem;
 }

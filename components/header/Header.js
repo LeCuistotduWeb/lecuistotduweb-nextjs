@@ -18,7 +18,7 @@ const Header = (props) => {
     return (
         <header className="header">
             {router.pathname !== "/" && (
-                <div style={{display: 'flex'}}>
+                <div className='navigation'>
                     <div>
                         <Link href="/" title="Retour accueil" aria-label="Accueil" passHref>
                             <Image alt="profile LeCuistotduWeb" width={50} height={50} src="/images/profile/perso.svg"/>

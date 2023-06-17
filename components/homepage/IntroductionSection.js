@@ -41,15 +41,19 @@ const IntroductionSection = (props) => {
   }, [])
 
   return (
-    <section className={"introduction container section"}>
+    <section className={"section introduction container"}>
       <div className={"introduction-image"}>
         <ProfileSvg type="default" />
       </div>
       <div className={"introduction-content"}>
         {/*<div>Hello ! Je suis gaëtan Boyron alias</div>*/}
-        <p ref={overlineRef}  className="subtitle">Développeur Front-End</p>
-        <h1 ref={titleRef} className="section-title">LeCuistotduWeb.</h1>
-        <p ref={descriptioneRef} >
+        <p ref={overlineRef} className="subtitle">
+          Développeur Front-End
+        </p>
+        <h1 ref={titleRef} className="section-title">
+          LeCuistotduWeb.
+        </h1>
+        <p ref={descriptioneRef}>
           Bienvenue sur mon portfolio. Je m'appelle{" "}
           <strong>Gaëtan Boyron</strong> (alias LeCuistotduWeb). Animé par
           l’envie de développer ma créativité et de paticiper à la conception du
@@ -57,9 +61,11 @@ const IntroductionSection = (props) => {
           ma passion : le développement Web.
         </p>
         <div ref={buttonsRef} className="btns-container">
-          <Link href="/experiences" className="btn btn-secondary">Mes expériences</Link>
+          <Link href="/experiences" className="btn btn-secondary">
+            Mes expériences
+          </Link>
           <a
-            onClick={()=> ga.CVdownloaded()}
+            onClick={() => ga.CVdownloaded()}
             href="/pdf/cv-2022.pdf"
             className="btn"
             target="_blank"
