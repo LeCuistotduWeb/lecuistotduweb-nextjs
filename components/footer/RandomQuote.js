@@ -32,7 +32,7 @@ const quotes = [{
 const RandomQuote = (props) => {
     const {} = props
     const [quote, setQuote] = useState(quotes[0])
-    const TIMER = 2500
+    const TIMER = 3000
 
     useEffect(() => {
         const interval = setInterval(() => {
