@@ -11,6 +11,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const WorksPage = ({}) => {
   const worksSectionRef = useRef(null);
+  const worksTitleRef = useRef(null);
   const worksRef = useRef([]);
 
   const { data, error } = useSWR(`/api/works`, fetcher);
@@ -18,7 +19,14 @@ const WorksPage = ({}) => {
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       if (!data || !worksRef) return;
+      gsap.from(worksTitleRef.current, {
+        duration: 0.5,
+        opacity: 0,
+        y: 30,
+        ease: "ease.inOut",
+      });
       gsap.from(worksRef.current, {
+        delay: .5,
         duration: 0.3,
         opacity: 0,
         ease: "ease.inOut",
@@ -40,14 +48,13 @@ const WorksPage = ({}) => {
       </Head>
 
       <main className="container works" ref={worksSectionRef}>
-        <h1 className="section-title">Réalisations</h1>
+        <h1 ref={worksTitleRef} className="section-title">
+          Réalisations
+        </h1>
         <ul className="works-container">
           {data &&
             data.map((work, index) => (
-              <li
-                ref={(el) => (worksRef.current[index] = el)}
-                key={index}
-              >
+              <li ref={(el) => (worksRef.current[index] = el)} key={index}>
                 <WorkCard work={work} />
               </li>
             ))}

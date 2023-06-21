@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: space(2);
+  min-height: 100vh;
 
   @include up($breakpoint-sm) {
     grid-template-columns: 1fr 1fr 1fr;
