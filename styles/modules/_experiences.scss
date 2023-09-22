@@ -3,9 +3,11 @@
   width: 100%;
   max-width: 960px;
 }
+
 .experiencesList {
   position: relative;
 }
+
 .experiencesList::before {
   content: "";
   position: absolute;
@@ -15,13 +17,16 @@
   width: 3px;
   transform: translateX(calc(-3px/2));
   height: 100%;
-  background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(126,126,126,1) 10%, rgba(126,126,126,1) 90%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(149deg, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%);
   opacity: .2;
 }
+
 .experiencesListTitle {}
+
 .experiencesListItem {
   position: relative;
 }
+
 .experiencesListItem::before {
   content: "";
   position: absolute;
@@ -39,6 +44,7 @@
   transform: translateX(-50%);
   transition: all .3s;
 }
+
 .experiencesListItem:hover::before {
   transition: all .3s;
   background-color: var(--background-accent);
@@ -54,6 +60,9 @@
 
 .card-experience {
   margin: 1rem 0 1rem 1rem;
+  border: 2px solid transparent;
+  border-image: linear-gradient(149deg, rgb(131, 58, 180) 0%, rgb(253, 29, 29) 50%, rgb(252, 176, 69) 100%);
+  border-image-slice: 1;
 }
 
 
@@ -61,12 +70,14 @@
   .experiencesList::before {
     margin: auto;
   }
+
   .experiencesListItem::before {
     width: 20px;
     height: 20px;
     margin: auto;
     transform: translate(-2px);
   }
+
   .dateItem {
     margin-top: 3rem;
     margin-bottom: 3rem;
@@ -75,10 +86,13 @@
     padding-right: 30px;
     padding-left: 0;
   }
+
   .card-experience {
     max-width: 45%;
     margin: 0;
+    padding: 2rem;
   }
+
   .card-experience.cardRight {
     margin-left: auto;
   }
