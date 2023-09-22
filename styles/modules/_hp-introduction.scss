@@ -2,8 +2,9 @@
 // ==================
 .introduction {
     padding-top: 4rem;
-    @include up($breakpoint-sm){
-      padding-top: 10rem;
+
+    @include up($breakpoint-sm) {
+        padding-top: 10rem;
     }
 }
 
@@ -24,6 +25,10 @@
 .introduction .subtitle {
     margin-bottom: .5rem;
     margin-top: 0;
+    background: linear-gradient(149deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
 }
 
 .introduction .btns-container {
