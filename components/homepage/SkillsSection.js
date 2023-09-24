@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 
 const SkillsSection = () => {
     const skillSectionRef = useRef();
-    const toolsAndSkillData = ["HTML5", "CSS3", "SCSS", "Javascript", "Typescript", "ReactJs", "NextJs", "PHP", "Mysql", "Symfony 3/4", "Adobe suite", "Figma", "Wordpress", "NPM", "Vercel", "Git",]
+    const toolsAndSkillData = ["HTML5", "CSS3", "SCSS", "Javascript", "Typescript", "ReactJs", "NextJs", "PHP", "Mysql", "Symfony 3/4", "Adobe suite", "Figma", "Wordpress", "NPM", "Vercel", "Git", "PrismaJs", "Storybook"]
     const toolsAndSkillRef = useRef([])
 
     useLayoutEffect(()=>{

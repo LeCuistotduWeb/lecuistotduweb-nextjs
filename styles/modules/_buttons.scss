@@ -4,6 +4,7 @@
   transition: all .3s;
   font-weight: 500;
   font-weight: 600;
+
   &:hover {
     color: var(--btn-primary-color);
   }
@@ -23,6 +24,7 @@
   border: solid 2px var(--btn-primary-border-color);
   background-color: var(--btn-primary-bg-color);
   color: #fff;
+
   &:hover {
     border: solid 2px var(--btn-primary-border-color-hover);
     background: var(--btn-primary-bg-color-hover);
@@ -35,10 +37,15 @@
   border: solid 2px var(--btn-secondary-border-color);
   background-color: var(--btn-secondary-bg-color);
   color: var(--btn-secondary-color);
+  box-shadow: 5px 5px 0 var(--btn-secondary-border-color-hover);
+
   &:hover {
-    border: solid 2px var(--btn-secondary-border-color-hover);
-    background: var(--btn-secondary-bg-color-hover);
+    box-shadow: 3px 3px 0 var(--btn-secondary-border-color-hover);
     color: var(--btn-secondary-color);
+  }
+  
+  &:focus {
+    transform: scale(0.98);
   }
 }
 
