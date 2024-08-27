@@ -2,7 +2,7 @@ const { readFileSync, existsSync } = require('fs')
 const { join } = require('path')
 import matter from "gray-matter";
 
-export default (req, res) => {
+export default function handle(req, res) {
     let data;
     let exist = existsSync(join(process.cwd(), `/_datas/works/${req.query.slug}.md`))
 
