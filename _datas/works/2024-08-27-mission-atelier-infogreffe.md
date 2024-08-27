@@ -1,6 +1,6 @@
 ---
 layout: work
-title: Consulant développeur Front-End pour le client Infogreffe
+title: Consultant développeur Front-End pour le client Infogreffe
 excerpt: Consultant pour le client Infogreffe
 image: /images/works/infogreffe/miniature-site-web-portfolio-infogreffe.jpg
 image-alt: mockup du site infogreffe.fr
