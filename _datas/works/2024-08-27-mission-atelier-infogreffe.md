@@ -1,7 +1,7 @@
 ---
 layout: work
-title: Consultant développeur Front-End pour le client Infogreffe
-excerpt: Consultant pour le client Infogreffe
+title: Développeur Front-End - Infogreffe
+excerpt: Développeur Front-End - Infogreffe
 image: /images/works/infogreffe/miniature-site-web-portfolio-infogreffe.jpg
 image-alt: mockup du site infogreffe.fr
 tags: [ReactJs, GatsbyJs, Typescript, SASS, Storybook, StrapiJs, Redux, JestJs, CypressJs] 
