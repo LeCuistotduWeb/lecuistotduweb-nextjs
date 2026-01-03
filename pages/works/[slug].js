@@ -23,7 +23,7 @@ const SingleWorkPage = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="container">
+            <main className="container single-work-page">
                 <h1 className="sectionTitle">{data.title}</h1>
                 <div dangerouslySetInnerHTML={{__html: data.content}}/>
                 {data.tags && <TagsList tags={data.tags}/>}

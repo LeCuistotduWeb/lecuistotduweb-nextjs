@@ -1,0 +1,36 @@
+[
+  {
+    "id": 3,
+    "type": "title",
+    "title": "2015"
+  },
+  {
+    "id": 2,
+    "type": "card",
+    "date": "2015 / 2016",
+    "title": "Conducteur de machine de conditionnement en agroalimentaire",
+    "company": "Société Charles & Alice (Alex, Drôme)",
+    "content": [
+      "Respect des enjeux de productivité, qualité, hygiène et sécurité.",
+      "Contrôle, diagnostique et communication des pannes.",
+      "Proposition d'améliorations du fonctionnement de la ligne."
+    ]
+  },
+  {
+    "id": 1,
+    "type": "title",
+    "title": "2013"
+  },
+  {
+    "id": 0,
+    "type": "card",
+    "date": "2013",
+    "title": "Chef de restauration",
+    "company": "école municipale (Vaulx, Haute Savoie)",
+    "content": [
+      "Élaboration des menus.",
+      "Gestion des stocks.",
+      "Relations fournisseurs."
+    ]
+  }
+]

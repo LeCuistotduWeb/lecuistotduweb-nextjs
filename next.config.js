@@ -1,13 +1,9 @@
 module.exports = {
-  reactStrictMode: true,
-  webpack: function(config) {
-    config.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    })
-    return config
+  experimental: {
+    turbo: {
+      rules: {
+        '*.md': ['raw-loader'],
+      },
+    },
   },
-  serverRuntimeConfig: {
-    PROJECT_ROOT: __dirname
-  }
 }

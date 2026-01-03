@@ -12,7 +12,7 @@ const WorkCard = ({work}) => {
             src={work.image}
             alt={work["image-alt"]}
           />
-          <div className="title">{work.title}</div>
+          {/* <div className="title">{work.title}</div> */}
         </Link>
       </div>
     );

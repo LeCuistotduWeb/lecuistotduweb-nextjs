@@ -1,0 +1,20 @@
+.single-work-page {
+  & section {
+    margin-bottom: 2rem;
+  }
+
+  & ul li {
+    list-style: disc;
+    margin-left: 1rem;
+  }
+
+  & .banner-image {
+    border-radius: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  & .tags {
+    margin-top: 1rem;
+  }
+}

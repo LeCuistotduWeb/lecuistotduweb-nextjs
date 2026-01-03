@@ -1,0 +1,144 @@
+[
+  {
+    "id": 16,
+    "type": "title",
+    "title": "2024 - Aujourd'hui"
+  },
+  {
+    "id": 12,
+    "type": "card",
+    "date": "2024",
+    "title": "Développeur Front",
+    "company": "FNAC DARTY",
+    "content": [
+      "Développement d'applications web modernes pour les portails Opérateur et Vendeur d'une plateforme marketplace.",
+      "Conception et mise en place de l'architecture frontend modulaire et scalable.",
+      "Développement d'interfaces utilisateurs modernes et responsives (React/Next.js/TypeScript).",
+      "Optimisation des performances et de l'expérience utilisateur."
+    ]
+  },
+  {
+    "id": 13,
+    "type": "card",
+    "date": "2023 - 2024",
+    "title": "Développeur Front-end",
+    "company": "INFOGREFFE",
+    "content": [
+      "Intégration des maquettes et développement des parcours utilisateur.",
+      "Amélioration SEO et des performances.",
+      "Création d'un constructeur de page avec StrapiJs."
+    ]
+  },
+  {
+    "id": 17,
+    "type": "title",
+    "title": "2023"
+  },
+  {
+    "id": 14,
+    "type": "card",
+    "date": "2019 - 2022",
+    "title": "Développeur Fullstack",
+    "company": "BLISSIM",
+    "content": [
+      "Amélioration du site existant et migration vers un site de type PWA.",
+      "Développement des différents parcours utilisateurs.",
+      "Conception d'une application analytics avancée pour le suivi des ventes."
+    ]
+  },
+  {
+    "id": 15,
+    "type": "card",
+    "date": "2018 - 2019",
+    "title": "Développeur",
+    "company": "NOMAD EDUCATION",
+    "content": [
+      "Refonte du site vitrine et migration de l'application Angular vers Nuxtjs.",
+      "Développement d'interfaces UI/UX."
+    ]
+  },
+  {
+    "id": 11,
+    "type": "title",
+    "title": "2022"
+  },
+  {
+    "id": 9,
+    "type": "card",
+    "date": "2019 / 2022",
+    "title": "Développeur Web",
+    "company": "Blissim.fr - ex Birchbox.fr (Paris)",
+    "content": [
+      "Migration du site sur une PWA Nextjs",
+      "Développement de nouvelles fonctionnalités",
+      "Développement d'outil interne"
+    ]
+  },
+  {
+    "id": 8,
+    "type": "title",
+    "title": "2018"
+  },
+  {
+    "id": 7,
+    "type": "card",
+    "date": "2018 / 2019 (octobre-avril)",
+    "title": "Stagiaire développeur web",
+    "company": "Nomad Education (Paris)",
+    "content": [
+      "Refonte du site vitrine.",
+      "Aide au développement de nouvelles fonctionnalités sur"
+    ]
+  },
+  {
+    "id": 6,
+    "type": "title",
+    "title": "2017"
+  },
+  {
+    "id": 5,
+    "type": "card",
+    "date": "2017 / Aujourd'hui",
+    "title": "Développeur fullstack / Webdesigner",
+    "company": "lepoudrierdefleur.fr",
+    "content": [
+      "Maintenance du site Web.",
+      "Développement de nouvelles fonctionnalités",
+      "Montage vidéos, retouches photos, créations de visuels"
+    ]
+  },
+  {
+    "id": 4,
+    "type": "card",
+    "date": "2017 (mai-juin)",
+    "title": "Stagiaire webdesigner",
+    "company": "Arkade Communication (Valence, Drôme)",
+    "content": [
+      "Amelioration d'UX/UI de site-Web.",
+      "Correction de bugs d'un site basé sous Wordpress.",
+      "Covering de vehicule utilitaire."
+    ]
+  },
+  {
+    "id": 3,
+    "type": "title",
+    "title": "2015"
+  },
+  {
+    "id": 2,
+    "type": "card",
+    "date": "2015 / 2016",
+    "title": "Conducteur de machine de conditionnement en agroalimentaire",
+    "company": "Société Charles & Alice (Alex, Drôme)",
+    "content": [
+      "Respect des enjeux de productivité, qualité, hygiène et sécurité.",
+      "Contrôle, diagnostique et communication des pannes.",
+      "Proposition d'améliorations du fonctionnement de la ligne."
+    ]
+  },
+  {
+    "id": 1,
+    "type": "title",
+    "title": "2013"
+  }
+]

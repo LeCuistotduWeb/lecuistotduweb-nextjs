@@ -16,7 +16,7 @@
   --color-light: #253c59;
   --color-accent: #b94e4e;
 
-  --color-light-block: #86734e;
+  --color-light-block: #e4b962;
 
   --gap: 20px;
   --space: 8px;
@@ -27,6 +27,7 @@
   --background-light: #253c591f;
 
   --card-bg-color: #e6d3ae;
+  --card-hover-bg-color: #f5efe0;
   --card-text-color: #253c59;
   --card-border-color: #f5efe0;
 
@@ -80,6 +81,7 @@
   --color-light-block: #396795;
 
   --card-bg-color: #293d53;
+  --card-hover-bg-color: #3a4e66;
   --card-text-color: #f7ebd3;
 
   --btn-secondary-color: #253c59;
@@ -124,4 +126,5 @@
 // ==================
 @import "pages/homepage";
 @import "pages/works";
+@import "pages/work";
 @import "pages/404";

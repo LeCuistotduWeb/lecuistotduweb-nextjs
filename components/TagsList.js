@@ -1,11 +1,7 @@
 import React from 'react';
 
-const TagsList = (props) => {
-
-    const {tags} = props
-
-    if(tags && tags.length <= 0)  null
-
+const TagsList = ({tags}) => {
+    if(!tags || tags.length <= 0)  null
     return (
         <div className="tags">
             <div>Tags:</div>
