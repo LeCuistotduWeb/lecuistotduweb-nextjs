@@ -38,12 +38,14 @@
   background-color: var(--btn-secondary-bg-color);
   color: var(--btn-secondary-color);
   box-shadow: 5px 5px 0 var(--btn-secondary-border-color-hover);
-
-  &:hover {
-    box-shadow: 3px 3px 0 var(--btn-secondary-border-color-hover);
-    color: var(--btn-secondary-color);
-  }
+  transform: translate(-2px, -2px);
   
+  &:hover {
+    transform: translate(0, 0);
+    color: var(--btn-secondary-color);
+    box-shadow: 0px 0px 0 var(--btn-secondary-border-color-hover);
+  }
+
   &:focus {
     transform: scale(0.98);
   }
