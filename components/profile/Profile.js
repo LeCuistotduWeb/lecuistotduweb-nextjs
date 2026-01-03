@@ -1,4 +1,3 @@
-import propTypes from 'prop-types';
 import {useState} from "react";
 
 const defaultType = [
@@ -81,9 +80,4 @@ export default function ProfileSvg(props){
             <span className={`overlay ${toggleSettings ? 'is-show' : ''}`} onClick={e =>setToggleSettings(false)}/>
         </div>
     )
-}
-
-ProfileSvg.propTypes = {
-    type: propTypes.oneOf(['default', 'hulk', 'superman']),
-    size: propTypes.number
 }

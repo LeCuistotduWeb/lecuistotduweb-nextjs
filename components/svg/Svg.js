@@ -1,6 +1,4 @@
 import React from 'react';
-import propTypes from 'prop-types';
-
 const Svg = (props) => {
     const {name, width=30, height=30} = props
 
@@ -33,12 +31,6 @@ const Svg = (props) => {
             {renderSvg(name)}
         </span>
     );
-}
-
-Svg.propTypes = {
-    name: propTypes.oneOf(['codepen', 'linkedin', 'github']),
-    width: propTypes.string,
-    height: propTypes.string,
 }
 
 export default Svg
