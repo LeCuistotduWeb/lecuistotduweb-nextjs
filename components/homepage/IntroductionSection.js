@@ -66,7 +66,7 @@ const IntroductionSection = (props) => {
           </Link>
           <a
             onClick={() => ga.CVdownloaded()}
-            href="/pdf/cv-2022.pdf"
+            href="/pdf/cv-gaetan-boyron-developpeur-2026.pdf"
             className="btn"
             target="_blank"
           >
