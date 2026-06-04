@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "#/lib/utils";
 
 const projects = [
@@ -34,6 +34,7 @@ const projects = [
 
 export default function ProjectCard({ className }: { className?: string }) {
 	const [current, setCurrent] = useState(0);
+	const touchStartX = useRef<number | null>(null);
 
 	useEffect(() => {
 		const id = setInterval(() => {
@@ -42,8 +43,26 @@ export default function ProjectCard({ className }: { className?: string }) {
 		return () => clearInterval(id);
 	}, []);
 
+	function handleTouchStart(e: React.TouchEvent) {
+		touchStartX.current = e.touches[0].clientX;
+	}
+
+	function handleTouchEnd(e: React.TouchEvent) {
+		if (touchStartX.current === null) return;
+		const delta = touchStartX.current - e.changedTouches[0].clientX;
+		touchStartX.current = null;
+		if (Math.abs(delta) < 50) return;
+		setCurrent((i) =>
+			delta > 0
+				? (i + 1) % projects.length
+				: (i - 1 + projects.length) % projects.length,
+		);
+	}
+
 	return (
 		<div
+			onTouchStart={handleTouchStart}
+			onTouchEnd={handleTouchEnd}
 			className={cn(
 				"relative overflow-hidden rounded-2xl border border-[#d2c4a4] dark:border-[#1c2a3a] min-h-64 md:min-h-180",
 				className,
