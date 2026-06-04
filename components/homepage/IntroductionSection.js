@@ -1,44 +1,44 @@
-import React, {useLayoutEffect, useRef} from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import ProfileSvg from "../profile/Profile";
 import { gsap } from "gsap";
 import ga from "../../utils/ga";
 
 const gsapBaseAnimation = {
-  duration: .5,
+  duration: 0.5,
   opacity: 0,
   y: 30,
-  ease: 'ease.inOut',
-}
+  ease: "ease.inOut",
+};
 
 const IntroductionSection = (props) => {
   const overlineRef = useRef();
   const titleRef = useRef();
   const descriptioneRef = useRef();
-  const buttonsRef = useRef()
+  const buttonsRef = useRef();
 
-  useLayoutEffect(()=>{
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
-        gsap.from(overlineRef.current, { 
-            ...gsapBaseAnimation,
-        });
-        gsap.from(titleRef.current, { 
-          ...gsapBaseAnimation,
-            delay: .3,
-        });
-        gsap.from(descriptioneRef.current, { 
-            delay: .5,
-            ...gsapBaseAnimation,
-        });
-        gsap.from(buttonsRef.current, { 
-          ...gsapBaseAnimation,
-            delay: 1,
-            y: 10,
-        });
+      gsap.from(overlineRef.current, {
+        ...gsapBaseAnimation,
+      });
+      gsap.from(titleRef.current, {
+        ...gsapBaseAnimation,
+        delay: 0.3,
+      });
+      gsap.from(descriptioneRef.current, {
+        delay: 0.5,
+        ...gsapBaseAnimation,
+      });
+      gsap.from(buttonsRef.current, {
+        ...gsapBaseAnimation,
+        delay: 1,
+        y: 10,
+      });
     }, overlineRef);
-    
+
     return () => ctx.revert();
-  }, [])
+  }, []);
 
   return (
     <section className={"section introduction container"}>
@@ -66,7 +66,7 @@ const IntroductionSection = (props) => {
           </Link>
           <a
             onClick={() => ga.CVdownloaded()}
-            href="/pdf/cv-gaetan-boyron-developpeur-2026.pdf"
+            href="/pdf/cv-gaetan-boyron-developpeur.pdf"
             className="btn"
             target="_blank"
           >
