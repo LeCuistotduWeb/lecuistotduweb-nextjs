@@ -35,17 +35,17 @@ function Field({
 }) {
 	return (
 		<div className="flex flex-col gap-1.5">
-			<label className="text-xs font-medium text-zinc-400 uppercase tracking-wider">
+			<label className="text-xs font-medium text-[#7a95ad] dark:text-[#a1adbc] uppercase tracking-wider">
 				{label}
 			</label>
 			{children}
-			{error && <p className="text-xs text-red-400">{error}</p>}
+			{error && <p className="text-xs text-red-500 dark:text-red-400">{error}</p>}
 		</div>
 	);
 }
 
 const inputClass =
-	"w-full rounded-xl border border-zinc-700 bg-zinc-800 px-4 py-2.5 text-sm text-white placeholder:text-zinc-600 outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/40 transition-colors";
+	"w-full rounded-xl border border-[#d2c4a4] bg-[#f5efe0] dark:border-[#253c59] dark:bg-[#1c2a3a] px-4 py-2.5 text-sm text-[#253c59] dark:text-white placeholder:text-[#93a8be] dark:placeholder:text-[#556a7a] outline-none focus:border-[#f25353] focus:ring-1 focus:ring-[#f25353]/40 transition-colors";
 
 export function ContactModal({
 	open,
@@ -105,13 +105,13 @@ export function ContactModal({
 			onClick={(e) => e.target === backdropRef.current && onClose()}
 			className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
 		>
-			<div className="w-full max-w-md rounded-2xl border border-zinc-800 bg-zinc-900 p-6 shadow-2xl">
+			<div className="w-full max-w-md rounded-2xl border border-[#d2c4a4] bg-[#faf5ec] dark:border-[#1c2a3a] dark:bg-[#121e2a] p-6 shadow-2xl">
 				<div className="flex items-center justify-between mb-4">
-					<h2 className="text-lg font-semibold text-white">Me contacter</h2>
+					<h2 className="text-lg font-semibold text-[#253c59] dark:text-white">Me contacter</h2>
 					<button
 						type="button"
 						onClick={onClose}
-						className="size-8 flex items-center justify-center rounded-lg text-zinc-500 hover:text-white hover:bg-zinc-800 transition-colors"
+						className="size-8 flex items-center justify-center rounded-lg text-[#93a8be] dark:text-[#7a8fa0] hover:text-[#253c59] dark:hover:text-white hover:bg-[#e6d3ae] dark:hover:bg-[#1c2a3a] transition-colors"
 					>
 						<X className="size-4" />
 					</button>
@@ -121,37 +121,37 @@ export function ContactModal({
 					href={siteConfig.social.linkedin}
 					target="_blank"
 					rel="noreferrer"
-					className="flex items-center gap-3 mb-5 p-3 rounded-xl border border-zinc-700 bg-zinc-800 hover:border-[#0A66C2]/60 hover:bg-[#0A66C2]/10 transition-colors group"
+					className="flex items-center gap-3 mb-5 p-3 rounded-xl border border-[#d2c4a4] bg-[#f5efe0] dark:border-[#253c59] dark:bg-[#1c2a3a] hover:border-[#0A66C2]/60 hover:bg-[#0A66C2]/10 transition-colors group"
 				>
 					<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="size-4 text-[#0A66C2] shrink-0">
 						<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
 					</svg>
-					<span className="text-sm text-zinc-300 group-hover:text-white transition-colors">
+					<span className="text-sm text-[#3a5570] dark:text-[#c5d5e5] group-hover:text-[#253c59] dark:group-hover:text-white transition-colors">
 						Me contacter sur LinkedIn
 					</span>
 				</a>
 
 				<div className="flex items-center gap-3 mb-5">
-					<div className="h-px flex-1 bg-zinc-800" />
-					<span className="text-xs text-zinc-600 uppercase tracking-widest">ou par email</span>
-					<div className="h-px flex-1 bg-zinc-800" />
+					<div className="h-px flex-1 bg-[#d2c4a4] dark:bg-[#1c2a3a]" />
+					<span className="text-xs text-[#93a8be] dark:text-[#556a7a] uppercase tracking-widest">ou par email</span>
+					<div className="h-px flex-1 bg-[#d2c4a4] dark:bg-[#1c2a3a]" />
 				</div>
 
 				{status === "success" ? (
 					<div className="flex flex-col items-center py-8 gap-4 text-center">
-						<div className="size-12 rounded-full bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
-							<Send className="size-5 text-violet-400" />
+						<div className="size-12 rounded-full bg-[#f25353]/20 border border-[#f25353]/30 flex items-center justify-center">
+							<Send className="size-5 text-[#f25353]" />
 						</div>
 						<div>
-							<p className="text-white font-semibold">Message envoyé !</p>
-							<p className="text-zinc-500 text-sm mt-1">
+							<p className="text-[#253c59] dark:text-white font-semibold">Message envoyé !</p>
+							<p className="text-[#7a95ad] dark:text-[#7a8fa0] text-sm mt-1">
 								Je reviendrai vers vous très rapidement.
 							</p>
 						</div>
 						<button
 							type="button"
 							onClick={onClose}
-							className="mt-2 px-5 py-2 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm hover:bg-zinc-700 transition-colors"
+							className="mt-2 px-5 py-2 rounded-xl bg-[#e6d3ae] border border-[#d2c4a4] text-[#3a5570] dark:bg-[#1c2a3a] dark:border-[#253c59] dark:text-[#c5d5e5] text-sm hover:bg-[#d2c4a4] dark:hover:bg-[#253c59] transition-colors"
 						>
 							Fermer
 						</button>
@@ -204,7 +204,7 @@ export function ContactModal({
 						<button
 							type="submit"
 							disabled={status === "loading"}
-							className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold transition-colors mt-1"
+							className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#f25353] hover:bg-[#e85f5f] disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold transition-colors mt-1"
 						>
 							{status === "loading" ? (
 								<Loader2 className="size-4 animate-spin" />
