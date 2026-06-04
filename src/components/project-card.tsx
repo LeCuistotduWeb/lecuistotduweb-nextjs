@@ -14,6 +14,22 @@ const projects = [
 		src: "/works/miniature-site-web.jpg",
 		label: "Blissim",
 	},
+	{
+		src: "/works/miniature-fnac-darty.jpeg",
+		label: "Fnac Darty",
+	},
+	{
+		src: "/works/thumbnail-work-musee-du-louvre-symfony.jpg",
+		label: "Musée du Louvre",
+	},
+	{
+		src: "/works/thumbnail-worksite-web-nomad-education.jpg",
+		label: "Nomad Education",
+	},
+	{
+		src: "/works/mon-vdi-assistant-miniature.png",
+		label: "Mon VDI Assistant",
+	},
 ];
 
 export default function ProjectCard({ className }: { className?: string }) {
@@ -60,11 +76,15 @@ export default function ProjectCard({ className }: { className?: string }) {
 								key={i}
 								type="button"
 								onClick={() => setCurrent(i)}
-								className={cn(
-									"h-1 rounded-full transition-all duration-300",
-									i === current ? "bg-white w-4" : "bg-white/40 w-1",
-								)}
-							/>
+								className="py-2 px-0.5 flex items-center"
+							>
+								<span
+									className={cn(
+										"h-2 rounded-full transition-all duration-300 block cursor-pointer",
+										i === current ? "bg-white w-6" : "bg-white/40 w-2",
+									)}
+								/>
+							</button>
 						))}
 					</div>
 				</div>

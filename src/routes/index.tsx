@@ -8,8 +8,26 @@ import { StackCard } from "#/components/stack-card";
 import { CvCard } from "#/components/cv-card";
 import { createFileRoute } from "@tanstack/react-router";
 import ProjectCard from "#/components/project-card";
+import { siteConfig } from "#/config";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({ 
+	head: () => ({
+    meta: [
+      { title: siteConfig.title },
+      { name: 'description', content: siteConfig.description },
+			{ name: 'og:title', content: siteConfig.title },
+			{ name: 'og:description', content: siteConfig.description },
+			{ name: 'og:type', content: 'website' },
+			{ name: 'og:url', content: 'https://lecuistotduweb.fr' },
+			{ name: 'og:image', content: '/perso.png' },
+			{ name: 'twitter:card', content: 'summary_large_image' },
+			{ name: 'twitter:title', content: siteConfig.title },
+			{ name: 'twitter:description', content: siteConfig.description },
+			{ name: 'twitter:image', content: '/perso.png' }
+    ],
+  }),
+	component: Home 
+});
 
 function Home() {
 	return (
