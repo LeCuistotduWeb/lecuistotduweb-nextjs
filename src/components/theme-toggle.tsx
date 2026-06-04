@@ -1,5 +1,6 @@
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 type Theme = "light" | "dark" | "system";
 
@@ -39,14 +40,15 @@ export function ThemeToggle() {
 	const { icon: Icon, label } = META[theme];
 
 	return (
-		<button
+		<Button
 			type="button"
+			variant="outline"
 			onClick={cycle}
 			aria-label={`Thème actuel : ${label}. Cliquer pour changer.`}
-			className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 rounded-full border border-[#d2c4a4] bg-[#faf5ec]/90 backdrop-blur-sm px-4 py-2 shadow-lg dark:border-[#1c2a3a] dark:bg-[#172231]/90 hover:border-[#f25353]/50 dark:hover:border-[#f25353]/50 transition-colors cursor-pointer group"
+			className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
 		>
 			<Icon className="size-4 text-[#7a95ad] dark:text-[#a1adbc] group-hover:text-[#f25353] dark:group-hover:text-[#f25353] transition-colors" />
 			<span className="text-xs font-medium text-[#3a5570] dark:text-[#c5d5e5]">{label}</span>
-		</button>
+		</Button>
 	);
 }

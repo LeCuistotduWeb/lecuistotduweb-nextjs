@@ -15,19 +15,19 @@ function Home() {
 	return (
 		<main className="min-h-screen p-4 md:p-10">
 			<div className="mx-auto max-w-6xl">
-				<div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-					<BioCard     className="col-span-3 row-span-1" />
-					<AvatarCard  className="col-span-1" />
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+					<BioCard         className="col-span-1 sm:col-span-2 md:col-span-3" />
+					<AvatarCard      className="col-span-1" />
 					<div className="col-span-1 flex flex-col gap-3">
-					<LinkedInCard className="col-span-1" />
-					<CvCard      className="col-span-1" />
+						<LinkedInCard />
+						<CvCard />
 					</div>
-					<ExperiencesCard className="col-span-2" />
+					<ExperiencesCard className="col-span-1 md:col-span-2" />
 					<div className="col-span-1 flex flex-col gap-3">
-					<StackCard   className="col-span-1" />
-					<SocialCard  className="col-span-1" />
+						<StackCard />
+						<SocialCard />
 					</div>
-					<ProjectCard className="col-span-4 row-span-3" />
+					<ProjectCard     className="col-span-1 sm:col-span-2 md:col-span-4 row-span-3" />
 				</div>
 			</div>
 		</main>

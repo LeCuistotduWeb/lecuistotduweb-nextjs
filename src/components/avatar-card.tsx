@@ -8,7 +8,7 @@ export function AvatarCard({ className }: { className?: string }) {
 	const orbitId = `orbit-${uid}`;
 
 	return (
-		<BentoCard className={cn("p-0 relative overflow-hidden", className)}>
+		<BentoCard className={cn("p-0 relative overflow-hidden min-h-64", className)}>
 			<div className="absolute inset-0 flex items-center justify-center">
 				<div className="relative size-44">
 					<svg

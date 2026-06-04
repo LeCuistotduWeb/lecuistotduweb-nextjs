@@ -62,12 +62,12 @@
 
 .dark {
   /* Body / layout */
-  --hero-a: rgba(242, 83, 83, 0.07);
-  --hero-b: rgba(41, 61, 83, 0.5);
-  --hero-c: rgba(41, 61, 83, 0.3);
-  --bg-base: #121e2a;
-  --bg-foam: #0f161e;
-  --bg-inner: #1c2a3a;
+  --hero-a: rgba(242, 83, 83, 0.1);
+  --hero-b: rgba(60, 100, 160, 0.15);
+  --hero-c: rgba(60, 100, 160, 0.08);
+  --bg-base: #111827;
+  --bg-foam: #192638;
+  --bg-inner: #1c2d3f;
   --bg-surface: rgba(28, 42, 58, 0.82);
   --bg-surface-strong: rgba(20, 35, 50, 0.94);
   --line: rgba(100, 150, 200, 0.14);
@@ -200,6 +200,31 @@ body::before {
     ),
     radial-gradient(circle at 78% 26%, var(--hero-a), transparent 42%),
     radial-gradient(circle at 42% 82%, var(--hero-b), transparent 36%);
+}
+
+.dark body {
+  background:
+    radial-gradient(1100px 620px at -8% -10%, var(--hero-a), transparent 58%),
+    radial-gradient(1050px 620px at 112% -12%, var(--hero-b), transparent 62%),
+    radial-gradient(720px 380px at 50% 115%, var(--hero-c), transparent 68%),
+    linear-gradient(
+      180deg,
+      #1b2d44 0%,
+      var(--bg-base) 42%,
+      var(--bg-base) 100%
+    );
+}
+
+.dark body::before {
+  opacity: 0.18;
+  background:
+    radial-gradient(
+      circle at 20% 15%,
+      rgba(80, 150, 230, 0.18),
+      transparent 34%
+    ),
+    radial-gradient(circle at 78% 26%, var(--hero-a), transparent 42%),
+    radial-gradient(circle at 42% 82%, rgba(80, 130, 200, 0.12), transparent 36%);
 }
 
 body::after {

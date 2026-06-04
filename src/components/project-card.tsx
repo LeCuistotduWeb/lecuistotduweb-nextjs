@@ -29,7 +29,7 @@ export default function ProjectCard({ className }: { className?: string }) {
 	return (
 		<div
 			className={cn(
-				"relative overflow-hidden rounded-2xl border border-[#d2c4a4] dark:border-[#1c2a3a] min-h-180",
+				"relative overflow-hidden rounded-2xl border border-[#d2c4a4] dark:border-[#1c2a3a] min-h-64 md:min-h-180",
 				className,
 			)}
 		>

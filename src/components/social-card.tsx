@@ -42,7 +42,7 @@ const SOCIAL = [
 	{ icon: EmailIcon, label: "Email", handle: siteConfig.email, href: `mailto:${siteConfig.email}` },
 	{ icon: IconGitHub,  label: "GitHub",  handle: siteConfig.alias,              href: siteConfig.social.github   },
 	{ icon: IconLinkedIn,label: "LinkedIn",handle: siteConfig.name,               href: siteConfig.social.linkedin },
-	{ icon: IconCodePen, label: "CodePen", handle: siteConfig.alias.toLowerCase(),href: siteConfig.social.codepen  },
+	// { icon: IconCodePen, label: "CodePen", handle: siteConfig.alias.toLowerCase(),href: siteConfig.social.codepen  },
 ];
 
 export function SocialCard({ className }: { className?: string }) {
