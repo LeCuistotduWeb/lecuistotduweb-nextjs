@@ -302,13 +302,10 @@ a {
 }
 
 .card-lift {
-  transition:
-    scale 300ms ease-out,
-    translate 300ms ease-out !important;
+  transition: translate 300ms ease-out !important;
 }
 
 .card-lift:hover {
-  scale: 1.05;
   translate: 0 -4px;
 }
 

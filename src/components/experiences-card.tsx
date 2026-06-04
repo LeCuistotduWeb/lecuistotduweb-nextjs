@@ -56,14 +56,16 @@ export function ExperiencesCard({ className }: { className?: string }) {
 	return (
 		<>
 			<BentoCard className={className}>
-				<h2 className="text-xs font-semibold text-[#93a8be] dark:text-[#7a8fa0] uppercase tracking-widest mb-4">
+				<div className="flex flex-col justify-between h-full">
+				<div>
+					<h2 className="text-xs font-semibold text-[#93a8be] dark:text-[#7a8fa0] uppercase tracking-widest mb-4">
 					Expériences et formations
 				</h2>
 				<ul className="flex flex-col divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
 					{preview.map((xp) => (
 						<li
 							key={xp.company}
-							className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0"
+							className="flex items-center justify-between gap-4 py-6 first:pt-0 last:pb-0"
 						>
 							<div className="flex flex-col gap-0.5">
 								<span className="text-[#253c59] dark:text-white font-semibold">
@@ -79,17 +81,18 @@ export function ExperiencesCard({ className }: { className?: string }) {
 						</li>
 					))}
 				</ul>
-
+				</div>
 				{EXPERIENCES.length > PREVIEW_COUNT && (
 					<Button
 						variant="outline"
 						onClick={() => setOpen(true)}
-						className="mt-8"
+						className="mt-8 self-start"
 					>
 						Voir tout
 						<ArrowUpRight />
 					</Button>
 				)}
+				</div>
 			</BentoCard>
 
 			<Dialog open={open} onOpenChange={setOpen}>
