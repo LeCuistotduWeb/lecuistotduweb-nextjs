@@ -10,6 +10,7 @@ import {
 } from "#/components/ui/dialog";
 import { EXPERIENCES, PREVIEW_COUNT } from "#/data/experiences";
 import { FORMATIONS } from "#/data/formations";
+import CardTitle from "./card-title";
 
 function TimelineItem({
 	title,
@@ -58,9 +59,7 @@ export function ExperiencesCard({ className }: { className?: string }) {
 			<BentoCard className={className}>
 				<div className="flex flex-col justify-between h-full">
 				<div>
-					<h2 className="text-xs font-semibold text-[#93a8be] dark:text-[#7a8fa0] uppercase tracking-widest mb-4">
-					Expériences et formations
-				</h2>
+					<CardTitle>Expériences et formations</CardTitle>
 				<ul className="flex flex-col divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
 					{preview.map((xp) => (
 						<li

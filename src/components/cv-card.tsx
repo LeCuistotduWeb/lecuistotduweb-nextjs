@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "#/lib/utils";
+import { CardTitle } from "./card-title";
 
 export function CvCard({ className }: { className?: string }) {
 	return (
@@ -13,9 +14,9 @@ export function CvCard({ className }: { className?: string }) {
 			)}
 		>
 			<div className="relative z-10 flex items-center justify-between px-5 pt-5 pb-3">
-				<span className="text-xs font-semibold uppercase tracking-widest text-[#8a7560] dark:text-[#6b8fa8]">
+				<CardTitle className="mb-0">
 					Curriculum Vitae
-				</span>
+				</CardTitle>
 				<div className="rounded-full border border-[#d2c4a4] dark:border-[#1c2a3a] p-1.5">
 					<ArrowUpRight className="size-3.5 text-[#8a7560] dark:text-[#6b8fa8]" />
 				</div>

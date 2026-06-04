@@ -1,5 +1,6 @@
 import { siteConfig } from "#/config";
 import { BentoCard } from "./bento-card";
+import { CardTitle } from "./card-title";
 
 function IconGitHub({ className }: { className?: string }) {
 	return (
@@ -48,9 +49,7 @@ const SOCIAL = [
 export function SocialCard({ className }: { className?: string }) {
 	return (
 		<BentoCard className={className}>
-			<h2 className="text-xs font-semibold text-[#93a8be] dark:text-[#7a8fa0] uppercase tracking-widest mb-4">
-				Liens
-			</h2>
+			<CardTitle>Liens</CardTitle>
 			<div className="flex flex-col gap-3">
 				{SOCIAL.map(({ icon: Icon, label, handle, href }) => (
 					<a

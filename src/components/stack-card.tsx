@@ -1,13 +1,12 @@
 import { BentoCard } from "./bento-card";
+import CardTitle from "./card-title";
 
 const STACK = ["HTML5", "CSS3", "SCSS", "Javascript", "Typescript", "ReactJs", "NextJs", "PHP", "Mysql", "Symfony 3/4", "Adobe suite", "Figma", "Wordpress", "NPM", "Vercel", "Git", "PrismaJs", "Storybook"];
 
 export function StackCard({ className }: { className?: string }) {
 	return (
 		<BentoCard className={className}>
-			<h2 className="text-xs font-semibold text-[#93a8be] dark:text-[#7a8fa0] uppercase tracking-widest mb-4">
-				Stack
-			</h2>
+			<CardTitle>Stack</CardTitle>
 			<div className="flex flex-wrap gap-2">
 				{STACK.map((tech) => (
 					<span

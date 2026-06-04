@@ -1,4 +1,5 @@
 import { BentoCard } from "./bento-card";
+import { CardTitle } from "./card-title";
 
 const MISSIONS = [
 	{
@@ -24,9 +25,7 @@ const MISSIONS = [
 export function MissionsCard({ className }: { className?: string }) {
 	return (
 		<BentoCard className={className}>
-			<h2 className="text-xs font-semibold text-[#93a8be] dark:text-[#7a8fa0] uppercase tracking-widest mb-4">
-				Missions
-			</h2>
+			<CardTitle>Missions</CardTitle>
 			<div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
 				{MISSIONS.map((m) => (
 					<div
