@@ -2,13 +2,24 @@
   {
     "id": 16,
     "type": "title",
-    "title": "2024 - Aujourd'hui"
+    "title": "2026"
+  },
+  {
+    "id": 18,
+    "type": "card",
+    "date": "2022 - 2026",
+    "title": "Développeur Front-end",
+    "company": "ESN L'Atelier",
+    "content": [
+      "Création, Analyse et optimisation UI/UX de projets internes (ergonomie, parcours utilisateurs, cohérence visuelle).",
+      "Animation de talks techniques lors des Tech Days internes."
+    ]
   },
   {
     "id": 12,
     "type": "card",
-    "date": "2024",
-    "title": "Développeur Front",
+    "date": "2024 - 2025",
+    "title": "Développeur Front (ESN L'Atelier)",
     "company": "FNAC DARTY",
     "content": [
       "Développement d'applications web modernes pour les portails Opérateur et Vendeur d'une plateforme marketplace.",
@@ -21,7 +32,7 @@
     "id": 13,
     "type": "card",
     "date": "2023 - 2024",
-    "title": "Développeur Front-end",
+    "title": "Développeur Front-end (ESN L'Atelier)",
     "company": "INFOGREFFE",
     "content": [
       "Intégration des maquettes et développement des parcours utilisateur.",
@@ -118,27 +129,5 @@
       "Correction de bugs d'un site basé sous Wordpress.",
       "Covering de vehicule utilitaire."
     ]
-  },
-  {
-    "id": 3,
-    "type": "title",
-    "title": "2015"
-  },
-  {
-    "id": 2,
-    "type": "card",
-    "date": "2015 / 2016",
-    "title": "Conducteur de machine de conditionnement en agroalimentaire",
-    "company": "Société Charles & Alice (Alex, Drôme)",
-    "content": [
-      "Respect des enjeux de productivité, qualité, hygiène et sécurité.",
-      "Contrôle, diagnostique et communication des pannes.",
-      "Proposition d'améliorations du fonctionnement de la ligne."
-    ]
-  },
-  {
-    "id": 1,
-    "type": "title",
-    "title": "2013"
   }
 ]
