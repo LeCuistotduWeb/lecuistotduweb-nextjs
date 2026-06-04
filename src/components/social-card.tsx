@@ -40,9 +40,9 @@ function EmailIcon({ className }: { className?: string }) {
 }
 
 const SOCIAL = [
-	{ icon: EmailIcon, label: "Email", handle: siteConfig.email, href: `mailto:${siteConfig.email}` },
-	{ icon: IconGitHub,  label: "GitHub",  handle: siteConfig.alias,              href: siteConfig.social.github   },
-	{ icon: IconLinkedIn,label: "LinkedIn",handle: siteConfig.name,               href: siteConfig.social.linkedin },
+	{ icon: EmailIcon, label: "Email", handle: siteConfig.email, href: `mailto:${siteConfig.email}`, type: "email" },
+	{ icon: IconGitHub,  label: "GitHub",  handle: siteConfig.alias,              href: siteConfig.social.github, type: 'link'   },
+	{ icon: IconLinkedIn,label: "LinkedIn",handle: siteConfig.name,               href: siteConfig.social.linkedin, type: 'link' },
 	// { icon: IconCodePen, label: "CodePen", handle: siteConfig.alias.toLowerCase(),href: siteConfig.social.codepen  },
 ];
 
@@ -51,12 +51,12 @@ export function SocialCard({ className }: { className?: string }) {
 		<BentoCard className={className}>
 			<CardTitle>Liens</CardTitle>
 			<div className="flex flex-col gap-3">
-				{SOCIAL.map(({ icon: Icon, label, handle, href }) => (
+				{SOCIAL.map(({ icon: Icon, label, handle, href, type }) => (
 					<a
 						key={label}
 						href={href}
-						target="_blank"
-						rel="noreferrer"
+						target={type === "email" ? undefined : "_blank"}
+						rel={type === "email" ? undefined : "noopener noreferrer"}
 						className="flex items-center gap-3 text-[#4a6a8a] dark:text-[#a1adbc] hover:text-[#253c59] dark:hover:text-white transition-colors group"
 					>
 						<div className="size-8 rounded-lg bg-[#e6d3ae] dark:bg-[#1c2a3a] flex items-center justify-center group-hover:bg-[#f25353]/10 dark:group-hover:bg-[#f25353]/20 border border-[#d2c4a4] dark:border-[#253c59] group-hover:border-[#f25353]/40 transition-colors shrink-0">
