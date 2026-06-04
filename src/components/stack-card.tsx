@@ -1,17 +1,6 @@
 import { BentoCard } from "./bento-card";
 
-const STACK = [
-	"TypeScript",
-	"React",
-	"Next.js",
-	"Node.js",
-	"Prisma",
-	"PHP",
-	"Symfony",
-	"MySQL",
-	"Storybook",
-	"Figma",
-];
+const STACK = ["HTML5", "CSS3", "SCSS", "Javascript", "Typescript", "ReactJs", "NextJs", "PHP", "Mysql", "Symfony 3/4", "Adobe suite", "Figma", "Wordpress", "NPM", "Vercel", "Git", "PrismaJs", "Storybook"];
 
 export function StackCard({ className }: { className?: string }) {
 	return (

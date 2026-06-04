@@ -19,13 +19,27 @@ function IconLinkedIn({ className }: { className?: string }) {
 
 function IconCodePen({ className }: { className?: string }) {
 	return (
+		<svg viewBox="0 0 48 48" fill="currentColor" aria-hidden="true" className={className}>
+			<g>
+				<path d="M24,48L0.5,32.8V15.2L24,0l23.5,15.2v17.6L24,48z M5.4,30.1l18.6,12l18.6-12V17.9L24,5.9l-18.6,12V30.1z" />
+				<path d="M24,34.4L1.5,18.6l3-4L24,28.5l19.5-13.9l3,4L24,34.4z" />
+				<path d="M43.7,33.4L24,19.8L4.3,33.4l-2.7-4L24,13.9l22.4,15.6L43.7,33.4z" />
+				<path d="M21.5,4.2h4.9v12.5h-4.9V4.2z M21.5,31.3h4.9v12.5h-4.9V31.3z" />
+			</g>
+		</svg>
+	);
+}
+
+function EmailIcon({ className }: { className?: string }) {
+	return (
 		<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-			<path d="M18.144 13.067v-2.134L16.55 12zm1.276 1.194l-5.016 3.345a1 1 0 0 1-.552.162 1 1 0 0 1-.552-.162l-5.016-3.345a1 1 0 0 1-.448-.833v-2.667a1 1 0 0 1 .448-.833l5.016-3.345a1 1 0 0 1 1.104 0l5.016 3.345a1 1 0 0 1 .448.833v2.667a1 1 0 0 1-.448.833zM12 9.384l-2.474 1.651L12 12.686l2.474-1.651zm-1.276 4.316L8.328 12l2.396-1.7v3.4zm-3.44-.713l1.593 1.067v-2.134zm4.716 1.78l2.474-1.651-2.474-1.651-2.474 1.651zm2.396 1.433l-2.396-1.7v3.4zm.284-4.513l2.396 1.7-2.396 1.7V11.69zm0-5.69C6.477 6 2 10.477 2 16s4.477 10 10 10 10-4.477 10-10S17.523 6 12 6z" />
+			<path d="M12 13.065L.615 5.25h22.77L12 13.065zM12 15.435L.615 7.62v11.73h22.77V7.62L12 15.435z" />
 		</svg>
 	);
 }
 
 const SOCIAL = [
+	{ icon: EmailIcon, label: "Email", handle: siteConfig.email, href: `mailto:${siteConfig.email}` },
 	{ icon: IconGitHub,  label: "GitHub",  handle: siteConfig.alias,              href: siteConfig.social.github   },
 	{ icon: IconLinkedIn,label: "LinkedIn",handle: siteConfig.name,               href: siteConfig.social.linkedin },
 	{ icon: IconCodePen, label: "CodePen", handle: siteConfig.alias.toLowerCase(),href: siteConfig.social.codepen  },
