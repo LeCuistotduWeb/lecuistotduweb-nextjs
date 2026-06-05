@@ -96,11 +96,12 @@ export default function ProjectCard({ className }: { className?: string }) {
 								type="button"
 								onClick={() => setCurrent(i)}
 								className="py-2 px-0.5 flex items-center"
+								aria-label={`Voir le projet ${projects[i].label}`}
 							>
 								<span
 									className={cn(
-										"h-2 rounded-full transition-all duration-300 block cursor-pointer",
-										i === current ? "bg-white w-6" : "bg-white/40 w-2",
+										"h-4 rounded-full transition-all duration-300 block cursor-pointer",
+										i === current ? "bg-white w-10" : "bg-white/40 w-4",
 									)}
 								/>
 							</button>
