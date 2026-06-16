@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { BentoCard } from "./bento-card";
+import { useState } from "react";
 import { Button } from "#/components/ui/button";
 import {
 	Dialog,
@@ -10,6 +9,8 @@ import {
 } from "#/components/ui/dialog";
 import { EXPERIENCES, PREVIEW_COUNT } from "#/data/experiences";
 import { FORMATIONS } from "#/data/formations";
+import { trackEvent } from "#/lib/analytics";
+import { BentoCard } from "./bento-card";
 import CardTitle from "./card-title";
 
 function TimelineItem({
@@ -49,7 +50,6 @@ function TimelineItem({
 	);
 }
 
-
 export function ExperiencesCard({ className }: { className?: string }) {
 	const [open, setOpen] = useState(false);
 	const preview = EXPERIENCES.slice(0, PREVIEW_COUNT);
@@ -58,39 +58,42 @@ export function ExperiencesCard({ className }: { className?: string }) {
 		<>
 			<BentoCard className={className}>
 				<div className="flex flex-col justify-between h-full">
-				<div>
-					<CardTitle>Expériences et formations</CardTitle>
-				<ul className="flex flex-col divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
-					{preview.map((xp) => (
-						<li
-							key={xp.company}
-							className="flex items-center justify-between gap-4 py-6 first:pt-0 last:pb-0"
+					<div>
+						<CardTitle>Expériences et formations</CardTitle>
+						<ul className="flex flex-col divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
+							{preview.map((xp) => (
+								<li
+									key={xp.company}
+									className="flex items-center justify-between gap-4 py-6 first:pt-0 last:pb-0"
+								>
+									<div className="flex flex-col gap-0.5">
+										<span className="text-[#253c59] dark:text-white font-semibold">
+											{xp.title}
+										</span>
+										<span className="text-[#7a95ad] dark:text-[#7a8fa0] text-sm">
+											{xp.company}
+										</span>
+									</div>
+									<span className="text-[#93a8be] dark:text-[#556a7a] text-sm font-medium shrink-0">
+										{xp.period}
+									</span>
+								</li>
+							))}
+						</ul>
+					</div>
+					{EXPERIENCES.length > PREVIEW_COUNT && (
+						<Button
+							variant="outline"
+							onClick={() => {
+								setOpen(true);
+								trackEvent("click_experiences_expand");
+							}}
+							className="mt-8 self-start"
 						>
-							<div className="flex flex-col gap-0.5">
-								<span className="text-[#253c59] dark:text-white font-semibold">
-									{xp.title}
-								</span>
-								<span className="text-[#7a95ad] dark:text-[#7a8fa0] text-sm">
-									{xp.company}
-								</span>
-							</div>
-							<span className="text-[#93a8be] dark:text-[#556a7a] text-sm font-medium shrink-0">
-								{xp.period}
-							</span>
-						</li>
-					))}
-				</ul>
-				</div>
-				{EXPERIENCES.length > PREVIEW_COUNT && (
-					<Button
-						variant="outline"
-						onClick={() => setOpen(true)}
-						className="mt-8 self-start"
-					>
-						Voir tout
-						<ArrowUpRight />
-					</Button>
-				)}
+							Voir tout
+							<ArrowUpRight />
+						</Button>
+					)}
 				</div>
 			</BentoCard>
 

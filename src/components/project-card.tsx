@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "#/lib/analytics";
 import { cn } from "#/lib/utils";
 
 const projects = [
@@ -52,11 +53,17 @@ export default function ProjectCard({ className }: { className?: string }) {
 		const delta = touchStartX.current - e.changedTouches[0].clientX;
 		touchStartX.current = null;
 		if (Math.abs(delta) < 50) return;
-		setCurrent((i) =>
-			delta > 0
-				? (i + 1) % projects.length
-				: (i - 1 + projects.length) % projects.length,
-		);
+		setCurrent((i) => {
+			const next =
+				delta > 0
+					? (i + 1) % projects.length
+					: (i - 1 + projects.length) % projects.length;
+			trackEvent("view_project", {
+				project: projects[next].label,
+				method: "swipe",
+			});
+			return next;
+		});
 	}
 
 	return (
@@ -88,13 +95,21 @@ export default function ProjectCard({ className }: { className?: string }) {
 
 			<div className="absolute bottom-4 left-4 right-4">
 				<div className="bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2">
-					<p className="text-white font-medium text-sm">{projects[current].label}</p>
+					<p className="text-white font-medium text-sm">
+						{projects[current].label}
+					</p>
 					<div className="flex gap-1.5 mt-2">
 						{projects.map((_, i) => (
 							<button
 								key={i}
 								type="button"
-								onClick={() => setCurrent(i)}
+								onClick={() => {
+									setCurrent(i);
+									trackEvent("view_project", {
+										project: projects[i].label,
+										method: "dot",
+									});
+								}}
 								className="py-2 px-0.5 flex items-center"
 								aria-label={`Voir le projet ${projects[i].label}`}
 							>
