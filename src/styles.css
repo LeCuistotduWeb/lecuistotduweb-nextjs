@@ -186,6 +186,10 @@ body,
   min-height: 100%;
 }
 
+strong {
+  color: var(--text-base);
+}
+
 body {
   margin: 0;
   color: var(--text-base);

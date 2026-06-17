@@ -16,6 +16,14 @@ import { cn } from "#/lib/utils";
 
 const STORAGE_KEY = "lcdw-chat-history";
 
+const SUGGESTIONS = [
+	"Parle-moi de toi",
+	"Depuis combien de temps travailles-tu dans la tech ?",
+	"Quelles sont tes expériences ?",
+	"Quelles technos maîtrises-tu ?",
+	"Comment te contacter ?",
+];
+
 function loadHistory(): AIMessage[] {
 	if (typeof window === "undefined") return [];
 	try {
@@ -195,15 +203,26 @@ export function AiChatModal({
 				{/* Messages */}
 				<div className="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-3">
 					{messages.length === 0 && !loading && (
-						<div className="flex flex-col items-center justify-center h-full gap-3 text-center">
+						<div className="flex flex-col items-center justify-center h-full gap-4 text-center">
 							<p className="text-text-subtle text-sm">
 								Bonjour ! Je suis l'assistant IA de{" "}
 								<span className="text-surface-text font-medium">
 									LeCuistotduWeb
 								</span>
-								. Posez-moi une question sur le profil, les expériences ou les
-								compétences de Gaëtan.
+								. Posez-moi une question sur mon profil, mes expériences, mes projets ou mes compétences.
 							</p>
+							<div className="flex flex-wrap justify-center gap-2">
+								{SUGGESTIONS.map((s) => (
+									<button
+										key={s}
+										type="button"
+										onClick={() => sendMessage(s, [])}
+										className="text-xs px-3 py-1.5 rounded-full border border-border dark:border-card text-text-subtle hover:border-brand/50 hover:text-brand transition-colors cursor-pointer"
+									>
+										{s}
+									</button>
+								))}
+							</div>
 						</div>
 					)}
 					{messages.map((msg, i) => (
