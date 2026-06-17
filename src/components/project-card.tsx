@@ -67,7 +67,7 @@ export default function ProjectCard({ className }: { className?: string }) {
 	}
 
 	return (
-		<div
+		<section
 			onTouchStart={handleTouchStart}
 			onTouchEnd={handleTouchEnd}
 			className={cn(
@@ -124,6 +124,6 @@ export default function ProjectCard({ className }: { className?: string }) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 }

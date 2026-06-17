@@ -21,8 +21,15 @@
   --grid-line: rgba(37, 60, 89, 0.05);
   --text-base: #253c59;
   --text-soft: rgba(37, 60, 89, 0.6);
+  --text-subtle: #4a6a8a;
+  --text-ghost: #7a95ad;
+  --text-accent: #4a6a8a;
   --brand: #f25353;
   --brand-hover: #e85f5f;
+  --navy: #253c59;
+  --navy-deep: #1a2d45;
+  --surface-text: #253c59;
+  --surface-modal: #faf5ec;
 
   /* shadcn */
   --background: #f7ebd3;
@@ -75,8 +82,15 @@
   --grid-line: rgba(255, 255, 255, 0.04);
   --text-base: #ffffff;
   --text-soft: rgba(193, 210, 228, 0.85);
+  --text-subtle: #7a95ad;
+  --text-ghost: #93a8be;
+  --text-accent: #4a6a8a;
   --brand: #f25353;
   --brand-hover: #e85f5f;
+  --navy: #253c59;
+  --navy-deep: #0f1c28;
+  --surface-text: #c8d8e8;
+  --surface-modal: #121e2a;
 
   /* shadcn */
   --background: #121e2a;
@@ -153,6 +167,13 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-brand: var(--brand);
   --color-brand-hover: var(--brand-hover);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-text-subtle: var(--text-subtle);
+  --color-text-ghost: var(--text-ghost);
+  --color-text-accent: var(--text-accent);
+  --color-surface-text: var(--surface-text);
+  --color-surface-modal: var(--surface-modal);
 }
 
 html {
@@ -400,6 +421,56 @@ a {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* AI card — rotating gradient border */
+.ai-glow {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1px;
+  overflow: hidden;
+}
+
+.ai-glow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  aspect-ratio: 1;
+  background: conic-gradient(from 0deg, var(--brand), #fda708, var(--brand));
+  animation: ai-border-rotate 4s linear infinite;
+}
+
+@keyframes ai-border-rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* AI card — sparkle icon animation */
+.ai-sparkle {
+  animation: ai-sparkle 4s ease-in-out infinite;
+}
+
+@keyframes ai-sparkle {
+  0%,
+  65%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  75% {
+    transform: scale(1.35) rotate(25deg);
+    opacity: 0.85;
+  }
+  85% {
+    transform: scale(0.9) rotate(-8deg);
+    opacity: 1;
   }
 }
 

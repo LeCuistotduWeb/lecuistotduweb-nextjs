@@ -1,9 +1,10 @@
 import { siteConfig } from "#/config";
+import { AiCard } from "./ai-card";
 import { BentoCard } from "./bento-card";
 
 export function BioCard({ className }: { className?: string }) {
 	return (
-		<BentoCard className={`flex flex-col gap-5 ${className ?? ""}`}>
+		<BentoCard className={`flex flex-col gap-5 ${className ?? ""}`} as="header">
 			<div>
 				<h1 className="text-3xl font-bold text-[#253c59] dark:text-white tracking-tight">
 					{siteConfig.alias}
@@ -15,6 +16,7 @@ export function BioCard({ className }: { className?: string }) {
 			<p className="text-[#4a6a8a] dark:text-[#a1adbc] leading-relaxed font-medium">
 				{siteConfig.bio}
 			</p>
+			<AiCard />
 		</BentoCard>
 	);
 }
