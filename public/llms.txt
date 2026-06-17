@@ -1,0 +1,44 @@
+# Gaëtan Boyron — LeCuistotduWeb
+
+> Développeur Fullstack React/Node.js basé en France. Reconverti depuis la cuisine professionnelle en 2017, passionné par le web moderne et les expériences utilisateur soignées. Son alias « LeCuistotduWeb » rappelle cette reconversion : la rigueur et la créativité du cuisinier transposées dans le code.
+
+## Portfolio
+
+- [Accueil](https://lecuistotduweb.fr): Portfolio complet — présentation, compétences, expériences professionnelles, formations et projets personnels
+- [CV (PDF)](https://lecuistotduweb.fr/pdf/cv-gaetan-boyron-developpeur.pdf): Curriculum vitae complet à télécharger
+
+## Profil
+
+Gaëtan Boyron (alias LeCuistotduWeb) est un développeur Fullstack spécialisé en React et Node.js avec plus de 7 ans d'expérience. Il a travaillé pour des entreprises comme FNAC Darty, Infogreffe et Blissim. Il est ouvert aux missions freelance et aux opportunités en CDI.
+
+## Compétences techniques
+
+ReactJs, NextJs, TypeScript, JavaScript, PHP, MySQL, PostgreSQL, HTML5, CSS3, SCSS, TailwindCSS, Symfony 3/4, PrismaJs, Storybook, Jest, React Testing Library, Figma, Adobe Suite, WordPress, Git, Vercel, NPM
+
+## Expériences professionnelles
+
+- Développeur front-end — L'Atelier (2023 — 2026) : UI/UX sur projets internes, animation de talks techniques
+- Développeur front-end — FNAC Darty via L'Atelier (2024 — 2025) : architecture frontend modulaire, React/Next.js/TypeScript, design system, tests, i18n
+- Développeur front-end — Infogreffe via L'Atelier (2023 — 2024) : design system, SEO, page builder StrapiJs
+- Développeur web — Blissim (2019 — 2022) : migration PWA, parcours e-commerce, optimisation SEO, application analytics
+- Développeur front-end (Stage) — Nomad Education (2018 — 2019) : migration Angular → NuxtJs/Vuejs
+- Webdesigner (Stage) — Arkade Communication (2017)
+
+## Formations
+
+- Chef de projet multimédia option développement — Openclassrooms (2017 — 2019)
+- Formation Designer Web — École Aries (2016 — 2017)
+
+## Projets personnels
+
+- **Mon VDI Assistant** : SaaS de gestion clients, commandes, produits et réunions pour les vendeurs à domicile indépendants
+- **La classe de Fleur** : site pédagogique et chaîne YouTube pour apprendre le français, réalisé avec sa conjointe professeure
+- **Portfolio Marie Jade** : site portfolio sur mesure pour la danseuse Marie Jade Helmlinger
+- **Le Poudrier de Fleur** : refonte complète et identité visuelle du site lepoudrierdefleur.fr
+
+## Contact
+
+- Email : contact@lecuistotduweb.fr
+- GitHub : https://github.com/lecuistotduweb
+- LinkedIn : https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/
+- Site : https://lecuistotduweb.fr

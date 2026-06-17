@@ -17,10 +17,15 @@ import { cn } from "#/lib/utils";
 const STORAGE_KEY = "lcdw-chat-history";
 
 const SUGGESTIONS = [
-	"Parle-moi de toi",
-	"Depuis combien de temps travailles-tu dans la tech ?",
+	"Parle-moi de toi. Dis-moi qui tu es.",
 	"Quelles sont tes expériences ?",
-	"Quelles technos maîtrises-tu ?",
+	"Depuis combien de temps travailles-tu dans la tech ?",
+	"Pourquoi moi et pas un autre ?",
+	"Quels sont tes projets personnels ?",
+	"Quelles sont tes passions et hobbies ?",
+	"Quelles sont tes compétences techniques ?",
+	"Dispo pour de nouveaux projets ?",
+	"Quel type de poste recherches-tu ?",
 	"Comment te contacter ?",
 ];
 
@@ -209,7 +214,7 @@ export function AiChatModal({
 								<span className="text-surface-text font-medium">
 									LeCuistotduWeb
 								</span>
-								. Posez-moi une question sur mon profil, mes expériences, mes projets ou mes compétences.
+								. Posez-moi une question sur mon profil, mes expériences, mes compétences, mes projets ou mes passions. Je suis là pour vous aider !
 							</p>
 							<div className="flex flex-wrap justify-center gap-2">
 								{SUGGESTIONS.map((s) => (

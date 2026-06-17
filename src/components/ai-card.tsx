@@ -18,7 +18,7 @@ export function AiCard({ className }: { className?: string }) {
 				<button
 					type="button"
 					onClick={handleOpen}
-					className="relative z-10 w-full flex items-center gap-3 rounded-[11px] bg-surface-modal dark:bg-popover px-4 py-3 text-left cursor-text group transition-colors"
+					className="relative z-10 w-full flex items-center gap-3 rounded-[11px] bg-surface-modal dark:bg-popover px-4 py-3 text-left cursor-pointer group transition-colors"
 				>
 					<Sparkles className="size-4 text-brand shrink-0 ai-sparkle" />
 					<span className="flex-1 text-sm text-text-ghost group-hover:text-text-subtle transition-colors">
