@@ -1,13 +1,11 @@
-import { BentoCard } from "./bento-card";
 import { FORMATIONS } from "#/data/formations";
+import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
 
 export function FormationsCard({ className }: { className?: string }) {
 	return (
 		<BentoCard className={className}>
-			<CardTitle>
-				Formations
-			</CardTitle>
+			<CardTitle>Formations</CardTitle>
 			<ul className="flex flex-col divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
 				{FORMATIONS.map((f) => (
 					<li

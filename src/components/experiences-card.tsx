@@ -111,7 +111,7 @@ export function ExperiencesCard({ className }: { className?: string }) {
 								Expériences
 							</p>
 							<ol className="relative border-l border-[#d2c4a4] dark:border-[#253c59] ml-2">
-								{EXPERIENCES.map((xp, i) => (
+								{EXPERIENCES.map((xp) => (
 									<TimelineItem
 										key={xp.company}
 										title={xp.title}
@@ -128,7 +128,7 @@ export function ExperiencesCard({ className }: { className?: string }) {
 								Formations
 							</p>
 							<ol className="relative border-l border-[#d2c4a4] dark:border-[#253c59] ml-2">
-								{FORMATIONS.map((f, i) => (
+								{FORMATIONS.map((f) => (
 									<TimelineItem
 										key={f.school}
 										title={f.title}

@@ -99,19 +99,19 @@ export default function ProjectCard({ className }: { className?: string }) {
 						{projects[current].label}
 					</p>
 					<div className="flex gap-1.5 mt-2">
-						{projects.map((_, i) => (
+						{projects.map((project, i) => (
 							<button
-								key={i}
+								key={project.label}
 								type="button"
 								onClick={() => {
 									setCurrent(i);
 									trackEvent("view_project", {
-										project: projects[i].label,
+										project: project.label,
 										method: "dot",
 									});
 								}}
 								className="py-2 px-0.5 flex items-center"
-								aria-label={`Voir le projet ${projects[i].label}`}
+								aria-label={`Voir le projet ${project.label}`}
 							>
 								<span
 									className={cn(

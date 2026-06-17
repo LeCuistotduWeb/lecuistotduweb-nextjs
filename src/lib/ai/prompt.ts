@@ -7,7 +7,7 @@ import { QUALITIES, SKILLS } from "#/data/skills";
 export function buildSystemPrompt(): string {
 	const experiences = EXPERIENCES.map((xp) => {
 		const missions = xp.description
-			? "\n" + xp.description.map((d) => `    • ${d}`).join("\n")
+			? `\n${xp.description.map((d) => `    • ${d}`).join("\n")}`
 			: "";
 		return `- ${xp.title} chez ${xp.company} (${xp.period})${missions}`;
 	}).join("\n");

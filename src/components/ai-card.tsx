@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { Sparkles } from "lucide-react";
-import { cn } from "#/lib/utils";
+import { useState } from "react";
 import { trackEvent } from "#/lib/analytics";
+import { cn } from "#/lib/utils";
 import { AiChatModal } from "./ai-chat-modal";
 
 export function AiCard({ className }: { className?: string }) {

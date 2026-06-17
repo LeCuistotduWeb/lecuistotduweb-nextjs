@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Send, Trash2 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Button } from "#/components/ui/button";
@@ -9,10 +9,10 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "#/components/ui/dialog";
-import { trackEvent } from "#/lib/analytics";
 import type { AIMessage } from "#/lib/ai/types";
-import { chatFn } from "#/server/chat";
+import { trackEvent } from "#/lib/analytics";
 import { cn } from "#/lib/utils";
+import { chatFn } from "#/server/chat";
 
 const STORAGE_KEY = "lcdw-chat-history";
 
@@ -83,9 +83,7 @@ function MessageBubble({ message }: { message: AIMessage }) {
 							"text-surface-text",
 						)}
 					>
-						<Markdown remarkPlugins={[remarkGfm]}>
-							{message.content}
-						</Markdown>
+						<Markdown remarkPlugins={[remarkGfm]}>{message.content}</Markdown>
 					</div>
 				)}
 			</div>
@@ -214,7 +212,9 @@ export function AiChatModal({
 								<span className="text-surface-text font-medium">
 									LeCuistotduWeb
 								</span>
-								. Posez-moi une question sur mon profil, mes expériences, mes compétences, mes projets ou mes passions. Je suis là pour vous aider !
+								. Posez-moi une question sur mon profil, mes expériences, mes
+								compétences, mes projets ou mes passions. Je suis là pour vous
+								aider !
 							</p>
 							<div className="flex flex-wrap justify-center gap-2">
 								{SUGGESTIONS.map((s) => (

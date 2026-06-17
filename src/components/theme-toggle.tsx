@@ -12,10 +12,17 @@ export function applyTheme(theme: Theme) {
 	document.documentElement.classList.toggle("dark", dark);
 }
 
-const META: Record<Theme, { icon: React.ComponentType<{ className?: string }>; label: string; next: Theme }> = {
-	system: { icon: Monitor, label: "Système",  next: "light" },
-	light:  { icon: Sun,     label: "Clair",    next: "dark"  },
-	dark:   { icon: Moon,    label: "Sombre",   next: "system" },
+const META: Record<
+	Theme,
+	{
+		icon: React.ComponentType<{ className?: string }>;
+		label: string;
+		next: Theme;
+	}
+> = {
+	system: { icon: Monitor, label: "Système", next: "light" },
+	light: { icon: Sun, label: "Clair", next: "dark" },
+	dark: { icon: Moon, label: "Sombre", next: "system" },
 };
 
 export function useTheme() {
@@ -48,7 +55,9 @@ export function ThemeToggle() {
 			className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
 		>
 			<Icon className="size-4 text-[#7a95ad] dark:text-[#a1adbc] group-hover:text-[#f25353] dark:group-hover:text-[#f25353] transition-colors" />
-			<span className="text-xs font-medium text-[#3a5570] dark:text-[#c5d5e5]">{label}</span>
+			<span className="text-xs font-medium text-[#3a5570] dark:text-[#c5d5e5]">
+				{label}
+			</span>
 		</Button>
 	);
 }

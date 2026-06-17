@@ -1,12 +1,12 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { AvatarCard } from "#/components/avatar-card";
 import { BioCard } from "#/components/bio-card";
-import { LinkedInCard } from "#/components/linkedin-card";
+import { CvCard } from "#/components/cv-card";
 import { ExperiencesCard } from "#/components/experiences-card";
+import { LinkedInCard } from "#/components/linkedin-card";
+import ProjectCard from "#/components/project-card";
 import { SocialCard } from "#/components/social-card";
 import { StackCard } from "#/components/stack-card";
-import { CvCard } from "#/components/cv-card";
-import { createFileRoute } from "@tanstack/react-router";
-import ProjectCard from "#/components/project-card";
 import { siteConfig } from "#/config";
 
 export const Route = createFileRoute("/")({

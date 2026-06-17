@@ -18,6 +18,7 @@ export function LinkedInCard({ className }: { className?: string }) {
 		>
 			<svg
 				fill="white"
+				aria-label="LinkedIn"
 				xmlns="http://www.w3.org/2000/svg"
 				width="110"
 				height="110"

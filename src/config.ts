@@ -9,5 +9,6 @@ export const siteConfig = {
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
 	},
 	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
-	description: "Développeur Fullstack spécialisé en React et Node.js. Je crée des expériences web modernes et performantes. Découvrez mes projets et compétences.",
+	description:
+		"Développeur Fullstack spécialisé en React et Node.js. Je crée des expériences web modernes et performantes. Découvrez mes projets et compétences.",
 } as const;
