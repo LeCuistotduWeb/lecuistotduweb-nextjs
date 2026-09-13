@@ -134,7 +134,9 @@ export function AiChatModal({
 			setMessages(next);
 			setInput("");
 			setLoading(true);
-			trackEvent("ai_chat_message_sent");
+			trackEvent("ai_chat_message_sent", {
+				message: text.trim(),
+			});
 
 			try {
 				const { reply } = await chatFn({ data: { messages: next } });
