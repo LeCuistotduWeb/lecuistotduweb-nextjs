@@ -134,19 +134,21 @@ export function AiChatModal({
 			setMessages(next);
 			setInput("");
 			setLoading(true);
-			trackEvent("ai_chat_message_sent", {
-				message: text.trim(),
-			});
-
 			try {
 				const { reply } = await chatFn({ data: { messages: next } });
 				setMessages([...next, { role: "assistant", content: reply }]);
-			} catch {
+				trackEvent("ai_chat_message_sent", {
+					message: text.trim(),
+				});
+			} catch (error) {
+				// const errMsg = error instanceof Error ? error.message : "Unknown error";
+				// console.error("Error sending message:", errMsg);
 				setMessages([
 					...next,
 					{
 						role: "assistant",
-						content: "Désolé, une erreur s'est produite. Veuillez réessayer.",
+						// intemporement indisponible, mais on peut
+						content: `Snif snif... Je ne suis pas disponible pour le moment. Réessayez plus tard !`,
 					},
 				]);
 			} finally {

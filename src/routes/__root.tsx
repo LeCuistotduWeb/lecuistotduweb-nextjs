@@ -47,7 +47,7 @@ const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLaye
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="fr">
+		<html lang="fr" suppressHydrationWarning>
 			<head>
 				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme init must run before paint */}
 				<script dangerouslySetInnerHTML={{ __html: themeScript }} />
