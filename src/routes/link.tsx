@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Check, Share2 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { useState } from "react";
-import Avatar from "#/components/avatar";
+import { OrbitAvatar } from "#/components/orbit-avatar";
 import { Button } from "#/components/ui/button";
 import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
@@ -136,11 +136,7 @@ function LinkPage() {
 		<main className="min-h-screen flex items-center justify-center p-4 pb-28">
 			<div className="w-full max-w-sm rise-in">
 				<div className="rounded-3xl border border-border bg-popover/90 backdrop-blur-sm dark:border-card p-6 flex flex-col items-center text-center gap-1">
-					<div className="size-24 p-2 rounded-full bg-card border border-border flex items-center justify-center overflow-hidden shrink-0">
-						<div className="[&>svg]:w-full [&>svg]:h-full">
-							<Avatar />
-						</div>
-					</div>
+					<OrbitAvatar size={144} />
 
 					<h1 className="mt-3 text-xl font-bold text-foreground">
 						{siteConfig.name}
