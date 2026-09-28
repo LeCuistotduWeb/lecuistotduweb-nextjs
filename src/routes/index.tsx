@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
 			{ name: "og:title", content: siteConfig.title },
 			{ name: "og:description", content: siteConfig.description },
 			{ name: "og:type", content: "website" },
-			{ name: "og:url", content: "https://lecuistotduweb.fr" },
+			{ name: "og:url", content: siteConfig.url },
 			{ name: "og:image", content: "/perso.png" },
 			{ name: "twitter:card", content: "summary_large_image" },
 			{ name: "twitter:title", content: siteConfig.title },

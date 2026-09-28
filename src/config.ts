@@ -3,6 +3,8 @@ export const siteConfig = {
 	alias: "LeCuistotduWeb",
 	role: "Développeur Fullstack React/Node.js",
 	email: "contact@lecuistotduweb.fr",
+	url: "https://lecuistotduweb.fr",
+	shortUrl: "lecuistotduweb.fr",
 	bio: "Je suis Gaëtan Boyron (alias LeCuistotduWeb). Animé par l'envie de développer ma créativité et de participer à la conception du web de demain, j'ai décidé de me reconvertir en 2017 afin de vivre de ma passion : le développement Web.",
 	social: {
 		github: "https://github.com/lecuistotduweb",

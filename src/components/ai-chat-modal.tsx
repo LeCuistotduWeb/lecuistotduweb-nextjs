@@ -140,7 +140,7 @@ export function AiChatModal({
 				trackEvent("ai_chat_message_sent", {
 					message: text.trim(),
 				});
-			} catch (error) {
+			} catch (_error) {
 				// const errMsg = error instanceof Error ? error.message : "Unknown error";
 				// console.error("Error sending message:", errMsg);
 				setMessages([
