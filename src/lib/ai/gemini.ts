@@ -1,6 +1,6 @@
 import type { AIMessage, AIProvider } from "./types";
 
-const GEMINI_MODEL = "gemini-3.6-flash";
+const GEMINI_MODEL = "gemini-3.5-flash-lite";
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
 
 export class GeminiProvider implements AIProvider {
@@ -16,6 +16,12 @@ export class GeminiProvider implements AIProvider {
 					role: message.role === "assistant" ? "model" : "user",
 					parts: [{ text: message.content }],
 				})),
+				generationConfig: {
+					// Plafonne les tokens de sortie (les plus chers) et limite le
+					// raisonnement interne, facturé comme de la sortie
+					// maxOutputTokens: 500,
+					thinkingConfig: { thinkingLevel: "low" },
+				},
 			}),
 		});
 

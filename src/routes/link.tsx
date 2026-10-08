@@ -19,7 +19,7 @@ export const Route = createFileRoute("/link")({
 			{ name: "og:title", content: `${siteConfig.name} — Profil` },
 			{ name: "og:type", content: "profile" },
 			{ name: "og:url", content: `${siteConfig.url}/link` },
-			{ name: "og:image", content: "/perso.png" },
+			{ name: "og:image", content: "/lcdw-avatar.png" },
 			{ name: "robots", content: "noindex" },
 		],
 	}),

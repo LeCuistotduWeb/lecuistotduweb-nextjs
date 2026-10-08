@@ -1,9 +1,8 @@
 import { useId } from "react";
 import { cn } from "#/lib/utils";
-import Avatar from "./avatar";
 
 // L'avatar occupe 110px pour un cercle de 176px
-const AVATAR_RATIO = 110 / 176;
+const AVATAR_RATIO = 150 / 176;
 
 export function OrbitAvatar({
 	size = 176,
@@ -40,12 +39,12 @@ export function OrbitAvatar({
 				</text>
 			</svg>
 			<div className="absolute inset-0 flex items-center justify-center">
-				<div
-					className="[&>svg]:w-full [&>svg]:h-full"
-					style={{ width: avatarSize, height: avatarSize }}
-				>
-					<Avatar />
-				</div>
+				<img
+					src="/lcdw-avatar.png"
+					alt="Avatar de LeCuistotduWeb"
+					width={avatarSize}
+					height={avatarSize}
+				/>
 			</div>
 		</div>
 	);
