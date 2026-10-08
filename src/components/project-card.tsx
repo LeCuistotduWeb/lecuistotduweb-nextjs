@@ -4,37 +4,61 @@ import { cn } from "#/lib/utils";
 
 const projects = [
 	{
-		src: "/works/miniature-site-web-laclassedefleur.jpg",
+		src: "/works/miniature-site-web-laclassedefleur-1280.webp",
+		srcSet:
+			"/works/miniature-site-web-laclassedefleur-640.webp 640w, /works/miniature-site-web-laclassedefleur-1280.webp 1280w",
 		label: "La Classe de Fleur",
 	},
 	{
-		src: "/works/miniature-site-web-portfolio-infogreffe.jpg",
+		src: "/works/miniature-site-web-portfolio-infogreffe-1280.webp",
+		srcSet:
+			"/works/miniature-site-web-portfolio-infogreffe-640.webp 640w, /works/miniature-site-web-portfolio-infogreffe-1280.webp 1280w",
 		label: "Infogreffe",
 	},
 	{
-		src: "/works/miniature-site-web.jpg",
+		src: "/works/miniature-site-web-1280.webp",
+		srcSet:
+			"/works/miniature-site-web-640.webp 640w, /works/miniature-site-web-1280.webp 1280w",
 		label: "Blissim",
 	},
 	{
-		src: "/works/miniature-fnac-darty.jpeg",
+		src: "/works/miniature-fnac-darty.webp",
+		srcSet: undefined,
 		label: "Fnac Darty",
 	},
 	{
-		src: "/works/thumbnail-work-musee-du-louvre-symfony.jpg",
+		src: "/works/thumbnail-work-musee-du-louvre-symfony-1280.webp",
+		srcSet:
+			"/works/thumbnail-work-musee-du-louvre-symfony-640.webp 640w, /works/thumbnail-work-musee-du-louvre-symfony-1280.webp 1280w",
 		label: "Musée du Louvre",
 	},
 	{
-		src: "/works/thumbnail-worksite-web-nomad-education.jpg",
+		src: "/works/thumbnail-worksite-web-nomad-education-1280.webp",
+		srcSet:
+			"/works/thumbnail-worksite-web-nomad-education-640.webp 640w, /works/thumbnail-worksite-web-nomad-education-1280.webp 1280w",
 		label: "Nomad Education",
 	},
 	{
-		src: "/works/mon-vdi-assistant-miniature.png",
+		src: "/works/mon-vdi-assistant-miniature-1280.webp",
+		srcSet:
+			"/works/mon-vdi-assistant-miniature-640.webp 640w, /works/mon-vdi-assistant-miniature-1280.webp 1280w",
 		label: "Mon VDI Assistant",
 	},
 ];
 
 export default function ProjectCard({ className }: { className?: string }) {
 	const [current, setCurrent] = useState(0);
+	// Ne monte que les slides déjà affichées + la suivante, pour ne pas
+	// télécharger toutes les images au chargement initial.
+	const [mounted, setMounted] = useState(() => new Set([0, 1]));
+
+	useEffect(() => {
+		setMounted((prev) => {
+			const next = (current + 1) % projects.length;
+			if (prev.has(current) && prev.has(next)) return prev;
+			return new Set(prev).add(current).add(next);
+		});
+	}, [current]);
 	const touchStartX = useRef<number | null>(null);
 
 	useEffect(() => {
@@ -75,17 +99,23 @@ export default function ProjectCard({ className }: { className?: string }) {
 				className,
 			)}
 		>
-			{projects.map((project, i) => (
-				<img
-					key={project.src}
-					src={project.src}
-					alt={project.label}
-					className={cn(
-						"absolute inset-0 w-full h-full object-cover transition-opacity duration-700",
-						i === current ? "opacity-100" : "opacity-0",
-					)}
-				/>
-			))}
+			{projects.map((project, i) =>
+				mounted.has(i) ? (
+					<img
+						key={project.src}
+						src={project.src}
+						srcSet={project.srcSet}
+						sizes="(min-width: 1080px) 1080px, 100vw"
+						alt={project.label}
+						fetchPriority={i === 0 ? "high" : undefined}
+						decoding="async"
+						className={cn(
+							"absolute inset-0 w-full h-full object-cover transition-opacity duration-700",
+							i === current ? "opacity-100" : "opacity-0",
+						)}
+					/>
+				) : null,
+			)}
 
 			<div className="absolute top-4 left-4">
 				<span className="text-xs font-semibold text-white uppercase tracking-widest px-2 py-1 rounded-md bg-black/30 backdrop-blur-sm">

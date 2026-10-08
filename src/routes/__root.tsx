@@ -1,8 +1,14 @@
+import manropeLatin from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import {
+	createRootRoute,
+	HeadContent,
+	Link,
+	Scripts,
+} from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { ThemeToggle } from "#/components/theme-toggle";
-
+import { Button } from "#/components/ui/button";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -20,6 +26,13 @@ export const Route = createRootRoute({
 			},
 		],
 		links: [
+			{
+				rel: "preload",
+				href: manropeLatin,
+				as: "font",
+				type: "font/woff2",
+				crossOrigin: "anonymous",
+			},
 			{
 				rel: "stylesheet",
 				href: appCss,
@@ -56,7 +69,25 @@ export const Route = createRootRoute({
 			: [],
 	}),
 	shellComponent: RootDocument,
+	notFoundComponent: NotFound,
 });
+
+function NotFound() {
+	return (
+		<main className="page-wrap flex min-h-dvh flex-col items-center justify-center gap-4 text-center">
+			<p className="text-sm font-semibold uppercase tracking-widest text-[#f25353]">
+				404
+			</p>
+			<h1 className="display-title text-4xl">Page introuvable</h1>
+			<p className="text-muted-foreground">
+				Cette page n'existe pas ou a été déplacée.
+			</p>
+			<Button asChild variant="outline" size="lg">
+				<Link to="/">Retour à l'accueil</Link>
+			</Button>
+		</main>
+	);
+}
 
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})();`;
 

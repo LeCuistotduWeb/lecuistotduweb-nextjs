@@ -40,7 +40,9 @@ export function OrbitAvatar({
 			</svg>
 			<div className="absolute inset-0 flex items-center justify-center">
 				<img
-					src="/lcdw-avatar.png"
+					src="/lcdw-avatar-500.webp"
+					srcSet="/lcdw-avatar-300.webp 300w, /lcdw-avatar-500.webp 500w"
+					sizes={`${avatarSize}px`}
 					alt="Avatar de LeCuistotduWeb"
 					width={avatarSize}
 					height={avatarSize}

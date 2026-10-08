@@ -24,7 +24,11 @@ export function CvCard({ className }: { className?: string }) {
 
 			<div className="relative mx-4 mb-4 min-h-40">
 				<img
-					src="/cv-p1.png"
+					src="/cv-p1.webp"
+					width={595}
+					height={842}
+					loading="lazy"
+					decoding="async"
 					alt="Aperçu du CV de Gaëtan Boyron"
 					className="absolute top-0 left-0 w-full translate-y-[10%] transition-transform duration-500 ease-out group-hover:translate-y-0 rounded-sm"
 				/>
