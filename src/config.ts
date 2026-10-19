@@ -11,17 +11,29 @@ export const siteConfig = {
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
+		// Profil Malt ; le bouton n'apparaît que s'il est renseigné
+		malt: undefined as string | undefined,
 	},
+	cvPath: "/pdf/cv-gaetan-boyron-developpeur.pdf",
 	freelance: {
 		// "available" | "unavailable" — la carte Contact s'adapte automatiquement
 		status: "available" as FreelanceStatus,
 		// Date ISO (AAAA-MM-JJ) ; ignorée si absente ou déjà passée
-		availableFrom: "2026-12-01" as string | undefined,
+		availableFrom: undefined as string | undefined,
 		missions: [
 			"Applications React / Next.js",
 			"API & back-end Node.js",
 			"Refonte & performance",
 			"Régie ou forfait · remote / Île-de-France",
+		],
+	},
+	// Onglet « Me recruter » de la carte Contact (ESN, recruteurs)
+	recruitment: {
+		highlights: [
+			"Fullstack React / Node.js · TypeScript",
+			"8 ans d'expérience",
+			"CDI, régie ou portage",
+			"Remote / Île-de-France",
 		],
 	},
 	contact: {

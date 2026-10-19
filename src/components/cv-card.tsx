@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
 import { cn } from "#/lib/utils";
 import { CardTitle } from "./card-title";
@@ -6,7 +7,7 @@ import { CardTitle } from "./card-title";
 export function CvCard({ className }: { className?: string }) {
 	return (
 		<a
-			href="/pdf/cv-gaetan-boyron-developpeur.pdf"
+			href={siteConfig.cvPath}
 			target="_blank"
 			rel="noreferrer"
 			onClick={() => trackEvent("click_cv")}

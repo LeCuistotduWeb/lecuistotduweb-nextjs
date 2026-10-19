@@ -74,7 +74,7 @@ function ScrollCue() {
 	return (
 		<Reveal variant="fade" delay={900} className="flex justify-center">
 			<Link
-				to="/profil"
+				to="/experience"
 				resetScroll={false}
 				className="group flex flex-col items-center gap-1 text-sm font-semibold"
 			>
@@ -95,7 +95,7 @@ export function Chapters() {
 		<>
 			<section
 				id="accueil"
-				aria-label="Accueil"
+				aria-label="Présentation"
 				className="scroll-mt-4 sm:scroll-mt-20 flex min-h-[calc(100svh-6rem)] md:min-h-[calc(100svh-9rem)] flex-col justify-center gap-10"
 			>
 				<Grid>
@@ -110,7 +110,7 @@ export function Chapters() {
 				<ScrollCue />
 			</section>
 
-			<Chapter id="profil">
+			<Chapter id="experience">
 				<Item className="col-span-1">
 					<div className="flex flex-col gap-3">
 						<LinkedInCard />

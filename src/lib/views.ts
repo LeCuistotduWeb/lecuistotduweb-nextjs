@@ -1,21 +1,21 @@
 import { siteConfig } from "#/config";
 
 // Chapitres de la page d'accueil, dans l'ordre du scroll. Chaque chapitre a
-// aussi sa route (/profil, /projets…) : point d'entrée partageable et indexable
+// aussi sa route (/experience, /projets…) : point d'entrée partageable et indexable
 // qui fait défiler jusqu'au chapitre.
 export const VIEWS = [
 	{
 		id: "accueil",
 		path: "/",
-		label: "Accueil",
+		label: "Présentation",
 		title: siteConfig.title,
 		description: siteConfig.description,
 	},
 	{
-		id: "profil",
-		path: "/profil",
-		label: "Profil",
-		title: `Profil — ${siteConfig.name}`,
+		id: "experience",
+		path: "/experience",
+		label: "Expérience",
+		title: `Expérience — ${siteConfig.name}`,
 		description: `Parcours, expériences et stack de ${siteConfig.name}, ${siteConfig.role}.`,
 	},
 	{
@@ -23,7 +23,7 @@ export const VIEWS = [
 		path: "/projets",
 		label: "Projets",
 		title: `Projets — ${siteConfig.name}`,
-		description: `Projets et missions réalisés par ${siteConfig.name} : sites web, applications React et SaaS.`,
+		description: `Projets et missions réalisés par ${siteConfig.name} : e-commerce, SaaS, sites vitrines et applications web et mobiles.`,
 	},
 	{
 		id: "contact",
@@ -47,27 +47,27 @@ export function getViewByPath(pathname: string): View {
 }
 
 // Parcours : les chapitres numérotés (après l'accueil) et leur accroche.
-export const PARCOURS = ["profil", "projets", "contact"] as const;
+export const PARCOURS = ["experience", "projets", "contact"] as const;
 export type ParcoursId = (typeof PARCOURS)[number];
 
 export const PARCOURS_CONTENT: Record<
 	ParcoursId,
 	{ headline: string; text: () => string }
 > = {
-	profil: {
-		headline: "Développeur fullstack, reconverti par passion.",
+	experience: {
+		headline: "8 ans d'expérience au service de vos produits.",
 		text: () =>
-			"Depuis 2017, je construis des interfaces React et des API Node.js : chez Blissim, puis en ESN pour Infogreffe et Fnac Darty.",
+			"Chez Blissim, Infogreffe ou Fnac Darty, j'ai appris à livrer vite sans sacrifier la qualité. C'est cette exigence que j'apporte à votre projet.",
 	},
 	projets: {
-		headline: "Du SaaS au site vitrine.",
+		headline: "Des projets concrets, du SaaS au mobile.",
 		text: () =>
-			"Une sélection de sites et d'applications réalisés en mission ou en indépendant, avec les missions qui les accompagnent.",
+			"Boutique en ligne, SaaS, site vitrine ou application mobile : chaque projet est parti d'un besoin concret. Le vôtre pourrait être le prochain.",
 	},
 	contact: {
-		headline: "On en parle ?",
+		headline: "Parlons de votre besoin.",
 		text: () =>
-			"Une mission freelance, un poste ou une simple question : choisissez le canal qui vous convient.",
+			"Un projet à lancer, une appli à faire évoluer, un poste à pourvoir ? Dites-moi qui vous êtes : le premier échange est sans engagement.",
 	},
 };
 

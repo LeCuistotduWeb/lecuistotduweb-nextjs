@@ -46,16 +46,58 @@ test("links to the CV pdf in a new tab", async ({ page, request }) => {
 	expect(response.headers()["content-type"]).toContain("application/pdf");
 });
 
-test("contact card shows freelance status and missions", async ({ page }) => {
+test("contact card starts with the audience choice", async ({ page }) => {
 	const card = cardByTitle(page, "Contact");
 	await expect(card).toBeVisible();
+	await expect(card.getByText("Vous êtes\u00a0?")).toBeVisible();
+	await expect(card.getByText(/^(Disponible|Indisponible)/)).toBeVisible();
+	await expect(
+		card.getByRole("list", { name: "Vous êtes" }).getByRole("button"),
+	).toHaveCount(2);
+});
+
+test("contact tunnel: project path", async ({ page }) => {
+	await waitForHydration(page);
+	const card = cardByTitle(page, "Contact");
+	await card.getByRole("button", { name: /J'ai un projet/ }).click();
 	await expect(card.getByText(/^(Disponible|Indisponible)/)).toBeVisible();
 	await expect(
 		card.getByRole("list", { name: "Missions freelance" }).getByRole("listitem"),
 	).toHaveCount(4);
 	await expect(
 		card.getByRole("link", { name: /Écrire un e-mail/ }),
-	).toHaveAttribute("href", "mailto:contact@lecuistotduweb.fr");
+	).toHaveAttribute(
+		"href",
+		"mailto:contact@lecuistotduweb.fr?subject=Projet%20freelance",
+	);
+	await card.getByRole("button", { name: "Retour" }).click();
+	await expect(card.getByText("Vous êtes\u00a0?")).toBeFocused();
+});
+
+test("contact tunnel: recruitment path", async ({ page }) => {
+	await waitForHydration(page);
+	const card = cardByTitle(page, "Contact");
+	await card.getByRole("button", { name: /Je recrute/ }).click();
+	await expect(card.getByText(/^(Disponible|Indisponible)/)).toBeHidden();
+	await expect(
+		card.getByRole("list", { name: "Profil" }).getByRole("listitem"),
+	).toHaveCount(4);
+	await expect(card.getByRole("link", { name: /Voir mon CV/ })).toHaveAttribute(
+		"href",
+		CV_PATH,
+	);
+	await expect(
+		card.getByRole("link", { name: /Écrire un e-mail/ }),
+	).toHaveAttribute(
+		"href",
+		"mailto:contact@lecuistotduweb.fr?subject=Recrutement",
+	);
+});
+
+test("/profil redirects to the experience chapter", async ({ page }) => {
+	await page.goto("/profil");
+	await expect(page).toHaveURL(/\/experience$/);
+	await expect(page).toHaveTitle("Expérience — Gaëtan Boyron");
 });
 
 test("/freelance redirects to the contact chapter", async ({ page }) => {
@@ -97,7 +139,7 @@ test("project carousel navigates, autoplays and pauses", async ({ page }) => {
 });
 
 const CHAPTERS = [
-	{ path: "/profil", id: "profil", label: "Profil" },
+	{ path: "/experience", id: "experience", label: "Expérience" },
 	{ path: "/projets", id: "projets", label: "Projets" },
 	{ path: "/contact", id: "contact", label: "Contact" },
 ];
@@ -184,7 +226,9 @@ test("intro ends on its own and reveals the page", async ({ page }) => {
 test("contact card copies the e-mail address", async ({ page, context }) => {
 	await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 	await page.goto("/contact");
+	await waitForHydration(page);
 	const card = cardByTitle(page, "Contact");
+	await card.getByRole("button", { name: /J'ai un projet/ }).click();
 	await expect
 		.poll(async () => {
 			await card.getByRole("button", { name: "Copier l'adresse e-mail" }).click();
@@ -193,5 +237,5 @@ test("contact card copies the e-mail address", async ({ page, context }) => {
 		.toBe("contact@lecuistotduweb.fr");
 	await expect(
 		card.getByRole("link", { name: "Écrire un e-mail" }),
-	).toHaveAttribute("href", "mailto:contact@lecuistotduweb.fr");
+	).toHaveAttribute("href", "mailto:contact@lecuistotduweb.fr?subject=Projet%20freelance");
 });

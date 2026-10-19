@@ -7,6 +7,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { AnimatedBackground } from "#/components/animated-background";
 import { Button } from "#/components/ui/button";
 import appCss from "../styles.css?url";
 
@@ -94,7 +95,7 @@ const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t===
 // session, pages en chapitres uniquement, pas si mouvement réduit) et cacher
 // les éléments à révéler au scroll ? Si le JS de l'app n'a pas démarré après
 // 4 s, on réaffiche tout (secours).
-const experienceScript = `(function(){var d=document.documentElement;try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var p=/^\\/(profil|projets|freelance|contact)?\\/?$/.test(location.pathname);if(!r){d.classList.add('reveal-ready');setTimeout(function(){if(!window.__lcdwAnim)d.classList.remove('reveal-ready')},4000)}if(r||!p||sessionStorage.getItem('lcdw-intro-seen'))d.classList.add('intro-skip');else d.classList.add('intro-playing')}catch(e){d.classList.add('intro-skip')}})();`;
+const experienceScript = `(function(){var d=document.documentElement;try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var p=/^\\/(experience|projets|contact)?\\/?$/.test(location.pathname);if(!r){d.classList.add('reveal-ready');setTimeout(function(){if(!window.__lcdwAnim)d.classList.remove('reveal-ready')},4000)}if(r||!p||sessionStorage.getItem('lcdw-intro-seen'))d.classList.add('intro-skip');else d.classList.add('intro-playing')}catch(e){d.classList.add('intro-skip')}})();`;
 
 const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D3ME6QTB34');`;
 
@@ -114,6 +115,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 			<body>
+				<AnimatedBackground />
 				{children}
 				<TanStackDevtools
 					config={{

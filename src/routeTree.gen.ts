@@ -12,9 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViewsRouteImport } from './routes/_views'
 import { Route as FreelanceRouteImport } from './routes/freelance'
 import { Route as LinkRouteImport } from './routes/link'
+import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as ViewsIndexRouteImport } from './routes/_views/index'
 import { Route as ViewsContactRouteImport } from './routes/_views/contact'
-import { Route as ViewsProfilRouteImport } from './routes/_views/profil'
+import { Route as ViewsExperienceRouteImport } from './routes/_views/experience'
 import { Route as ViewsProjetsRouteImport } from './routes/_views/projets'
 
 const ViewsRoute = ViewsRouteImport.update({
@@ -31,6 +32,11 @@ const LinkRoute = LinkRouteImport.update({
   path: '/link',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfilRoute = ProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ViewsIndexRoute = ViewsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -41,9 +47,9 @@ const ViewsContactRoute = ViewsContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => ViewsRoute,
 } as any)
-const ViewsProfilRoute = ViewsProfilRouteImport.update({
-  id: '/profil',
-  path: '/profil',
+const ViewsExperienceRoute = ViewsExperienceRouteImport.update({
+  id: '/experience',
+  path: '/experience',
   getParentRoute: () => ViewsRoute,
 } as any)
 const ViewsProjetsRoute = ViewsProjetsRouteImport.update({
@@ -56,15 +62,17 @@ export interface FileRoutesByFullPath {
   '/': typeof ViewsIndexRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/profil': typeof ProfilRoute
   '/contact': typeof ViewsContactRoute
-  '/profil': typeof ViewsProfilRoute
+  '/experience': typeof ViewsExperienceRoute
   '/projets': typeof ViewsProjetsRoute
 }
 export interface FileRoutesByTo {
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/profil': typeof ProfilRoute
   '/contact': typeof ViewsContactRoute
-  '/profil': typeof ViewsProfilRoute
+  '/experience': typeof ViewsExperienceRoute
   '/projets': typeof ViewsProjetsRoute
   '/': typeof ViewsIndexRoute
 }
@@ -73,23 +81,39 @@ export interface FileRoutesById {
   '/_views': typeof ViewsRouteWithChildren
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/profil': typeof ProfilRoute
   '/_views/contact': typeof ViewsContactRoute
-  '/_views/profil': typeof ViewsProfilRoute
+  '/_views/experience': typeof ViewsExperienceRoute
   '/_views/projets': typeof ViewsProjetsRoute
   '/_views/': typeof ViewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/freelance' | '/link' | '/contact' | '/profil' | '/projets'
+  fullPaths:
+    | '/'
+    | '/freelance'
+    | '/link'
+    | '/profil'
+    | '/contact'
+    | '/experience'
+    | '/projets'
   fileRoutesByTo: FileRoutesByTo
-  to: '/freelance' | '/link' | '/contact' | '/profil' | '/projets' | '/'
+  to:
+    | '/freelance'
+    | '/link'
+    | '/profil'
+    | '/contact'
+    | '/experience'
+    | '/projets'
+    | '/'
   id:
     | '__root__'
     | '/_views'
     | '/freelance'
     | '/link'
+    | '/profil'
     | '/_views/contact'
-    | '/_views/profil'
+    | '/_views/experience'
     | '/_views/projets'
     | '/_views/'
   fileRoutesById: FileRoutesById
@@ -98,6 +122,7 @@ export interface RootRouteChildren {
   ViewsRoute: typeof ViewsRouteWithChildren
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
+  ProfilRoute: typeof ProfilRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -123,6 +148,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profil': {
+      id: '/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ProfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_views/': {
       id: '/_views/'
       path: '/'
@@ -137,11 +169,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ViewsContactRouteImport
       parentRoute: typeof ViewsRoute
     }
-    '/_views/profil': {
-      id: '/_views/profil'
-      path: '/profil'
-      fullPath: '/profil'
-      preLoaderRoute: typeof ViewsProfilRouteImport
+    '/_views/experience': {
+      id: '/_views/experience'
+      path: '/experience'
+      fullPath: '/experience'
+      preLoaderRoute: typeof ViewsExperienceRouteImport
       parentRoute: typeof ViewsRoute
     }
     '/_views/projets': {
@@ -156,14 +188,14 @@ declare module '@tanstack/react-router' {
 
 interface ViewsRouteChildren {
   ViewsContactRoute: typeof ViewsContactRoute
-  ViewsProfilRoute: typeof ViewsProfilRoute
+  ViewsExperienceRoute: typeof ViewsExperienceRoute
   ViewsProjetsRoute: typeof ViewsProjetsRoute
   ViewsIndexRoute: typeof ViewsIndexRoute
 }
 
 const ViewsRouteChildren: ViewsRouteChildren = {
   ViewsContactRoute: ViewsContactRoute,
-  ViewsProfilRoute: ViewsProfilRoute,
+  ViewsExperienceRoute: ViewsExperienceRoute,
   ViewsProjetsRoute: ViewsProjetsRoute,
   ViewsIndexRoute: ViewsIndexRoute,
 }
@@ -174,6 +206,7 @@ const rootRouteChildren: RootRouteChildren = {
   ViewsRoute: ViewsRouteWithChildren,
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,
+  ProfilRoute: ProfilRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -18,8 +18,8 @@ import {
 	type ViewId,
 } from "#/lib/views";
 
-// Page d'accueil en chapitres. Les routes /, /profil, /projets et /contact
-// affichent toutes cette page (/freelance redirige vers /contact) :
+// Page d'accueil en chapitres. Les routes /, /experience, /projets et
+// /contact affichent toutes cette page (/profil et /freelance redirigent) :
 // - arriver sur une route (ou cliquer dans le menu) fait défiler au chapitre ;
 // - défiler met à jour le chapitre actif, puis l'URL (replace) et le titre.
 export const Route = createFileRoute("/_views")({

@@ -4,7 +4,10 @@ import { BentoCard } from "./bento-card";
 
 export function BioCard({ className }: { className?: string }) {
 	return (
-		<BentoCard className={`flex flex-col gap-6 md:gap-8 md:p-10 ${className ?? ""}`} as="header">
+		<BentoCard
+			className={`flex flex-col gap-6 md:gap-8 md:p-10 ${className ?? ""}`}
+			as="header"
+		>
 			<div>
 				<h1 className="text-3xl font-bold text-[#253c59] dark:text-white tracking-tight">
 					{siteConfig.alias}
