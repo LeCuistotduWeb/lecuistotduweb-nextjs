@@ -103,7 +103,7 @@ export function Chapters() {
 						<BioCard />
 					</Item>
 					{/* Pas de révélation : l'avatar de l'écran de chargement atterrit ici */}
-					<div className="col-span-1 *:h-full">
+					<div className="col-span-1">
 						<AvatarCard />
 					</div>
 				</Grid>

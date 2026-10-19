@@ -31,8 +31,9 @@ const projects = [
 			"E-commerce beauté migré en PWA : abonnement, shop et box sur-mesure.",
 	},
 	{
-		src: "/works/miniature-fnac-darty.webp",
-		srcSet: undefined,
+		src: "/works/miniature-fnac-darty-765.webp",
+		srcSet:
+			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-765.webp 765w",
 		label: "Fnac Darty",
 		description:
 			"Architecture front React / Next.js, design system Storybook et i18n.",
