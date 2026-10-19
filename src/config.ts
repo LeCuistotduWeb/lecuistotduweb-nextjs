@@ -20,21 +20,6 @@ export const siteConfig = {
 		status: "available" as FreelanceStatus,
 		// Date ISO (AAAA-MM-JJ) ; ignorée si absente ou déjà passée
 		availableFrom: undefined as string | undefined,
-		missions: [
-			"Applications React / Next.js",
-			"API & back-end Node.js",
-			"Refonte & performance",
-			"Régie ou forfait · remote / Île-de-France",
-		],
-	},
-	// Onglet « Me recruter » de la carte Contact (ESN, recruteurs)
-	recruitment: {
-		highlights: [
-			"Fullstack React / Node.js · TypeScript",
-			"8 ans d'expérience",
-			"CDI, régie ou portage",
-			"Remote / Île-de-France",
-		],
 	},
 	contact: {
 		// Événement Cal.com (« identifiant/événement ») ; le bouton de prise de

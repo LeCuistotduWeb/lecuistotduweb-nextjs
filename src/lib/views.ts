@@ -30,7 +30,7 @@ export const VIEWS = [
 		path: "/contact",
 		label: "Contact",
 		title: `Contact — ${siteConfig.name}`,
-		description: `Contacter ${siteConfig.name}, ${siteConfig.role} freelance : disponibilité, types de missions, e-mail, LinkedIn, GitHub.`,
+		description: `Contacter ${siteConfig.name}, ${siteConfig.role} freelance : formulaire, prise de rendez-vous, e-mail, LinkedIn, GitHub.`,
 	},
 ] as const;
 
@@ -67,7 +67,7 @@ export const PARCOURS_CONTENT: Record<
 	contact: {
 		headline: "Parlons de votre besoin.",
 		text: () =>
-			"Un projet à lancer, une appli à faire évoluer, un poste à pourvoir ? Dites-moi qui vous êtes : le premier échange est sans engagement.",
+			"Un projet à lancer, une appli à faire évoluer, un poste à pourvoir ? Contactez-moi pour en discuter.",
 	},
 };
 
