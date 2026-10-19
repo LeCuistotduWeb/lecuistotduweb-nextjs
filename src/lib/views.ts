@@ -60,9 +60,9 @@ export const PARCOURS_CONTENT: Record<
 			"Chez Blissim, Infogreffe ou Fnac Darty, j'ai appris à livrer vite sans sacrifier la qualité. C'est cette exigence que j'apporte à votre projet.",
 	},
 	projets: {
-		headline: "Des projets concrets, du SaaS au mobile.",
+		headline: "Des projets réalisés avec soin.",
 		text: () =>
-			"Boutique en ligne, SaaS, site vitrine ou application mobile : chaque projet est parti d'un besoin concret. Le vôtre pourrait être le prochain.",
+			"Boutique en ligne, SaaS, site vitrine ou application mobile : chaque projet a été pensé, construit et livré avec exigence. Le vôtre mérite le même soin.",
 	},
 	contact: {
 		headline: "Parlons de votre besoin.",
