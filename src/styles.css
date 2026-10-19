@@ -429,6 +429,23 @@ a {
   }
 }
 
+/* Project card — autoplay progress (animationend advances the slide).
+   In a layer so Tailwind's [animation-play-state:paused] utilities win. */
+@layer components {
+  .project-progress {
+    animation: project-progress 5s linear both;
+  }
+}
+
+@keyframes project-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 /* AI card — rotating gradient border */
 .ai-glow {
   position: relative;

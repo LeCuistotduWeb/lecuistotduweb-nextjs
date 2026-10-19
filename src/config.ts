@@ -1,3 +1,5 @@
+export type FreelanceStatus = "available" | "unavailable";
+
 export const siteConfig = {
 	name: "Gaëtan Boyron",
 	alias: "LeCuistotduWeb",
@@ -9,6 +11,19 @@ export const siteConfig = {
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
+	},
+	freelance: {
+		// "available" | "unavailable" — la carte Freelance s'adapte automatiquement
+		status: "available" as FreelanceStatus,
+		// Date ISO (AAAA-MM-JJ) ; ignorée si absente ou déjà passée
+		availableFrom: "2026-12-01" as string | undefined,
+		missions: [
+			"Applications React / Next.js",
+			"API & back-end Node.js",
+			"Refonte & performance",
+			"Régie ou forfait · remote / Île-de-France",
+		],
+		mailSubject: "Mission freelance — ",
 	},
 	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
 	description:
