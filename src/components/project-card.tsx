@@ -11,41 +11,53 @@ const projects = [
 		srcSet:
 			"/works/miniature-site-web-laclassedefleur-640.webp 640w, /works/miniature-site-web-laclassedefleur-1280.webp 1280w",
 		label: "La Classe de Fleur",
+		description:
+			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
 	},
 	{
 		src: "/works/miniature-site-web-portfolio-infogreffe-1280.webp",
 		srcSet:
 			"/works/miniature-site-web-portfolio-infogreffe-640.webp 640w, /works/miniature-site-web-portfolio-infogreffe-1280.webp 1280w",
 		label: "Infogreffe",
+		description:
+			"Parcours utilisateurs, Design System et constructeur de pages Strapi.",
 	},
 	{
 		src: "/works/miniature-site-web-1280.webp",
 		srcSet:
 			"/works/miniature-site-web-640.webp 640w, /works/miniature-site-web-1280.webp 1280w",
 		label: "Blissim",
+		description:
+			"E-commerce beauté migré en PWA : abonnement, shop et box sur-mesure.",
 	},
 	{
 		src: "/works/miniature-fnac-darty.webp",
 		srcSet: undefined,
 		label: "Fnac Darty",
+		description:
+			"Architecture front React / Next.js, design system Storybook et i18n.",
 	},
 	{
 		src: "/works/thumbnail-work-musee-du-louvre-symfony-1280.webp",
 		srcSet:
 			"/works/thumbnail-work-musee-du-louvre-symfony-640.webp 640w, /works/thumbnail-work-musee-du-louvre-symfony-1280.webp 1280w",
 		label: "Musée du Louvre",
+		description: "Billetterie en ligne développée avec Symfony.",
 	},
 	{
 		src: "/works/thumbnail-worksite-web-nomad-education-1280.webp",
 		srcSet:
 			"/works/thumbnail-worksite-web-nomad-education-640.webp 640w, /works/thumbnail-worksite-web-nomad-education-1280.webp 1280w",
 		label: "Nomad Education",
+		description:
+			"Refonte du site vitrine et migration d'Angular vers Nuxt / Vue.",
 	},
 	{
 		src: "/works/mon-vdi-assistant-miniature-1280.webp",
 		srcSet:
 			"/works/mon-vdi-assistant-miniature-640.webp 640w, /works/mon-vdi-assistant-miniature-1280.webp 1280w",
 		label: "Mon VDI Assistant",
+		description: "SaaS pour gérer clients, commandes, produits et réunions.",
 	},
 ];
 
@@ -193,6 +205,23 @@ export default function ProjectCard({ className }: { className?: string }) {
 									>
 										{project.label}
 									</span>
+									{/* Toujours rendue, dépliée seulement pour le projet actif :
+									    la transition sur grid-template-rows anime la hauteur */}
+									<span
+										aria-hidden={i !== current}
+										className={cn(
+											"grid transition-[grid-template-rows,opacity] duration-500 ease-out motion-reduce:transition-none",
+											i === current
+												? "grid-rows-[1fr] opacity-100"
+												: "grid-rows-[0fr] opacity-0",
+										)}
+									>
+										<span className="overflow-hidden">
+											<span className="mt-0.5 block text-xs leading-snug text-[#4a6a8a] dark:text-[#a1adbc] line-clamp-2">
+												{project.description}
+											</span>
+										</span>
+									</span>
 									{i === current && (
 										<span className="relative mt-2 block h-0.5 rounded-full bg-[#d2c4a4] dark:bg-[#253c59]">
 											<Progress
@@ -211,7 +240,7 @@ export default function ProjectCard({ className }: { className?: string }) {
 				<div
 					onTouchStart={handleTouchStart}
 					onTouchEnd={handleTouchEnd}
-					className="relative aspect-video overflow-hidden rounded-xl border border-[#d2c4a4] dark:border-[#1c2a3a] bg-[#e6d3ae] dark:bg-[#1c2a3a] lg:order-2"
+					className="relative aspect-video overflow-hidden rounded-xl border border-[#d2c4a4] dark:border-[#1c2a3a] bg-[#e6d3ae] dark:bg-[#1c2a3a] lg:order-2 lg:self-center"
 				>
 					{projects.map((project, i) =>
 						mounted.has(i) ? (
@@ -241,6 +270,9 @@ export default function ProjectCard({ className }: { className?: string }) {
 						className="display-title text-xl font-semibold text-[#253c59] dark:text-white"
 					>
 						{projects[current].label}
+					</p>
+					<p className="-mt-2 text-sm text-[#4a6a8a] dark:text-[#a1adbc]">
+						{projects[current].description}
 					</p>
 					<div className="flex gap-1">
 						{projects.map((project, i) => (
