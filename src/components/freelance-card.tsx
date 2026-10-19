@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
+import { getFreelanceStatusLabel } from "#/lib/freelance";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
@@ -9,23 +10,33 @@ const { freelance } = siteConfig;
 
 const mailtoHref = `mailto:${siteConfig.email}?subject=${encodeURIComponent(freelance.mailSubject)}`;
 
-function getStatusLabel() {
-	if (freelance.status === "unavailable") return "Indisponible pour le moment";
+export function FreelanceStatusBadge({ className }: { className?: string }) {
+	const available = freelance.status === "available";
 
-	if (freelance.availableFrom) {
-		const date = new Date(`${freelance.availableFrom}T00:00:00Z`);
-		if (date.getTime() > Date.now()) {
-			const formatted = new Intl.DateTimeFormat("fr-FR", {
-				day: "numeric",
-				month: "long",
-				year: "numeric",
-				timeZone: "UTC",
-			}).format(date);
-			return `Disponible à partir du ${formatted}`;
-		}
-	}
-
-	return "Disponible";
+	return (
+		<p
+			className={cn(
+				"flex items-center gap-2 text-sm font-semibold",
+				available
+					? "text-[#047857] dark:text-[#34d399]"
+					: "text-[#b45309] dark:text-[#fbbf24]",
+				className,
+			)}
+		>
+			<span aria-hidden="true" className="relative flex size-2.5">
+				{available && (
+					<span className="absolute inline-flex size-full animate-ping rounded-full bg-[#34d399] opacity-60 motion-reduce:hidden" />
+				)}
+				<span
+					className={cn(
+						"relative inline-flex size-2.5 rounded-full",
+						available ? "bg-[#10b981]" : "bg-[#f59e0b]",
+					)}
+				/>
+			</span>
+			{getFreelanceStatusLabel()}
+		</p>
+	);
 }
 
 export function FreelanceCard({ className }: { className?: string }) {
@@ -40,27 +51,7 @@ export function FreelanceCard({ className }: { className?: string }) {
 		>
 			<div className="flex flex-col gap-3 lg:max-w-xs">
 				<CardTitle className="mb-0">Freelance</CardTitle>
-				<p
-					className={cn(
-						"flex items-center gap-2 text-sm font-semibold",
-						available
-							? "text-[#047857] dark:text-[#34d399]"
-							: "text-[#b45309] dark:text-[#fbbf24]",
-					)}
-				>
-					<span aria-hidden="true" className="relative flex size-2.5">
-						{available && (
-							<span className="absolute inline-flex size-full animate-ping rounded-full bg-[#34d399] opacity-60 motion-reduce:hidden" />
-						)}
-						<span
-							className={cn(
-								"relative inline-flex size-2.5 rounded-full",
-								available ? "bg-[#10b981]" : "bg-[#f59e0b]",
-							)}
-						/>
-					</span>
-					{getStatusLabel()}
-				</p>
+				<FreelanceStatusBadge />
 				<p className="text-[#253c59] dark:text-white text-lg font-semibold leading-snug">
 					{available
 						? "Je prends des missions freelance."

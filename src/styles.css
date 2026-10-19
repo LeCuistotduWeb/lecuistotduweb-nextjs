@@ -429,6 +429,146 @@ a {
   }
 }
 
+/* Experience — scroll reveals. States are driven by src/lib/scroll-animations
+   (data-reveal / data-revealed). Hidden states only apply under
+   html.reveal-ready, set by the inline head script when motion is allowed:
+   without JS (or with reduced motion) everything stays visible. */
+[data-reveal] {
+  transition:
+    opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-ready [data-reveal]:not([data-revealed]):not([data-reveal="words"]) {
+  opacity: 0;
+}
+.reveal-ready [data-reveal="rise"]:not([data-revealed]) {
+  transform: translateY(56px) scale(0.98);
+}
+.reveal-ready [data-reveal="scale"]:not([data-revealed]) {
+  transform: scale(0.9);
+}
+.reveal-word {
+  display: inline-block;
+  transition:
+    opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--reveal-delay, 0ms) + var(--i, 0) * 70ms);
+}
+.reveal-ready [data-reveal="words"]:not([data-revealed]) .reveal-word {
+  opacity: 0;
+  transform: translateY(0.55em) rotate(2deg);
+}
+
+/* Experience — fake loading screen (once per session, see __root head script).
+   html.intro-skip hides it before first paint; without JS it fades out after
+   6 s on its own. */
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  animation: intro-failsafe 400ms ease 6s forwards;
+}
+.intro-loader-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(700px 420px at 50% 40%, var(--hero-a), transparent 70%),
+    var(--bg-base);
+}
+html.intro-skip .intro-loader {
+  display: none;
+}
+html.intro-playing [data-avatar-target] {
+  visibility: hidden;
+}
+@keyframes intro-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Experience — ambient glow per chapter, one layer each, crossfaded */
+.chapter-ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1200ms ease;
+}
+.chapter-ambient[data-active] {
+  opacity: 1;
+}
+.chapter-ambient[data-chapter="profil"] {
+  background:
+    radial-gradient(900px 560px at 88% -8%, rgba(37, 60, 89, 0.16), transparent 65%),
+    radial-gradient(700px 480px at -10% 55%, rgba(74, 106, 138, 0.1), transparent 70%);
+}
+.chapter-ambient[data-chapter="projets"] {
+  background:
+    radial-gradient(1000px 600px at 10% -10%, rgba(228, 185, 98, 0.28), transparent 62%),
+    radial-gradient(800px 500px at 100% 70%, rgba(242, 83, 83, 0.07), transparent 70%);
+}
+.chapter-ambient[data-chapter="freelance"] {
+  background:
+    radial-gradient(900px 560px at 85% -10%, rgba(16, 185, 129, 0.12), transparent 62%),
+    radial-gradient(800px 520px at 0% 60%, rgba(228, 185, 98, 0.16), transparent 70%);
+}
+.chapter-ambient[data-chapter="contact"] {
+  background:
+    radial-gradient(1000px 600px at 50% -15%, rgba(242, 83, 83, 0.16), transparent 62%),
+    radial-gradient(700px 480px at 100% 90%, rgba(37, 60, 89, 0.08), transparent 70%);
+}
+.dark .chapter-ambient[data-chapter="profil"] {
+  background:
+    radial-gradient(900px 560px at 88% -8%, rgba(90, 140, 200, 0.2), transparent 65%),
+    radial-gradient(700px 480px at -10% 55%, rgba(60, 100, 160, 0.12), transparent 70%);
+}
+.dark .chapter-ambient[data-chapter="projets"] {
+  background:
+    radial-gradient(1000px 600px at 10% -10%, rgba(228, 185, 98, 0.12), transparent 62%),
+    radial-gradient(800px 500px at 100% 70%, rgba(242, 83, 83, 0.08), transparent 70%);
+}
+.dark .chapter-ambient[data-chapter="freelance"] {
+  background:
+    radial-gradient(900px 560px at 85% -10%, rgba(52, 211, 153, 0.12), transparent 62%),
+    radial-gradient(800px 520px at 0% 60%, rgba(60, 100, 160, 0.12), transparent 70%);
+}
+.dark .chapter-ambient[data-chapter="contact"] {
+  background:
+    radial-gradient(1000px 600px at 50% -15%, rgba(242, 83, 83, 0.16), transparent 62%),
+    radial-gradient(700px 480px at 100% 90%, rgba(60, 100, 160, 0.1), transparent 70%);
+}
+
+/* Experience — "scroll" cue under the hero */
+.scroll-cue-arrow {
+  animation: scroll-cue 1.8s ease-in-out infinite;
+}
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-arrow {
+    animation: none;
+  }
+}
+
 /* Project card — autoplay progress (animationend advances the slide).
    In a layer so Tailwind's [animation-play-state:paused] utilities win. */
 @layer components {

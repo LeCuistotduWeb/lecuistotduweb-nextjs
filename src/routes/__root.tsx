@@ -91,6 +91,12 @@ function NotFound() {
 
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})();`;
 
+// Avant le premier rendu : faut-il jouer l'écran de chargement (une fois par
+// session, pages en chapitres uniquement, pas si mouvement réduit) et cacher
+// les éléments à révéler au scroll ? Si le JS de l'app n'a pas démarré après
+// 4 s, on réaffiche tout (secours).
+const experienceScript = `(function(){var d=document.documentElement;try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var p=/^\\/(profil|projets|freelance|contact)?\\/?$/.test(location.pathname);if(!r){d.classList.add('reveal-ready');setTimeout(function(){if(!window.__lcdwAnim)d.classList.remove('reveal-ready')},4000)}if(r||!p||sessionStorage.getItem('lcdw-intro-seen'))d.classList.add('intro-skip');else d.classList.add('intro-playing')}catch(e){d.classList.add('intro-skip')}})();`;
+
 const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D3ME6QTB34');`;
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -99,6 +105,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<head>
 				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: inline theme init must run before paint */}
 				<script dangerouslySetInnerHTML={{ __html: themeScript }} />
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: intro / reveal init must run before paint */}
+				<script dangerouslySetInnerHTML={{ __html: experienceScript }} />
+				<noscript>
+					<style>{".intro-loader{display:none}"}</style>
+				</noscript>
 				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: GA4 init */}
 				<script dangerouslySetInnerHTML={{ __html: gaScript }} />
 				<HeadContent />

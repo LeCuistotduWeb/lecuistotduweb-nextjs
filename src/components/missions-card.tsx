@@ -36,14 +36,14 @@ export function MissionsCard({ className }: { className?: string }) {
 							<h3 className="text-[#253c59] dark:text-white font-semibold text-sm">
 								{m.company}
 							</h3>
-							<span className="text-[#93a8be] dark:text-[#556a7a] text-[10px] font-medium shrink-0">
+							<span className="text-[#4a6a8a] dark:text-[#a1adbc] text-[10px] font-medium shrink-0">
 								{m.period}
 							</span>
 						</div>
-						<p className="text-[#7a95ad] dark:text-[#7a8fa0] text-xs leading-relaxed flex-1">
+						<p className="text-[#4a6a8a] dark:text-[#a1adbc] text-xs leading-relaxed flex-1">
 							{m.desc}
 						</p>
-						<p className="text-[#f25353] dark:text-[#f25353]/60 text-[10px] font-medium">
+						<p className="text-[#b52f2f] dark:text-[#ff7a7a] text-[10px] font-medium">
 							{m.tags}
 						</p>
 					</div>

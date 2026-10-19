@@ -9,12 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as ViewsRouteImport } from './routes/_views'
 import { Route as LinkRouteImport } from './routes/link'
+import { Route as ViewsIndexRouteImport } from './routes/_views/index'
+import { Route as ViewsContactRouteImport } from './routes/_views/contact'
+import { Route as ViewsFreelanceRouteImport } from './routes/_views/freelance'
+import { Route as ViewsProfilRouteImport } from './routes/_views/profil'
+import { Route as ViewsProjetsRouteImport } from './routes/_views/projets'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ViewsRoute = ViewsRouteImport.update({
+  id: '/_views',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LinkRoute = LinkRouteImport.update({
@@ -22,40 +26,86 @@ const LinkRoute = LinkRouteImport.update({
   path: '/link',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ViewsIndexRoute = ViewsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ViewsRoute,
+} as any)
+const ViewsContactRoute = ViewsContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => ViewsRoute,
+} as any)
+const ViewsFreelanceRoute = ViewsFreelanceRouteImport.update({
+  id: '/freelance',
+  path: '/freelance',
+  getParentRoute: () => ViewsRoute,
+} as any)
+const ViewsProfilRoute = ViewsProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => ViewsRoute,
+} as any)
+const ViewsProjetsRoute = ViewsProjetsRouteImport.update({
+  id: '/projets',
+  path: '/projets',
+  getParentRoute: () => ViewsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof ViewsIndexRoute
   '/link': typeof LinkRoute
+  '/contact': typeof ViewsContactRoute
+  '/freelance': typeof ViewsFreelanceRoute
+  '/profil': typeof ViewsProfilRoute
+  '/projets': typeof ViewsProjetsRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/link': typeof LinkRoute
+  '/contact': typeof ViewsContactRoute
+  '/freelance': typeof ViewsFreelanceRoute
+  '/profil': typeof ViewsProfilRoute
+  '/projets': typeof ViewsProjetsRoute
+  '/': typeof ViewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_views': typeof ViewsRouteWithChildren
   '/link': typeof LinkRoute
+  '/_views/contact': typeof ViewsContactRoute
+  '/_views/freelance': typeof ViewsFreelanceRoute
+  '/_views/profil': typeof ViewsProfilRoute
+  '/_views/projets': typeof ViewsProjetsRoute
+  '/_views/': typeof ViewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/link'
+  fullPaths: '/' | '/link' | '/contact' | '/freelance' | '/profil' | '/projets'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/link'
-  id: '__root__' | '/' | '/link'
+  to: '/link' | '/contact' | '/freelance' | '/profil' | '/projets' | '/'
+  id:
+    | '__root__'
+    | '/_views'
+    | '/link'
+    | '/_views/contact'
+    | '/_views/freelance'
+    | '/_views/profil'
+    | '/_views/projets'
+    | '/_views/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  ViewsRoute: typeof ViewsRouteWithChildren
   LinkRoute: typeof LinkRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_views': {
+      id: '/_views'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof ViewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/link': {
@@ -65,11 +115,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_views/': {
+      id: '/_views/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof ViewsIndexRouteImport
+      parentRoute: typeof ViewsRoute
+    }
+    '/_views/contact': {
+      id: '/_views/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ViewsContactRouteImport
+      parentRoute: typeof ViewsRoute
+    }
+    '/_views/freelance': {
+      id: '/_views/freelance'
+      path: '/freelance'
+      fullPath: '/freelance'
+      preLoaderRoute: typeof ViewsFreelanceRouteImport
+      parentRoute: typeof ViewsRoute
+    }
+    '/_views/profil': {
+      id: '/_views/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof ViewsProfilRouteImport
+      parentRoute: typeof ViewsRoute
+    }
+    '/_views/projets': {
+      id: '/_views/projets'
+      path: '/projets'
+      fullPath: '/projets'
+      preLoaderRoute: typeof ViewsProjetsRouteImport
+      parentRoute: typeof ViewsRoute
+    }
   }
 }
 
+interface ViewsRouteChildren {
+  ViewsContactRoute: typeof ViewsContactRoute
+  ViewsFreelanceRoute: typeof ViewsFreelanceRoute
+  ViewsProfilRoute: typeof ViewsProfilRoute
+  ViewsProjetsRoute: typeof ViewsProjetsRoute
+  ViewsIndexRoute: typeof ViewsIndexRoute
+}
+
+const ViewsRouteChildren: ViewsRouteChildren = {
+  ViewsContactRoute: ViewsContactRoute,
+  ViewsFreelanceRoute: ViewsFreelanceRoute,
+  ViewsProfilRoute: ViewsProfilRoute,
+  ViewsProjetsRoute: ViewsProjetsRoute,
+  ViewsIndexRoute: ViewsIndexRoute,
+}
+
+const ViewsRouteWithChildren = ViewsRoute._addFileChildren(ViewsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  ViewsRoute: ViewsRouteWithChildren,
   LinkRoute: LinkRoute,
 }
 export const routeTree = rootRouteImport
