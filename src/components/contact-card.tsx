@@ -142,14 +142,7 @@ export function ContactCard({ className }: { className?: string }) {
 						/>
 					</a>
 				</div>
-			</div>
-
-			<div className="flex flex-col gap-4 lg:min-w-0 lg:flex-1 lg:max-w-lg">
-				<ContactForm />
-				<p className="text-sm text-[#4a6a8a] dark:text-[#a1adbc]">
-					Vous préférez l'e-mail&nbsp;?
-				</p>
-				<div className="-mt-2 flex items-center gap-2 rounded-xl border border-[#d2c4a4] dark:border-[#253c59] bg-[#e6d3ae]/40 dark:bg-[#1c2a3a] p-2 pl-4">
+				<div className="flex items-center gap-2 rounded-xl border border-[#d2c4a4] dark:border-[#253c59] bg-[#e6d3ae]/40 dark:bg-[#1c2a3a] p-2 pl-4">
 					<Mail
 						aria-hidden="true"
 						className="size-4 shrink-0 text-[#8a7560] dark:text-[#a1adbc]"
@@ -166,6 +159,9 @@ export function ContactCard({ className }: { className?: string }) {
 					<button
 						type="button"
 						onClick={handleCopy}
+						aria-label={
+							copied ? "Adresse e-mail copiée" : "Copier l'adresse e-mail"
+						}
 						className="inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-semibold text-[#253c59] dark:text-white hover:bg-[#e6d3ae] dark:hover:bg-[#253c59] transition-colors cursor-pointer"
 					>
 						{copied ? (
@@ -173,10 +169,12 @@ export function ContactCard({ className }: { className?: string }) {
 						) : (
 							<Copy aria-hidden="true" className="size-4" />
 						)}
-						<span aria-live="polite">{copied ? "Copiée" : "Copier"}</span>
-						<span className="sr-only"> l'adresse e-mail</span>
 					</button>
 				</div>
+			</div>
+
+			<div className="flex flex-col gap-4 lg:min-w-0 lg:flex-1 lg:max-w-lg">
+				<ContactForm />
 			</div>
 		</BentoCard>
 	);
