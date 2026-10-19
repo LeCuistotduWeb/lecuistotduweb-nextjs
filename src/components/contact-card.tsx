@@ -1,3 +1,4 @@
+import { getCalApi } from "@calcom/embed-react";
 import {
 	ArrowLeft,
 	ArrowRight,
@@ -67,7 +68,7 @@ const AUDIENCES: Record<
 export function ContactCard({ className }: { className?: string }) {
 	const [copied, setCopied] = useState(false);
 	const [audience, setAudience] = useState<Audience | null>(null);
-	const { bookingUrl } = siteConfig.contact;
+	const { calLink } = siteConfig.contact;
 	const content = audience && AUDIENCES[audience];
 	const mailto = content
 		? `mailto:${siteConfig.email}?subject=${encodeURIComponent(content.subject)}`
@@ -81,6 +82,29 @@ export function ContactCard({ className }: { className?: string }) {
 		flushSync(() => setAudience(next));
 		headingRef.current?.focus();
 		if (next) trackEvent("select_audience", { audience: next });
+	}
+
+	// Calendrier Cal.com en popup ; le script n'est chargé qu'au clic. Sans JS
+	// ou si le chargement échoue, le lien ouvre Cal.com dans un nouvel onglet.
+	async function openBooking(event: React.MouseEvent<HTMLAnchorElement>) {
+		trackEvent("click_booking", { audience: audience ?? "" });
+		event.preventDefault();
+		const href = event.currentTarget.href;
+		if (!calLink) return;
+		try {
+			const cal = await getCalApi();
+			const dark = document.documentElement.classList.contains("dark");
+			cal("ui", {
+				theme: dark ? "dark" : "light",
+				cssVarsPerTheme: {
+					light: { "cal-brand": "#d93a3a" },
+					dark: { "cal-brand": "#f25353" },
+				},
+			});
+			cal("modal", { calLink, config: { layout: "month_view" } });
+		} catch {
+			window.open(href, "_blank", "noopener,noreferrer");
+		}
 	}
 
 	async function handleCopy() {
@@ -247,12 +271,12 @@ export function ContactCard({ className }: { className?: string }) {
 								/>
 							</a>
 						)}
-						{bookingUrl && (
+						{calLink && (
 							<a
-								href={bookingUrl}
+								href={`https://cal.com/${calLink}`}
 								target="_blank"
 								rel="noopener noreferrer"
-								onClick={() => trackEvent("click_booking")}
+								onClick={openBooking}
 								className={secondaryClass}
 							>
 								<CalendarDays

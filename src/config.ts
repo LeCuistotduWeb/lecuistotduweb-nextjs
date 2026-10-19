@@ -37,8 +37,9 @@ export const siteConfig = {
 		],
 	},
 	contact: {
-		// Lien de prise de RDV (Cal.com…) ; le bouton n'apparaît que s'il est renseigné
-		bookingUrl: undefined as string | undefined,
+		// Événement Cal.com (« identifiant/événement ») ; le bouton de prise de
+		// RDV n'apparaît que s'il est renseigné
+		calLink: "lecuistotduweb/30min" as string | undefined,
 	},
 	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
 	description:

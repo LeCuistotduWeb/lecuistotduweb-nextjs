@@ -70,6 +70,9 @@ test("contact tunnel: project path", async ({ page }) => {
 		"href",
 		"mailto:contact@lecuistotduweb.fr?subject=Projet%20freelance",
 	);
+	await expect(
+		card.getByRole("link", { name: /Prendre rendez-vous/ }),
+	).toHaveAttribute("href", "https://cal.com/lecuistotduweb/30min");
 	await card.getByRole("button", { name: "Retour" }).click();
 	await expect(card.getByText("Vous êtes\u00a0?")).toBeFocused();
 });
