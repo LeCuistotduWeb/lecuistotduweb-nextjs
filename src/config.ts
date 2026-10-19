@@ -7,7 +7,7 @@ export const siteConfig = {
 	email: "contact@lecuistotduweb.fr",
 	url: "https://lecuistotduweb.fr",
 	shortUrl: "lecuistotduweb.fr",
-	bio: "Je suis Gaëtan Boyron (alias LeCuistotduWeb). Animé par l'envie de développer ma créativité et de participer à la conception du web de demain, j'ai décidé de me reconvertir en 2017 afin de vivre de ma passion : le développement Web.",
+	bio: "Je suis Gaëtan Boyron (alias LeCuistotduWeb), développeur web depuis plus de 8 ans. Je conçois des applications React / Next.js / TypeScript robustes, performantes et évolutives, de la conception jusqu'à la mise en production. Ces dernières années, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic : architecture frontend, Design System, Core Web Vitals, accessibilité et qualité du code, main dans la main avec les équipes Produit, UX et Backend.",
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
