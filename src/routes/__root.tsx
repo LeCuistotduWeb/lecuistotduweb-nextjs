@@ -7,7 +7,6 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
-import { ThemeToggle } from "#/components/theme-toggle";
 import { Button } from "#/components/ui/button";
 import appCss from "../styles.css?url";
 
@@ -116,7 +115,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			</head>
 			<body>
 				{children}
-				<ThemeToggle />
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",

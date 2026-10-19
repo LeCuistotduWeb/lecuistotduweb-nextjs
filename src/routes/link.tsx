@@ -3,6 +3,7 @@ import { Check, Share2 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { useState } from "react";
 import { OrbitAvatar } from "#/components/orbit-avatar";
+import { ThemeToggle } from "#/components/theme-toggle";
 import { Button } from "#/components/ui/button";
 import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
@@ -198,6 +199,7 @@ function LinkPage() {
 					</div>
 				</div>
 			</div>
+			<ThemeToggle />
 		</main>
 	);
 }

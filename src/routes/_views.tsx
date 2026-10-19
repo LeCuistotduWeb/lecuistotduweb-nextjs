@@ -18,8 +18,8 @@ import {
 	type ViewId,
 } from "#/lib/views";
 
-// Page d'accueil en chapitres. Les routes /, /profil, /projets, /freelance et
-// /contact affichent toutes cette page :
+// Page d'accueil en chapitres. Les routes /, /profil, /projets et /contact
+// affichent toutes cette page (/freelance redirige vers /contact) :
 // - arriver sur une route (ou cliquer dans le menu) fait défiler au chapitre ;
 // - défiler met à jour le chapitre actif, puis l'URL (replace) et le titre.
 export const Route = createFileRoute("/_views")({
@@ -112,7 +112,8 @@ function ViewsLayout() {
 	return (
 		<>
 			<IntroLoader onDone={() => setIntroDone(true)} />
-			<main className="min-h-screen p-4 md:p-10">
+			{/* En mobile, pb-24 laisse la place à la nav fixée en bas */}
+			<main className="min-h-screen px-4 pt-4 pb-24 sm:pb-4 md:px-10 md:pt-10 md:pb-10">
 				{/* Halo d'ambiance par chapitre (voir .chapter-ambient dans styles.css) */}
 				{PARCOURS.map((id) => (
 					<div

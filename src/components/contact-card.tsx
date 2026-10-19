@@ -13,7 +13,7 @@ import { cn } from "#/lib/utils";
 import { AiChatModal } from "./ai-chat-modal";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
-import { FreelanceStatusBadge } from "./freelance-card";
+import { FreelanceStatusBadge } from "./freelance-status-badge";
 
 // Le style global `a { color }` n'est pas dans un layer : la couleur du texte
 // des liens est donc portée par un <span> interne.
@@ -54,6 +54,19 @@ export function ContactCard({ className }: { className?: string }) {
 					Écrivez-moi directement, ou posez d'abord votre question à mon
 					assistant IA.
 				</p>
+				<ul
+					aria-label="Missions freelance"
+					className="flex flex-wrap gap-2 pt-1"
+				>
+					{siteConfig.freelance.missions.map((mission) => (
+						<li
+							key={mission}
+							className="px-3 py-1 rounded-full bg-[#e6d3ae] border border-[#d2c4a4] text-[#3a5570] dark:bg-[#1c2a3a] dark:border-[#253c59] dark:text-[#c5d5e5] text-xs font-medium"
+						>
+							{mission}
+						</li>
+					))}
+				</ul>
 			</div>
 
 			<div className="flex flex-col gap-4 lg:min-w-0 lg:flex-1 lg:max-w-lg">

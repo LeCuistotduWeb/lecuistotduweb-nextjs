@@ -13,7 +13,7 @@ export const siteConfig = {
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
 	},
 	freelance: {
-		// "available" | "unavailable" — la carte Freelance s'adapte automatiquement
+		// "available" | "unavailable" — la carte Contact s'adapte automatiquement
 		status: "available" as FreelanceStatus,
 		// Date ISO (AAAA-MM-JJ) ; ignorée si absente ou déjà passée
 		availableFrom: "2026-12-01" as string | undefined,
@@ -23,7 +23,6 @@ export const siteConfig = {
 			"Refonte & performance",
 			"Régie ou forfait · remote / Île-de-France",
 		],
-		mailSubject: "Mission freelance — ",
 	},
 	contact: {
 		// Lien de prise de RDV (Cal.com…) ; le bouton n'apparaît que s'il est renseigné

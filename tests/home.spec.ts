@@ -46,32 +46,22 @@ test("links to the CV pdf in a new tab", async ({ page, request }) => {
 	expect(response.headers()["content-type"]).toContain("application/pdf");
 });
 
-test("shows the freelance card with a mailto CTA", async ({ page }) => {
-	const card = cardByTitle(page, "Freelance");
+test("contact card shows freelance status and missions", async ({ page }) => {
+	const card = cardByTitle(page, "Contact");
 	await expect(card).toBeVisible();
 	await expect(card.getByText(/^(Disponible|Indisponible)/)).toBeVisible();
+	await expect(
+		card.getByRole("list", { name: "Missions freelance" }).getByRole("listitem"),
+	).toHaveCount(4);
+	await expect(
+		card.getByRole("link", { name: /Écrire un e-mail/ }),
+	).toHaveAttribute("href", "mailto:contact@lecuistotduweb.fr");
+});
 
-	const cta = card.getByRole("link", { name: /Discutons de votre projet/ });
-	await expect(cta).toHaveAttribute(
-		"href",
-		`mailto:contact@lecuistotduweb.fr?subject=${encodeURIComponent("Mission freelance — ")}`,
-	);
-
-	await page.evaluate(() => {
-		const w = window as unknown as { events: unknown[]; gtag: unknown };
-		w.events = [];
-		w.gtag = (...args: unknown[]) => w.events.push(args);
-		document.addEventListener("click", (e) => e.preventDefault());
-	});
-	// Re-clique jusqu'à l'hydratation : le HTML SSR n'a pas encore le onClick
-	await expect
-		.poll(async () => {
-			await cta.click();
-			return page.evaluate(
-				() => (window as unknown as { events: unknown[][] }).events,
-			);
-		})
-		.toContainEqual(["event", "click_freelance", undefined]);
+test("/freelance redirects to the contact chapter", async ({ page }) => {
+	await page.goto("/freelance");
+	await expect(page).toHaveURL(/\/contact$/);
+	await expect(page).toHaveTitle("Contact — Gaëtan Boyron");
 });
 
 test("links to LinkedIn in a new tab", async ({ page }) => {
@@ -107,10 +97,9 @@ test("project carousel navigates, autoplays and pauses", async ({ page }) => {
 });
 
 const CHAPTERS = [
-	{ path: "/profil", id: "profil", label: "Profil", step: 1 },
-	{ path: "/projets", id: "projets", label: "Projets", step: 2 },
-	{ path: "/freelance", id: "freelance", label: "Freelance", step: 3 },
-	{ path: "/contact", id: "contact", label: "Contact", step: 4 },
+	{ path: "/profil", id: "profil", label: "Profil" },
+	{ path: "/projets", id: "projets", label: "Projets" },
+	{ path: "/contact", id: "contact", label: "Contact" },
 ];
 
 for (const chapter of CHAPTERS) {
@@ -122,7 +111,6 @@ for (const chapter of CHAPTERS) {
 			nav.getByRole("link", { name: chapter.label, exact: true }),
 		).toHaveAttribute("aria-current", "page");
 		const section = page.locator(`section#${chapter.id}`);
-		await expect(section).toContainText(`Étape ${chapter.step} / 4`);
 		// Le chapitre est en haut de l'écran, sous le menu
 		await expect
 			.poll(() =>

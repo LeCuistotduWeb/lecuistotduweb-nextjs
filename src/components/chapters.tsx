@@ -9,7 +9,6 @@ import { BioCard } from "./bio-card";
 import { ContactCard } from "./contact-card";
 import { CvCard } from "./cv-card";
 import { ExperiencesCard } from "./experiences-card";
-import { FreelanceCard } from "./freelance-card";
 import { LinkedInCard } from "./linkedin-card";
 import { MissionsCard } from "./missions-card";
 import ProjectCard from "./project-card";
@@ -61,7 +60,7 @@ function Chapter({
 			id={id}
 			aria-labelledby={`${id}-title`}
 			className={cn(
-				"scroll-mt-20 flex flex-col gap-8 md:gap-12 pt-28 md:pt-44",
+				"scroll-mt-4 sm:scroll-mt-20 flex flex-col gap-8 md:gap-12 pt-28 md:pt-44",
 				className,
 			)}
 		>
@@ -97,7 +96,7 @@ export function Chapters() {
 			<section
 				id="accueil"
 				aria-label="Accueil"
-				className="scroll-mt-20 flex min-h-[calc(100svh-6rem)] md:min-h-[calc(100svh-9rem)] flex-col justify-center gap-10"
+				className="scroll-mt-4 sm:scroll-mt-20 flex min-h-[calc(100svh-6rem)] md:min-h-[calc(100svh-9rem)] flex-col justify-center gap-10"
 			>
 				<Grid>
 					<Item className="col-span-1 sm:col-span-2 md:col-span-3">
@@ -135,12 +134,6 @@ export function Chapters() {
 				</Item>
 				<Item className={FULL} delay={120}>
 					<MissionsCard />
-				</Item>
-			</Chapter>
-
-			<Chapter id="freelance">
-				<Item className={FULL}>
-					<FreelanceCard />
 				</Item>
 			</Chapter>
 

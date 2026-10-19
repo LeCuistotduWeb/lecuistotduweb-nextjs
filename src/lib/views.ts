@@ -1,5 +1,4 @@
 import { siteConfig } from "#/config";
-import { getFreelanceStatusLabel } from "#/lib/freelance";
 
 // Chapitres de la page d'accueil, dans l'ordre du scroll. Chaque chapitre a
 // aussi sa route (/profil, /projets…) : point d'entrée partageable et indexable
@@ -27,18 +26,11 @@ export const VIEWS = [
 		description: `Projets et missions réalisés par ${siteConfig.name} : sites web, applications React et SaaS.`,
 	},
 	{
-		id: "freelance",
-		path: "/freelance",
-		label: "Freelance",
-		title: `Freelance — ${siteConfig.name}`,
-		description: `${siteConfig.name}, développeur React / Node.js freelance : disponibilité, types de missions et contact.`,
-	},
-	{
 		id: "contact",
 		path: "/contact",
 		label: "Contact",
 		title: `Contact — ${siteConfig.name}`,
-		description: `Contacter ${siteConfig.name}, ${siteConfig.role} : e-mail, LinkedIn, GitHub.`,
+		description: `Contacter ${siteConfig.name}, ${siteConfig.role} freelance : disponibilité, types de missions, e-mail, LinkedIn, GitHub.`,
 	},
 ] as const;
 
@@ -55,7 +47,7 @@ export function getViewByPath(pathname: string): View {
 }
 
 // Parcours : les chapitres numérotés (après l'accueil) et leur accroche.
-export const PARCOURS = ["profil", "projets", "freelance", "contact"] as const;
+export const PARCOURS = ["profil", "projets", "contact"] as const;
 export type ParcoursId = (typeof PARCOURS)[number];
 
 export const PARCOURS_CONTENT: Record<
@@ -72,15 +64,10 @@ export const PARCOURS_CONTENT: Record<
 		text: () =>
 			"Une sélection de sites et d'applications réalisés en mission ou en indépendant, avec les missions qui les accompagnent.",
 	},
-	freelance: {
-		headline: "Un projet React ou Node.js à lancer ?",
-		text: () =>
-			`${getFreelanceStatusLabel()}. Applications, API, refonte : voici ce que je peux prendre en charge.`,
-	},
 	contact: {
 		headline: "On en parle ?",
 		text: () =>
-			"Une mission, un poste ou une simple question : choisissez le canal qui vous convient.",
+			"Une mission freelance, un poste ou une simple question : choisissez le canal qui vous convient.",
 	},
 };
 
