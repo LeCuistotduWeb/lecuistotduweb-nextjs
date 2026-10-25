@@ -1,6 +1,5 @@
 // import { MistralProvider } from "./mistral";
 // import { GeminiProvider } from "./gemini";
-// import { ClaudeProvider } from "./claude";
 import { GeminiProvider } from "./gemini";
 import type { AIProvider } from "./types";
 
