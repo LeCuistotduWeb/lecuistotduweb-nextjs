@@ -67,7 +67,8 @@ export function ContactCard({ className }: { className?: string }) {
 					Un projet, une mission ou un poste&nbsp;?
 				</p>
 				<p className="text-[#4a6a8a] dark:text-[#a1adbc] font-medium">
-					Client ou recruteur, décrivez votre besoin en quelques lignes.
+					Quelle que soit votre demande, quelques lignes suffisent pour
+					démarrer.
 				</p>
 				<div className="flex flex-wrap gap-2 pt-4">
 					{siteConfig.social.malt && (

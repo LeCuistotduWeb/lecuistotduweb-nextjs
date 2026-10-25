@@ -57,7 +57,7 @@ export const PARCOURS_CONTENT: Record<
 	experience: {
 		headline: "8 ans d'expérience au service de vos produits.",
 		text: () =>
-			"Chez Blissim, Infogreffe ou Fnac Darty, j'ai appris à livrer vite sans sacrifier la qualité. C'est cette exigence que j'apporte à votre projet.",
+			"De la startup au grand groupe, chaque expérience m'a appris à comprendre le besoin pour livrer un produit performant et fidèle à vos attentes.",
 	},
 	projets: {
 		headline: "Des projets réalisés avec soin.",
