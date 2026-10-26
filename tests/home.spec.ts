@@ -1,6 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
 
-const CV_PATH = "/pdf/cv-gaetan-boyron-developpeur.pdf";
 const LINKEDIN_URL =
 	"https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/";
 
@@ -37,13 +36,23 @@ test("has title", async ({ page }) => {
 	);
 });
 
-test("links to the CV pdf in a new tab", async ({ page, request }) => {
-	const link = page.locator(`a[href="${CV_PATH}"]`);
-	await expect(link).toHaveAttribute("target", "_blank");
+test("CV card links to the /cv page", async ({ page }) => {
+	const link = cardByTitle(page, "Curriculum Vitae").locator('a[href="/cv"]');
+	await expect(link).toBeVisible();
+});
 
-	const response = await request.get(CV_PATH);
-	expect(response.ok()).toBe(true);
-	expect(response.headers()["content-type"]).toContain("application/pdf");
+test("/cv renders the ATS resume", async ({ page }) => {
+	await page.goto("/cv");
+	await expect(
+		page.getByRole("heading", { level: 1, name: "Gaëtan Boyron" }),
+	).toBeVisible();
+	await expect(page.getByText("Développeur Fullstack React/Node.js")).toBeVisible();
+	// La catégorie Tests liste les outils end-to-end
+	await expect(page.getByText(/Cypress/)).toBeVisible();
+	await expect(page.getByText(/Playwright/)).toBeVisible();
+	await expect(
+		page.getByRole("button", { name: /Imprimer/ }),
+	).toBeVisible();
 });
 
 test("contact card shows status and links", async ({ page }) => {

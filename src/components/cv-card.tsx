@@ -1,15 +1,13 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
 import { cn } from "#/lib/utils";
 import { CardTitle } from "./card-title";
 
 export function CvCard({ className }: { className?: string }) {
 	return (
-		<a
-			href={siteConfig.cvPath}
-			target="_blank"
-			rel="noreferrer"
+		<Link
+			to="/cv"
 			onClick={() => trackEvent("click_cv")}
 			className={cn(
 				"group card-lift aspect-square relative overflow-hidden rounded-2xl border border-[#d2c4a4] dark:border-[#1c2a3a] bg-[#faf5ec]/90 dark:bg-[#172231]/90 flex flex-col",
@@ -34,6 +32,6 @@ export function CvCard({ className }: { className?: string }) {
 					className="absolute top-0 left-0 w-full translate-y-[10%] transition-transform duration-500 ease-out group-hover:translate-y-0 rounded-sm"
 				/>
 			</div>
-		</a>
+		</Link>
 	);
 }

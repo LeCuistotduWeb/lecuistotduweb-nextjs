@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViewsRouteImport } from './routes/_views'
+import { Route as CvRouteImport } from './routes/cv'
 import { Route as FreelanceRouteImport } from './routes/freelance'
 import { Route as LinkRouteImport } from './routes/link'
 import { Route as ProfilRouteImport } from './routes/profil'
@@ -20,6 +21,11 @@ import { Route as ViewsProjetsRouteImport } from './routes/_views/projets'
 
 const ViewsRoute = ViewsRouteImport.update({
   id: '/_views',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CvRoute = CvRouteImport.update({
+  id: '/cv',
+  path: '/cv',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FreelanceRoute = FreelanceRouteImport.update({
@@ -60,6 +66,7 @@ const ViewsProjetsRoute = ViewsProjetsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof ViewsIndexRoute
+  '/cv': typeof CvRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
   '/profil': typeof ProfilRoute
@@ -68,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/projets': typeof ViewsProjetsRoute
 }
 export interface FileRoutesByTo {
+  '/cv': typeof CvRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
   '/profil': typeof ProfilRoute
@@ -79,6 +87,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_views': typeof ViewsRouteWithChildren
+  '/cv': typeof CvRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
   '/profil': typeof ProfilRoute
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cv'
     | '/freelance'
     | '/link'
     | '/profil'
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/projets'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/cv'
     | '/freelance'
     | '/link'
     | '/profil'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_views'
+    | '/cv'
     | '/freelance'
     | '/link'
     | '/profil'
@@ -120,6 +132,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   ViewsRoute: typeof ViewsRouteWithChildren
+  CvRoute: typeof CvRoute
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
   ProfilRoute: typeof ProfilRoute
@@ -132,6 +145,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof ViewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cv': {
+      id: '/cv'
+      path: '/cv'
+      fullPath: '/cv'
+      preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/freelance': {
@@ -204,6 +224,7 @@ const ViewsRouteWithChildren = ViewsRoute._addFileChildren(ViewsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   ViewsRoute: ViewsRouteWithChildren,
+  CvRoute: CvRoute,
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,
   ProfilRoute: ProfilRoute,

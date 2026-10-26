@@ -660,3 +660,15 @@ html::after {
     color: var(--foreground);
   }
 }
+
+/* Impression (page /cv → PDF au texte sélectionnable) : on retire le fond
+   animé et on force un fond blanc pour un rendu sobre et lisible par les ATS. */
+@media print {
+  canvas {
+    display: none !important;
+  }
+  html,
+  body {
+    background: #fff !important;
+  }
+}
