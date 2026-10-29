@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { getRequestIP } from "@tanstack/react-start/server";
+import { getRequestHeaders, getRequestIP } from "@tanstack/react-start/server";
 import { siteConfig } from "#/config";
 import { type ContactInput, contactSchema } from "#/lib/contact";
 
@@ -21,7 +21,38 @@ function isRateLimited(ip: string) {
 	return false;
 }
 
-function buildEmail(data: ContactInput) {
+// IP bannies, renseignées via l'env BLOCKED_IPS (séparées par des virgules).
+// Un envoi depuis une de ces IP est ignoré silencieusement.
+function isBlockedIp(ip: string) {
+	const blocked = (process.env.BLOCKED_IPS ?? "")
+		.split(",")
+		.map((v) => v.trim())
+		.filter(Boolean);
+	return blocked.includes(ip);
+}
+
+// Métadonnées de traçage ajoutées au mail reçu : de quoi identifier ou
+// signaler l'auteur d'un message abusif (IP + horodatage).
+function requestMeta(ip: string) {
+	const h = getRequestHeaders() as unknown as Record<
+		string,
+		string | undefined
+	>;
+	return [
+		`IP : ${ip}`,
+		`Navigateur : ${h["user-agent"] ?? "?"}`,
+		`Page : ${h.referer ?? "?"}`,
+		// Pays/ville si l'hébergeur les fournit (Vercel ou Cloudflare).
+		(h["x-vercel-ip-country"] ?? h["cf-ipcountry"]) &&
+			`Pays : ${h["x-vercel-ip-country"] ?? h["cf-ipcountry"]}`,
+		h["x-vercel-ip-city"] && `Ville : ${h["x-vercel-ip-city"]}`,
+		`Date : ${new Date().toLocaleString("fr-FR", { timeZone: "Europe/Paris" })}`,
+	]
+		.filter(Boolean)
+		.join("\n");
+}
+
+function buildEmail(data: ContactInput, meta: string) {
 	const subject = ["[Contact]", data.name, data.topic && `— ${data.topic}`]
 		.filter(Boolean)
 		.join(" ");
@@ -32,7 +63,10 @@ function buildEmail(data: ContactInput) {
 	]
 		.filter(Boolean)
 		.join("\n");
-	return { subject, text: `${header}\n\n${data.message}` };
+	return {
+		subject,
+		text: `${header}\n\n${data.message}\n\n— — —\n${meta}`,
+	};
 }
 
 export const sendContactFn = createServerFn({ method: "POST" })
@@ -41,14 +75,17 @@ export const sendContactFn = createServerFn({ method: "POST" })
 		// Robot : on fait comme si tout s'était bien passé
 		if (data.website) return { ok: true as const };
 
-		if (isRateLimited(getRequestIP({ xForwardedFor: true }) ?? "unknown")) {
-			throw new Error("rate_limited");
-		}
+		const ip = getRequestIP({ xForwardedFor: true }) ?? "inconnue";
+
+		// IP bannie : on fait comme si l'envoi avait réussi, sans rien envoyer
+		if (isBlockedIp(ip)) return { ok: true as const };
+
+		if (isRateLimited(ip)) throw new Error("rate_limited");
 
 		const apiKey = process.env.RESEND_API_KEY;
 		if (!apiKey) throw new Error("missing_api_key");
 
-		const { subject, text } = buildEmail(data);
+		const { subject, text } = buildEmail(data, requestMeta(ip));
 		const res = await fetch("https://api.resend.com/emails", {
 			method: "POST",
 			headers: {
