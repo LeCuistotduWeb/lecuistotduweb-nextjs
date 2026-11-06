@@ -22,7 +22,7 @@ importers:
         version: 4.3.3(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))
       '@tanstack/react-devtools':
         specifier: latest
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.13)
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.13)
       '@tanstack/react-form':
         specifier: latest
         version: 1.33.5(@tanstack/react-start@1.169.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(rolldown@1.2.8)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0)))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -81,8 +81,8 @@ importers:
         specifier: ^1.3.6
         version: 1.4.0
       zod:
-        specifier: ^4.6.5
-        version: 4.6.5
+        specifier: ^4.6.6
+        version: 4.6.6
     devDependencies:
       '@biomejs/biome':
         specifier: 2.5.15
@@ -95,7 +95,7 @@ importers:
         version: 0.5.20(tailwindcss@4.3.3)
       '@tanstack/devtools-vite':
         specifier: latest
-        version: 0.8.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))
+        version: 0.8.6(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))
       '@testing-library/dom':
         specifier: ^10.4.2
         version: 10.4.2
@@ -1568,8 +1568,8 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tanstack/devtools-bundler-core@0.1.3':
-    resolution: {integrity: sha512-F0tlxIyfFqXkZ1mJP1EjtkiSeJA+ztXY2AYOHf7r4goCIEAOp86N9PFJ/yv8vu1TnmxGS6vKsZCS3Kyls9xQQA==}
+  '@tanstack/devtools-bundler-core@0.1.4':
+    resolution: {integrity: sha512-NaDbpESGyGLV4XPbLsL1b7XeGnYovbnRjoTZ9LoAwllaaposdcrgtBsAcbdr0n4p+mltEVrUB6AFpvAmjj0VGQ==}
     engines: {node: '>=18'}
 
   '@tanstack/devtools-client@0.0.8':
@@ -1590,25 +1590,23 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@tanstack/devtools-ui@0.7.1':
-    resolution: {integrity: sha512-3xQ/ezZ2qVNszhjpCN2N3jn7uHc2J1PMgcyjHzH4XZBt9xAQyMMcPNoR2cd7rzReyxWoJpZUWiDBmOJiCtLj9A==}
+  '@tanstack/devtools-ui@0.7.2':
+    resolution: {integrity: sha512-Ij6EpEXkx13OOVMJPCJpMzWzVV/mcsqfXM4d+ZjqCrQtgbt7cd2rsCseuKuYNmuGhJiOLYNXzYU5da7UqCY54g==}
     engines: {node: '>=18'}
     peerDependencies:
-      solid-js: '>=1.9.7'
+      solid-js: ^1.9.13
 
-  '@tanstack/devtools-vite@0.8.5':
-    resolution: {integrity: sha512-xaifCEmiwwzizlbp973oISXNsnmuU/BugLa66gryAZaPJJ/qo1kJd2DxY5X960eHwmyIS3SN0KYrL3/aRhucmA==}
+  '@tanstack/devtools-vite@0.8.6':
+    resolution: {integrity: sha512-CkaVqh3P7cJmQ6mMIxQfEmmR8gwlmgRCcoiWOMLigHaPobrrwTqsZvKqvYRHBybZ3ZT1ZSBj5TwlP7ukJJcRlg==}
     engines: {node: '>=18'}
-    hasBin: true
     peerDependencies:
       vite: ^6.0.0 || ^7.0.0 || ^8.0.0
 
-  '@tanstack/devtools@0.15.0':
-    resolution: {integrity: sha512-KyS7Qi82Eq9yG8C+uae3ikAPb+D5rfzVhvOOjXVAHZ/64s6TWJlDWpREw1FrHIYZaI7paErpsExSSKlF5BKA/A==}
+  '@tanstack/devtools@0.16.0':
+    resolution: {integrity: sha512-SgmsZ1RwWgohY+S2GhZ1bCttZ+bICb8EKaI1DUFBrs/CXL67IaW25TouoHflj5fGzrppfDM2ld56+TLuzMwJSA==}
     engines: {node: '>=18'}
-    hasBin: true
     peerDependencies:
-      solid-js: '>=1.9.7'
+      solid-js: ^1.9.13
 
   '@tanstack/form-core@1.33.5':
     resolution: {integrity: sha512-3dfx9MBP0aq5sXKteikG629X9oviptrQj0IFRk9YGcb+lB7Kv5x8S17oOSk1wUWgjQZ4xVJEMbKwOAODymocgA==}
@@ -1628,8 +1626,8 @@ packages:
   '@tanstack/query-core@5.102.8':
     resolution: {integrity: sha512-ZNjkJ33CqvPNec/6lZBnHqLc3EVGPZ9ySLhYahU9TcuRFdmwXewuj0c4hwSWcGHqEUwcSrKeZ+oGcvPBqXcQcg==}
 
-  '@tanstack/react-devtools@0.10.13':
-    resolution: {integrity: sha512-r0cdB/14+st2Vxl/1Bodlyq4VC8pf9SykLQDYbGHDc1+V146WQo5B3KlYLkfyxD9Q/6+9NPRQHZyl8fvZVMdRA==}
+  '@tanstack/react-devtools@0.10.14':
+    resolution: {integrity: sha512-wFoNpqiU03MDbY1RljhX4vMUoGWwqpa5AZthWEaJRrojBFWFoB57lzzIM5r+EPGi+BsEX+OcXkn8Zkfoe4hGiA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/react': '>=16.8'
@@ -2399,8 +2397,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  launch-editor@2.14.1:
-    resolution: {integrity: sha512-QWBrQsMpH7gPr965dsKD/3cKWiNoTjpATQf++Xq63N6sKRGMwlVXz41O1IZTMfZQgBctD/K5Zt06+/I6pP6+HA==}
+  launch-editor@2.14.2:
+    resolution: {integrity: sha512-NHJEb30MGBCkmZXLZwz25t37QR4aY03ZzPYUJXOJaOa92uWwExI9SBQUuIznBYc1xkD7cJNGX7oc3Nl3sq2kQQ==}
 
   lightningcss-android-arm64@1.32.0:
     resolution: {integrity: sha512-YK7/ClTt4kAK0vo6w3X+Pnm0D2cf2vPHbhOXdoNti1Ga0al1P4TBZhwjATvjNwLEBCnKvjJc2jQgHXH0NEwlAg==}
@@ -3026,8 +3024,8 @@ packages:
   undici-types@8.9.0:
     resolution: {integrity: sha512-KTDyRTYX8sWmKXAikPHHSyc63CRPETMctyjKFupcC6OBLXT3xsN0e9aF7m+mIXutFWpUXuedtowG7iLOzp0kQg==}
 
-  undici@8.11.2:
-    resolution: {integrity: sha512-u4UB2/IrKdU6lFxumHmmo1a3fCQO5tzQllRorfoRS63txhrB7xTpSn1PftwC4qEHkOaqP95fCWW4lJzwErwzhQ==}
+  undici@8.12.4:
+    resolution: {integrity: sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA==}
     engines: {node: '>=22.19.0'}
 
   unenv@2.0.0-rc.24:
@@ -3269,8 +3267,8 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  zod@4.6.5:
-    resolution: {integrity: sha512-v5l/aFXZQeai4awLbOpSoHecE9UiMrnfx75tEXLjNonXVARxQ5mOeipTjROUchszUNCqnE+hqAMujRsRHsut2Q==}
+  zod@4.6.6:
+    resolution: {integrity: sha512-4UmzQUF5fxvfcYHlbjBmejU+w+hbDnWFx4aS8kBx7nPBHcO2SqPbpAG8snbdg+Xse4pRefR98hgjFgIMCI/UhA==}
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
@@ -4586,12 +4584,12 @@ snapshots:
       tailwindcss: 4.3.3
       vite: 8.3.3(@types/node@26.6.4)(jiti@2.7.0)
 
-  '@tanstack/devtools-bundler-core@0.1.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
+  '@tanstack/devtools-bundler-core@0.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)':
     dependencies:
       '@tanstack/devtools-client': 0.0.8
       '@tanstack/devtools-event-bus': 0.4.3
       chalk: 5.6.2
-      launch-editor: 2.14.1
+      launch-editor: 2.14.2
       magic-string: 0.30.21
       oxc-parser: 0.120.0(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
       picomatch: 4.0.7
@@ -4616,7 +4614,7 @@ snapshots:
 
   '@tanstack/devtools-event-client@0.5.0': {}
 
-  '@tanstack/devtools-ui@0.7.1(csstype@3.2.3)(solid-js@1.9.13)':
+  '@tanstack/devtools-ui@0.7.2(csstype@3.2.3)(solid-js@1.9.13)':
     dependencies:
       clsx: 2.1.1
       dayjs: 1.11.23
@@ -4625,9 +4623,9 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/devtools-vite@0.8.5(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))':
+  '@tanstack/devtools-vite@0.8.6(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))':
     dependencies:
-      '@tanstack/devtools-bundler-core': 0.1.3(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
+      '@tanstack/devtools-bundler-core': 0.1.4(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)
       '@tanstack/devtools-client': 0.0.8
       '@tanstack/devtools-event-bus': 0.4.3
       chalk: 5.6.2
@@ -4638,7 +4636,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@tanstack/devtools@0.15.0(csstype@3.2.3)(solid-js@1.9.13)':
+  '@tanstack/devtools@0.16.0(csstype@3.2.3)(solid-js@1.9.13)':
     dependencies:
       '@neodrag/core': 3.0.0-next.11
       '@neodrag/solid': 3.0.0-next.11(@neodrag/core@3.0.0-next.11)(solid-js@1.9.13)
@@ -4647,7 +4645,7 @@ snapshots:
       '@solid-primitives/resize-observer': 2.2.0(solid-js@1.9.13)
       '@tanstack/devtools-client': 0.0.8
       '@tanstack/devtools-event-bus': 0.4.3
-      '@tanstack/devtools-ui': 0.7.1(csstype@3.2.3)(solid-js@1.9.13)
+      '@tanstack/devtools-ui': 0.7.2(csstype@3.2.3)(solid-js@1.9.13)
       clsx: 2.1.1
       goober: 2.1.19(csstype@3.2.3)
       solid-js: 1.9.13
@@ -4670,9 +4668,9 @@ snapshots:
 
   '@tanstack/query-core@5.102.8': {}
 
-  '@tanstack/react-devtools@0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.13)':
+  '@tanstack/react-devtools@0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.13)':
     dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.13)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.13)
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
       react: 19.3.0
@@ -4836,7 +4834,7 @@ snapshots:
       jiti: 2.7.0
       magic-string: 0.30.21
       prettier: 3.9.6
-      zod: 4.6.5
+      zod: 4.6.6
     transitivePeerDependencies:
       - supports-color
 
@@ -4849,7 +4847,7 @@ snapshots:
       jiti: 2.7.0
       magic-string: 0.30.21
       prettier: 3.9.6
-      zod: 4.6.5
+      zod: 4.6.6
     transitivePeerDependencies:
       - supports-color
 
@@ -4863,7 +4861,7 @@ snapshots:
       '@tanstack/router-utils': 1.162.3
       chokidar: 5.0.0
       unplugin: 3.3.0(rolldown@1.2.8)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))
-      zod: 4.6.5
+      zod: 4.6.6
     optionalDependencies:
       '@tanstack/react-router': 1.170.46(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       vite: 8.3.3(@types/node@26.6.4)(jiti@2.7.0)
@@ -4887,7 +4885,7 @@ snapshots:
       '@tanstack/router-utils': 1.162.4
       chokidar: 5.0.0
       unplugin: 3.3.0(rolldown@1.2.8)(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))
-      zod: 4.6.5
+      zod: 4.6.6
     optionalDependencies:
       '@tanstack/react-router': 1.170.46(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       vite: 8.3.3(@types/node@26.6.4)(jiti@2.7.0)
@@ -4963,7 +4961,7 @@ snapshots:
       ufo: 1.6.4
       vitefu: 1.1.3(vite@8.3.3(@types/node@26.6.4)(jiti@2.7.0))
       xmlbuilder2: 4.0.3
-      zod: 4.6.5
+      zod: 4.6.6
     optionalDependencies:
       vite: 8.3.3(@types/node@26.6.4)(jiti@2.7.0)
     transitivePeerDependencies:
@@ -5413,7 +5411,7 @@ snapshots:
       parse5: 8.0.1
       saxes: 6.0.0
       tough-cookie: 6.0.2
-      undici: 8.11.2
+      undici: 8.12.4
       w3c-xmlserializer: 6.0.0
       webidl-conversions: 8.0.1
       whatwg-mimetype: 5.0.0
@@ -5426,7 +5424,7 @@ snapshots:
 
   json5@2.2.3: {}
 
-  launch-editor@2.14.1:
+  launch-editor@2.14.2:
     dependencies:
       picocolors: 1.1.1
       shell-quote: 1.12.0
@@ -6328,7 +6326,7 @@ snapshots:
 
   undici-types@8.9.0: {}
 
-  undici@8.11.2: {}
+  undici@8.12.4: {}
 
   unenv@2.0.0-rc.24:
     dependencies:
@@ -6491,6 +6489,6 @@ snapshots:
 
   yallist@3.1.1: {}
 
-  zod@4.6.5: {}
+  zod@4.6.6: {}
 
   zwitch@2.0.4: {}
