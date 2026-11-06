@@ -1,0 +1,35 @@
+name: Dependabot auto-merge
+
+# Merge les PRs Dependabot dans main une fois les tests Playwright passés.
+on:
+  workflow_run:
+    workflows: ["Playwright Tests"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.actor.login == 'dependabot[bot]' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
+    steps:
+      - name: Merge la PR Dependabot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          pr=$(gh pr list --head "$BRANCH" --state open --json number,author,headRefOid \
+            --jq ".[] | select(.author.login == \"app/dependabot\" and .headRefOid == \"$HEAD_SHA\") | .number")
+          if [ -z "$pr" ]; then
+            echo "Aucune PR Dependabot ouverte à jour pour $BRANCH"
+            exit 0
+          fi
+          gh pr merge "$pr" --squash --delete-branch
