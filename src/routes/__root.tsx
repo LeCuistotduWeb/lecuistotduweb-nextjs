@@ -103,7 +103,10 @@ const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLaye
 // Fonction appelée par un agent IA qui a lu la note cachée (AiAgentNote) :
 // envoie l'event GA `ai_agent_visit`. Définie avant l'hydratation pour être
 // disponible même si l'agent l'appelle tôt.
-const aiAgentScript = `window.aiAgentSignal=function(a,m){gtag('event','ai_agent_visit',{agent_name:String(a||'unknown').slice(0,100),method:m||'js',page_path:location.pathname});return true};`;
+// Le nom d'agent est filtré pour ne jamais envoyer de donnée personnelle à GA :
+// e-mail ou numéro de téléphone → "redacted", sinon slug [a-z0-9._-] de 40
+// caractères max.
+const aiAgentScript = `window.aiAgentSignal=function(a,m){a=String(a||'').toLowerCase().trim();a=/@|\\d[\\d\\s.()+-]{7,}\\d/.test(a)?'redacted':a.replace(/[^a-z0-9._-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40)||'unknown';gtag('event','ai_agent_visit',{agent_name:a,method:m==='url'?'url':'js',page_path:location.pathname});return true};`;
 
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
