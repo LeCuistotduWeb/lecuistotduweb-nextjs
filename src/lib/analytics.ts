@@ -1,6 +1,7 @@
 declare global {
 	interface Window {
 		gtag?: (...args: unknown[]) => void;
+		aiAgentSignal?: (agent?: string, method?: string) => boolean;
 	}
 }
 

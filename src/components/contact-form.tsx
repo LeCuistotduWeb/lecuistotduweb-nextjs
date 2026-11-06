@@ -31,13 +31,13 @@ function errorText(errors: unknown[]) {
 		: (first as { message?: string }).message;
 }
 
-export function ContactForm() {
+export function ContactForm({ defaultTopic = "" }: { defaultTopic?: string }) {
 	const id = useId();
 	const [status, setStatus] = useState<Status>("idle");
 
 	const form = useForm({
 		defaultValues: {
-			topic: "",
+			topic: defaultTopic,
 			name: "",
 			email: "",
 			message: "",

@@ -7,6 +7,7 @@ export const CONTACT_TOPICS = [
 	"Création de site",
 	"Appli web / mobile",
 	"Refonte",
+	"Autres",
 ] as const;
 
 export const contactSchema = z.object({
