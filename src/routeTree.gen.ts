@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViewsRouteImport } from './routes/_views'
+import { Route as AiHelloRouteImport } from './routes/ai-hello'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as FreelanceRouteImport } from './routes/freelance'
 import { Route as LinkRouteImport } from './routes/link'
@@ -21,6 +22,11 @@ import { Route as ViewsProjetsRouteImport } from './routes/_views/projets'
 
 const ViewsRoute = ViewsRouteImport.update({
   id: '/_views',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiHelloRoute = AiHelloRouteImport.update({
+  id: '/ai-hello',
+  path: '/ai-hello',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CvRoute = CvRouteImport.update({
@@ -66,6 +72,7 @@ const ViewsProjetsRoute = ViewsProjetsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof ViewsIndexRoute
+  '/ai-hello': typeof AiHelloRoute
   '/cv': typeof CvRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/projets': typeof ViewsProjetsRoute
 }
 export interface FileRoutesByTo {
+  '/ai-hello': typeof AiHelloRoute
   '/cv': typeof CvRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
@@ -87,6 +95,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_views': typeof ViewsRouteWithChildren
+  '/ai-hello': typeof AiHelloRoute
   '/cv': typeof CvRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-hello'
     | '/cv'
     | '/freelance'
     | '/link'
@@ -109,6 +119,7 @@ export interface FileRouteTypes {
     | '/projets'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/ai-hello'
     | '/cv'
     | '/freelance'
     | '/link'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/_views'
+    | '/ai-hello'
     | '/cv'
     | '/freelance'
     | '/link'
@@ -132,6 +144,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   ViewsRoute: typeof ViewsRouteWithChildren
+  AiHelloRoute: typeof AiHelloRoute
   CvRoute: typeof CvRoute
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof ViewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-hello': {
+      id: '/ai-hello'
+      path: '/ai-hello'
+      fullPath: '/ai-hello'
+      preLoaderRoute: typeof AiHelloRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cv': {
@@ -224,6 +244,7 @@ const ViewsRouteWithChildren = ViewsRoute._addFileChildren(ViewsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   ViewsRoute: ViewsRouteWithChildren,
+  AiHelloRoute: AiHelloRoute,
   CvRoute: CvRoute,
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,

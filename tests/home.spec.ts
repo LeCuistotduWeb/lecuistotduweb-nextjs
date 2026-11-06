@@ -74,7 +74,7 @@ test("contact form validates before sending", async ({ page }) => {
 	});
 	const topic = form.getByRole("combobox", { name: "Sujet" });
 	await topic.click();
-	await expect(form.getByRole("option")).toHaveCount(5);
+	await expect(form.getByRole("option")).toHaveCount(6);
 	await topic.fill("recru");
 	await expect(form.getByRole("option")).toHaveCount(1);
 	await topic.press("ArrowDown");

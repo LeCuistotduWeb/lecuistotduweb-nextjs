@@ -7,6 +7,7 @@ import {
 	Scripts,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { AiAgentNote } from "#/components/ai-agent-note";
 import { AnimatedBackground } from "#/components/animated-background";
 import { Button } from "#/components/ui/button";
 import appCss from "../styles.css?url";
@@ -99,6 +100,12 @@ const experienceScript = `(function(){var d=document.documentElement;try{var r=m
 
 const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D3ME6QTB34');`;
 
+// Fonction appelée par un agent IA qui a lu la note cachée (AiAgentNote) :
+// envoie l'event GA `ai_agent_visit`. Définie avant l'hydratation pour être
+// disponible même si l'agent l'appelle tôt.
+// Nom d'agent : 2 à 40 caractères (sinon "unknown"), en minuscules.
+const aiAgentScript = `window.aiAgentSignal=function(a,m){a=String(a||'').toLowerCase().trim().slice(0,40);if(a.length<2)a='unknown';gtag('event','ai_agent_visit',{agent_name:a,method:m==='url'?'url':'js',page_path:location.pathname});return true};`;
+
 function RootDocument({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="fr" suppressHydrationWarning>
@@ -112,11 +119,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				</noscript>
 				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: GA4 init */}
 				<script dangerouslySetInnerHTML={{ __html: gaScript }} />
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: AI agent signal */}
+				<script dangerouslySetInnerHTML={{ __html: aiAgentScript }} />
 				<HeadContent />
 			</head>
 			<body>
 				<AnimatedBackground />
 				{children}
+				<AiAgentNote />
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",
