@@ -26,6 +26,14 @@ export const siteConfig = {
 		// RDV n'apparaît que s'il est renseigné
 		calLink: "lecuistotduweb/30min" as string | undefined,
 	},
+	rangeo: {
+		// Sous-domaine dédié : la home du sous-domaine affiche /rangeo
+		url: "https://rangeo.lecuistotduweb.fr",
+		host: "rangeo.",
+		packageId: "fr.lecuistotduweb.rangeo",
+		// Fiche Google Play ; le bouton n'apparaît que s'il est renseigné
+		playStoreUrl: undefined as string | undefined,
+	},
 	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
 	description:
 		"Développeur Fullstack spécialisé en React et Node.js. Je crée des expériences web modernes et performantes. Découvrez mes projets et compétences.",

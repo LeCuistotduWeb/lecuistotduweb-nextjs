@@ -19,6 +19,8 @@ import { Route as ViewsIndexRouteImport } from './routes/_views/index'
 import { Route as ViewsContactRouteImport } from './routes/_views/contact'
 import { Route as ViewsExperienceRouteImport } from './routes/_views/experience'
 import { Route as ViewsProjetsRouteImport } from './routes/_views/projets'
+import { Route as RangeoIndexRouteImport } from './routes/rangeo/index'
+import { Route as RangeoConfidentialiteRouteImport } from './routes/rangeo/confidentialite'
 
 const ViewsRoute = ViewsRouteImport.update({
   id: '/_views',
@@ -69,6 +71,16 @@ const ViewsProjetsRoute = ViewsProjetsRouteImport.update({
   path: '/projets',
   getParentRoute: () => ViewsRoute,
 } as any)
+const RangeoIndexRoute = RangeoIndexRouteImport.update({
+  id: '/rangeo/',
+  path: '/rangeo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RangeoConfidentialiteRoute = RangeoConfidentialiteRouteImport.update({
+  id: '/rangeo/confidentialite',
+  path: '/rangeo/confidentialite',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof ViewsIndexRoute
@@ -80,6 +92,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
   '/projets': typeof ViewsProjetsRoute
+  '/rangeo/confidentialite': typeof RangeoConfidentialiteRoute
+  '/rangeo/': typeof RangeoIndexRoute
 }
 export interface FileRoutesByTo {
   '/ai-hello': typeof AiHelloRoute
@@ -90,7 +104,9 @@ export interface FileRoutesByTo {
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
   '/projets': typeof ViewsProjetsRoute
+  '/rangeo/confidentialite': typeof RangeoConfidentialiteRoute
   '/': typeof ViewsIndexRoute
+  '/rangeo': typeof RangeoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -103,7 +119,9 @@ export interface FileRoutesById {
   '/_views/contact': typeof ViewsContactRoute
   '/_views/experience': typeof ViewsExperienceRoute
   '/_views/projets': typeof ViewsProjetsRoute
+  '/rangeo/confidentialite': typeof RangeoConfidentialiteRoute
   '/_views/': typeof ViewsIndexRoute
+  '/rangeo/': typeof RangeoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -117,6 +135,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/projets'
+    | '/rangeo/confidentialite'
+    | '/rangeo/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/ai-hello'
@@ -127,7 +147,9 @@ export interface FileRouteTypes {
     | '/contact'
     | '/experience'
     | '/projets'
+    | '/rangeo/confidentialite'
     | '/'
+    | '/rangeo'
   id:
     | '__root__'
     | '/_views'
@@ -139,7 +161,9 @@ export interface FileRouteTypes {
     | '/_views/contact'
     | '/_views/experience'
     | '/_views/projets'
+    | '/rangeo/confidentialite'
     | '/_views/'
+    | '/rangeo/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -149,6 +173,8 @@ export interface RootRouteChildren {
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
   ProfilRoute: typeof ProfilRoute
+  RangeoConfidentialiteRoute: typeof RangeoConfidentialiteRoute
+  RangeoIndexRoute: typeof RangeoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -223,6 +249,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ViewsProjetsRouteImport
       parentRoute: typeof ViewsRoute
     }
+    '/rangeo/': {
+      id: '/rangeo/'
+      path: '/rangeo'
+      fullPath: '/rangeo/'
+      preLoaderRoute: typeof RangeoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rangeo/confidentialite': {
+      id: '/rangeo/confidentialite'
+      path: '/rangeo/confidentialite'
+      fullPath: '/rangeo/confidentialite'
+      preLoaderRoute: typeof RangeoConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -249,6 +289,8 @@ const rootRouteChildren: RootRouteChildren = {
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,
   ProfilRoute: ProfilRoute,
+  RangeoConfidentialiteRoute: RangeoConfidentialiteRoute,
+  RangeoIndexRoute: RangeoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
