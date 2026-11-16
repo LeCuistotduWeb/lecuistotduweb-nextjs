@@ -74,12 +74,12 @@ test("contact form validates before sending", async ({ page }) => {
 	});
 	const topic = form.getByRole("combobox", { name: "Sujet" });
 	await topic.click();
-	await expect(form.getByRole("option")).toHaveCount(6);
-	await topic.fill("recru");
+	await expect(form.getByRole("option")).toHaveCount(4);
+	await topic.fill("mainten");
 	await expect(form.getByRole("option")).toHaveCount(1);
 	await topic.press("ArrowDown");
 	await topic.press("Enter");
-	await expect(topic).toHaveValue("Recrutement");
+	await expect(topic).toHaveValue("Maintenance et évolutions");
 	await expect(form.getByRole("listbox")).toBeHidden();
 	await form.getByLabel("E-mail").fill("pas-un-mail");
 	await form.getByRole("button", { name: "Envoyer" }).click();
@@ -95,10 +95,22 @@ test("/profil redirects to the experience chapter", async ({ page }) => {
 	await expect(page).toHaveTitle("Expérience — Gaëtan Boyron");
 });
 
-test("/freelance redirects to the contact chapter", async ({ page }) => {
+test("/freelance redirects to the offer chapter", async ({ page }) => {
 	await page.goto("/freelance");
+	await expect(page).toHaveURL(/\/offre$/);
+	await expect(page).toHaveTitle("Offre freelance — Gaëtan Boyron");
+});
+
+test("offer link prefills the contact topic", async ({ page }) => {
+	await waitForHydration(page);
+	await page.getByRole("link", { name: "En parler" }).first().click();
 	await expect(page).toHaveURL(/\/contact$/);
-	await expect(page).toHaveTitle("Contact — Gaëtan Boyron");
+	const form = cardByTitle(page, "Contact").getByRole("form", {
+		name: "Formulaire de contact",
+	});
+	await expect(form.getByRole("combobox", { name: "Sujet" })).toHaveValue(
+		"Projet sur mesure",
+	);
 });
 
 test("links to LinkedIn in a new tab", async ({ page }) => {
@@ -109,40 +121,43 @@ test("links to LinkedIn in a new tab", async ({ page }) => {
 
 test("project carousel navigates, autoplays and pauses", async ({ page }) => {
 	const card = cardByTitle(page, "Projets");
-	const counter = card.getByText(/^\d{2} \/ 07$/);
-	await expect(counter).toHaveText("01 / 07");
+	const counter = card.getByText(/^\d{2} \/ 08$/);
+	await expect(counter).toHaveText("01 / 08");
 
 	// Avance automatique (5 s) — la souris ne doit pas survoler la carte
 	await page.mouse.move(0, 0);
-	await expect(counter).toHaveText("02 / 07", { timeout: 8000 });
+	await expect(counter).toHaveText("02 / 08", { timeout: 8000 });
 
 	await card.getByRole("button", { name: "Mettre le défilement en pause" }).click();
 	await card.getByRole("button", { name: "Projet suivant" }).click();
-	await expect(counter).toHaveText("03 / 07");
+	await expect(counter).toHaveText("03 / 08");
 
 	await card.getByRole("button", { name: "Projet précédent" }).click();
 	await card.getByRole("button", { name: "Projet précédent" }).click();
 	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await expect(counter).toHaveText("07 / 07");
+	await expect(counter).toHaveText("08 / 08");
 
 	await page.mouse.move(0, 0);
 	await page.waitForTimeout(6000);
-	await expect(counter).toHaveText("07 / 07");
+	await expect(counter).toHaveText("08 / 08");
 	await expect(
 		card.getByRole("button", { name: "Reprendre le défilement" }),
 	).toBeVisible();
 });
 
-const CHAPTERS = [
+const CHAPTERS: { path: string; id: string; label: string; title?: string }[] = [
 	{ path: "/experience", id: "experience", label: "Expérience" },
 	{ path: "/projets", id: "projets", label: "Projets" },
+	{ path: "/offre", id: "offre", label: "Offre", title: "Offre freelance" },
 	{ path: "/contact", id: "contact", label: "Contact" },
 ];
 
 for (const chapter of CHAPTERS) {
 	test(`route ${chapter.path} lands on its chapter`, async ({ page }) => {
 		await page.goto(chapter.path);
-		await expect(page).toHaveTitle(`${chapter.label} — Gaëtan Boyron`);
+		await expect(page).toHaveTitle(
+			`${chapter.title ?? chapter.label} — Gaëtan Boyron`,
+		);
 		const nav = page.getByRole("navigation", { name: "Chapitres" });
 		await expect(
 			nav.getByRole("link", { name: chapter.label, exact: true }),
