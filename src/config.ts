@@ -9,7 +9,7 @@ export const siteConfig = {
 	email: "contact@lecuistotduweb.fr",
 	url: "https://lecuistotduweb.fr",
 	shortUrl: "lecuistotduweb.fr",
-	bio: "Je conçois et fais évoluer vos applications web React / Next.js, de l'idée à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe ou sur un projet clé en main.",
+	bio: "Je conçois et fais évoluer vos applications web React / Next.js, de l'idée à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress.",
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
