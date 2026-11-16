@@ -6,19 +6,19 @@ const MISSIONS = [
 		company: "Fnac Darty",
 		period: "2024 — 2025",
 		desc: "Développement d'applications web marketplace et optimisation des performances.",
-		tags: "React · Next.js · TypeScript",
+		tags: "React · Next.js · TypeScript · Storybook",
 	},
 	{
 		company: "Infogreffe",
 		period: "2023 — 2024",
 		desc: "Intégration de maquettes, amélioration SEO et création d'un constructeur de page.",
-		tags: "Next.js · Strapi · SEO",
+		tags: "React · Next.js · TypeScript · Strapi · SEO · Storybook",
 	},
 	{
 		company: "Blissim",
 		period: "2019 — 2022",
 		desc: "Migration vers une PWA et conception d'une application analytics avancée.",
-		tags: "React · PWA · Fullstack",
+		tags: "React · Next.js · TypeScript · WordPress · PWA · Fullstack",
 	},
 ];
 
