@@ -4,8 +4,6 @@ export const siteConfig = {
 	name: "Gaëtan Boyron",
 	alias: "LeCuistotduWeb",
 	role: "Développeur Fullstack React/Node.js",
-	// Accroche affichée sous le nom (carte de présentation)
-	headline: "Développeur React / Next.js freelance",
 	email: "contact@lecuistotduweb.fr",
 	url: "https://lecuistotduweb.fr",
 	shortUrl: "lecuistotduweb.fr",
@@ -36,7 +34,7 @@ export const siteConfig = {
 		// Fiche Google Play ; le bouton n'apparaît que s'il est renseigné
 		playStoreUrl: undefined as string | undefined,
 	},
-	title: "Gaëtan Boyron — Développeur React / Next.js freelance",
+	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
 	description:
-		"Développeur React / Next.js freelance, 8 ans d'expérience (Fnac Darty, Infogreffe). Applications web, SaaS, e-commerce et sites sur mesure, en régie ou au forfait.",
+		"Développeur Fullstack React/Node.js freelance, 8 ans d'expérience (Fnac Darty, Infogreffe). Applications web, SaaS, e-commerce et sites sur mesure, en régie ou au forfait.",
 } as const;
