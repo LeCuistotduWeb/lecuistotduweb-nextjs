@@ -76,6 +76,7 @@ function ContactLink({ offer }: { offer: string }) {
 	return (
 		<Link
 			to="/contact"
+			resetScroll={false}
 			onClick={() => trackEvent("click_offer_contact", { offer })}
 			className="group/link mt-auto inline-flex w-fit items-center gap-1.5 pt-2 text-sm font-semibold"
 		>
@@ -153,6 +154,7 @@ export function FeaturedOffer({ className }: { className?: string }) {
 					)}
 					<Link
 						to="/contact"
+						resetScroll={false}
 						onClick={() =>
 							trackEvent("click_offer_contact", { offer: FEATURED.title })
 						}
