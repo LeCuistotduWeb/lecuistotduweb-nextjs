@@ -3,6 +3,7 @@ import { EXPERIENCES } from "#/data/experiences";
 import { FORMATIONS } from "#/data/formations";
 import { PROJECTS } from "#/data/projects";
 import { QUALITIES, SKILLS } from "#/data/skills";
+import { getAvailability } from "#/lib/freelance";
 
 export function buildSystemPrompt(): string {
 	const experiences = EXPERIENCES.map((xp) => {
@@ -52,11 +53,13 @@ ${projects}
 - **Musique** : guitariste depuis l'adolescence, il possède plusieurs guitares et joue aussi du piano. Ouvert à tous les styles, il a une préférence pour le rock, le métal et l'électronique (psy, goa...). Il aime découvrir de nouveaux instruments.
 - **Skateboard** : skateur depuis ses 14 ans, la culture du skate fait partie intégrante de son identité.
 
-## Recherche d'emploi
-- Gaëtan est actuellement à la recherche de nouvelles opportunités professionnelles.
+## Disponibilité
+- Disponibilité actuelle : ${getAvailability().label}.
+- Gaëtan est développeur freelance, disponible pour des missions : renfort React / Next.js en régie ou projet au forfait (application web, SaaS, e-commerce, site sur mesure).
+- **WordPress** : il maîtrise WordPress et assure la maintenance, les mises à jour et les évolutions de sites existants. Pour un nouveau projet, il recommande plutôt une solution sur mesure (React / Next.js).
 - Il est basé à Vernon (Normandie) et peut se déplacer facilement sur **Paris** (ligne directe) ou **Rouen** (ligne directe).
-- Il privilégie le **télétravail**, mais reste ouvert aux postes hybrides ou en présentiel selon l'organisation.
-- Postes recherchés : Développeur Front-end, Développeur Fullstack, Développeur React, Développeur React/Node.js, ou tout poste similaire.
+- Il privilégie le **télétravail**, mais reste ouvert aux missions hybrides ou en présentiel selon l'organisation.
+- Missions recherchées : développement front-end ou fullstack React / Next.js / Node.js, architecture frontend, Design System, performance.
 
 ## Contact
 - Email : ${siteConfig.email}

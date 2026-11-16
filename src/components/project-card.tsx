@@ -1,74 +1,19 @@
-import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import {
+	ChevronLeft,
+	ChevronRight,
+	Maximize2,
+	Pause,
+	Play,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { WORKS } from "#/data/works";
 import { trackEvent } from "#/lib/analytics";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
+import { ProjectDetailsDialog } from "./project-details-dialog";
 
-const projects = [
-	{
-		src: "/works/miniature-fnac-darty-1280.webp",
-		srcSet:
-			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-1280.webp 1280w",
-		label: "Fnac Darty",
-		description:
-			"Architecture front React / Next.js, design system Storybook et i18n.",
-	},
-	{
-		src: "/works/miniature-site-web-portfolio-infogreffe-1280.webp",
-		srcSet:
-			"/works/miniature-site-web-portfolio-infogreffe-640.webp 640w, /works/miniature-site-web-portfolio-infogreffe-1280.webp 1280w",
-		label: "Infogreffe",
-		description:
-			"Parcours utilisateurs, Design System et constructeur de pages Strapi.",
-	},
-	{
-		src: "/works/miniature-site-web-1280.webp",
-		srcSet:
-			"/works/miniature-site-web-640.webp 640w, /works/miniature-site-web-1280.webp 1280w",
-		label: "Blissim",
-		description:
-			"E-commerce beauté migré en PWA : abonnement, shop et box sur-mesure.",
-	},
-	{
-		src: "/works/thumbnail-worksite-web-nomad-education-1280.webp",
-		srcSet:
-			"/works/thumbnail-worksite-web-nomad-education-640.webp 640w, /works/thumbnail-worksite-web-nomad-education-1280.webp 1280w",
-		label: "Nomad Education",
-		description:
-			"Refonte du site vitrine et migration d'Angular vers Nuxt / Vue.",
-	},
-	{
-		src: "/works/mon-vdi-assistant-miniature-1280.webp",
-		srcSet:
-			"/works/mon-vdi-assistant-miniature-640.webp 640w, /works/mon-vdi-assistant-miniature-1280.webp 1280w",
-		label: "Mon VDI Assistant",
-		description: "SaaS pour gérer clients, commandes, produits et réunions.",
-	},
-	{
-		src: "/works/miniature-site-web-laclassedefleur-1280.webp",
-		srcSet:
-			"/works/miniature-site-web-laclassedefleur-640.webp 640w, /works/miniature-site-web-laclassedefleur-1280.webp 1280w",
-		label: "La Classe de Fleur",
-		description:
-			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
-	},
-	{
-		src: "/works/miniature-lepoudrierdefleur-1280.webp",
-		srcSet:
-			"/works/miniature-lepoudrierdefleur-640.webp 640w, /works/miniature-lepoudrierdefleur-1280.webp 1280w",
-		label: "Le Poudrier de Fleur",
-		description:
-			"Refonte complète et identité visuelle du site lepoudrierdefleur.fr.",
-	},
-	{
-		src: "/works/miniature-marie-hlg-portfolio-1280.webp",
-		srcSet:
-			"/works/miniature-marie-hlg-portfolio-640.webp 640w, /works/miniature-marie-hlg-portfolio-1280.webp 1280w",
-		label: "Marie Jade",
-		description: "Portfolio sur mesure pour la danseuse Marie Jade Helmlinger.",
-	},
-];
+const projects = WORKS;
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
@@ -105,6 +50,22 @@ export default function ProjectCard({ className }: { className?: string }) {
 	// télécharger toutes les images au chargement initial.
 	const [mounted, setMounted] = useState(() => new Set([0, 1]));
 	const touchStartX = useRef<number | null>(null);
+	const [detailsOpen, setDetailsOpen] = useState(false);
+	// La popup est rendue dans un portail : le focus-within de la carte ne met
+	// donc pas le défilement en pause, on le fait ici.
+	const playingBeforeDetails = useRef(playing);
+
+	function openDetails() {
+		playingBeforeDetails.current = playing;
+		setPlaying(false);
+		setDetailsOpen(true);
+		trackEvent("open_project_details", { project: projects[current].label });
+	}
+
+	function handleDetailsChange(open: boolean) {
+		setDetailsOpen(open);
+		if (!open) setPlaying(playingBeforeDetails.current);
+	}
 
 	useEffect(() => {
 		setMounted((prev) => {
@@ -271,6 +232,15 @@ export default function ProjectCard({ className }: { className?: string }) {
 							/>
 						) : null,
 					)}
+					<button
+						type="button"
+						onClick={openDetails}
+						className="absolute right-3 bottom-3 inline-flex items-center gap-1.5 rounded-full bg-[#faf5ec]/90 dark:bg-[#121e2a]/90 backdrop-blur-sm border border-[#d2c4a4] dark:border-[#253c59] px-3.5 py-1.5 text-sm font-semibold text-[#253c59] dark:text-white shadow-sm hover:bg-[#faf5ec] dark:hover:bg-[#121e2a] transition-colors cursor-pointer"
+					>
+						<Maximize2 className="size-3.5" aria-hidden="true" />
+						Voir le projet
+						<span className="sr-only"> {projects[current].label}</span>
+					</button>
 				</div>
 
 				<div className="flex flex-col gap-3 px-1 lg:hidden">
@@ -310,6 +280,11 @@ export default function ProjectCard({ className }: { className?: string }) {
 					</div>
 				</div>
 			</div>
+			<ProjectDetailsDialog
+				work={projects[current]}
+				open={detailsOpen}
+				onOpenChange={handleDetailsChange}
+			/>
 		</BentoCard>
 	);
 }

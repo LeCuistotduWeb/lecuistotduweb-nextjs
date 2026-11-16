@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import {
 	Briefcase,
 	FolderKanban,
+	Handshake,
 	type LucideIcon,
 	Mail,
 	UserRound,
@@ -16,6 +17,7 @@ const VIEW_ICONS: Record<ViewId, LucideIcon> = {
 	accueil: UserRound,
 	experience: Briefcase,
 	projets: FolderKanban,
+	offre: Handshake,
 	contact: Mail,
 };
 

@@ -18,6 +18,7 @@ import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as ViewsIndexRouteImport } from './routes/_views/index'
 import { Route as ViewsContactRouteImport } from './routes/_views/contact'
 import { Route as ViewsExperienceRouteImport } from './routes/_views/experience'
+import { Route as ViewsOffreRouteImport } from './routes/_views/offre'
 import { Route as ViewsProjetsRouteImport } from './routes/_views/projets'
 import { Route as RangeoIndexRouteImport } from './routes/rangeo/index'
 import { Route as RangeoConfidentialiteRouteImport } from './routes/rangeo/confidentialite'
@@ -66,6 +67,11 @@ const ViewsExperienceRoute = ViewsExperienceRouteImport.update({
   path: '/experience',
   getParentRoute: () => ViewsRoute,
 } as any)
+const ViewsOffreRoute = ViewsOffreRouteImport.update({
+  id: '/offre',
+  path: '/offre',
+  getParentRoute: () => ViewsRoute,
+} as any)
 const ViewsProjetsRoute = ViewsProjetsRouteImport.update({
   id: '/projets',
   path: '/projets',
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/profil': typeof ProfilRoute
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
+  '/offre': typeof ViewsOffreRoute
   '/projets': typeof ViewsProjetsRoute
   '/rangeo/confidentialite': typeof RangeoConfidentialiteRoute
   '/rangeo/': typeof RangeoIndexRoute
@@ -103,6 +110,7 @@ export interface FileRoutesByTo {
   '/profil': typeof ProfilRoute
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
+  '/offre': typeof ViewsOffreRoute
   '/projets': typeof ViewsProjetsRoute
   '/rangeo/confidentialite': typeof RangeoConfidentialiteRoute
   '/': typeof ViewsIndexRoute
@@ -118,6 +126,7 @@ export interface FileRoutesById {
   '/profil': typeof ProfilRoute
   '/_views/contact': typeof ViewsContactRoute
   '/_views/experience': typeof ViewsExperienceRoute
+  '/_views/offre': typeof ViewsOffreRoute
   '/_views/projets': typeof ViewsProjetsRoute
   '/rangeo/confidentialite': typeof RangeoConfidentialiteRoute
   '/_views/': typeof ViewsIndexRoute
@@ -134,6 +143,7 @@ export interface FileRouteTypes {
     | '/profil'
     | '/contact'
     | '/experience'
+    | '/offre'
     | '/projets'
     | '/rangeo/confidentialite'
     | '/rangeo/'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/profil'
     | '/contact'
     | '/experience'
+    | '/offre'
     | '/projets'
     | '/rangeo/confidentialite'
     | '/'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/profil'
     | '/_views/contact'
     | '/_views/experience'
+    | '/_views/offre'
     | '/_views/projets'
     | '/rangeo/confidentialite'
     | '/_views/'
@@ -242,6 +254,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ViewsExperienceRouteImport
       parentRoute: typeof ViewsRoute
     }
+    '/_views/offre': {
+      id: '/_views/offre'
+      path: '/offre'
+      fullPath: '/offre'
+      preLoaderRoute: typeof ViewsOffreRouteImport
+      parentRoute: typeof ViewsRoute
+    }
     '/_views/projets': {
       id: '/_views/projets'
       path: '/projets'
@@ -269,6 +288,7 @@ declare module '@tanstack/react-router' {
 interface ViewsRouteChildren {
   ViewsContactRoute: typeof ViewsContactRoute
   ViewsExperienceRoute: typeof ViewsExperienceRoute
+  ViewsOffreRoute: typeof ViewsOffreRoute
   ViewsProjetsRoute: typeof ViewsProjetsRoute
   ViewsIndexRoute: typeof ViewsIndexRoute
 }
@@ -276,6 +296,7 @@ interface ViewsRouteChildren {
 const ViewsRouteChildren: ViewsRouteChildren = {
   ViewsContactRoute: ViewsContactRoute,
   ViewsExperienceRoute: ViewsExperienceRoute,
+  ViewsOffreRoute: ViewsOffreRoute,
   ViewsProjetsRoute: ViewsProjetsRoute,
   ViewsIndexRoute: ViewsIndexRoute,
 }

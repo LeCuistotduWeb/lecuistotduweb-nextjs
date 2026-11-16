@@ -1,8 +1,8 @@
-import { getCalApi } from "@calcom/embed-react";
 import { ArrowUpRight, CalendarDays, Check, Copy, Mail } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
+import { bookingUrl, openBooking } from "#/lib/booking";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
@@ -17,31 +17,6 @@ const secondaryText = "text-[#253c59] dark:text-white";
 
 export function ContactCard({ className }: { className?: string }) {
 	const [copied, setCopied] = useState(false);
-	const { calLink } = siteConfig.contact;
-
-	// Calendrier Cal.com en popup ; le script n'est chargé qu'au clic. Sans JS
-	// ou si le chargement échoue, le lien ouvre Cal.com dans un nouvel onglet.
-	async function openBooking(event: React.MouseEvent<HTMLAnchorElement>) {
-		trackEvent("click_booking");
-		event.preventDefault();
-		const href = event.currentTarget.href;
-		if (!calLink) return;
-		try {
-			const cal = await getCalApi();
-			const dark = document.documentElement.classList.contains("dark");
-			cal("ui", {
-				theme: dark ? "dark" : "light",
-				cssVarsPerTheme: {
-					light: { "cal-brand": "#d93a3a" },
-					dark: { "cal-brand": "#f25353" },
-				},
-			});
-			cal("modal", { calLink, config: { layout: "month_view" } });
-		} catch {
-			window.open(href, "_blank", "noopener,noreferrer");
-		}
-	}
-
 	async function handleCopy() {
 		try {
 			await navigator.clipboard.writeText(siteConfig.email);
@@ -64,7 +39,7 @@ export function ContactCard({ className }: { className?: string }) {
 				<CardTitle className="mb-0">Contact</CardTitle>
 				<FreelanceStatusBadge />
 				<p className="display-title text-2xl md:text-3xl font-semibold leading-tight text-[#253c59] dark:text-white">
-					Un projet, une mission ou un poste&nbsp;?
+					Un projet ou une mission&nbsp;?
 				</p>
 				<p className="text-[#4a6a8a] dark:text-[#a1adbc] font-medium">
 					Quelle que soit votre demande, quelques lignes suffisent pour
@@ -91,12 +66,12 @@ export function ContactCard({ className }: { className?: string }) {
 							/>
 						</a>
 					)}
-					{calLink && (
+					{bookingUrl && (
 						<a
-							href={`https://cal.com/${calLink}`}
+							href={bookingUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							onClick={openBooking}
+							onClick={(event) => openBooking(event, "contact")}
 							className={secondaryClass}
 						>
 							<CalendarDays

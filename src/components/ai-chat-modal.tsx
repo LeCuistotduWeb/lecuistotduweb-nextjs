@@ -25,7 +25,7 @@ const SUGGESTIONS = [
 	"Quelles sont tes passions et hobbies ?",
 	"Quelles sont tes compétences techniques ?",
 	"Dispo pour de nouveaux projets ?",
-	"Quel type de poste recherches-tu ?",
+	"Quel type de mission recherches-tu ?",
 	"Comment te contacter ?",
 ];
 

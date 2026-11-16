@@ -6,13 +6,14 @@ import {
 	LoaderCircle,
 	Send,
 } from "lucide-react";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
 import {
 	CONTACT_TOPICS,
 	type ContactInput,
 	contactSchema,
+	onContactTopicRequest,
 } from "#/lib/contact";
 import { cn } from "#/lib/utils";
 import { sendContactFn } from "#/server/contact";
@@ -57,6 +58,11 @@ export function ContactForm({ defaultTopic = "" }: { defaultTopic?: string }) {
 			}
 		},
 	});
+
+	useEffect(
+		() => onContactTopicRequest((topic) => form.setFieldValue("topic", topic)),
+		[form],
+	);
 
 	if (status === "sent") {
 		return (
@@ -135,7 +141,7 @@ export function ContactForm({ defaultTopic = "" }: { defaultTopic?: string }) {
 							<textarea
 								id={`${id}-message`}
 								rows={4}
-								placeholder="Votre projet, la mission ou le poste : contexte, objectif, échéance…"
+								placeholder="Votre projet ou la mission : contexte, objectif, échéance…"
 								value={field.state.value}
 								onChange={(e) => field.handleChange(e.target.value)}
 								onBlur={field.handleBlur}
@@ -311,7 +317,7 @@ function TopicCombobox({
 					}
 					aria-invalid={!!error}
 					autoComplete="off"
-					placeholder="Ex. Mission freelance"
+					placeholder="Ex. Projet sur mesure"
 					value={value}
 					onChange={(e) => {
 						onChange(e.target.value);

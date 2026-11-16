@@ -5,15 +5,25 @@
 ## Portfolio
 
 - [Accueil](https://lecuistotduweb.fr): Portfolio complet — présentation, compétences, expériences professionnelles, formations et projets personnels
+- [Projets](https://lecuistotduweb.fr/projets): Réalisations détaillées — contexte, travail réalisé et stack
+- [Offre](https://lecuistotduweb.fr/offre): Offre freelance — renfort React / Next.js, projet sur mesure, maintenance et évolutions
+- [Contact](https://lecuistotduweb.fr/contact): Formulaire, prise de rendez-vous et e-mail
 - [CV (PDF)](https://lecuistotduweb.fr/pdf/cv-gaetan-boyron-developpeur.pdf): Curriculum vitae complet à télécharger
 
 ## Profil
 
-Gaëtan Boyron (alias LeCuistotduWeb) est un développeur Fullstack spécialisé en React et Node.js avec plus de 7 ans d'expérience. Il a travaillé pour des entreprises comme FNAC Darty, Infogreffe et Blissim. Il est ouvert aux missions freelance et aux opportunités en CDI.
+Gaëtan Boyron (alias LeCuistotduWeb) est un développeur Fullstack spécialisé en React et Node.js avec plus de 8 ans d'expérience. Il a travaillé pour des entreprises comme FNAC Darty, Infogreffe et Blissim. Il est développeur freelance et disponible pour des missions, en régie ou au forfait.
+
+## Offre freelance
+
+- **Renfort React / Next.js** (offre principale) : intégration à une équipe en régie pour développer, structurer ou accélérer un produit — architecture frontend, Design System, performances. À distance ou sur site (Paris, Rouen).
+- **Projet sur mesure** : application web, SaaS, e-commerce ou site vitrine, de la conception à la mise en ligne.
+- **Maintenance et évolutions** : mises à jour, corrections et nouvelles fonctionnalités sur des sites existants, sur mesure ou WordPress.
+- Déroulé : échange de 30 minutes, devis (périmètre, délais, prix), puis réalisation avec points réguliers. Tarifs sur devis.
 
 ## Compétences techniques
 
-ReactJs, NextJs, TypeScript, JavaScript, PHP, MySQL, PostgreSQL, HTML5, CSS3, SCSS, TailwindCSS, Symfony 3/4, PrismaJs, Storybook, Jest, React Testing Library, Figma, Adobe Suite, WordPress, Git, Vercel, NPM
+ReactJs, NextJs, TypeScript, JavaScript, Node.js, PHP, MySQL, PostgreSQL, HTML5, CSS3, SCSS, TailwindCSS, Symfony 3/4, PrismaJs, Storybook, Jest, React Testing Library, Cypress, Playwright, Figma, Adobe Suite, WordPress, Git, Vercel, NPM
 
 ## Expériences professionnelles
 
@@ -32,13 +42,14 @@ ReactJs, NextJs, TypeScript, JavaScript, PHP, MySQL, PostgreSQL, HTML5, CSS3, SC
 ## Projets personnels
 
 - **Mon VDI Assistant** : SaaS de gestion clients, commandes, produits et réunions pour les vendeurs à domicile indépendants
-- **La classe de Fleur** : site pédagogique et chaîne YouTube pour apprendre le français, réalisé avec sa conjointe professeure
+- **La classe de Fleur** : site pédagogique et chaîne YouTube pour apprendre le français, réalisé avec sa conjointe, professeure de français
 - **Portfolio Marie Jade** : site portfolio sur mesure pour la danseuse Marie Jade Helmlinger
 - **Le Poudrier de Fleur** : refonte complète et identité visuelle du site lepoudrierdefleur.fr
 
 ## Contact
 
 - Email : contact@lecuistotduweb.fr
+- Prendre rendez-vous : https://cal.com/lecuistotduweb/30min
 - GitHub : https://github.com/lecuistotduweb
 - LinkedIn : https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/
 - Site : https://lecuistotduweb.fr
