@@ -54,6 +54,14 @@ const projects = [
 			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
 	},
 	{
+		src: "/works/miniature-lepoudrierdefleur-1280.webp",
+		srcSet:
+			"/works/miniature-lepoudrierdefleur-640.webp 640w, /works/miniature-lepoudrierdefleur-1280.webp 1280w",
+		label: "Le Poudrier de Fleur",
+		description:
+			"Refonte complète et identité visuelle du site lepoudrierdefleur.fr.",
+	},
+	{
 		src: "/works/miniature-marie-hlg-portfolio-1280.webp",
 		srcSet:
 			"/works/miniature-marie-hlg-portfolio-640.webp 640w, /works/miniature-marie-hlg-portfolio-1280.webp 1280w",
