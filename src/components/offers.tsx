@@ -52,7 +52,7 @@ const SECONDARY: {
 		benefits: [
 			"Mises à jour et corrections",
 			"Nouvelles fonctionnalités",
-			"WordPress compris",
+			"Sites sur mesure ou WordPress",
 		],
 	},
 ];
