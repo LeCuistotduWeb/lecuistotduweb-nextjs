@@ -505,6 +505,19 @@ html::after {
       transparent 70%
     );
 }
+.chapter-ambient[data-chapter="offre"] {
+  background:
+    radial-gradient(
+      900px 560px at 85% -10%,
+      rgba(242, 83, 83, 0.14),
+      transparent 62%
+    ),
+    radial-gradient(
+      800px 520px at -5% 60%,
+      rgba(37, 60, 89, 0.14),
+      transparent 70%
+    );
+}
 .chapter-ambient[data-chapter="contact"] {
   background:
     radial-gradient(

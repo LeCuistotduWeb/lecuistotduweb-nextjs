@@ -11,7 +11,7 @@ import { CvCard } from "./cv-card";
 import { ExperiencesCard } from "./experiences-card";
 import { LinkedInCard } from "./linkedin-card";
 import { MissionsCard } from "./missions-card";
-import { OffersCard } from "./offers-card";
+import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
 import ProjectCard from "./project-card";
 import { SocialCard } from "./social-card";
 import { StackCard } from "./stack-card";
@@ -138,11 +138,23 @@ export function Chapters() {
 				</Item>
 			</Chapter>
 
-			<Chapter id="contact" className="min-h-[80svh] pb-24">
-				<Item className={FULL}>
-					<OffersCard />
+			<Chapter id="offre">
+				<Item className="col-span-1 sm:col-span-2 md:col-span-2 md:row-span-2">
+					<FeaturedOffer />
+				</Item>
+				<Item className="col-span-1 md:col-span-2" delay={120}>
+					<SecondaryOffer index={0} />
+				</Item>
+				<Item className="col-span-1 md:col-span-2" delay={240}>
+					<SecondaryOffer index={1} />
 				</Item>
 				<Item className={FULL} delay={120}>
+					<ProcessCard />
+				</Item>
+			</Chapter>
+
+			<Chapter id="contact" className="min-h-[80svh] pb-24">
+				<Item className={FULL}>
 					<ContactCard />
 				</Item>
 			</Chapter>

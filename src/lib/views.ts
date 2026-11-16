@@ -26,6 +26,13 @@ export const VIEWS = [
 		description: `Projets et missions réalisés par ${siteConfig.name} : e-commerce, SaaS, sites vitrines et applications web et mobiles.`,
 	},
 	{
+		id: "offre",
+		path: "/offre",
+		label: "Offre",
+		title: `Offre freelance — ${siteConfig.name}`,
+		description: `Renfort React / Next.js en régie, projet sur mesure ou maintenance de site : l'offre freelance de ${siteConfig.name}.`,
+	},
+	{
 		id: "contact",
 		path: "/contact",
 		label: "Contact",
@@ -47,7 +54,7 @@ export function getViewByPath(pathname: string): View {
 }
 
 // Parcours : les chapitres numérotés (après l'accueil) et leur accroche.
-export const PARCOURS = ["experience", "projets", "contact"] as const;
+export const PARCOURS = ["experience", "projets", "offre", "contact"] as const;
 export type ParcoursId = (typeof PARCOURS)[number];
 
 export const PARCOURS_CONTENT: Record<
@@ -63,6 +70,11 @@ export const PARCOURS_CONTENT: Record<
 		headline: "Des projets réalisés avec soin.",
 		text: () =>
 			"Boutique en ligne, SaaS, site vitrine ou application mobile : chaque projet a été pensé, construit et livré avec exigence. Le vôtre mérite le même soin.",
+	},
+	offre: {
+		headline: "Ce que je peux faire pour vous.",
+		text: () =>
+			"Renfort de votre équipe, projet clé en main ou évolution de votre site existant : une offre claire, sur devis.",
 	},
 	contact: {
 		headline: "Parlons de votre besoin.",
