@@ -113,6 +113,7 @@ export const WORKS: Work[] = [
 				"Conception et développement de A à Z",
 				"Gestion centralisée des clients, des commandes, des produits et des réunions",
 			],
+			url: "https://mon-vdi-assistant.fr",
 		},
 	},
 	{
@@ -130,6 +131,7 @@ export const WORKS: Work[] = [
 				"Mise en avant des vidéos courtes et de la méthodologie",
 				"Vente d'e-books",
 			],
+			url: "https://laclassedefleur.fr",
 		},
 	},
 	{
