@@ -42,7 +42,7 @@ ReactJs, NextJs, TypeScript, JavaScript, Node.js, PHP, MySQL, PostgreSQL, HTML5,
 ## Projets personnels
 
 - **Mon VDI Assistant** : SaaS de gestion clients, commandes, produits et réunions pour les vendeurs à domicile indépendants
-- **La classe de Fleur** : site pédagogique et chaîne YouTube pour apprendre le français, réalisé avec sa conjointe professeure
+- **La classe de Fleur** : site pédagogique et chaîne YouTube pour apprendre le français, réalisé avec sa conjointe, professeure de français
 - **Portfolio Marie Jade** : site portfolio sur mesure pour la danseuse Marie Jade Helmlinger
 - **Le Poudrier de Fleur** : refonte complète et identité visuelle du site lepoudrierdefleur.fr
 

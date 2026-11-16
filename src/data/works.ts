@@ -124,7 +124,7 @@ export const WORKS: Work[] = [
 			"/works/miniature-site-web-laclassedefleur-640.webp 640w, /works/miniature-site-web-laclassedefleur-1280.webp 1280w",
 		details: {
 			context:
-				"Projet pédagogique mené avec une professeure de français : un site web et une chaîne YouTube pour apprendre le français.",
+				"Projet pédagogique mené avec ma conjointe, professeure de français : un site web et une chaîne YouTube pour apprendre le français.",
 			contributions: [
 				"Conception et développement du site",
 				"Mise en avant des vidéos courtes et de la méthodologie",
