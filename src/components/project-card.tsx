@@ -7,9 +7,9 @@ import { CardTitle } from "./card-title";
 
 const projects = [
 	{
-		src: "/works/miniature-fnac-darty-765.webp",
+		src: "/works/miniature-fnac-darty-1280.webp",
 		srcSet:
-			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-765.webp 765w",
+			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-1280.webp 1280w",
 		label: "Fnac Darty",
 		description:
 			"Architecture front React / Next.js, design system Storybook et i18n.",
@@ -59,14 +59,6 @@ const projects = [
 			"/works/miniature-marie-hlg-portfolio-640.webp 640w, /works/miniature-marie-hlg-portfolio-1280.webp 1280w",
 		label: "Marie Jade",
 		description: "Portfolio sur mesure pour la danseuse Marie Jade Helmlinger.",
-	},
-	{
-		src: "/works/thumbnail-work-musee-du-louvre-symfony-1280.webp",
-		srcSet:
-			"/works/thumbnail-work-musee-du-louvre-symfony-640.webp 640w, /works/thumbnail-work-musee-du-louvre-symfony-1280.webp 1280w",
-		label: "Musée du Louvre",
-		description:
-			"Projet d'étude : billetterie en ligne développée avec Symfony.",
 	},
 ];
 
