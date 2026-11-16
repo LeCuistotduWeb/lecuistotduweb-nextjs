@@ -7,12 +7,12 @@ import { CardTitle } from "./card-title";
 
 const projects = [
 	{
-		src: "/works/miniature-site-web-laclassedefleur-1280.webp",
+		src: "/works/miniature-fnac-darty-1280.webp",
 		srcSet:
-			"/works/miniature-site-web-laclassedefleur-640.webp 640w, /works/miniature-site-web-laclassedefleur-1280.webp 1280w",
-		label: "La Classe de Fleur",
+			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-1280.webp 1280w",
+		label: "Fnac Darty",
 		description:
-			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
+			"Architecture front React / Next.js, design system Storybook et i18n.",
 	},
 	{
 		src: "/works/miniature-site-web-portfolio-infogreffe-1280.webp",
@@ -31,21 +31,6 @@ const projects = [
 			"E-commerce beauté migré en PWA : abonnement, shop et box sur-mesure.",
 	},
 	{
-		src: "/works/miniature-fnac-darty-765.webp",
-		srcSet:
-			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-765.webp 765w",
-		label: "Fnac Darty",
-		description:
-			"Architecture front React / Next.js, design system Storybook et i18n.",
-	},
-	{
-		src: "/works/thumbnail-work-musee-du-louvre-symfony-1280.webp",
-		srcSet:
-			"/works/thumbnail-work-musee-du-louvre-symfony-640.webp 640w, /works/thumbnail-work-musee-du-louvre-symfony-1280.webp 1280w",
-		label: "Musée du Louvre",
-		description: "Billetterie en ligne développée avec Symfony.",
-	},
-	{
 		src: "/works/thumbnail-worksite-web-nomad-education-1280.webp",
 		srcSet:
 			"/works/thumbnail-worksite-web-nomad-education-640.webp 640w, /works/thumbnail-worksite-web-nomad-education-1280.webp 1280w",
@@ -59,6 +44,29 @@ const projects = [
 			"/works/mon-vdi-assistant-miniature-640.webp 640w, /works/mon-vdi-assistant-miniature-1280.webp 1280w",
 		label: "Mon VDI Assistant",
 		description: "SaaS pour gérer clients, commandes, produits et réunions.",
+	},
+	{
+		src: "/works/miniature-site-web-laclassedefleur-1280.webp",
+		srcSet:
+			"/works/miniature-site-web-laclassedefleur-640.webp 640w, /works/miniature-site-web-laclassedefleur-1280.webp 1280w",
+		label: "La Classe de Fleur",
+		description:
+			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
+	},
+	{
+		src: "/works/miniature-lepoudrierdefleur-1280.webp",
+		srcSet:
+			"/works/miniature-lepoudrierdefleur-640.webp 640w, /works/miniature-lepoudrierdefleur-1280.webp 1280w",
+		label: "Le Poudrier de Fleur",
+		description:
+			"Refonte complète et identité visuelle du site lepoudrierdefleur.fr.",
+	},
+	{
+		src: "/works/miniature-marie-hlg-portfolio-1280.webp",
+		srcSet:
+			"/works/miniature-marie-hlg-portfolio-640.webp 640w, /works/miniature-marie-hlg-portfolio-1280.webp 1280w",
+		label: "Marie Jade",
+		description: "Portfolio sur mesure pour la danseuse Marie Jade Helmlinger.",
 	},
 ];
 
