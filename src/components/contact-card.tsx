@@ -64,7 +64,7 @@ export function ContactCard({ className }: { className?: string }) {
 				<CardTitle className="mb-0">Contact</CardTitle>
 				<FreelanceStatusBadge />
 				<p className="display-title text-2xl md:text-3xl font-semibold leading-tight text-[#253c59] dark:text-white">
-					Un projet, une mission ou un poste&nbsp;?
+					Un projet ou une mission&nbsp;?
 				</p>
 				<p className="text-[#4a6a8a] dark:text-[#a1adbc] font-medium">
 					Quelle que soit votre demande, quelques lignes suffisent pour

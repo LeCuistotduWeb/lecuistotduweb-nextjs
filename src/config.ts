@@ -4,10 +4,12 @@ export const siteConfig = {
 	name: "Gaëtan Boyron",
 	alias: "LeCuistotduWeb",
 	role: "Développeur Fullstack React/Node.js",
+	// Accroche affichée sous le nom (carte de présentation)
+	headline: "Développeur React / Next.js freelance",
 	email: "contact@lecuistotduweb.fr",
 	url: "https://lecuistotduweb.fr",
 	shortUrl: "lecuistotduweb.fr",
-	bio: "Je suis Gaëtan Boyron (alias LeCuistotduWeb), développeur web depuis plus de 8 ans. Je conçois des applications React / Next.js / TypeScript robustes, performantes et évolutives, de la conception jusqu'à la mise en production. Ces dernières années, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic : architecture frontend, Design System, Core Web Vitals, accessibilité et qualité du code, main dans la main avec les équipes Produit, UX et Backend.",
+	bio: "Je conçois et fais évoluer vos applications web React / Next.js, de l'idée à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe ou sur un projet clé en main.",
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
@@ -34,7 +36,7 @@ export const siteConfig = {
 		// Fiche Google Play ; le bouton n'apparaît que s'il est renseigné
 		playStoreUrl: undefined as string | undefined,
 	},
-	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
+	title: "Gaëtan Boyron — Développeur React / Next.js freelance",
 	description:
-		"Développeur Fullstack spécialisé en React et Node.js. Je crée des expériences web modernes et performantes. Découvrez mes projets et compétences.",
+		"Développeur React / Next.js freelance, 8 ans d'expérience (Fnac Darty, Infogreffe). Applications web, SaaS, e-commerce et sites sur mesure, en régie ou au forfait.",
 } as const;

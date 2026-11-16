@@ -67,7 +67,7 @@ export const PARCOURS_CONTENT: Record<
 	contact: {
 		headline: "Parlons de votre besoin.",
 		text: () =>
-			"Un projet à lancer, une appli à faire évoluer, un poste à pourvoir ? Contactez-moi pour en discuter.",
+			"Un projet à lancer, une appli à faire évoluer, un renfort pour votre équipe ? Contactez-moi pour en discuter.",
 	},
 };
 

@@ -24,7 +24,7 @@ export function BioCard({ className }: { className?: string }) {
 					delay={450}
 					className="text-[#f25353] font-medium mt-2"
 				>
-					{siteConfig.role}
+					{siteConfig.headline}
 				</Reveal>
 			</div>
 			<Reveal

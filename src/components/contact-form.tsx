@@ -135,7 +135,7 @@ export function ContactForm({ defaultTopic = "" }: { defaultTopic?: string }) {
 							<textarea
 								id={`${id}-message`}
 								rows={4}
-								placeholder="Votre projet, la mission ou le poste : contexte, objectif, échéance…"
+								placeholder="Votre projet ou la mission : contexte, objectif, échéance…"
 								value={field.state.value}
 								onChange={(e) => field.handleChange(e.target.value)}
 								onBlur={field.handleBlur}
