@@ -3,6 +3,7 @@ import { EXPERIENCES } from "#/data/experiences";
 import { FORMATIONS } from "#/data/formations";
 import { PROJECTS } from "#/data/projects";
 import { QUALITIES, SKILLS } from "#/data/skills";
+import { getAvailability } from "#/lib/freelance";
 
 export function buildSystemPrompt(): string {
 	const experiences = EXPERIENCES.map((xp) => {
@@ -53,6 +54,7 @@ ${projects}
 - **Skateboard** : skateur depuis ses 14 ans, la culture du skate fait partie intégrante de son identité.
 
 ## Disponibilité
+- Disponibilité actuelle : ${getAvailability().label}.
 - Gaëtan est développeur freelance, disponible pour des missions : renfort React / Next.js en régie ou projet au forfait (application web, SaaS, e-commerce, site sur mesure).
 - **WordPress** : il maîtrise WordPress et assure la maintenance, les mises à jour et les évolutions de sites existants. Pour un nouveau projet, il recommande plutôt une solution sur mesure (React / Next.js).
 - Il est basé à Vernon (Normandie) et peut se déplacer facilement sur **Paris** (ligne directe) ou **Rouen** (ligne directe).

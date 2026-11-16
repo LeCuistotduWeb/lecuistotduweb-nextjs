@@ -8,76 +8,29 @@ import {
 	type LucideIcon,
 	Sparkles,
 } from "lucide-react";
+import { FEATURED_OFFER, SECONDARY_OFFERS, STEPS } from "#/data/offers";
 import { trackEvent } from "#/lib/analytics";
 import { bookingUrl, openBooking } from "#/lib/booking";
+import { requestContactTopic } from "#/lib/contact";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
+import { FreelanceStatusBadge } from "./freelance-status-badge";
 
 // Le style global `a { color }` n'est pas dans un layer : la couleur du texte
 // des liens est portée par un <span> interne.
 
-const FEATURED = {
-	title: "Renfort React / Next.js",
-	text: "J'intègre votre équipe en régie pour développer, structurer ou accélérer votre produit.",
-	benefits: [
-		"Opérationnel rapidement sur votre base React / Next.js / TypeScript",
-		"Architecture frontend, Design System et performances",
-		"Code testé, revu et documenté, transmis à votre équipe",
-		"À distance ou sur site : Paris et Rouen en ligne directe",
-	],
-	references: "Fnac Darty · Infogreffe · Blissim",
-};
-
-const SECONDARY: {
-	icon: LucideIcon;
-	title: string;
-	text: string;
-	benefits: string[];
-}[] = [
-	{
-		icon: Code2,
-		title: "Projet sur mesure",
-		text: "Application web, SaaS, e-commerce ou site vitrine, de la conception à la mise en ligne.",
-		benefits: [
-			"Un seul interlocuteur, du besoin à la livraison",
-			"Un site rapide, accessible et bien référencé",
-			"Mise en ligne et prise en main incluses",
-		],
-	},
-	{
-		icon: LifeBuoy,
-		title: "Maintenance et évolutions",
-		text: "Votre site existe déjà ? Je le garde à jour et le fais évoluer.",
-		benefits: [
-			"Mises à jour et corrections",
-			"Nouvelles fonctionnalités",
-			"Sites sur mesure ou WordPress",
-		],
-	},
-];
-
-const STEPS = [
-	{
-		title: "Échange",
-		text: "Un premier appel de 30 minutes pour comprendre votre besoin.",
-	},
-	{
-		title: "Devis",
-		text: "Une proposition claire : périmètre, délais et prix.",
-	},
-	{
-		title: "Réalisation",
-		text: "Des points réguliers et des livraisons fréquentes, jusqu'à la mise en ligne.",
-	},
-];
+const SECONDARY_ICONS: LucideIcon[] = [Code2, LifeBuoy];
 
 function ContactLink({ offer }: { offer: string }) {
 	return (
 		<Link
 			to="/contact"
 			resetScroll={false}
-			onClick={() => trackEvent("click_offer_contact", { offer })}
+			onClick={() => {
+				trackEvent("click_offer_contact", { offer });
+				requestContactTopic(offer);
+			}}
 			className="group/link mt-auto inline-flex w-fit items-center gap-1.5 pt-2 text-sm font-semibold"
 		>
 			<span className="text-[#b52f2f] dark:text-[#ff7a7a]">En parler</span>
@@ -104,25 +57,28 @@ export function FeaturedOffer({ className }: { className?: string }) {
 				className="absolute -top-24 -right-24 -z-10 size-72 rounded-full bg-[#f25353]/25 blur-3xl"
 			/>
 
-			<span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f25353] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
-				<Sparkles aria-hidden="true" className="size-3.5" />
-				Offre principale
-			</span>
+			<div className="flex flex-wrap items-center justify-between gap-3">
+				<span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f25353] px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
+					<Sparkles aria-hidden="true" className="size-3.5" />
+					Offre principale
+				</span>
+				<FreelanceStatusBadge onDark />
+			</div>
 
 			<div className="flex flex-col gap-3">
 				<h3
 					id="offer-featured"
 					className="display-title text-3xl md:text-4xl font-semibold leading-tight text-white"
 				>
-					{FEATURED.title}
+					{FEATURED_OFFER.title}
 				</h3>
 				<p className="max-w-md text-[#c5d5e5] font-medium leading-relaxed">
-					{FEATURED.text}
+					{FEATURED_OFFER.text}
 				</p>
 			</div>
 
 			<ul className="flex flex-col gap-3">
-				{FEATURED.benefits.map((benefit) => (
+				{FEATURED_OFFER.benefits.map((benefit) => (
 					<li key={benefit} className="flex gap-3 text-white">
 						<span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#f25353]/20">
 							<Check aria-hidden="true" className="size-3.5 text-[#ff8a8a]" />
@@ -136,7 +92,7 @@ export function FeaturedOffer({ className }: { className?: string }) {
 				<p className="text-sm text-[#a1adbc]">
 					Références :{" "}
 					<span className="font-semibold text-white">
-						{FEATURED.references}
+						{FEATURED_OFFER.references}
 					</span>
 				</p>
 				<div className="flex flex-wrap gap-3">
@@ -155,9 +111,12 @@ export function FeaturedOffer({ className }: { className?: string }) {
 					<Link
 						to="/contact"
 						resetScroll={false}
-						onClick={() =>
-							trackEvent("click_offer_contact", { offer: FEATURED.title })
-						}
+						onClick={() => {
+							trackEvent("click_offer_contact", {
+								offer: FEATURED_OFFER.title,
+							});
+							requestContactTopic(FEATURED_OFFER.title);
+						}}
 						className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-2.5 font-semibold hover:bg-white/10 transition-colors"
 					>
 						<span className="text-white">Écrire un message</span>
@@ -175,7 +134,8 @@ export function SecondaryOffer({
 	index: number;
 	className?: string;
 }) {
-	const { icon: Icon, title, text, benefits } = SECONDARY[index];
+	const { title, text, benefits } = SECONDARY_OFFERS[index];
+	const Icon = SECONDARY_ICONS[index];
 	return (
 		<BentoCard
 			className={cn(

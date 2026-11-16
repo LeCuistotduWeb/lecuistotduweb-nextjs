@@ -12,7 +12,8 @@
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
-    "check": "biome check"
+    "check": "biome check",
+    "og-image": "node scripts/og-image.mjs"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",

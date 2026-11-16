@@ -1,4 +1,5 @@
 import { siteConfig } from "#/config";
+import { structuredData } from "#/lib/structured-data";
 
 // Chapitres de la page d'accueil, dans l'ordre du scroll. Chaque chapitre a
 // aussi sa route (/experience, /projets…) : point d'entrée partageable et indexable
@@ -83,6 +84,9 @@ export const PARCOURS_CONTENT: Record<
 	},
 };
 
+// Image de partage (1200×630) : générée par scripts/og-image.mjs
+const OG_IMAGE = `${siteConfig.url}/og-image.png`;
+
 export function viewHead(id: ViewId) {
 	const { title, description, path } = getView(id);
 	const url = `${siteConfig.url}${path === "/" ? "" : path}`;
@@ -90,16 +94,23 @@ export function viewHead(id: ViewId) {
 		meta: [
 			{ title },
 			{ name: "description", content: description },
-			{ name: "og:title", content: title },
-			{ name: "og:description", content: description },
-			{ name: "og:type", content: "website" },
-			{ name: "og:url", content: url },
-			{ name: "og:image", content: "/lcdw-avatar.png" },
+			{ property: "og:title", content: title },
+			{ property: "og:description", content: description },
+			{ property: "og:type", content: "website" },
+			{ property: "og:url", content: url },
+			{ property: "og:image", content: OG_IMAGE },
+			{ property: "og:image:width", content: "1200" },
+			{ property: "og:image:height", content: "630" },
+			{
+				property: "og:image:alt",
+				content: `${siteConfig.name} — ${siteConfig.role} freelance`,
+			},
 			{ name: "twitter:card", content: "summary_large_image" },
 			{ name: "twitter:title", content: title },
 			{ name: "twitter:description", content: description },
-			{ name: "twitter:image", content: "/lcdw-avatar.png" },
+			{ name: "twitter:image", content: OG_IMAGE },
 		],
 		links: [{ rel: "canonical", href: url }],
+		scripts: [structuredData()],
 	};
 }
