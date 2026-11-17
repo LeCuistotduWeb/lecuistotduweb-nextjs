@@ -511,7 +511,7 @@ export function LocalFooter({
 					</div>
 				</nav>
 			</div>
-			<p className="border-t border-[#d2c4a4]/60 pt-6 text-xs dark:border-[#253c59]/60">
+			<p className="text-xs">
 				© {new Date().getFullYear()} {local.businessName} ·{" "}
 				{siteConfig.shortUrl}
 			</p>
