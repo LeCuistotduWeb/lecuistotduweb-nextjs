@@ -125,7 +125,6 @@ function Appear({
 export function LocalLandingPage({ path }: { path: string }) {
 	const page = getLocalPage(path);
 	const { local } = siteConfig;
-	const related = LOCAL_PAGES.filter((p) => p.path !== page.path);
 	const works = page.works
 		.map((label) => WORKS.find((work) => work.label === label))
 		.filter((work) => work !== undefined);
@@ -418,8 +417,6 @@ export function LocalLandingPage({ path }: { path: string }) {
 						</div>
 					</section>
 				</Appear>
-
-				<LocalLinks pages={related} title="Voir aussi" />
 			</main>
 
 			<LocalFooter wide={animated} />
@@ -427,49 +424,14 @@ export function LocalLandingPage({ path }: { path: string }) {
 	);
 }
 
-/** Liens vers les pages locales (maillage interne). */
-export function LocalLinks({
-	pages = LOCAL_PAGES,
-	title,
-}: {
-	pages?: typeof LOCAL_PAGES;
-	title: string;
-}) {
-	const zones = pages.filter((p) => p.kind === "zone");
-	const metiers = pages.filter((p) => p.kind === "metier");
-	return (
-		<BentoCard className="p-6 md:p-8">
-			<h2 className="text-sm font-semibold uppercase tracking-widest text-[#93a8be] dark:text-[#7a8fa0]">
-				{title}
-			</h2>
-			<div className="mt-4 grid gap-6 sm:grid-cols-2">
-				{[
-					{ label: "Par ville", items: zones },
-					{ label: "Par métier", items: metiers },
-				]
-					.filter(({ items }) => items.length > 0)
-					.map(({ label, items }) => (
-						<div key={label}>
-							<p className={`text-sm font-semibold ${STRONG}`}>{label}</p>
-							<ul className="mt-2 flex flex-col gap-1.5">
-								{items.map((p) => (
-									<li key={p.path}>
-										<Link to={p.path} className="group text-sm font-medium">
-											<span className="text-[#4a6a8a] underline-offset-4 group-hover:text-[#253c59] group-hover:underline dark:text-[#a1adbc] dark:group-hover:text-white">
-												{p.label}
-											</span>
-										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
-					))}
-			</div>
-		</BentoCard>
-	);
-}
+const FOOTER_LINK =
+	"text-[#4a6a8a] underline-offset-4 group-hover:text-[#253c59] group-hover:underline dark:text-[#a1adbc] dark:group-hover:text-white";
 
-/** Pied de page : nom, ville et contact identiques à la fiche Google (NAP). */
+/**
+ * Pied de page du site (accueil et pages locales) : nom, ville et contact
+ * identiques à la fiche Google (cohérence NAP), et zones d'intervention
+ * (maillage interne vers les pages locales).
+ */
 export function LocalFooter({
 	wide = false,
 	className,
@@ -478,36 +440,81 @@ export function LocalFooter({
 	className?: string;
 }) {
 	const { local } = siteConfig;
+	const groups = [
+		{ label: "Par ville", items: LOCAL_PAGES.filter((p) => p.kind === "zone") },
+		{
+			label: "Par métier",
+			items: LOCAL_PAGES.filter((p) => p.kind === "metier"),
+		},
+	];
 	return (
 		<footer
 			className={cn(
-				"mx-auto flex w-full flex-wrap items-center justify-between gap-3 border-t border-[#d2c4a4] px-4 py-6 pb-24 text-sm sm:pb-6 dark:border-[#253c59]",
+				"mx-auto flex w-full flex-col gap-10 border-t border-[#d2c4a4] px-4 pt-10 pb-24 text-sm sm:pb-8 dark:border-[#253c59]",
 				wide ? "max-w-[110rem] md:px-8 lg:px-12" : "max-w-5xl",
 				TEXT,
 				className,
 			)}
 		>
-			<p>
-				<span className={`font-semibold ${STRONG}`}>{local.businessName}</span>{" "}
-				· {siteConfig.name}, développeur web freelance à {local.city} (
-				{local.department}, {local.region})
-			</p>
-			<div className="flex flex-wrap gap-4">
-				{local.googleBusinessUrl && (
+			<div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-16">
+				<div className="flex flex-col gap-3">
+					<p className={`display-title text-2xl font-bold ${STRONG}`}>
+						{local.businessName}
+					</p>
+					<p className="max-w-xs leading-relaxed">
+						{siteConfig.name}, développeur web freelance à {local.city} (
+						{local.department}, {local.region})
+					</p>
 					<a
-						href={local.googleBusinessUrl}
-						target="_blank"
-						rel="noopener noreferrer"
-						onClick={() => trackEvent("click_google_business")}
-						className="hover:underline"
+						href={`mailto:${siteConfig.email}`}
+						className="group w-fit font-semibold"
 					>
-						<span className={TEXT}>Ma fiche et mes avis Google</span>
+						<span className={FOOTER_LINK}>{siteConfig.email}</span>
 					</a>
-				)}
-				<a href={`mailto:${siteConfig.email}`} className="hover:underline">
-					<span className={TEXT}>{siteConfig.email}</span>
-				</a>
+					{local.googleBusinessUrl && (
+						<a
+							href={local.googleBusinessUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+							onClick={() => trackEvent("click_google_business")}
+							className="group inline-flex w-fit items-center gap-1.5 font-semibold"
+						>
+							<MapPin aria-hidden="true" className="size-4 text-[#f25353]" />
+							<span className="text-[#b52f2f] underline-offset-4 group-hover:underline dark:text-[#ff7a7a]">
+								Ma fiche et mes avis Google
+							</span>
+						</a>
+					)}
+				</div>
+				<nav aria-labelledby="footer-local-title">
+					<h2
+						id="footer-local-title"
+						className="text-xs font-semibold uppercase tracking-widest text-[#93a8be] dark:text-[#7a8fa0]"
+					>
+						Près de chez vous : Vernon, Évreux et l'Eure
+					</h2>
+					<div className="mt-4 grid gap-6 sm:grid-cols-2">
+						{groups.map(({ label, items }) => (
+							<div key={label}>
+								<p className={`font-semibold ${STRONG}`}>{label}</p>
+								<ul className="mt-2 flex flex-col gap-1.5">
+									{items.map((p) => (
+										<li key={p.path}>
+											<Link to={p.path} className="group font-medium">
+												<span className={FOOTER_LINK}>{p.label}</span>
+											</Link>
+										</li>
+									))}
+								</ul>
+							</div>
+						))}
+					</div>
+				</nav>
 			</div>
+			<p className="border-t border-[#d2c4a4]/60 pt-6 text-xs dark:border-[#253c59]/60">
+				© {new Date().getFullYear()} {local.businessName} ·{" "}
+				{siteConfig.shortUrl}
+			</p>
 		</footer>
 	);
 }

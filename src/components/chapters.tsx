@@ -10,7 +10,7 @@ import { ExperienceTimeline } from "./experience-timeline";
 import { FormationsCard } from "./formations-card";
 import { HomeHero } from "./home-hero";
 import { LinkedInCard } from "./linkedin-card";
-import { LocalFooter, LocalLinks } from "./local-landing-page";
+import { LocalFooter } from "./local-landing-page";
 import { MissionsCard } from "./missions-card";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
 import { ProjectsStory } from "./projects-story";
@@ -166,12 +166,9 @@ export function Chapters() {
 				</Item>
 			</Chapter>
 
-			{/* Pied de page : zones d'intervention (maillage vers les pages
-			    locales) et nom, ville, contact identiques à la fiche Google */}
-			<div className={cn(READABLE, "flex flex-col gap-4 pt-8")}>
-				<LocalLinks title="Près de chez vous : Vernon, Évreux et l'Eure" />
-				<LocalFooter className="max-w-none px-1 pb-2 sm:pb-2" />
-			</div>
+			{/* Pied de page : nom, ville, contact (cohérence NAP) et zones
+			    d'intervention (maillage vers les pages locales) */}
+			<LocalFooter className="mt-8 max-w-7xl px-1 pb-4 sm:pb-4 md:px-1 lg:px-1" />
 		</>
 	);
 }
