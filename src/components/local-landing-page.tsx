@@ -20,7 +20,7 @@ import {
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { ScrollyStory } from "./local-scrolly";
-import { LocalShowcase, PhoneMockup } from "./local-showcase";
+import { LocalShowcase, PhoneMockup, ZoneMap } from "./local-showcase";
 import { OrbitAvatar } from "./orbit-avatar";
 import { ProcessTimeline } from "./process-timeline";
 import { ThemeToggle } from "./theme-toggle";
@@ -166,14 +166,16 @@ export function LocalLandingPage({ path }: { path: string }) {
 			</div>
 			{!scrolly ? (
 				<LocalShowcase page={page} />
+			) : page.showcase === "map" ? (
+				<div className="md:hidden">
+					<ZoneMap highlight={page.area} />
+				</div>
 			) : (
-				page.showcase !== "map" && (
-					<PhoneMockup
-						screens={[page.showcase]}
-						active={page.showcase}
-						className="md:hidden"
-					/>
-				)
+				<PhoneMockup
+					screens={[page.showcase]}
+					active={page.showcase}
+					className="md:hidden"
+				/>
 			)}
 		</BentoCard>
 	);
@@ -226,6 +228,7 @@ export function LocalLandingPage({ path }: { path: string }) {
 					<ScrollyStory
 						steps={scrolly}
 						initialScreen={page.showcase === "map" ? "vitrine" : page.showcase}
+						mapArea={page.showcase === "map" ? page.area : undefined}
 						hero={heroCard}
 					/>
 				) : (

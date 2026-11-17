@@ -37,7 +37,13 @@ export type PhoneScreen =
 	| "reservation"
 	| "maps"
 	| "booking"
-	| "vitrine";
+	| "vitrine"
+	| "booking-confirmed"
+	| "gallery"
+	| "maps-salon"
+	| "quote"
+	| "shop"
+	| "dashboard";
 
 export type LocalPage = {
 	/** Chemin de la route, sans slash final */
@@ -62,10 +68,11 @@ export type LocalPage = {
 	works: string[];
 	highlights: { icon: LucideIcon; title: string; text: string }[];
 	/**
-	 * Récit au scroll : le téléphone reste épinglé et change d'écran à chaque
-	 * étape. Remplace la grille des atouts quand il est renseigné.
+	 * Récit au scroll : le téléphone (ou la carte, pour les pages de zone)
+	 * reste épinglé et change à chaque étape. Remplace la grille des atouts
+	 * quand il est renseigné. `screen` : écran du téléphone (pas de carte).
 	 */
-	scrolly?: { screen: PhoneScreen; title: string; text: string }[];
+	scrolly?: { screen?: PhoneScreen; title: string; text: string }[];
 	sections: LocalPageSection[];
 	faq: { question: string; answer: string }[];
 	/** Nom du service décrit (JSON-LD Service) */
@@ -112,6 +119,20 @@ export const LOCAL_PAGES: LocalPage[] = [
 			"Pendant 8 ans, j'ai codé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. Aujourd'hui, je mets cette exigence au service des entreprises de mon territoire, avec un vrai avantage : on peut se voir pour parler de votre projet autour d'un café.",
 		],
 		showcase: "map",
+		scrolly: [
+			{
+				title: "Un développeur à Vernon",
+				text: "Je vis et je travaille à Vernon. On se rencontre chez vous, dans votre commerce ou autour d'un café, et vous avez toujours le même interlocuteur au bout du fil.",
+			},
+			{
+				title: "Un site sur mesure",
+				text: "Pas de modèle acheté puis recoloré : je dessine et je code votre site à partir de votre activité, de vos clients et de vos photos. Il vous ressemble, et il évolue avec vous.",
+			},
+			{
+				title: "Pensé pour Google",
+				text: "Pages rapides, adaptées au mobile, données structurées et lien avec votre fiche Google : tout est fait pour que les habitants de Vernon, Gaillon ou Pacy-sur-Eure vous trouvent.",
+			},
+		],
 		works: ["Le Poudrier de Fleur", "Mon VDI Assistant", "Fnac Darty"],
 		highlights: [
 			{
@@ -177,6 +198,20 @@ export const LOCAL_PAGES: LocalPage[] = [
 			"Installé à Vernon, dans l'Eure, je viens vous voir à Évreux pour les rendez-vous qui comptent. Vous avez un seul interlocuteur, et c'est lui qui écrit le code de votre site.",
 		],
 		showcase: "map",
+		scrolly: [
+			{
+				title: "Un freelance de l'Eure",
+				text: "Installé à Vernon, je viens vous voir à Évreux pour les rendez-vous qui comptent. Le reste du projet se suit facilement en visio, avec un site de démonstration toujours accessible.",
+			},
+			{
+				title: "Une expertise de grands comptes",
+				text: "Fnac Darty, Infogreffe, Blissim : 8 ans sur des sites à fort trafic. J'en garde des méthodes solides, que j'applique à la taille de votre entreprise.",
+			},
+			{
+				title: "Des sites durables",
+				text: "Un code propre, rapide et documenté, que vous pourrez faire évoluer sans tout reconstruire. Et un suivi de maintenance si vous le souhaitez.",
+			},
+		],
 		works: ["Fnac Darty", "Infogreffe", "Mon VDI Assistant"],
 		highlights: [
 			{
@@ -248,6 +283,20 @@ export const LOCAL_PAGES: LocalPage[] = [
 			"Je travaille seul et en direct. Pas d'intermédiaire, pas de sous-traitance : la personne que vous rencontrez est celle qui construit votre site, et celle qui répond quand vous appelez.",
 		],
 		showcase: "map",
+		scrolly: [
+			{
+				title: "Sites internet",
+				text: "Site vitrine, boutique en ligne, réservation ou prise de rendez-vous : je crée le site dont votre activité a besoin, pour les entreprises de tout l'est de l'Eure.",
+			},
+			{
+				title: "Applications web",
+				text: "Prise de commande, suivi des clients, tableaux de bord : des outils sur mesure en React et Node.js, pour gagner du temps au quotidien.",
+			},
+			{
+				title: "Renfort technique",
+				text: "Vous avez déjà une équipe ? Je la rejoins en régie, sur site ou à distance, pour développer, structurer ou accélérer votre produit.",
+			},
+		],
 		works: ["Infogreffe", "Blissim", "La Classe de Fleur"],
 		highlights: [
 			{
@@ -405,6 +454,23 @@ export const LOCAL_PAGES: LocalPage[] = [
 			"Je crée des sites pour les salons de coiffure, barbiers, instituts de beauté et prothésistes ongulaires de Vernon et de l'Eure. Des sites élégants, rapides sur mobile et reliés à votre agenda, qui prennent les rendez-vous à votre place.",
 		],
 		showcase: "booking",
+		scrolly: [
+			{
+				screen: "booking-confirmed",
+				title: "Rendez-vous en ligne",
+				text: "Vos clients choisissent leur prestation et leur créneau, de jour comme de nuit. Le rendez-vous arrive dans votre agenda, et un rappel automatique limite les oublis.",
+			},
+			{
+				screen: "gallery",
+				title: "Vos réalisations en valeur",
+				text: "Coupes, couleurs, soins : une galerie soignée montre votre savoir-faire mieux qu'un long discours, et donne envie de pousser la porte.",
+			},
+			{
+				screen: "maps-salon",
+				title: "Trouvé dans votre ville",
+				text: "Quand on cherche « coiffeur Vernon », c'est souvent sur Google Maps qu'on vous découvre. Site et fiche Google travaillent ensemble, avec un bouton pour réserver.",
+			},
+		],
 		works: ["Blissim", "Le Poudrier de Fleur", "Marie Jade"],
 		highlights: [
 			{
@@ -480,6 +546,23 @@ export const LOCAL_PAGES: LocalPage[] = [
 			"Je conçois des sites et des outils web sur mesure pour les entreprises de Vernon et de l'Eure. J'y mets la rigueur apprise sur de grands projets, et la simplicité qu'attend une petite structure.",
 		],
 		showcase: "vitrine",
+		scrolly: [
+			{
+				screen: "quote",
+				title: "Site vitrine",
+				text: "Vos services, vos réalisations et un formulaire de devis clair : votre site présente votre savoir-faire et vous apporte des demandes qualifiées.",
+			},
+			{
+				screen: "shop",
+				title: "E-commerce",
+				text: "Vendre en ligne ou proposer le click & collect, avec une gestion simple de vos produits, de vos stocks et de vos commandes.",
+			},
+			{
+				screen: "dashboard",
+				title: "Outils sur mesure",
+				text: "Prise de commande, gestion de clients, tableaux de bord : je développe les outils dont votre métier a besoin, comme Mon VDI Assistant pour les vendeurs à domicile.",
+			},
+		],
 		works: ["Mon VDI Assistant", "Le Poudrier de Fleur", "Blissim"],
 		highlights: [
 			{
