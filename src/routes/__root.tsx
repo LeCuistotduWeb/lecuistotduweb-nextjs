@@ -23,7 +23,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "Gaëtan Boyron — Fullstack Developer",
+				title: "Gaëtan Boyron — Développeur web freelance à Vernon (Eure)",
 			},
 		],
 		links: [

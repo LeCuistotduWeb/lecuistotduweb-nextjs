@@ -1,6 +1,6 @@
 # Gaëtan Boyron — LeCuistotduWeb
 
-> Développeur Fullstack React/Node.js basé en France. Reconverti depuis la cuisine professionnelle en 2017, passionné par le web moderne et les expériences utilisateur soignées. Son alias « LeCuistotduWeb » rappelle cette reconversion : la rigueur et la créativité du cuisinier transposées dans le code.
+> Développeur web freelance et Fullstack React/Node.js basé à Vernon (Eure, Normandie). Reconverti depuis la cuisine professionnelle en 2017, passionné par le web moderne et les expériences utilisateur soignées. Son alias « LeCuistotduWeb » rappelle cette reconversion : la rigueur et la créativité du cuisinier transposées dans le code.
 
 ## Portfolio
 
@@ -8,6 +8,12 @@
 - [Projets](https://lecuistotduweb.fr/projets): Réalisations détaillées — contexte, travail réalisé et stack
 - [Offre](https://lecuistotduweb.fr/offre): Offre freelance — renfort React / Next.js, projet sur mesure, maintenance et évolutions
 - [Contact](https://lecuistotduweb.fr/contact): Formulaire, prise de rendez-vous et e-mail
+- [Création de site internet à Vernon](https://lecuistotduweb.fr/creation-site-internet-vernon): Sites sur mesure pour les entreprises de Vernon et alentours
+- [Création de site internet à Évreux](https://lecuistotduweb.fr/creation-site-internet-evreux): Sites et applications pour les entreprises d'Évreux
+- [Développeur web dans l'Eure](https://lecuistotduweb.fr/developpeur-web-eure): Zone d'intervention dans l'Eure (27)
+- [Site internet pour restaurant](https://lecuistotduweb.fr/site-internet-restaurant): Menu en ligne, réservation, lien avec Google
+- [Site internet pour salon de coiffure et d'esthétique](https://lecuistotduweb.fr/site-internet-salon-coiffure-esthetique): Prestations, galerie, prise de rendez-vous en ligne
+- [Site internet pour TPE et PME](https://lecuistotduweb.fr/site-internet-tpe-pme): Site vitrine, e-commerce et outils métier
 - [CV (PDF)](https://lecuistotduweb.fr/pdf/cv-gaetan-boyron-developpeur.pdf): Curriculum vitae complet à télécharger
 
 ## Profil
@@ -20,6 +26,10 @@ Gaëtan Boyron (alias LeCuistotduWeb) est un développeur Fullstack spécialisé
 - **Projet sur mesure** : application web, SaaS, e-commerce ou site vitrine, de la conception à la mise en ligne.
 - **Maintenance et évolutions** : mises à jour, corrections et nouvelles fonctionnalités sur des sites existants, sur mesure ou WordPress.
 - Déroulé : échange de 30 minutes, devis (périmètre, délais, prix), puis réalisation avec points réguliers. Tarifs sur devis.
+
+## Clientèle locale
+
+Basé à Vernon (Eure, 27), il crée des sites internet sur mesure pour les restaurants, salons de coiffure et d'esthétique, commerçants, artisans et TPE/PME de Vernon, Évreux, Gaillon, Pacy-sur-Eure, Les Andelys, Louviers, Val-de-Reuil, Giverny, Bonnières-sur-Seine, Mantes-la-Jolie et Rouen. Il se déplace chez ses clients. Premier échange et devis gratuits, tarifs sur devis.
 
 ## Compétences techniques
 

@@ -7,7 +7,7 @@ export const siteConfig = {
 	email: "contact@lecuistotduweb.fr",
 	url: "https://lecuistotduweb.fr",
 	shortUrl: "lecuistotduweb.fr",
-	bio: "Je conçois et fais évoluer vos applications web React / Next.js, de l'idée à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress.",
+	bio: "Je conçois et fais évoluer vos applications web React / Next.js, de l'idée à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress. Basé à Vernon, dans l'Eure, je crée aussi des sites internet pour les restaurants, salons et TPE/PME de la région.",
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
@@ -26,6 +26,38 @@ export const siteConfig = {
 		// RDV n'apparaît que s'il est renseigné
 		calLink: "lecuistotduweb/30min" as string | undefined,
 	},
+	local: {
+		// Ancrage local (SEO) : ville de rattachement, sans adresse précise
+		// (adresse masquée sur la fiche Google, zone desservie autour de Vernon)
+		city: "Vernon",
+		postalCode: "27200",
+		department: "Eure",
+		region: "Normandie",
+		// Centre-ville de Vernon : sert au JSON-LD (geo), pas d'adresse exacte
+		geo: { latitude: 49.0929, longitude: 1.4848 },
+		// Communes desservies, reprises de la fiche Google Business Profile
+		areaServed: [
+			"Vernon",
+			"Saint-Marcel",
+			"Saint-Just",
+			"Gaillon",
+			"Pacy-sur-Eure",
+			"Les Andelys",
+			"Évreux",
+			"Louviers",
+			"Val-de-Reuil",
+			"Bonnières-sur-Seine",
+			"Giverny",
+			"Mantes-la-Jolie",
+			"Rouen",
+		],
+		// Lien public de la fiche Google Business Profile (« Partager le
+		// profil » → lien g.page ou maps.app.goo.gl). Le lien « Voir la fiche
+		// Google » et le sameAs du JSON-LD n'apparaissent que s'il est renseigné.
+		googleBusinessUrl: undefined as string | undefined,
+		// Lien « Laisser un avis » de la fiche ; bouton masqué tant qu'il est vide
+		googleReviewUrl: undefined as string | undefined,
+	},
 	rangeo: {
 		// Sous-domaine dédié : la home du sous-domaine affiche /rangeo
 		url: "https://rangeo.lecuistotduweb.fr",
@@ -34,7 +66,7 @@ export const siteConfig = {
 		// Fiche Google Play ; le bouton n'apparaît que s'il est renseigné
 		playStoreUrl: undefined as string | undefined,
 	},
-	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
+	title: "Gaëtan Boyron — Développeur web freelance à Vernon (Eure)",
 	description:
-		"Développeur Fullstack React/Node.js freelance, 8 ans d'expérience (Fnac Darty, Infogreffe). Applications web, SaaS, e-commerce et sites sur mesure, en régie ou au forfait.",
+		"Développeur web freelance à Vernon (Eure), 8 ans d'expérience (Fnac Darty, Infogreffe). Sites internet sur mesure pour restaurants, salons et TPE/PME, applications React/Node.js en régie ou au forfait.",
 } as const;

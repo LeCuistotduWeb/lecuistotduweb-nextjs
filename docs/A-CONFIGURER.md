@@ -92,3 +92,13 @@ Textes proposés par Claude à partir de ce qui existait déjà. Rien n'a été 
 - **Rejouer l'intro** : elle ne se joue qu'une fois par session. Ouvre un nouvel onglet, ou supprime `lcdw-intro-seen` du `sessionStorage` (DevTools › Application).
 - **Durée de l'intro** : constantes `DURATION` et timings du vol dans `src/components/intro-loader.tsx`.
 - **Passer à GSAP + ScrollTrigger** : créer `src/lib/scroll-animations/gsap-engine.ts`, qui implémente `ScrollAnimationEngine` (`types.ts`), puis le retourner dans `getScrollEngine()` (`index.ts`). Les composants n'ont pas à changer.
+
+## 7. Référencement local (fiche Google Business Profile)
+
+Les pages locales (`src/data/local-pages.ts`) et le JSON-LD sont en place. Il reste à relier la fiche Google une fois validée :
+
+- [ ] Dans la fiche Google, « Partager le profil » : copier le lien et le coller dans `src/config.ts`, `local.googleBusinessUrl`. Le lien « Voir ma fiche et mes avis Google » et le `sameAs` / `hasMap` du JSON-LD apparaissent alors automatiquement.
+- [ ] « Demander des avis » : copier le lien d'avis dans `local.googleReviewUrl` (prévu pour un futur bouton « Laisser un avis »).
+- [ ] Mettre `https://lecuistotduweb.fr/creation-site-internet-vernon` ou l'accueil comme site web de la fiche.
+- [ ] Déclarer `https://lecuistotduweb.fr/sitemap.xml` dans Google Search Console, puis demander l'indexation des 6 pages locales.
+- [ ] Garder exactement le même nom (« LeCuistotduWeb ») et la même ville sur le site, la fiche Google, les annuaires et les réseaux.

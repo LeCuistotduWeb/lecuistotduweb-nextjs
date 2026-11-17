@@ -32,7 +32,7 @@ async function waitForHydration(page: Page) {
 
 test("has title", async ({ page }) => {
 	await expect(page).toHaveTitle(
-		"Gaëtan Boyron — Développeur Fullstack React/Node.js",
+		"Gaëtan Boyron — Développeur web freelance à Vernon (Eure)",
 	);
 });
 

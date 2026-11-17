@@ -10,6 +10,7 @@ import { ContactCard } from "./contact-card";
 import { CvCard } from "./cv-card";
 import { ExperiencesCard } from "./experiences-card";
 import { LinkedInCard } from "./linkedin-card";
+import { LocalLinks } from "./local-landing-page";
 import { MissionsCard } from "./missions-card";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
 import ProjectCard from "./project-card";
@@ -150,6 +151,9 @@ export function Chapters() {
 				</Item>
 				<Item className={FULL} delay={120}>
 					<ProcessCard />
+				</Item>
+				<Item className={FULL} delay={120}>
+					<LocalLinks title="Près de chez vous : Vernon, Évreux et l'Eure" />
 				</Item>
 			</Chapter>
 
