@@ -119,30 +119,26 @@ test("links to LinkedIn in a new tab", async ({ page }) => {
 	await expect(link).toHaveAttribute("target", "_blank");
 });
 
-test("project carousel navigates, autoplays and pauses", async ({ page }) => {
-	const card = cardByTitle(page, "Projets");
-	const counter = card.getByText(/^\d{2} \/ 08$/);
-	await expect(counter).toHaveText("01 / 08");
+test("projects story follows the scroll and opens details", async ({
+	page,
+}) => {
+	await page.setViewportSize({ width: 1440, height: 900 });
+	await waitForHydration(page);
+	const story = page.locator("#projets");
+	const counter = story.getByText(/^\d{2} \/ 08 · /);
 
-	// Avance automatique (5 s) — la souris ne doit pas survoler la carte
-	await page.mouse.move(0, 0);
-	await expect(counter).toHaveText("02 / 08", { timeout: 8000 });
+	// Le projet lu au milieu de l'écran pilote l'écran épinglé
+	await story
+		.getByRole("heading", { name: "Blissim", level: 3 })
+		.first()
+		.evaluate((el) => el.scrollIntoView({ block: "center" }));
+	await expect(counter).toHaveText("03 / 08 · Blissim");
 
-	await card.getByRole("button", { name: "Mettre le défilement en pause" }).click();
-	await card.getByRole("button", { name: "Projet suivant" }).click();
-	await expect(counter).toHaveText("03 / 08");
-
-	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await expect(counter).toHaveText("08 / 08");
-
-	await page.mouse.move(0, 0);
-	await page.waitForTimeout(6000);
-	await expect(counter).toHaveText("08 / 08");
-	await expect(
-		card.getByRole("button", { name: "Reprendre le défilement" }),
-	).toBeVisible();
+	await story.getByRole("button", { name: "Voir le projet Blissim" }).click();
+	const dialog = page.getByRole("dialog");
+	await expect(dialog.getByRole("heading", { name: "Blissim" })).toBeVisible();
+	await page.keyboard.press("Escape");
+	await expect(dialog).toBeHidden();
 });
 
 const CHAPTERS: { path: string; id: string; label: string; title?: string }[] = [

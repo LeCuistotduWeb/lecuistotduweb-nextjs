@@ -13,7 +13,7 @@ import { LinkedInCard } from "./linkedin-card";
 import { LocalLinks } from "./local-landing-page";
 import { MissionsCard } from "./missions-card";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
-import ProjectCard from "./project-card";
+import { ProjectsStory } from "./projects-story";
 import { SocialCard } from "./social-card";
 import { StackCard } from "./stack-card";
 import { ViewIntro } from "./view-intro";
@@ -22,9 +22,18 @@ const FULL = "col-span-1 sm:col-span-2 md:col-span-4";
 
 // grid-flow-row-dense : à 2 colonnes, comble les trous laissés par une carte
 // d'1 colonne suivie d'une carte plus large.
-function Grid({ children }: { children: ReactNode }) {
+// Les grilles de cartes restent à largeur de lecture ; seuls les chapitres en
+// récit au scroll (`wide`) occupent toute la largeur de l'écran.
+const READABLE = "mx-auto w-full max-w-7xl";
+
+function Grid({ children, wide }: { children: ReactNode; wide?: boolean }) {
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 sm:grid-flow-row-dense">
+		<div
+			className={cn(
+				"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 sm:grid-flow-row-dense",
+				!wide && READABLE,
+			)}
+		>
 			{children}
 		</div>
 	);
@@ -51,10 +60,12 @@ function Item({
 function Chapter({
 	id,
 	className,
+	wide,
 	children,
 }: {
 	id: ParcoursId;
 	className?: string;
+	wide?: boolean;
 	children: ReactNode;
 }) {
 	return (
@@ -66,8 +77,8 @@ function Chapter({
 				className,
 			)}
 		>
-			<ViewIntro view={id} />
-			<Grid>{children}</Grid>
+			<ViewIntro view={id} className={wide ? undefined : READABLE} />
+			<Grid wide={wide}>{children}</Grid>
 		</section>
 	);
 }
@@ -130,11 +141,10 @@ export function Chapters() {
 				</Item>
 			</Chapter>
 
-			<Chapter id="projets">
-				<Item className={FULL}>
-					<ProjectCard />
-				</Item>
-				<Item className={FULL} delay={120}>
+			<Chapter id="projets" wide>
+				{/* Pas de Reveal autour : l'écran épinglé (sticky) doit rester libre */}
+				<ProjectsStory />
+				<Item className={cn(FULL, READABLE)} delay={120}>
 					<MissionsCard />
 				</Item>
 			</Chapter>

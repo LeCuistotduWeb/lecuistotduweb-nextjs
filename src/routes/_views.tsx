@@ -124,7 +124,7 @@ function ViewsLayout() {
 						className="chapter-ambient"
 					/>
 				))}
-				<div className="mx-auto max-w-6xl">
+				<div className="mx-auto max-w-[110rem] lg:px-4">
 					<ViewNav
 						current={active}
 						onReselect={(view) => scrollToChapter(view, false)}

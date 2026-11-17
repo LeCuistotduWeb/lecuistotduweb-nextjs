@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import type { LocalPage, PhoneScreen } from "#/data/local-pages";
 import {
 	RevealWords,
+	useActiveStep,
 	useParallax,
 	useScrollProgress,
 } from "#/lib/scroll-animations/react";
@@ -16,36 +16,6 @@ const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
 const STRONG = "text-[#253c59] dark:text-white";
 
 type Step = NonNullable<LocalPage["scrolly"]>[number];
-
-/** Index de l'étape qui croise le milieu de l'écran (-1 : avant la 1re). */
-function useActiveStep(count: number) {
-	const elements = useRef<(HTMLElement | null)[]>([]);
-	const [active, setActive] = useState(-1);
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				for (const entry of entries) {
-					const index = elements.current.indexOf(entry.target as HTMLElement);
-					if (entry.isIntersecting) setActive(index);
-					// Remonte au-dessus de la 1re étape : retour à l'écran d'accueil
-					else if (index === 0 && entry.boundingClientRect.top > 0)
-						setActive(-1);
-				}
-			},
-			{ rootMargin: "-50% 0px -50% 0px" },
-		);
-		for (const element of elements.current.slice(0, count)) {
-			if (element) observer.observe(element);
-		}
-		return () => observer.disconnect();
-	}, [count]);
-
-	const register = (index: number) => (element: HTMLElement | null) => {
-		elements.current[index] = element;
-	};
-	return { active, register };
-}
 
 export function ScrollyStory({
 	steps,
