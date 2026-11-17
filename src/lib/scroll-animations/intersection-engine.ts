@@ -69,7 +69,9 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 			const raw =
 				mode === "follow"
 					? (vh * 0.55 - rect.top) / Math.max(1, rect.height)
-					: (vh - rect.top) / (vh * 0.4 + rect.height);
+					: mode === "pin"
+						? -rect.top / Math.max(1, rect.height - vh)
+						: (vh - rect.top) / (vh * 0.4 + rect.height);
 			const value = Math.min(1, Math.max(0, raw));
 			element.style.setProperty("--scroll-progress", value.toFixed(3));
 		}
@@ -119,7 +121,11 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 
 		progress(element, { mode = "enter" }: ProgressOptions = {}) {
 			if (prefersReducedMotion()) {
-				element.style.setProperty("--scroll-progress", "1");
+				// Rien ne bouge : état final (frise dessinée), ou début si épinglé
+				element.style.setProperty(
+					"--scroll-progress",
+					mode === "pin" ? "0" : "1",
+				);
 				return () => {};
 			}
 			listen();

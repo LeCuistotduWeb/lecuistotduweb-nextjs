@@ -24,7 +24,7 @@ export type ParallaxOptions = {
 };
 
 export type ProgressOptions = {
-	mode?: "enter" | "follow";
+	mode?: "enter" | "follow" | "pin";
 };
 
 export interface ScrollAnimationEngine {
@@ -37,6 +37,8 @@ export interface ScrollAnimationEngine {
 	 * `--scroll-progress`. Mode « enter » : 0 quand il entre par le bas, 1 quand
 	 * sa fin atteint 60 % de l'écran. Mode « follow » : part de l'élément passée
 	 * au-dessus du milieu de l'écran (frise dont la pointe suit la lecture).
+	 * Mode « pin » (section haute dont le contenu est épinglé) : 0 quand son
+	 * haut touche le haut de l'écran, 1 quand son bas touche le bas.
 	 * Renvoie le nettoyage.
 	 */
 	progress(element: HTMLElement, options?: ProgressOptions): () => void;
