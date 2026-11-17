@@ -38,6 +38,15 @@ export function useParallax<T extends HTMLElement>(speed: number) {
 	);
 }
 
+/** Avancement du scroll dans l'élément, exposé en `--scroll-progress`. */
+export function useScrollProgress<T extends HTMLElement>() {
+	const cleanup = useRef<(() => void) | null>(null);
+	return useCallback((element: T | null) => {
+		cleanup.current?.();
+		cleanup.current = element ? getScrollEngine().progress(element) : null;
+	}, []);
+}
+
 /** Lance les révélations (appelé à la fin de l'écran de chargement). */
 export function useStartScrollAnimations(when: boolean) {
 	useEffect(() => {

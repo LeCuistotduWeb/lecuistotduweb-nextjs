@@ -30,6 +30,15 @@ export type LocalPageSection = {
 	points?: string[];
 };
 
+/** Écrans de la maquette de téléphone (src/components/local-showcase.tsx) */
+export type PhoneScreen =
+	| "menu"
+	| "menu-updated"
+	| "reservation"
+	| "maps"
+	| "booking"
+	| "vitrine";
+
 export type LocalPage = {
 	/** Chemin de la route, sans slash final */
 	path: string;
@@ -52,6 +61,11 @@ export type LocalPage = {
 	/** Réalisations mises en avant, par libellé de src/data/works.ts */
 	works: string[];
 	highlights: { icon: LucideIcon; title: string; text: string }[];
+	/**
+	 * Récit au scroll : le téléphone reste épinglé et change d'écran à chaque
+	 * étape. Remplace la grille des atouts quand il est renseigné.
+	 */
+	scrolly?: { screen: PhoneScreen; title: string; text: string }[];
 	sections: LocalPageSection[];
 	faq: { question: string; answer: string }[];
 	/** Nom du service décrit (JSON-LD Service) */
@@ -304,6 +318,23 @@ export const LOCAL_PAGES: LocalPage[] = [
 			"Je crée des sites pour les restaurants, bistrots, pizzerias et traiteurs de Vernon et de l'Eure : une carte appétissante sur mobile, la réservation en quelques clics, et une fiche Google qui renvoie au bon endroit.",
 		],
 		showcase: "menu",
+		scrolly: [
+			{
+				screen: "menu-updated",
+				title: "Une carte toujours à jour",
+				text: "Le plat du jour change ? Vous le modifiez depuis votre téléphone, entre deux services, et il apparaît aussitôt sur le site. Fini la carte en PDF à zoomer ou le menu de l'an dernier.",
+			},
+			{
+				screen: "reservation",
+				title: "Réservation et commande",
+				text: "Vos clients réservent une table ou commandent à emporter en quelques clics, même tard le soir. J'intègre le module qui vous convient, ou je relie le site à l'outil que vous utilisez déjà.",
+			},
+			{
+				screen: "maps",
+				title: "Visible sur Google Maps",
+				text: "Quand on cherche « restaurant Vernon », c'est souvent sur Google Maps qu'on vous découvre. Je travaille le site et la fiche Google ensemble : mêmes horaires, même adresse, et un lien direct vers la réservation.",
+			},
+		],
 		story:
 			"Avant de devenir développeur en 2017, j'ai travaillé en cuisine professionnelle. Je sais ce qu'est un coup de feu. Alors je passe vous voir l'après-midi, entre deux services, et je vous livre un site que vous mettez à jour sans y passer vos soirées.",
 		works: ["Le Poudrier de Fleur", "La Classe de Fleur", "Marie Jade"],

@@ -12,9 +12,15 @@ import { getLocalPage, LOCAL_PAGES } from "#/data/local-pages";
 import { WORKS } from "#/data/works";
 import { trackEvent } from "#/lib/analytics";
 import { bookingUrl, openBooking } from "#/lib/booking";
+import {
+	Reveal,
+	RevealWords,
+	useStartScrollAnimations,
+} from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
-import { LocalShowcase } from "./local-showcase";
+import { ProcessTimeline, ScrollyStory } from "./local-scrolly";
+import { LocalShowcase, PhoneMockup } from "./local-showcase";
 import { OrbitAvatar } from "./orbit-avatar";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -30,6 +36,8 @@ const NAV = [
 
 const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
 const STRONG = "text-[#253c59] dark:text-white";
+const HOOK =
+	"display-title text-4xl font-bold leading-[1.05] text-[#253c59] md:text-6xl dark:text-white";
 const H2 = `display-title text-2xl font-semibold md:text-3xl ${STRONG}`;
 
 const STORY =
@@ -93,6 +101,26 @@ function ContactButtons({
 	);
 }
 
+/** Apparition au scroll, seulement sur les pages en récit (`scrolly`). */
+function Appear({
+	on,
+	delay,
+	variant = "rise",
+	children,
+}: {
+	on: boolean;
+	delay?: number;
+	variant?: "rise" | "scale" | "fade";
+	children: React.ReactNode;
+}) {
+	if (!on) return children;
+	return (
+		<Reveal variant={variant} delay={delay}>
+			{children}
+		</Reveal>
+	);
+}
+
 export function LocalLandingPage({ path }: { path: string }) {
 	const page = getLocalPage(path);
 	const { local } = siteConfig;
@@ -100,6 +128,52 @@ export function LocalLandingPage({ path }: { path: string }) {
 	const works = page.works
 		.map((label) => WORKS.find((work) => work.label === label))
 		.filter((work) => work !== undefined);
+	const scrolly = page.scrolly;
+	const animated = Boolean(scrolly);
+	useStartScrollAnimations(animated);
+
+	const heroCard = (
+		<BentoCard
+			as="header"
+			className="relative grid items-center gap-10 overflow-hidden md:grid-cols-[1fr_auto] md:p-12"
+		>
+			<div className="flex flex-col gap-6">
+				<p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f25353]/10 px-3 py-1 text-sm font-semibold text-[#b52f2f] dark:bg-[#f25353]/15 dark:text-[#ff7a7a]">
+					<MapPin aria-hidden="true" className="size-4" />
+					Développeur web à {local.city} ({local.postalCode.slice(0, 2)})
+				</p>
+				<h1 className="flex max-w-2xl flex-col gap-3">
+					<span className="text-base font-semibold uppercase tracking-widest text-[#b52f2f] dark:text-[#ff7a7a]">
+						{page.heading}
+					</span>
+					{animated ? (
+						<RevealWords as="span" text={page.hook} className={HOOK} />
+					) : (
+						<span className={HOOK}>{page.hook}</span>
+					)}
+				</h1>
+				<div
+					className={`flex max-w-2xl flex-col gap-4 text-lg font-medium leading-relaxed ${TEXT}`}
+				>
+					{page.intro.map((paragraph) => (
+						<p key={paragraph}>{paragraph}</p>
+					))}
+				</div>
+				<ContactButtons source={page.path} />
+			</div>
+			{!scrolly ? (
+				<LocalShowcase page={page} />
+			) : (
+				page.showcase !== "map" && (
+					<PhoneMockup
+						screens={[page.showcase]}
+						active={page.showcase}
+						className="md:hidden"
+					/>
+				)
+			)}
+		</BentoCard>
+	);
 
 	return (
 		<div className="flex min-h-dvh flex-col">
@@ -141,218 +215,199 @@ export function LocalLandingPage({ path }: { path: string }) {
 					</ol>
 				</nav>
 
-				<BentoCard
-					as="header"
-					className="relative grid items-center gap-10 overflow-hidden md:grid-cols-[1fr_auto] md:p-12"
-				>
-					<div className="flex flex-col gap-6">
-						<p className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f25353]/10 px-3 py-1 text-sm font-semibold text-[#b52f2f] dark:bg-[#f25353]/15 dark:text-[#ff7a7a]">
-							<MapPin aria-hidden="true" className="size-4" />
-							Développeur web à {local.city} ({local.postalCode.slice(0, 2)})
-						</p>
-						<h1 className="flex max-w-2xl flex-col gap-3">
-							<span className="text-base font-semibold uppercase tracking-widest text-[#b52f2f] dark:text-[#ff7a7a]">
-								{page.heading}
-							</span>
-							<span className="display-title text-4xl font-bold leading-[1.05] text-[#253c59] md:text-6xl dark:text-white">
-								{page.hook}
-							</span>
-						</h1>
-						<div
-							className={`flex max-w-2xl flex-col gap-4 text-lg font-medium leading-relaxed ${TEXT}`}
-						>
-							{page.intro.map((paragraph) => (
-								<p key={paragraph}>{paragraph}</p>
+				{scrolly ? (
+					<ScrollyStory
+						steps={scrolly}
+						initialScreen={page.showcase === "map" ? "vitrine" : page.showcase}
+						hero={heroCard}
+					/>
+				) : (
+					<>
+						{heroCard}
+						<ul className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
+							{page.highlights.map(({ icon: Icon, title, text }) => (
+								<li key={title}>
+									<BentoCard
+										as="div"
+										className="group h-full p-6 transition-transform duration-300 hover:-translate-y-1 md:p-8"
+									>
+										<span className="flex size-12 items-center justify-center rounded-2xl bg-[#f25353]/10 transition-transform duration-300 group-hover:-rotate-6 dark:bg-[#f25353]/15">
+											<Icon
+												aria-hidden="true"
+												className="size-6 text-[#f25353]"
+											/>
+										</span>
+										<h2
+											className={`display-title mt-5 text-xl font-semibold ${STRONG}`}
+										>
+											{title}
+										</h2>
+										<p className={`mt-2 font-medium leading-relaxed ${TEXT}`}>
+											{text}
+										</p>
+									</BentoCard>
+								</li>
 							))}
-						</div>
-						<ContactButtons source={page.path} />
-					</div>
-					<LocalShowcase page={page} />
-				</BentoCard>
+						</ul>
+					</>
+				)}
 
-				<ul className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-6">
-					{page.highlights.map(({ icon: Icon, title, text }) => (
-						<li key={title}>
-							<BentoCard
-								as="div"
-								className="group h-full p-6 transition-transform duration-300 hover:-translate-y-1 md:p-8"
+				<Appear on={animated} variant="scale">
+					<BentoCard className="flex flex-col items-center gap-6 p-6 text-center md:flex-row md:gap-10 md:p-10 md:text-left">
+						<OrbitAvatar size={150} text="DE LA CUISINE AU CODE" />
+						<div className="flex flex-col gap-3">
+							<p className="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-widest text-[#b52f2f] md:justify-start dark:text-[#ff7a7a]">
+								<ChefHat aria-hidden="true" className="size-4" />
+								Pourquoi « LeCuistotduWeb »
+							</p>
+							<blockquote
+								className={`display-title text-xl leading-snug md:text-2xl ${STRONG}`}
 							>
-								<span className="flex size-12 items-center justify-center rounded-2xl bg-[#f25353]/10 transition-transform duration-300 group-hover:-rotate-6 dark:bg-[#f25353]/15">
-									<Icon aria-hidden="true" className="size-6 text-[#f25353]" />
-								</span>
-								<h2
-									className={`display-title mt-5 text-xl font-semibold ${STRONG}`}
-								>
-									{title}
-								</h2>
-								<p className={`mt-2 font-medium leading-relaxed ${TEXT}`}>
-									{text}
-								</p>
-							</BentoCard>
-						</li>
-					))}
-				</ul>
-
-				<BentoCard className="flex flex-col items-center gap-6 p-6 text-center md:flex-row md:gap-10 md:p-10 md:text-left">
-					<OrbitAvatar size={150} text="DE LA CUISINE AU CODE" />
-					<div className="flex flex-col gap-3">
-						<p className="inline-flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-widest text-[#b52f2f] md:justify-start dark:text-[#ff7a7a]">
-							<ChefHat aria-hidden="true" className="size-4" />
-							Pourquoi « LeCuistotduWeb »
-						</p>
-						<blockquote
-							className={`display-title text-xl leading-snug md:text-2xl ${STRONG}`}
-						>
-							« {page.story ?? STORY} »
-						</blockquote>
-						<p className={`text-sm font-semibold ${TEXT}`}>
-							{siteConfig.name}, développeur web à {local.city}
-						</p>
-					</div>
-				</BentoCard>
+								« {page.story ?? STORY} »
+							</blockquote>
+							<p className={`text-sm font-semibold ${TEXT}`}>
+								{siteConfig.name}, développeur web à {local.city}
+							</p>
+						</div>
+					</BentoCard>
+				</Appear>
 
 				{page.sections.map((section) => (
-					<BentoCard key={section.title} className="p-6 md:p-10">
-						<h2 className={H2}>{section.title}</h2>
-						{section.paragraphs?.map((paragraph) => (
-							<p
-								key={paragraph}
-								className={`mt-4 max-w-3xl font-medium leading-relaxed ${TEXT}`}
-							>
-								{paragraph}
-							</p>
-						))}
-						{section.points && (
-							<ul className="mt-6 grid gap-3 sm:grid-cols-2">
-								{section.points.map((point) => (
-									<li
-										key={point}
-										className="flex gap-3 rounded-xl bg-[#253c59]/[0.03] p-3 text-[#3a5570] dark:bg-white/[0.03] dark:text-[#c5d5e5]"
-									>
-										<Check
-											aria-hidden="true"
-											className="mt-0.5 size-5 shrink-0 text-[#f25353]"
-										/>
-										{point}
-									</li>
-								))}
-							</ul>
-						)}
-					</BentoCard>
+					<Appear key={section.title} on={animated}>
+						<BentoCard className="p-6 md:p-10">
+							<h2 className={H2}>{section.title}</h2>
+							{section.paragraphs?.map((paragraph) => (
+								<p
+									key={paragraph}
+									className={`mt-4 max-w-3xl font-medium leading-relaxed ${TEXT}`}
+								>
+									{paragraph}
+								</p>
+							))}
+							{section.points && (
+								<ul className="mt-6 grid gap-3 sm:grid-cols-2">
+									{section.points.map((point) => (
+										<li
+											key={point}
+											className="flex gap-3 rounded-xl bg-[#253c59]/[0.03] p-3 text-[#3a5570] dark:bg-white/[0.03] dark:text-[#c5d5e5]"
+										>
+											<Check
+												aria-hidden="true"
+												className="mt-0.5 size-5 shrink-0 text-[#f25353]"
+											/>
+											{point}
+										</li>
+									))}
+								</ul>
+							)}
+						</BentoCard>
+					</Appear>
 				))}
 
-				<BentoCard className="p-6 md:p-10">
-					<h2 className={H2}>Comment ça se passe</h2>
-					<ol className="mt-8 grid gap-8 md:grid-cols-4 md:gap-6">
-						{STEPS.map((step, index) => (
-							<li key={step.title} className="relative flex gap-4 md:flex-col">
-								{index < STEPS.length - 1 && (
-									<span
-										aria-hidden="true"
-										className="absolute top-12 bottom-[-2rem] left-6 w-px bg-[#f25353]/30 md:top-6 md:right-[-1.5rem] md:bottom-auto md:left-14 md:h-px md:w-auto"
-									/>
-								)}
-								<span className="display-title relative flex size-12 shrink-0 items-center justify-center rounded-full bg-[#f25353] text-lg font-bold text-white shadow-lg shadow-[#f25353]/30">
-									{index + 1}
-								</span>
-								<div>
-									<h3 className={`font-semibold ${STRONG}`}>{step.title}</h3>
-									<p className={`mt-1 text-sm leading-relaxed ${TEXT}`}>
-										{step.text}
-									</p>
-								</div>
-							</li>
-						))}
-					</ol>
-				</BentoCard>
+				<Appear on={animated} variant="rise">
+					<BentoCard className="p-6 md:p-10">
+						<h2 className={H2}>Comment ça se passe</h2>
+						<ProcessTimeline steps={STEPS} animated={animated} />
+					</BentoCard>
+				</Appear>
 
-				<BentoCard className="p-6 md:p-10">
-					<div className="flex flex-wrap items-end justify-between gap-4">
-						<div>
-							<h2 className={H2}>Quelques réalisations</h2>
-							<p className={`mt-2 max-w-2xl font-medium ${TEXT}`}>
-								De Fnac Darty aux sites d'indépendants, le même soin du détail.
-							</p>
-						</div>
-						<Link
-							to="/projets"
-							className="group inline-flex shrink-0 items-center gap-1.5 font-semibold"
-						>
-							<span className="text-[#b52f2f] dark:text-[#ff7a7a]">
-								Voir tous les projets
-							</span>
-							<ArrowRight
-								aria-hidden="true"
-								className="size-4 text-[#b52f2f] transition-transform group-hover:translate-x-0.5 dark:text-[#ff7a7a]"
-							/>
-						</Link>
-					</div>
-					<ul className="mt-6 grid gap-4 sm:grid-cols-3">
-						{works.map((work) => (
-							<li key={work.label}>
-								<Link to="/projets" className="group block">
-									<div className="overflow-hidden rounded-xl border border-[#d2c4a4] dark:border-[#253c59]">
-										<img
-											src={work.src}
-											srcSet={work.srcSet}
-											sizes="(min-width: 640px) 300px, 100vw"
-											alt={`Aperçu du projet ${work.label}`}
-											width={640}
-											height={400}
-											loading="lazy"
-											className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-										/>
-									</div>
-									<p className={`mt-3 font-semibold ${STRONG}`}>
-										<span className={STRONG}>{work.label}</span>
-									</p>
-									<p className={`mt-1 text-sm leading-relaxed ${TEXT}`}>
-										<span className={TEXT}>{work.description}</span>
-									</p>
-								</Link>
-							</li>
-						))}
-					</ul>
-				</BentoCard>
-
-				<BentoCard className="p-6 md:p-10">
-					<h2 className={H2}>Questions fréquentes</h2>
-					<div className="mt-4 divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
-						{page.faq.map(({ question, answer }) => (
-							<details key={question} className="group py-4">
-								<summary
-									className={`flex cursor-pointer list-none items-center justify-between gap-4 font-semibold ${STRONG}`}
-								>
-									<h3>{question}</h3>
-									<ChevronDown
-										aria-hidden="true"
-										className="size-5 shrink-0 text-[#f25353] transition-transform group-open:rotate-180"
-									/>
-								</summary>
-								<p className={`mt-3 max-w-3xl leading-relaxed ${TEXT}`}>
-									{answer}
+				<Appear on={animated} variant="rise">
+					<BentoCard className="p-6 md:p-10">
+						<div className="flex flex-wrap items-end justify-between gap-4">
+							<div>
+								<h2 className={H2}>Quelques réalisations</h2>
+								<p className={`mt-2 max-w-2xl font-medium ${TEXT}`}>
+									De Fnac Darty aux sites d'indépendants, le même soin du
+									détail.
 								</p>
-							</details>
-						))}
-					</div>
-				</BentoCard>
+							</div>
+							<Link
+								to="/projets"
+								className="group inline-flex shrink-0 items-center gap-1.5 font-semibold"
+							>
+								<span className="text-[#b52f2f] dark:text-[#ff7a7a]">
+									Voir tous les projets
+								</span>
+								<ArrowRight
+									aria-hidden="true"
+									className="size-4 text-[#b52f2f] transition-transform group-hover:translate-x-0.5 dark:text-[#ff7a7a]"
+								/>
+							</Link>
+						</div>
+						<ul className="mt-6 grid gap-4 sm:grid-cols-3">
+							{works.map((work, index) => (
+								<li key={work.label}>
+									<Appear on={animated} delay={index * 140}>
+										<Link to="/projets" className="group block">
+											<div className="overflow-hidden rounded-xl border border-[#d2c4a4] dark:border-[#253c59]">
+												<img
+													src={work.src}
+													srcSet={work.srcSet}
+													sizes="(min-width: 640px) 300px, 100vw"
+													alt={`Aperçu du projet ${work.label}`}
+													width={640}
+													height={400}
+													loading="lazy"
+													className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+												/>
+											</div>
+											<p className={`mt-3 font-semibold ${STRONG}`}>
+												<span className={STRONG}>{work.label}</span>
+											</p>
+											<p className={`mt-1 text-sm leading-relaxed ${TEXT}`}>
+												<span className={TEXT}>{work.description}</span>
+											</p>
+										</Link>
+									</Appear>
+								</li>
+							))}
+						</ul>
+					</BentoCard>
+				</Appear>
 
-				<section className="relative overflow-hidden rounded-2xl bg-[#253c59] p-8 md:p-12 dark:bg-[#1c2d44]">
-					<div
-						aria-hidden="true"
-						className="absolute -top-24 -right-24 size-72 rounded-full bg-[#f25353]/30 blur-3xl"
-					/>
-					<div className="relative flex flex-col gap-6">
-						<h2 className="display-title max-w-2xl text-3xl font-bold leading-tight text-white md:text-4xl">
-							On en parle autour d'un café ?
-						</h2>
-						<p className="max-w-2xl text-lg font-medium leading-relaxed text-[#d5e0ec]">
-							Premier échange gratuit de 30 minutes, à {local.city}, chez vous
-							ou en visio. Vous recevez ensuite un devis clair, sans engagement.
-						</p>
-						<ContactButtons source={`${page.path}-bottom`} onDark />
-					</div>
-				</section>
+				<Appear on={animated} variant="rise">
+					<BentoCard className="p-6 md:p-10">
+						<h2 className={H2}>Questions fréquentes</h2>
+						<div className="mt-4 divide-y divide-[#d2c4a4] dark:divide-[#253c59]">
+							{page.faq.map(({ question, answer }) => (
+								<details key={question} className="group py-4">
+									<summary
+										className={`flex cursor-pointer list-none items-center justify-between gap-4 font-semibold ${STRONG}`}
+									>
+										<h3>{question}</h3>
+										<ChevronDown
+											aria-hidden="true"
+											className="size-5 shrink-0 text-[#f25353] transition-transform group-open:rotate-180"
+										/>
+									</summary>
+									<p className={`mt-3 max-w-3xl leading-relaxed ${TEXT}`}>
+										{answer}
+									</p>
+								</details>
+							))}
+						</div>
+					</BentoCard>
+				</Appear>
+
+				<Appear on={animated} variant="scale">
+					<section className="relative overflow-hidden rounded-2xl bg-[#253c59] p-8 md:p-12 dark:bg-[#1c2d44]">
+						<div
+							aria-hidden="true"
+							className="absolute -top-24 -right-24 size-72 rounded-full bg-[#f25353]/30 blur-3xl"
+						/>
+						<div className="relative flex flex-col gap-6">
+							<h2 className="display-title max-w-2xl text-3xl font-bold leading-tight text-white md:text-4xl">
+								On en parle autour d'un café ?
+							</h2>
+							<p className="max-w-2xl text-lg font-medium leading-relaxed text-[#d5e0ec]">
+								Premier échange gratuit de 30 minutes, à {local.city}, chez vous
+								ou en visio. Vous recevez ensuite un devis clair, sans
+								engagement.
+							</p>
+							<ContactButtons source={`${page.path}-bottom`} onDark />
+						</div>
+					</section>
+				</Appear>
 
 				<LocalLinks pages={related} title="Voir aussi" />
 			</main>
