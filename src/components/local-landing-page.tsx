@@ -487,8 +487,8 @@ export function LocalFooter({ wide = false }: { wide?: boolean }) {
 			className={`mx-auto flex w-full ${wide ? "max-w-[110rem] md:px-8 lg:px-12" : "max-w-5xl"} flex-wrap items-center justify-between gap-3 border-t border-[#d2c4a4] px-4 py-6 pb-24 text-sm sm:pb-6 dark:border-[#253c59] ${TEXT}`}
 		>
 			<p>
-				<span className={`font-semibold ${STRONG}`}>{siteConfig.alias}</span> ·{" "}
-				{siteConfig.name}, développeur web freelance à {local.city} (
+				<span className={`font-semibold ${STRONG}`}>{local.businessName}</span>{" "}
+				· {siteConfig.name}, développeur web freelance à {local.city} (
 				{local.department}, {local.region})
 			</p>
 			<div className="flex flex-wrap gap-4">

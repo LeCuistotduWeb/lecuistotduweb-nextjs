@@ -101,4 +101,4 @@ Les pages locales (`src/data/local-pages.ts`) et le JSON-LD sont en place. Il re
 - [ ] « Demander des avis » : copier le lien d'avis dans `local.googleReviewUrl` (prévu pour un futur bouton « Laisser un avis »).
 - [ ] Mettre `https://lecuistotduweb.fr/creation-site-internet-vernon` ou l'accueil comme site web de la fiche.
 - [ ] Déclarer `https://lecuistotduweb.fr/sitemap.xml` dans Google Search Console, puis demander l'indexation des 6 pages locales.
-- [ ] Garder exactement le même nom (« LeCuistotduWeb ») et la même ville sur le site, la fiche Google, les annuaires et les réseaux.
+- [ ] Garder exactement le même nom commercial (« Le Cuistot du Web », `local.businessName`) et la même ville sur le site, la fiche Google, les annuaires et les réseaux. « LeCuistotduWeb » reste l'écriture du logo, déclarée comme variante (`alternateName`) dans le JSON-LD.

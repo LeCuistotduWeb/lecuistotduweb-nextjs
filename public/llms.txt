@@ -1,4 +1,4 @@
-# Gaëtan Boyron — LeCuistotduWeb
+# Gaëtan Boyron — Le Cuistot du Web (LeCuistotduWeb)
 
 > Développeur web freelance et Fullstack React/Node.js basé à Vernon (Eure, Normandie). Reconverti depuis la cuisine professionnelle en 2017, passionné par le web moderne et les expériences utilisateur soignées. Son alias « LeCuistotduWeb » rappelle cette reconversion : la rigueur et la créativité du cuisinier transposées dans le code.
 

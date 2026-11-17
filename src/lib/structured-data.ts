@@ -68,8 +68,11 @@ export function structuredData() {
 			"@type": "ProfessionalService",
 			"@id": serviceId,
 			// Même nom que la fiche Google Business Profile (cohérence NAP)
-			name: siteConfig.alias,
-			alternateName: `${siteConfig.alias} — ${siteConfig.name}`,
+			name: local.businessName,
+			alternateName: [
+				siteConfig.alias,
+				`${siteConfig.alias} — ${siteConfig.name}`,
+			],
 			url: siteConfig.url,
 			description: siteConfig.description,
 			image: `${siteConfig.url}/og-image.png`,

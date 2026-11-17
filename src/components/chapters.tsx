@@ -4,11 +4,10 @@ import type { ReactNode } from "react";
 import { Reveal } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import type { ParcoursId } from "#/lib/views";
-import { AvatarCard } from "./avatar-card";
-import { BioCard } from "./bio-card";
 import { ContactCard } from "./contact-card";
 import { CvCard } from "./cv-card";
 import { ExperiencesCard } from "./experiences-card";
+import { HomeHero } from "./home-hero";
 import { LinkedInCard } from "./linkedin-card";
 import { LocalLinks } from "./local-landing-page";
 import { MissionsCard } from "./missions-card";
@@ -111,15 +110,7 @@ export function Chapters() {
 				aria-label="Présentation"
 				className="scroll-mt-4 sm:scroll-mt-20 flex min-h-[calc(100svh-6rem)] md:min-h-[calc(100svh-9rem)] flex-col justify-center gap-10"
 			>
-				<Grid>
-					<Item className="col-span-1 sm:col-span-2 md:col-span-3">
-						<BioCard />
-					</Item>
-					{/* Pas de révélation : l'avatar de l'écran de chargement atterrit ici */}
-					<div className="col-span-1">
-						<AvatarCard />
-					</div>
-				</Grid>
+				<HomeHero />
 				<ScrollCue />
 			</section>
 

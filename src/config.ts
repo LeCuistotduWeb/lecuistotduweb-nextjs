@@ -27,6 +27,9 @@ export const siteConfig = {
 		calLink: "lecuistotduweb/30min" as string | undefined,
 	},
 	local: {
+		// Nom commercial, écrit exactement comme sur la fiche Google Business
+		// Profile (cohérence NAP). Le logo garde l'écriture « LeCuistotduWeb ».
+		businessName: "Le Cuistot du Web",
 		// Ancrage local (SEO) : ville de rattachement, sans adresse précise
 		// (adresse masquée sur la fiche Google, zone desservie autour de Vernon)
 		city: "Vernon",

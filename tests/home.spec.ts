@@ -226,7 +226,9 @@ test("intro ends on its own and reveals the page", async ({ page }) => {
 	await expect(
 		page.locator("[data-avatar-target]"),
 	).toBeVisible();
-	await expect(page.getByRole("heading", { name: "LeCuistotduWeb" })).toBeInViewport();
+	await expect(
+		page.getByRole("heading", { level: 1, name: /Du code fait maison/ }),
+	).toBeInViewport();
 });
 
 test("contact card copies the e-mail address", async ({ page, context }) => {

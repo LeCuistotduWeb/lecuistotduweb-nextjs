@@ -102,7 +102,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		path: "/creation-site-internet-vernon",
 		kind: "zone",
 		label: "Création de site internet à Vernon",
-		title: "Création de site internet à Vernon (27) — LeCuistotduWeb",
+		title: "Création de site internet à Vernon (27) — Le Cuistot du Web",
 		description:
 			"Développeur web freelance à Vernon (Eure) : création de sites internet pour commerçants, restaurants, salons et TPE. Devis gratuit, rendez-vous sur place.",
 		heading: "Création de site internet à Vernon",

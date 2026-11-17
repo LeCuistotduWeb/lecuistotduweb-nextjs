@@ -668,3 +668,14 @@ html::after {
     background: #fff !important;
   }
 }
+
+/* Home hero — floating chips around the avatar */
+@keyframes hero-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}

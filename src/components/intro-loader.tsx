@@ -4,7 +4,6 @@ import { OrbitAvatar } from "./orbit-avatar";
 
 const STORAGE_KEY = "lcdw-intro-seen";
 const LOADER_SIZE = 220;
-const TARGET_SIZE = 176; // taille de l'OrbitAvatar de la carte Avatar
 const DURATION = 1400;
 
 // Courbe « chargement » : démarre vite, marque une pause vers 70 %, finit.
@@ -81,7 +80,7 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
 						[
 							{ transform: "none" },
 							{
-								transform: `translate(${to.left + to.width / 2 - (from.left + from.width / 2)}px, ${to.top + to.height / 2 - (from.top + from.height / 2)}px) scale(${TARGET_SIZE / LOADER_SIZE})`,
+								transform: `translate(${to.left + to.width / 2 - (from.left + from.width / 2)}px, ${to.top + to.height / 2 - (from.top + from.height / 2)}px) scale(${to.width / LOADER_SIZE})`,
 							},
 						],
 						{
