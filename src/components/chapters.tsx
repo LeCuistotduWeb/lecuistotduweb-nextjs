@@ -85,6 +85,8 @@ function Chapter({
 
 // Offres empilées : chaque carte se fixe un peu plus bas que la précédente
 // et la suivante vient la recouvrir au scroll (pas d'épinglage en mobile).
+// Les cartes ont toutes la même hauteur : sinon le bas d'une carte plus
+// haute dépasse sous la suivante.
 const OFFER_CARDS = [
 	<FeaturedOffer key="featured" />,
 	<SecondaryOffer key="custom" index={0} />,
@@ -97,7 +99,7 @@ function OfferStack() {
 			{OFFER_CARDS.map((card, index) => (
 				<Reveal
 					key={card.key}
-					className="md:sticky md:mb-[20svh] md:last:mb-0 md:*:bg-[#faf5ec] md:*:shadow-2xl md:*:shadow-[#253c59]/15 dark:md:*:bg-[#172231]"
+					className="md:sticky md:mb-[20svh] md:last:mb-0 md:*:min-h-[min(34rem,calc(100svh-8rem))] md:*:bg-[#faf5ec] md:*:shadow-2xl md:*:shadow-[#253c59]/15 dark:md:*:bg-[#172231]"
 					style={{ top: `calc(6rem + ${index * 2}rem)` }}
 				>
 					{card}

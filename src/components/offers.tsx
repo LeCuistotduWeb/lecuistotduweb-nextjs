@@ -140,22 +140,31 @@ export function SecondaryOffer({
 	return (
 		<BentoCard
 			className={cn(
-				"group flex flex-col gap-4 p-6 md:p-8 hover:border-[#f25353]/50 dark:hover:border-[#f25353]/50 transition-colors",
+				"group relative isolate flex flex-col gap-4 overflow-hidden p-6 md:gap-6 md:p-10 hover:border-[#f25353]/50 dark:hover:border-[#f25353]/50 transition-colors",
 				className,
 			)}
 		>
+			{/* Grand pictogramme en filigrane : habille la carte, de même hauteur
+			    que l'offre principale dans la pile */}
+			<Icon
+				aria-hidden="true"
+				className="pointer-events-none absolute -right-10 -bottom-10 -z-10 hidden size-64 md:block text-[#f25353]/8 transition-transform duration-700 group-hover:-rotate-12 dark:text-[#f25353]/10"
+			/>
 			<div className="flex items-center gap-3">
-				<span className="flex size-10 items-center justify-center rounded-xl bg-[#f25353]/10 dark:bg-[#f25353]/15">
-					<Icon aria-hidden="true" className="size-5 text-[#f25353]" />
+				<span className="flex size-10 items-center justify-center rounded-xl bg-[#f25353]/10 md:size-12 dark:bg-[#f25353]/15">
+					<Icon
+						aria-hidden="true"
+						className="size-5 text-[#f25353] md:size-6"
+					/>
 				</span>
-				<h3 className="display-title text-xl md:text-2xl font-semibold text-[#253c59] dark:text-white">
+				<h3 className="display-title text-xl md:text-4xl font-semibold text-[#253c59] dark:text-white">
 					{title}
 				</h3>
 			</div>
-			<p className="text-[#4a6a8a] dark:text-[#a1adbc] font-medium leading-relaxed">
+			<p className="max-w-xl text-[#4a6a8a] dark:text-[#a1adbc] font-medium leading-relaxed md:text-lg">
 				{text}
 			</p>
-			<ul className="flex flex-col gap-2 text-sm text-[#3a5570] dark:text-[#c5d5e5]">
+			<ul className="flex flex-col gap-2 text-sm text-[#3a5570] md:gap-3 md:text-base dark:text-[#c5d5e5]">
 				{benefits.map((benefit) => (
 					<li key={benefit} className="flex gap-2">
 						<Check
