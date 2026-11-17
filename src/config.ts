@@ -54,9 +54,11 @@ export const siteConfig = {
 		// Lien public de la fiche Google Business Profile (« Partager le
 		// profil » → lien g.page ou maps.app.goo.gl). Le lien « Voir la fiche
 		// Google » et le sameAs du JSON-LD n'apparaissent que s'il est renseigné.
-		googleBusinessUrl: undefined as string | undefined,
+		googleBusinessUrl: "https://g.page/r/CTw8bcz8lHnTEBM" as string | undefined,
 		// Lien « Laisser un avis » de la fiche ; bouton masqué tant qu'il est vide
-		googleReviewUrl: undefined as string | undefined,
+		googleReviewUrl: "https://g.page/r/CTw8bcz8lHnTEBM/review" as
+			| string
+			| undefined,
 	},
 	rangeo: {
 		// Sous-domaine dédié : la home du sous-domaine affiche /rangeo
