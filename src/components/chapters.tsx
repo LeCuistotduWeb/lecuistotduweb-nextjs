@@ -5,17 +5,12 @@ import { Reveal } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import type { ParcoursId } from "#/lib/views";
 import { ContactCard } from "./contact-card";
-import { CvCard } from "./cv-card";
 import { ExperienceTimeline } from "./experience-timeline";
-import { FormationsCard } from "./formations-card";
 import { HomeHero } from "./home-hero";
-import { LinkedInCard } from "./linkedin-card";
 import { LocalFooter } from "./local-landing-page";
-import { MissionsCard } from "./missions-card";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
 import { ProjectsStory } from "./projects-story";
-import { SocialCard } from "./social-card";
-import { StackCard } from "./stack-card";
+import { StackBand } from "./stack-band";
 import { ViewIntro } from "./view-intro";
 
 const FULL = "col-span-1 sm:col-span-2 md:col-span-4";
@@ -117,32 +112,12 @@ export function Chapters() {
 
 			<Chapter id="experience">
 				<ExperienceTimeline />
-				<Item className="col-span-1">
-					<div className="flex flex-col gap-3">
-						<LinkedInCard />
-						<CvCard />
-					</div>
-				</Item>
-				<Item className="col-span-1 sm:col-span-2 md:col-span-2" delay={120}>
-					<div className="flex flex-col gap-3">
-						<FormationsCard />
-						<StackCard />
-					</div>
-				</Item>
-				<Item className="col-span-1" delay={240}>
-					{/* Hauteur naturelle : ne s'étire pas sur toute la rangée */}
-					<div>
-						<SocialCard />
-					</div>
-				</Item>
+				<StackBand />
 			</Chapter>
 
 			<Chapter id="projets" wide>
 				{/* Pas de Reveal autour : l'écran épinglé (sticky) doit rester libre */}
 				<ProjectsStory />
-				<Item className={cn(FULL, READABLE)} delay={120}>
-					<MissionsCard />
-				</Item>
 			</Chapter>
 
 			<Chapter id="offre">

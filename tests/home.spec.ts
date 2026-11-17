@@ -36,9 +36,11 @@ test("has title", async ({ page }) => {
 	);
 });
 
-test("CV card links to the /cv page", async ({ page }) => {
-	const link = cardByTitle(page, "Curriculum Vitae").locator('a[href="/cv"]');
-	await expect(link).toBeVisible();
+test("experience chapter links to the /cv page", async ({ page }) => {
+	const link = page
+		.locator("#experience")
+		.getByRole("link", { name: "Voir mon CV" });
+	await expect(link).toHaveAttribute("href", "/cv");
 });
 
 test("/cv renders the ATS resume", async ({ page }) => {
@@ -113,8 +115,10 @@ test("offer link prefills the contact topic", async ({ page }) => {
 	);
 });
 
-test("links to LinkedIn in a new tab", async ({ page }) => {
-	const link = page.getByRole("link", { name: "Voir mon profil LinkedIn" });
+test("contact card links to LinkedIn in a new tab", async ({ page }) => {
+	const link = cardByTitle(page, "Contact").getByRole("link", {
+		name: "LinkedIn",
+	});
 	await expect(link).toHaveAttribute("href", LINKEDIN_URL);
 	await expect(link).toHaveAttribute("target", "_blank");
 });

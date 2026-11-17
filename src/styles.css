@@ -592,6 +592,13 @@ html::after {
   }
 }
 
+/* Experience — bandes de la stack qui défilent en boucle */
+@keyframes stack-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 /* AI card — rotating gradient border */
 .ai-glow {
   position: relative;
