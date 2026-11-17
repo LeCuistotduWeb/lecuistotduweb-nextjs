@@ -29,9 +29,9 @@ export const VIEWS = [
 	{
 		id: "offre",
 		path: "/offre",
-		label: "Offre",
+		label: "Offres",
 		title: `Offre freelance — ${siteConfig.name}`,
-		description: `Renfort React / Next.js en régie, projet sur mesure ou maintenance de site : l'offre freelance de ${siteConfig.name}.`,
+		description: `Renfort fullstack React / Node.js en régie, projet sur mesure ou maintenance de site : l'offre freelance de ${siteConfig.name}.`,
 	},
 	{
 		id: "contact",

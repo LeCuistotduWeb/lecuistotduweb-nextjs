@@ -31,7 +31,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
 	{ to: "/realisations", label: "Réalisations" },
-	{ to: "/offre", label: "Offre" },
+	{ to: "/offre", label: "Offres" },
 	{ to: "/contact", label: "Contact" },
 ] as const;
 
@@ -81,7 +81,7 @@ export function ContactButtons({
 					className="inline-flex items-center gap-2 rounded-full bg-[#f25353] px-5 py-2.5 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#e04444]"
 				>
 					<CalendarDays aria-hidden="true" className="size-4 text-white" />
-					<span className="text-white">Réserver un appel gratuit</span>
+					<span className="text-white">Discutons de votre projet</span>
 				</a>
 			)}
 			<Link

@@ -339,7 +339,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				question: "Travaillez-vous aussi pour des entreprises hors de l'Eure ?",
 				answer:
-					"Oui. J'interviens à distance partout en France, et sur site à Paris et Rouen, en ligne directe depuis Vernon, pour des missions de renfort React / Next.js.",
+					"Oui. J'interviens à distance partout en France, et sur site à Paris et Rouen, en ligne directe depuis Vernon, pour des missions de renfort fullstack React / Node.js.",
 			},
 			COMMON_FAQ.maintenance,
 		],

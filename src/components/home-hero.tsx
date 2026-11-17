@@ -58,7 +58,7 @@ export function HomeHero() {
 					</Reveal>
 					<RevealWords
 						as="span"
-						text="Du code fait maison, servi avec soin."
+						text="Du web fait maison, servi avec soin."
 						delay={250}
 						className="display-title text-5xl font-bold leading-[1.02] text-[#253c59] text-balance md:text-6xl lg:text-7xl 2xl:text-8xl dark:text-white"
 					/>
@@ -69,10 +69,11 @@ export function HomeHero() {
 					delay={600}
 					className="max-w-2xl text-lg font-medium leading-relaxed text-[#4a6a8a] md:text-xl dark:text-[#a1adbc]"
 				>
-					Je conçois et fais évoluer vos applications web React / Next.js, de
-					l'idée à la mise en production. Plus de 8 ans d'expérience, dont Fnac
-					Darty et Infogreffe : en renfort de votre équipe, en projet clé en
-					main, ou pour le site de votre commerce dans l'Eure.
+					Je conçois et fais évoluer vos applications web, du front-end React /
+					Next.js au back-end Node.js, jusqu'à la mise en production. Plus de 8
+					ans d'expérience, dont Fnac Darty et Infogreffe : en renfort de votre
+					équipe, en projet clé en main, ou pour le site de votre commerce dans
+					l'Eure.
 				</Reveal>
 				<Reveal
 					variant="rise"
@@ -88,7 +89,7 @@ export function HomeHero() {
 							className="inline-flex items-center gap-2 rounded-full bg-[#f25353] px-6 py-3 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#e04444]"
 						>
 							<CalendarDays aria-hidden="true" className="size-4 text-white" />
-							<span className="text-white">Réserver un appel gratuit</span>
+							<span className="text-white">Discutons de votre projet</span>
 						</a>
 					)}
 					<Link

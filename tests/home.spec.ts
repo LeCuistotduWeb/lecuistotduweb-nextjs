@@ -184,7 +184,7 @@ test("/realisations filters projects by kind", async ({ page }) => {
 const CHAPTERS: { path: string; id: string; label: string; title?: string }[] = [
 	{ path: "/experience", id: "experience", label: "Expérience" },
 	{ path: "/projets", id: "projets", label: "Projets" },
-	{ path: "/offre", id: "offre", label: "Offre", title: "Offre freelance" },
+	{ path: "/offre", id: "offre", label: "Offres", title: "Offre freelance" },
 	{ path: "/contact", id: "contact", label: "Contact" },
 ];
 
@@ -267,7 +267,7 @@ test("intro ends on its own and reveals the page", async ({ page }) => {
 		page.locator("[data-avatar-target]"),
 	).toBeVisible();
 	await expect(
-		page.getByRole("heading", { level: 1, name: /Du code fait maison/ }),
+		page.getByRole("heading", { level: 1, name: /Du web fait maison/ }),
 	).toBeInViewport();
 });
 

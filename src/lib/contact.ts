@@ -3,7 +3,7 @@ import { z } from "zod";
 // Sujets proposés en suggestions du champ « Sujet » (saisie libre possible)
 // Les trois premiers reprennent les offres du chapitre Offre (voir offers.tsx)
 export const CONTACT_TOPICS = [
-	"Renfort React / Next.js",
+	"Renfort fullstack React / Node.js",
 	"Projet sur mesure",
 	"Maintenance et évolutions",
 	"Autre",

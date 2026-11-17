@@ -18,12 +18,12 @@ export const Route = createFileRoute("/cv")({
 	head: () => ({
 		meta: [
 			{
-				title: `${siteConfig.name} — CV Développeur Fullstack React / Next.js`,
+				title: `${siteConfig.name} — CV Développeur Fullstack React / Node.js`,
 			},
 			{
 				name: "description",
 				content:
-					"CV de Gaëtan Boyron, développeur Fullstack React, Next.js et TypeScript : compétences, expériences et formations. Version optimisée pour les recruteurs.",
+					"CV de Gaëtan Boyron, développeur Fullstack React, Next.js, Node.js et TypeScript : compétences, expériences et formations. Version optimisée pour les recruteurs.",
 			},
 			{ name: "og:title", content: `${siteConfig.name} — CV` },
 			{ name: "og:type", content: "profile" },
@@ -37,7 +37,7 @@ export const Route = createFileRoute("/cv")({
 const CV_TITLE = siteConfig.role;
 
 const PROFILE =
-	"Développeur web depuis plus de 8 ans, spécialisé dans la conception d'applications React, Next.js et TypeScript robustes, performantes et accessibles. J'interviens de la conception à la mise en production, en lien étroit avec les équipes Produit, UX et Backend. Ces dernières années, j'ai contribué à des produits à fort trafic chez Fnac Darty et Infogreffe : architecture frontend, design system, Core Web Vitals et qualité du code.";
+	"Développeur web depuis plus de 8 ans, spécialisé dans la conception d'applications React, Next.js, Node.js et TypeScript robustes, performantes et accessibles. J'interviens de la conception à la mise en production, en lien étroit avec les équipes Produit, UX et Backend. Ces dernières années, j'ai contribué à des produits à fort trafic chez Fnac Darty et Infogreffe : architecture frontend, design system, Core Web Vitals et qualité du code.";
 
 const SKILL_GROUPS: { label: string; items: string[] }[] = [
 	{

@@ -55,7 +55,7 @@ ${projects}
 
 ## Disponibilité
 - Disponibilité actuelle : ${getAvailability().label}.
-- Gaëtan est développeur freelance, disponible pour des missions : renfort React / Next.js en régie ou projet au forfait (application web, SaaS, e-commerce, site sur mesure).
+- Gaëtan est développeur freelance, disponible pour des missions : renfort fullstack React / Node.js en régie ou projet au forfait (application web, SaaS, e-commerce, site sur mesure).
 - **WordPress** : il maîtrise WordPress et assure la maintenance, les mises à jour et les évolutions de sites existants. Pour un nouveau projet, il recommande plutôt une solution sur mesure (React / Next.js).
 - Il est basé à Vernon (Normandie) et peut se déplacer facilement sur **Paris** (ligne directe) ou **Rouen** (ligne directe).
 - Il privilégie le **télétravail**, mais reste ouvert aux missions hybrides ou en présentiel selon l'organisation.

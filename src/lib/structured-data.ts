@@ -100,7 +100,7 @@ export function structuredData() {
 				potentialAction: {
 					"@type": "ReserveAction",
 					target: bookingUrl,
-					name: "Réserver un appel",
+					name: "Discutons de votre projet",
 				},
 			}),
 			hasOfferCatalog: {
