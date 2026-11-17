@@ -131,6 +131,8 @@ export function LocalLandingPage({ path }: { path: string }) {
 	const scrolly = page.scrolly;
 	const animated = Boolean(scrolly);
 	useStartScrollAnimations(animated);
+	// Récit au scroll : conteneur large, sinon largeur de lecture habituelle
+	const WIDTH = animated ? "max-w-[110rem] md:px-8 lg:px-12" : "max-w-5xl";
 
 	const heroCard = (
 		<BentoCard
@@ -177,7 +179,9 @@ export function LocalLandingPage({ path }: { path: string }) {
 
 	return (
 		<div className="flex min-h-dvh flex-col">
-			<header className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-5">
+			<header
+				className={`mx-auto flex w-full ${WIDTH} flex-wrap items-center justify-between gap-3 px-4 py-5`}
+			>
 				<Link
 					to="/"
 					className="display-title text-xl font-bold text-[#253c59] dark:text-white"
@@ -200,7 +204,9 @@ export function LocalLandingPage({ path }: { path: string }) {
 			</header>
 			<ThemeToggle />
 
-			<main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 px-4 pb-24 md:gap-6">
+			<main
+				className={`mx-auto flex w-full ${WIDTH} flex-1 flex-col gap-4 px-4 pb-24 md:gap-6`}
+			>
 				<nav aria-label="Fil d'Ariane" className={`text-sm ${TEXT}`}>
 					<ol className="flex flex-wrap items-center gap-1.5">
 						<li>
@@ -412,7 +418,7 @@ export function LocalLandingPage({ path }: { path: string }) {
 				<LocalLinks pages={related} title="Voir aussi" />
 			</main>
 
-			<LocalFooter />
+			<LocalFooter wide={animated} />
 		</div>
 	);
 }
@@ -474,11 +480,11 @@ export function LocalLinks({
 }
 
 /** Pied de page : nom, ville et contact identiques à la fiche Google (NAP). */
-export function LocalFooter() {
+export function LocalFooter({ wide = false }: { wide?: boolean }) {
 	const { local } = siteConfig;
 	return (
 		<footer
-			className={`mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 border-t border-[#d2c4a4] px-4 py-6 pb-24 text-sm sm:pb-6 dark:border-[#253c59] ${TEXT}`}
+			className={`mx-auto flex w-full ${wide ? "max-w-[110rem] md:px-8 lg:px-12" : "max-w-5xl"} flex-wrap items-center justify-between gap-3 border-t border-[#d2c4a4] px-4 py-6 pb-24 text-sm sm:pb-6 dark:border-[#253c59] ${TEXT}`}
 		>
 			<p>
 				<span className={`font-semibold ${STRONG}`}>{siteConfig.alias}</span> ·{" "}

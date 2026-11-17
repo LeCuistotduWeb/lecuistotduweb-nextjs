@@ -62,16 +62,18 @@ export function ScrollyStory({
 	const current = active < 0 ? initialScreen : steps[active].screen;
 
 	return (
-		<div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_17rem] md:gap-x-10 lg:grid-cols-[minmax(0,1fr)_19rem]">
+		<div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-x-12 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-x-20 2xl:grid-cols-2">
 			<div className="flex min-w-0 flex-col gap-4 md:gap-6">
-				{hero}
+				<div className="flex flex-col justify-center md:min-h-[calc(100svh-7rem)]">
+					{hero}
+				</div>
 				<ol className="flex flex-col">
 					{steps.map((step, index) => (
 						<li
 							key={step.title}
 							ref={register(index)}
 							className={cn(
-								"flex flex-col justify-center gap-4 py-10 transition-opacity duration-500 md:min-h-[75svh] md:py-0",
+								"flex flex-col justify-center gap-4 py-10 transition-opacity duration-500 md:min-h-svh md:py-0",
 								active === index ? "md:opacity-100" : "md:opacity-30",
 							)}
 						>
@@ -80,10 +82,10 @@ export function ScrollyStory({
 							</p>
 							<RevealWords
 								text={step.title}
-								className={`display-title text-3xl font-bold leading-tight md:text-5xl ${STRONG}`}
+								className={`display-title text-3xl font-bold leading-[1.05] md:text-6xl lg:text-7xl ${STRONG}`}
 							/>
 							<p
-								className={`max-w-xl text-lg font-medium leading-relaxed ${TEXT}`}
+								className={`max-w-2xl text-lg font-medium leading-relaxed md:text-xl ${TEXT}`}
 							>
 								{step.text}
 							</p>
@@ -99,8 +101,8 @@ export function ScrollyStory({
 			</div>
 
 			<div className="hidden md:block">
-				<div className="sticky top-[12svh] flex flex-col items-center gap-6 pt-12">
-					<div ref={parallax}>
+				<div className="sticky top-0 flex h-svh flex-col items-center justify-center gap-10">
+					<div ref={parallax} className="lg:scale-125 2xl:scale-150">
 						<PhoneMockup screens={screens} active={current} />
 					</div>
 					<ol aria-hidden="true" className="flex gap-2">
