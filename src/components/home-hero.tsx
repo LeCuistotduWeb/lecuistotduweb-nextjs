@@ -16,7 +16,6 @@ import {
 	useParallax,
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
-import { AiCard } from "./ai-card";
 import { FreelanceStatusBadge } from "./freelance-status-badge";
 import { OrbitAvatar } from "./orbit-avatar";
 
@@ -106,9 +105,6 @@ export function HomeHero() {
 							className="size-4 text-[#253c59] transition-transform group-hover:translate-x-0.5 dark:text-white"
 						/>
 					</Link>
-				</Reveal>
-				<Reveal variant="rise" delay={900} className="w-full max-w-xl">
-					<AiCard />
 				</Reveal>
 			</div>
 

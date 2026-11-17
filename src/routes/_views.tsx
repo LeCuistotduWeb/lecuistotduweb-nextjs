@@ -5,6 +5,7 @@ import {
 	useNavigate,
 } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { AiCard } from "#/components/ai-card";
 import { Chapters } from "#/components/chapters";
 import { IntroLoader } from "#/components/intro-loader";
 import { ViewNav } from "#/components/view-nav";
@@ -133,6 +134,7 @@ function ViewsLayout() {
 					<Outlet />
 				</div>
 			</main>
+			{introDone && <AiCard />}
 		</>
 	);
 }
