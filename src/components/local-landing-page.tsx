@@ -465,30 +465,27 @@ export function LocalLinks({
 						</div>
 					))}
 			</div>
-			{siteConfig.local.googleBusinessUrl && (
-				<a
-					href={siteConfig.local.googleBusinessUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					onClick={() => trackEvent("click_google_business")}
-					className="group mt-6 inline-flex items-center gap-1.5 text-sm font-semibold"
-				>
-					<MapPin aria-hidden="true" className="size-4 text-[#f25353]" />
-					<span className="text-[#b52f2f] group-hover:underline dark:text-[#ff7a7a]">
-						Voir ma fiche et mes avis Google
-					</span>
-				</a>
-			)}
 		</BentoCard>
 	);
 }
 
 /** Pied de page : nom, ville et contact identiques à la fiche Google (NAP). */
-export function LocalFooter({ wide = false }: { wide?: boolean }) {
+export function LocalFooter({
+	wide = false,
+	className,
+}: {
+	wide?: boolean;
+	className?: string;
+}) {
 	const { local } = siteConfig;
 	return (
 		<footer
-			className={`mx-auto flex w-full ${wide ? "max-w-[110rem] md:px-8 lg:px-12" : "max-w-5xl"} flex-wrap items-center justify-between gap-3 border-t border-[#d2c4a4] px-4 py-6 pb-24 text-sm sm:pb-6 dark:border-[#253c59] ${TEXT}`}
+			className={cn(
+				"mx-auto flex w-full flex-wrap items-center justify-between gap-3 border-t border-[#d2c4a4] px-4 py-6 pb-24 text-sm sm:pb-6 dark:border-[#253c59]",
+				wide ? "max-w-[110rem] md:px-8 lg:px-12" : "max-w-5xl",
+				TEXT,
+				className,
+			)}
 		>
 			<p>
 				<span className={`font-semibold ${STRONG}`}>{local.businessName}</span>{" "}
@@ -504,7 +501,7 @@ export function LocalFooter({ wide = false }: { wide?: boolean }) {
 						onClick={() => trackEvent("click_google_business")}
 						className="hover:underline"
 					>
-						<span className={TEXT}>Voir la fiche Google</span>
+						<span className={TEXT}>Ma fiche et mes avis Google</span>
 					</a>
 				)}
 				<a href={`mailto:${siteConfig.email}`} className="hover:underline">

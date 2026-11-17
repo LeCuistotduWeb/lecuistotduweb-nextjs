@@ -97,7 +97,7 @@ Textes proposés par Claude à partir de ce qui existait déjà. Rien n'a été 
 
 Les pages locales (`src/data/local-pages.ts`) et le JSON-LD sont en place. Il reste à relier la fiche Google une fois validée :
 
-- [ ] Dans la fiche Google, « Partager le profil » : copier le lien et le coller dans `src/config.ts`, `local.googleBusinessUrl`. Le lien « Voir ma fiche et mes avis Google » et le `sameAs` / `hasMap` du JSON-LD apparaissent alors automatiquement.
+- [ ] Dans la fiche Google, « Partager le profil » : copier le lien et le coller dans `src/config.ts`, `local.googleBusinessUrl`. Le lien « Ma fiche et mes avis Google » (pied de page de l'accueil et des pages locales) et le `sameAs` / `hasMap` du JSON-LD apparaissent alors automatiquement.
 - [ ] « Demander des avis » : copier le lien d'avis dans `local.googleReviewUrl` (prévu pour un futur bouton « Laisser un avis »).
 - [ ] Mettre `https://lecuistotduweb.fr/creation-site-internet-vernon` ou l'accueil comme site web de la fiche.
 - [ ] Déclarer `https://lecuistotduweb.fr/sitemap.xml` dans Google Search Console, puis demander l'indexation des 6 pages locales.

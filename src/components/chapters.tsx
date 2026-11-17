@@ -10,7 +10,7 @@ import { ExperienceTimeline } from "./experience-timeline";
 import { FormationsCard } from "./formations-card";
 import { HomeHero } from "./home-hero";
 import { LinkedInCard } from "./linkedin-card";
-import { LocalLinks } from "./local-landing-page";
+import { LocalFooter, LocalLinks } from "./local-landing-page";
 import { MissionsCard } from "./missions-card";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
 import { ProjectsStory } from "./projects-story";
@@ -158,16 +158,20 @@ export function Chapters() {
 				<Item className={FULL} delay={120}>
 					<ProcessCard />
 				</Item>
-				<Item className={FULL} delay={120}>
-					<LocalLinks title="Près de chez vous : Vernon, Évreux et l'Eure" />
-				</Item>
 			</Chapter>
 
-			<Chapter id="contact" className="min-h-svh justify-center pb-24">
+			<Chapter id="contact" className="min-h-svh justify-center pb-16">
 				<Item className={FULL}>
 					<ContactCard />
 				</Item>
 			</Chapter>
+
+			{/* Pied de page : zones d'intervention (maillage vers les pages
+			    locales) et nom, ville, contact identiques à la fiche Google */}
+			<div className={cn(READABLE, "flex flex-col gap-4 pt-8")}>
+				<LocalLinks title="Près de chez vous : Vernon, Évreux et l'Eure" />
+				<LocalFooter className="max-w-none px-1 pb-2 sm:pb-2" />
+			</div>
 		</>
 	);
 }
