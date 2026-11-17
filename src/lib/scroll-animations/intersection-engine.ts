@@ -1,6 +1,5 @@
 import type {
 	ParallaxOptions,
-	ProgressOptions,
 	RevealOptions,
 	ScrollAnimationEngine,
 } from "./types";
@@ -20,7 +19,7 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 	const waiting = new Set<HTMLElement>();
 
 	const parallaxItems = new Map<HTMLElement, ParallaxOptions>();
-	const progressItems = new Map<HTMLElement, ProgressOptions["mode"]>();
+	const progressItems = new Set<HTMLElement>();
 	let frame = 0;
 
 	function show(element: HTMLElement) {
@@ -64,12 +63,9 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 	function update() {
 		frame = 0;
 		const vh = window.innerHeight;
-		for (const [element, mode] of progressItems) {
+		for (const element of progressItems) {
 			const rect = element.getBoundingClientRect();
-			const raw =
-				mode === "pin"
-					? -rect.top / Math.max(1, rect.height - vh)
-					: (vh - rect.top) / (vh * 0.4 + rect.height);
+			const raw = (vh - rect.top) / (vh * 0.4 + rect.height);
 			const value = Math.min(1, Math.max(0, raw));
 			element.style.setProperty("--scroll-progress", value.toFixed(3));
 		}
@@ -117,17 +113,13 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 			};
 		},
 
-		progress(element, { mode = "enter" }: ProgressOptions = {}) {
+		progress(element) {
 			if (prefersReducedMotion()) {
-				// Rien ne bouge : état final (frise dessinée), ou début si épinglé
-				element.style.setProperty(
-					"--scroll-progress",
-					mode === "pin" ? "0" : "1",
-				);
+				element.style.setProperty("--scroll-progress", "1");
 				return () => {};
 			}
 			listen();
-			progressItems.set(element, mode);
+			progressItems.add(element);
 			onScroll();
 			return () => {
 				progressItems.delete(element);

@@ -7,7 +7,7 @@ import {
 	useState,
 } from "react";
 import { getScrollEngine } from "./index";
-import type { ProgressOptions, RevealOptions } from "./types";
+import type { RevealOptions } from "./types";
 
 // Couche React : les composants n'utilisent que ces hooks / composants, jamais
 // le moteur directement.
@@ -70,19 +70,12 @@ export function useActiveStep(count: number) {
 }
 
 /** Avancement du scroll dans l'élément, exposé en `--scroll-progress`. */
-export function useScrollProgress<T extends HTMLElement>(
-	mode: ProgressOptions["mode"] = "enter",
-) {
+export function useScrollProgress<T extends HTMLElement>() {
 	const cleanup = useRef<(() => void) | null>(null);
-	return useCallback(
-		(element: T | null) => {
-			cleanup.current?.();
-			cleanup.current = element
-				? getScrollEngine().progress(element, { mode })
-				: null;
-		},
-		[mode],
-	);
+	return useCallback((element: T | null) => {
+		cleanup.current?.();
+		cleanup.current = element ? getScrollEngine().progress(element) : null;
+	}, []);
 }
 
 /** Lance les révélations (appelé à la fin de l'écran de chargement). */
