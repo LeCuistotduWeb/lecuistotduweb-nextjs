@@ -6,7 +6,8 @@ import { cn } from "#/lib/utils";
 import type { ParcoursId } from "#/lib/views";
 import { ContactCard } from "./contact-card";
 import { CvCard } from "./cv-card";
-import { ExperiencesCard } from "./experiences-card";
+import { ExperienceTimeline } from "./experience-timeline";
+import { FormationsCard } from "./formations-card";
 import { HomeHero } from "./home-hero";
 import { LinkedInCard } from "./linkedin-card";
 import { LocalLinks } from "./local-landing-page";
@@ -82,6 +83,30 @@ function Chapter({
 	);
 }
 
+// Offres empilées : chaque carte se fixe un peu plus bas que la précédente
+// et la suivante vient la recouvrir au scroll (pas d'épinglage en mobile).
+const OFFER_CARDS = [
+	<FeaturedOffer key="featured" />,
+	<SecondaryOffer key="custom" index={0} />,
+	<SecondaryOffer key="maintenance" index={1} />,
+];
+
+function OfferStack() {
+	return (
+		<div className="col-span-full mx-auto flex w-full max-w-4xl flex-col gap-4 md:gap-0">
+			{OFFER_CARDS.map((card, index) => (
+				<Reveal
+					key={card.key}
+					className="md:sticky md:mb-[20svh] md:last:mb-0 md:*:bg-[#faf5ec] md:*:shadow-2xl md:*:shadow-[#253c59]/15 dark:md:*:bg-[#172231]"
+					style={{ top: `calc(6rem + ${index * 2}rem)` }}
+				>
+					{card}
+				</Reveal>
+			))}
+		</div>
+	);
+}
+
 function ScrollCue() {
 	return (
 		<Reveal variant="fade" delay={900} className="flex justify-center">
@@ -115,6 +140,7 @@ export function Chapters() {
 			</section>
 
 			<Chapter id="experience">
+				<ExperienceTimeline />
 				<Item className="col-span-1">
 					<div className="flex flex-col gap-3">
 						<LinkedInCard />
@@ -122,11 +148,14 @@ export function Chapters() {
 					</div>
 				</Item>
 				<Item className="col-span-1 sm:col-span-2 md:col-span-2" delay={120}>
-					<ExperiencesCard />
+					<div className="flex flex-col gap-3">
+						<FormationsCard />
+						<StackCard />
+					</div>
 				</Item>
 				<Item className="col-span-1" delay={240}>
-					<div className="flex flex-col gap-3">
-						<StackCard />
+					{/* Hauteur naturelle : ne s'étire pas sur toute la rangée */}
+					<div>
 						<SocialCard />
 					</div>
 				</Item>
@@ -141,15 +170,7 @@ export function Chapters() {
 			</Chapter>
 
 			<Chapter id="offre">
-				<Item className="col-span-1 sm:col-span-2 md:col-span-2 md:row-span-2">
-					<FeaturedOffer />
-				</Item>
-				<Item className="col-span-1 md:col-span-2" delay={120}>
-					<SecondaryOffer index={0} />
-				</Item>
-				<Item className="col-span-1 md:col-span-2" delay={240}>
-					<SecondaryOffer index={1} />
-				</Item>
+				<OfferStack />
 				<Item className={FULL} delay={120}>
 					<ProcessCard />
 				</Item>
@@ -158,7 +179,7 @@ export function Chapters() {
 				</Item>
 			</Chapter>
 
-			<Chapter id="contact" className="min-h-[80svh] pb-24">
+			<Chapter id="contact" className="min-h-svh justify-center pb-24">
 				<Item className={FULL}>
 					<ContactCard />
 				</Item>

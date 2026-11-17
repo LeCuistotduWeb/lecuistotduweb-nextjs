@@ -19,9 +19,10 @@ import {
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
-import { ProcessTimeline, ScrollyStory } from "./local-scrolly";
+import { ScrollyStory } from "./local-scrolly";
 import { LocalShowcase, PhoneMockup } from "./local-showcase";
 import { OrbitAvatar } from "./orbit-avatar";
+import { ProcessTimeline } from "./process-timeline";
 import { ThemeToggle } from "./theme-toggle";
 
 // Gabarit des pages d'atterrissage du référencement local (zones et métiers).

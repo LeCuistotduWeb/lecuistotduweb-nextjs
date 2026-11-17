@@ -16,6 +16,7 @@ import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
 import { FreelanceStatusBadge } from "./freelance-status-badge";
+import { ProcessTimeline } from "./process-timeline";
 
 // Le style global `a { color }` n'est pas dans un layer : la couleur du texte
 // des liens est portée par un <span> interne.
@@ -179,31 +180,7 @@ export function ProcessCard({ className }: { className?: string }) {
 					Sur devis, selon votre besoin.
 				</p>
 			</div>
-			<ol className="relative grid grid-cols-1 gap-6 sm:grid-cols-3">
-				{/* Frise reliant les étapes (à partir de 2 colonnes) */}
-				<div
-					aria-hidden="true"
-					className="absolute top-4 right-[16.66%] left-[16.66%] hidden h-px bg-linear-to-r from-[#f25353]/60 via-[#d2c4a4] to-[#f25353]/60 dark:via-[#253c59] sm:block"
-				/>
-				{STEPS.map((step, i) => (
-					<li
-						key={step.title}
-						className="relative flex gap-4 sm:flex-col sm:items-center sm:text-center"
-					>
-						<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#f25353] text-sm font-semibold tabular-nums text-white ring-4 ring-[#faf5ec] dark:ring-[#172231]">
-							{i + 1}
-						</span>
-						<div>
-							<p className="font-semibold text-[#253c59] dark:text-white">
-								{step.title}
-							</p>
-							<p className="mt-1 text-sm text-[#4a6a8a] dark:text-[#a1adbc]">
-								{step.text}
-							</p>
-						</div>
-					</li>
-				))}
-			</ol>
+			<ProcessTimeline steps={STEPS} animated />
 		</BentoCard>
 	);
 }

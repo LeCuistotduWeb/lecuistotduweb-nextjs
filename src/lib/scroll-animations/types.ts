@@ -23,6 +23,10 @@ export type ParallaxOptions = {
 	speed: number;
 };
 
+export type ProgressOptions = {
+	mode?: "enter" | "follow";
+};
+
 export interface ScrollAnimationEngine {
 	/** Révèle l'élément quand il entre dans le viewport. Renvoie le nettoyage. */
 	reveal(element: HTMLElement, options: RevealOptions): () => void;
@@ -30,10 +34,12 @@ export interface ScrollAnimationEngine {
 	parallax(element: HTMLElement, options: ParallaxOptions): () => void;
 	/**
 	 * Expose l'avancement du scroll dans l'élément via la variable CSS
-	 * `--scroll-progress` (0 quand il entre par le bas, 1 quand sa fin atteint
-	 * 60 % de l'écran). Renvoie le nettoyage.
+	 * `--scroll-progress`. Mode « enter » : 0 quand il entre par le bas, 1 quand
+	 * sa fin atteint 60 % de l'écran. Mode « follow » : part de l'élément passée
+	 * au-dessus du milieu de l'écran (frise dont la pointe suit la lecture).
+	 * Renvoie le nettoyage.
 	 */
-	progress(element: HTMLElement): () => void;
+	progress(element: HTMLElement, options?: ProgressOptions): () => void;
 	/**
 	 * Lance les révélations. Avant l'appel, les éléments sont observés mais
 	 * restent cachés (ex. pendant l'écran de chargement).
