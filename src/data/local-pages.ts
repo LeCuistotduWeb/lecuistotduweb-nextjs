@@ -61,7 +61,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Création de site internet à Vernon",
 		title: "Création de site internet à Vernon (27) — LeCuistotduWeb",
 		description:
-			"Développeur web freelance à Vernon (Eure) : création de sites internet sur mesure pour commerçants, restaurants, salons et TPE. Devis gratuit, rendez-vous sur place.",
+			"Développeur web freelance à Vernon (Eure) : création de sites internet pour commerçants, restaurants, salons et TPE. Devis gratuit, rendez-vous sur place.",
 		heading: "Création de site internet à Vernon",
 		intro: [
 			"Je m'appelle Gaëtan Boyron, développeur web freelance installé à Vernon. Je crée des sites internet sur mesure pour les commerçants, restaurateurs, salons et petites entreprises de Vernon, Saint-Marcel, Saint-Just, Giverny et des communes voisines.",
@@ -129,7 +129,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Création de site internet à Évreux",
 		title: "Création de site internet à Évreux — Développeur web freelance",
 		description:
-			"Création de site internet à Évreux : développeur web freelance de l'Eure, sites vitrines, e-commerce et applications sur mesure pour TPE, commerces et restaurants.",
+			"Création de site internet à Évreux : développeur web freelance de l'Eure, sites vitrines, e-commerce et applications pour TPE, commerces et restaurants.",
 		heading: "Création de site internet à Évreux",
 		intro: [
 			"Vous êtes commerçant, artisan, restaurateur ou dirigeant de PME à Évreux ? Je conçois et développe votre site internet sur mesure, de la première maquette à la mise en ligne.",
@@ -194,7 +194,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Développeur web dans l'Eure",
 		title: "Développeur web freelance dans l'Eure (27) — Gaëtan Boyron",
 		description:
-			"Développeur web freelance dans l'Eure (27), basé à Vernon : sites internet, e-commerce et applications web pour les entreprises de Gaillon, Pacy, Les Andelys, Évreux…",
+			"Développeur web freelance dans l'Eure (27), basé à Vernon : sites internet, e-commerce et applications web pour les entreprises de Gaillon, Pacy, Évreux…",
 		heading: "Développeur web freelance dans l'Eure",
 		intro: [
 			"Développeur web depuis 2017, je suis installé à Vernon et j'accompagne les entreprises de l'Eure dans leurs projets web : création de site internet, boutique en ligne, application sur mesure ou évolution d'un site existant.",
@@ -258,7 +258,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Site internet pour restaurant",
 		title: "Site internet pour restaurant à Vernon et dans l'Eure",
 		description:
-			"Création de site internet pour restaurant à Vernon et dans l'Eure : menu lisible sur mobile, photos, réservation de table ou commande à emporter, lien avec Google.",
+			"Création de site internet pour restaurant à Vernon et dans l'Eure : menu lisible sur mobile, photos, réservation ou commande à emporter, lien avec Google.",
 		heading: "Un site internet pour votre restaurant",
 		intro: [
 			"Avant de réserver, vos clients regardent votre carte sur leur téléphone, vos photos et vos avis. Un site clair et rapide fait souvent la différence entre une table réservée chez vous et une table réservée ailleurs.",
@@ -395,7 +395,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Site internet pour TPE et PME",
 		title: "Site internet pour TPE et PME à Vernon et dans l'Eure",
 		description:
-			"Création de site internet et d'applications web pour TPE, PME, artisans et commerçants de Vernon et de l'Eure : site vitrine, e-commerce, outils métier sur mesure.",
+			"Création de site internet et d'applications pour TPE, PME, artisans et commerçants de Vernon et de l'Eure : site vitrine, e-commerce, outils métier sur mesure.",
 		heading: "Un site internet pour votre TPE ou PME",
 		intro: [
 			"Artisan, commerçant, profession libérale ou PME : votre site est souvent le premier contact avec un futur client. Il doit inspirer confiance, expliquer votre savoir-faire et donner envie de vous appeler.",
