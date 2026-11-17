@@ -12,16 +12,41 @@ import { FEATURED_OFFER, SECONDARY_OFFERS, STEPS } from "#/data/offers";
 import { trackEvent } from "#/lib/analytics";
 import { bookingUrl, openBooking } from "#/lib/booking";
 import { requestContactTopic } from "#/lib/contact";
+import { Reveal, useScrollProgress } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
 import { CardTitle } from "./card-title";
 import { FreelanceStatusBadge } from "./freelance-status-badge";
-import { ProcessTimeline } from "./process-timeline";
 
 // Le style global `a { color }` n'est pas dans un layer : la couleur du texte
 // des liens est portée par un <span> interne.
 
 const SECONDARY_ICONS: LucideIcon[] = [Code2, LifeBuoy];
+
+// Halo qui suit la souris sur les cartes d'offre (position en variables CSS).
+function trackSpotlight(event: React.PointerEvent<HTMLElement>) {
+	const rect = event.currentTarget.getBoundingClientRect();
+	event.currentTarget.style.setProperty(
+		"--spot-x",
+		`${event.clientX - rect.left}px`,
+	);
+	event.currentTarget.style.setProperty(
+		"--spot-y",
+		`${event.clientY - rect.top}px`,
+	);
+}
+
+function Spotlight({ color }: { color: string }) {
+	return (
+		<span
+			aria-hidden="true"
+			className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+			style={{
+				background: `radial-gradient(420px circle at var(--spot-x, 50%) var(--spot-y, 50%), ${color}, transparent 65%)`,
+			}}
+		/>
+	);
+}
 
 function ContactLink({ offer }: { offer: string }) {
 	return (
@@ -47,11 +72,13 @@ export function FeaturedOffer({ className }: { className?: string }) {
 	return (
 		<section
 			aria-labelledby="offer-featured"
+			onPointerMove={trackSpotlight}
 			className={cn(
-				"relative isolate flex flex-col gap-6 overflow-hidden rounded-2xl border border-[#253c59] dark:border-[#f25353]/40 bg-linear-to-br from-[#253c59] to-[#16253a] dark:from-[#1f3550] dark:to-[#0f1824] p-8 md:p-10 shadow-xl shadow-[#253c59]/20",
+				"group relative isolate flex flex-col gap-6 overflow-hidden rounded-2xl border border-[#253c59] dark:border-[#f25353]/40 bg-linear-to-br from-[#253c59] to-[#16253a] dark:from-[#1f3550] dark:to-[#0f1824] p-8 md:p-10 shadow-xl shadow-[#253c59]/20",
 				className,
 			)}
 		>
+			<Spotlight color="rgba(242, 83, 83, 0.22)" />
 			{/* Halo corail en fond */}
 			<div
 				aria-hidden="true"
@@ -79,13 +106,19 @@ export function FeaturedOffer({ className }: { className?: string }) {
 			</div>
 
 			<ul className="flex flex-col gap-3">
-				{FEATURED_OFFER.benefits.map((benefit) => (
-					<li key={benefit} className="flex gap-3 text-white">
+				{FEATURED_OFFER.benefits.map((benefit, index) => (
+					<Reveal
+						as="li"
+						key={benefit}
+						variant="rise"
+						delay={250 + index * 110}
+						className="flex gap-3 text-white"
+					>
 						<span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-[#f25353]/20">
 							<Check aria-hidden="true" className="size-3.5 text-[#ff8a8a]" />
 						</span>
 						{benefit}
-					</li>
+					</Reveal>
 				))}
 			</ul>
 
@@ -139,40 +172,39 @@ export function SecondaryOffer({
 	const Icon = SECONDARY_ICONS[index];
 	return (
 		<BentoCard
+			onPointerMove={trackSpotlight}
 			className={cn(
-				"group relative isolate flex flex-col gap-4 overflow-hidden p-6 md:gap-6 md:p-10 hover:border-[#f25353]/50 dark:hover:border-[#f25353]/50 transition-colors",
+				"group relative isolate flex flex-col gap-4 overflow-hidden p-6 md:p-8 hover:border-[#f25353]/50 dark:hover:border-[#f25353]/50 transition-colors",
 				className,
 			)}
 		>
-			{/* Grand pictogramme en filigrane : habille la carte, de même hauteur
-			    que l'offre principale dans la pile */}
-			<Icon
-				aria-hidden="true"
-				className="pointer-events-none absolute -right-10 -bottom-10 -z-10 hidden size-64 md:block text-[#f25353]/8 transition-transform duration-700 group-hover:-rotate-12 dark:text-[#f25353]/10"
-			/>
+			<Spotlight color="rgba(242, 83, 83, 0.12)" />
 			<div className="flex items-center gap-3">
-				<span className="flex size-10 items-center justify-center rounded-xl bg-[#f25353]/10 md:size-12 dark:bg-[#f25353]/15">
-					<Icon
-						aria-hidden="true"
-						className="size-5 text-[#f25353] md:size-6"
-					/>
+				<span className="flex size-10 items-center justify-center rounded-xl bg-[#f25353]/10 transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 dark:bg-[#f25353]/15">
+					<Icon aria-hidden="true" className="size-5 text-[#f25353]" />
 				</span>
-				<h3 className="display-title text-xl md:text-4xl font-semibold text-[#253c59] dark:text-white">
+				<h3 className="display-title text-xl md:text-2xl font-semibold text-[#253c59] dark:text-white">
 					{title}
 				</h3>
 			</div>
-			<p className="max-w-xl text-[#4a6a8a] dark:text-[#a1adbc] font-medium leading-relaxed md:text-lg">
+			<p className="text-[#4a6a8a] dark:text-[#a1adbc] font-medium leading-relaxed">
 				{text}
 			</p>
-			<ul className="flex flex-col gap-2 text-sm text-[#3a5570] md:gap-3 md:text-base dark:text-[#c5d5e5]">
-				{benefits.map((benefit) => (
-					<li key={benefit} className="flex gap-2">
+			<ul className="flex flex-col gap-2 text-sm text-[#3a5570] dark:text-[#c5d5e5]">
+				{benefits.map((benefit, index) => (
+					<Reveal
+						as="li"
+						key={benefit}
+						variant="rise"
+						delay={300 + index * 110}
+						className="flex gap-2"
+					>
 						<Check
 							aria-hidden="true"
 							className="mt-0.5 size-4 shrink-0 text-[#f25353]"
 						/>
 						{benefit}
-					</li>
+					</Reveal>
 				))}
 			</ul>
 			<ContactLink offer={title} />
@@ -181,6 +213,7 @@ export function SecondaryOffer({
 }
 
 export function ProcessCard({ className }: { className?: string }) {
+	const progress = useScrollProgress<HTMLOListElement>();
 	return (
 		<BentoCard className={cn("p-6 md:p-8", className)}>
 			<div className="mb-6 flex flex-wrap items-baseline justify-between gap-2">
@@ -189,7 +222,40 @@ export function ProcessCard({ className }: { className?: string }) {
 					Sur devis, selon votre besoin.
 				</p>
 			</div>
-			<ProcessTimeline steps={STEPS} animated />
+			<ol
+				ref={progress}
+				className="relative grid grid-cols-1 gap-6 sm:grid-cols-3"
+			>
+				{/* Frise reliant les étapes (à partir de 2 colonnes), qui se dessine
+				    au scroll */}
+				<div
+					aria-hidden="true"
+					className="absolute top-4 right-[16.66%] left-[16.66%] hidden h-px bg-[#d2c4a4] dark:bg-[#253c59] sm:block"
+				>
+					<div className="absolute inset-0 origin-left scale-x-[var(--scroll-progress,1)] bg-linear-to-r from-[#f25353] to-[#e4b962]" />
+				</div>
+				{STEPS.map((step, i) => (
+					<Reveal
+						as="li"
+						key={step.title}
+						variant="rise"
+						delay={i * 180}
+						className="relative flex gap-4 sm:flex-col sm:items-center sm:text-center"
+					>
+						<span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#f25353] text-sm font-semibold tabular-nums text-white ring-4 ring-[#faf5ec] dark:ring-[#172231]">
+							{i + 1}
+						</span>
+						<div>
+							<p className="font-semibold text-[#253c59] dark:text-white">
+								{step.title}
+							</p>
+							<p className="mt-1 text-sm text-[#4a6a8a] dark:text-[#a1adbc]">
+								{step.text}
+							</p>
+						</div>
+					</Reveal>
+				))}
+			</ol>
 		</BentoCard>
 	);
 }
