@@ -119,22 +119,28 @@ test("links to LinkedIn in a new tab", async ({ page }) => {
 	await expect(link).toHaveAttribute("target", "_blank");
 });
 
-test("projects story follows the scroll and opens details", async ({
+test("projects slide horizontally with the scroll and open details", async ({
 	page,
 }) => {
 	await page.setViewportSize({ width: 1440, height: 900 });
 	await waitForHydration(page);
-	const story = page.locator("#projets");
-	const counter = story.getByText(/^\d{2} \/ 08 · /);
+	const track = page.locator("ol[aria-label=Projets]");
+	const blissim = page.getByRole("button", { name: "Voir le projet Blissim" });
 
-	// Le projet lu au milieu de l'écran pilote l'écran épinglé
-	await story
-		.getByRole("heading", { name: "Blissim", level: 3 })
-		.first()
-		.evaluate((el) => el.scrollIntoView({ block: "center" }));
-	await expect(counter).toHaveText("03 / 08 · Blissim");
+	// Début de la section épinglée : Blissim (3e projet) est encore hors écran
+	const pin = track.locator("xpath=../..");
+	const { top, height } = await pin.evaluate((el) => {
+		const rect = el.getBoundingClientRect();
+		return { top: rect.top + window.scrollY, height: rect.height };
+	});
+	await page.evaluate((y) => window.scrollTo(0, y), top);
+	await expect(blissim).not.toBeInViewport();
 
-	await story.getByRole("button", { name: "Voir le projet Blissim" }).click();
+	// Le scroll vertical fait glisser la piste jusqu'à Blissim
+	await page.evaluate((y) => window.scrollTo(0, y), top + (height - 900) * 0.3);
+	await expect(blissim).toBeInViewport();
+
+	await blissim.click();
 	const dialog = page.getByRole("dialog");
 	await expect(dialog.getByRole("heading", { name: "Blissim" })).toBeVisible();
 	await page.keyboard.press("Escape");

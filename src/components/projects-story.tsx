@@ -1,53 +1,22 @@
-import { ArrowUpRight, Maximize2 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ArrowRight, ArrowUpRight, Maximize2 } from "lucide-react";
+import { useState } from "react";
 import { WORKS, type Work } from "#/data/works";
 import { trackEvent } from "#/lib/analytics";
-import {
-	RevealWords,
-	useActiveStep,
-	useParallax,
-} from "#/lib/scroll-animations/react";
+import { useScrollProgress } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { ProjectDetailsDialog } from "./project-details-dialog";
 
-// Chapitre Projets en récit au scroll : un écran d'ordinateur reste épinglé à
-// droite et affiche le projet lu à gauche. Tout le texte est dans le HTML
-// serveur ; en mobile, chaque projet a son image, sans épinglage.
+// Chapitre Projets en défilement horizontal : la section est haute, son
+// contenu reste épinglé et le scroll vertical fait glisser les projets de
+// droite à gauche (`--scroll-progress`, mode « pin »). En mobile ou avec les
+// animations réduites : carrousel natif à balayer, sans épinglage.
 
 const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
 const STRONG = "text-[#253c59] dark:text-white";
 const pad = (n: number) => String(n).padStart(2, "0");
 
-function Laptop({ active, mounted }: { active: number; mounted: Set<number> }) {
-	return (
-		<div aria-hidden="true" className="relative w-full select-none">
-			<div className="absolute -inset-10 -z-10 rounded-[4rem] bg-[#f25353]/15 blur-3xl" />
-			<div className="relative aspect-video overflow-hidden rounded-t-2xl border-[10px] border-b-[14px] border-[#253c59] bg-[#1c2a3a] shadow-2xl shadow-[#253c59]/30 dark:border-[#0d1520]">
-				{WORKS.map((work, i) =>
-					mounted.has(i) ? (
-						<img
-							key={work.src}
-							src={work.src}
-							srcSet={work.srcSet}
-							sizes="(min-width: 1536px) 900px, 60vw"
-							alt=""
-							decoding="async"
-							className={cn(
-								"absolute inset-0 h-full w-full object-cover transition-[opacity,scale] duration-700 ease-out",
-								i === active
-									? "scale-100 opacity-100"
-									: "scale-[1.04] opacity-0",
-							)}
-						/>
-					) : null,
-				)}
-			</div>
-			<div className="relative -mx-[6%] h-4 rounded-b-2xl bg-[linear-gradient(#c9d3de,#93a3b5)] shadow-xl dark:bg-[linear-gradient(#3a4c60,#1c2a3a)]">
-				<div className="absolute top-0 left-1/2 h-1.5 w-1/6 -translate-x-1/2 rounded-b-lg bg-[#253c59]/25" />
-			</div>
-		</div>
-	);
-}
+/** Hauteur de scroll consacrée à chaque projet (desktop) */
+const SCROLL_PER_PROJECT = "55svh";
 
 function ProjectButtons({
 	work,
@@ -85,28 +54,72 @@ function ProjectButtons({
 	);
 }
 
-export function ProjectsStory() {
-	const { active, register } = useActiveStep(WORKS.length);
-	const current = Math.max(active, 0);
-	const parallax = useParallax<HTMLDivElement>(0.04);
-	const [details, setDetails] = useState<Work | null>(null);
-	// Images montées au fil du récit (projet lu + suivant) : pas de
-	// téléchargement des 8 captures au chargement de l'accueil.
-	const [mounted, setMounted] = useState(() => new Set([0, 1]));
+function ProjectSlide({
+	work,
+	index,
+	onDetails,
+}: {
+	work: Work;
+	index: number;
+	onDetails: () => void;
+}) {
+	return (
+		<li className="w-[85vw] shrink-0 snap-center md:w-[min(78vw,68rem)] motion-reduce:md:snap-start">
+			<article className="grid h-full items-center gap-5 rounded-3xl border border-[#d2c4a4] bg-[#faf5ec]/90 p-4 backdrop-blur-sm md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] md:gap-8 md:p-6 dark:border-[#1c2a3a] dark:bg-[#172231]/90">
+				<div className="group overflow-hidden rounded-2xl border border-[#d2c4a4] dark:border-[#253c59]">
+					<img
+						src={work.src}
+						srcSet={work.srcSet}
+						sizes="(min-width: 768px) 640px, 85vw"
+						alt={`Aperçu du projet ${work.label}`}
+						loading={index < 2 ? "eager" : "lazy"}
+						decoding="async"
+						width={640}
+						height={360}
+						className="aspect-video w-full object-cover transition-transform duration-700 group-hover:scale-105"
+					/>
+				</div>
+				<div className="flex flex-col gap-4 md:pr-2">
+					<p className="flex items-baseline gap-3">
+						<span className="display-title text-5xl font-bold text-transparent [-webkit-text-stroke:1.5px_#f25353] md:text-6xl">
+							{pad(index + 1)}
+						</span>
+						{work.details.period && (
+							<span className={`text-sm font-semibold ${TEXT}`}>
+								{work.details.period}
+							</span>
+						)}
+					</p>
+					<h3
+						className={`display-title text-3xl font-bold leading-[1.05] md:text-4xl lg:text-5xl ${STRONG}`}
+					>
+						{work.label}
+					</h3>
+					<p className={`font-medium leading-relaxed md:text-lg ${TEXT}`}>
+						{work.description}
+					</p>
+					{work.details.stack && (
+						<ul className="flex flex-wrap gap-2">
+							{work.details.stack.map((tech) => (
+								<li
+									key={tech}
+									className="rounded-full border border-[#d2c4a4] px-3 py-1 text-xs font-semibold text-[#4a6a8a] dark:border-[#253c59] dark:text-[#a1adbc]"
+								>
+									{tech}
+								</li>
+							))}
+						</ul>
+					)}
+					<ProjectButtons work={work} onDetails={onDetails} />
+				</div>
+			</article>
+		</li>
+	);
+}
 
-	useEffect(() => {
-		setMounted((prev) => {
-			const next = Math.min(current + 1, WORKS.length - 1);
-			if (prev.has(current) && prev.has(next)) return prev;
-			return new Set(prev).add(current).add(next);
-		});
-		if (active >= 0) {
-			trackEvent("view_project", {
-				project: WORKS[active].label,
-				method: "scroll",
-			});
-		}
-	}, [active, current]);
+export function ProjectsStory() {
+	const pin = useScrollProgress<HTMLDivElement>("pin");
+	const [details, setDetails] = useState<Work | null>(null);
 
 	function openDetails(work: Work) {
 		setDetails(work);
@@ -114,82 +127,59 @@ export function ProjectsStory() {
 	}
 
 	return (
-		<div className="col-span-full grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,1.25fr)] md:gap-x-12 lg:gap-x-20">
-			<ol className="flex min-w-0 flex-col">
-				{WORKS.map((work, index) => (
-					<li
-						key={work.label}
-						ref={register(index)}
+		<div className="col-span-full">
+			<div
+				ref={pin}
+				className="relative md:h-(--pin-height) motion-reduce:md:h-auto"
+				style={
+					{
+						"--pin-height": `calc(${WORKS.length} * ${SCROLL_PER_PROJECT} + 100svh)`,
+					} as React.CSSProperties
+				}
+			>
+				{/* Pleine largeur d'écran, au-delà des marges de la page */}
+				<div className="flex flex-col gap-6 md:sticky md:top-0 md:mx-[calc(50%-50vw)] md:h-svh md:justify-center md:overflow-hidden motion-reduce:md:static motion-reduce:md:mx-0 motion-reduce:md:h-auto">
+					<ol
+						aria-label="Projets"
 						className={cn(
-							"flex flex-col justify-center gap-4 py-10 transition-opacity duration-500 md:min-h-[85svh] md:py-0",
-							current === index ? "md:opacity-100" : "md:opacity-30",
+							// Mobile / animations réduites : carrousel natif à balayer
+							"-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+							// Desktop : piste qui glisse avec le scroll vertical
+							"md:mx-0 md:w-max md:snap-none md:gap-8 md:overflow-visible md:px-[6vw] md:pb-0 md:will-change-transform md:[translate:calc((100vw-100%)*var(--scroll-progress,0))_0]",
+							"motion-reduce:md:w-auto motion-reduce:md:snap-x motion-reduce:md:overflow-x-auto motion-reduce:md:[translate:none]",
 						)}
 					>
-						<p className="flex items-baseline gap-4">
-							<span className="display-title text-6xl font-bold text-transparent [-webkit-text-stroke:1.5px_#f25353] md:text-7xl">
-								{pad(index + 1)}
+						{WORKS.map((work, index) => (
+							<ProjectSlide
+								key={work.label}
+								work={work}
+								index={index}
+								onDetails={() => openDetails(work)}
+							/>
+						))}
+					</ol>
+					<div
+						aria-hidden="true"
+						className={`flex items-center justify-center gap-4 text-sm font-semibold ${TEXT}`}
+					>
+						<span className="md:hidden motion-reduce:md:inline">
+							Glissez pour voir les {WORKS.length} projets
+						</span>
+						<span className="hidden items-center gap-4 md:flex motion-reduce:md:hidden">
+							<span className="relative h-1 w-40 overflow-hidden rounded-full bg-[#253c59]/10 dark:bg-white/10">
+								<span className="absolute inset-0 origin-left scale-x-[var(--scroll-progress,0)] rounded-full bg-[#f25353]" />
 							</span>
-							{work.details.period && (
-								<span className={`text-sm font-semibold ${TEXT}`}>
-									{work.details.period}
-								</span>
-							)}
-						</p>
-						<RevealWords
-							as="h3"
-							text={work.label}
-							className={`display-title text-4xl font-bold leading-[1.05] md:text-6xl lg:text-7xl ${STRONG}`}
-						/>
-						<p
-							className={`max-w-xl text-lg font-medium leading-relaxed md:text-xl ${TEXT}`}
-						>
-							{work.description}
-						</p>
-						{work.details.stack && (
-							<ul className="flex flex-wrap gap-2">
-								{work.details.stack.map((tech) => (
-									<li
-										key={tech}
-										className="rounded-full border border-[#d2c4a4] px-3 py-1 text-xs font-semibold text-[#4a6a8a] dark:border-[#253c59] dark:text-[#a1adbc]"
-									>
-										{tech}
-									</li>
-								))}
-							</ul>
-						)}
-						{/* Mobile : pas d'épinglage, une image par projet */}
-						<img
-							src={work.src}
-							srcSet={work.srcSet}
-							sizes="100vw"
-							alt={`Aperçu du projet ${work.label}`}
-							loading="lazy"
-							decoding="async"
-							width={640}
-							height={360}
-							className="aspect-video w-full rounded-xl border border-[#d2c4a4] object-cover md:hidden dark:border-[#253c59]"
-						/>
-						<ProjectButtons work={work} onDetails={() => openDetails(work)} />
-					</li>
-				))}
-			</ol>
-
-			<div className="hidden md:block">
-				<div className="sticky top-0 flex h-svh flex-col items-center justify-center gap-8">
-					<div ref={parallax} className="w-full">
-						<Laptop active={current} mounted={mounted} />
+							Continuez à défiler
+						</span>
+						<ArrowRight className="size-4 text-[#f25353]" />
 					</div>
-					<p className={`text-sm font-semibold tabular-nums ${TEXT}`}>
-						<span className="text-[#f25353]">{pad(current + 1)}</span> /{" "}
-						{pad(WORKS.length)} · {WORKS[current].label}
-					</p>
 				</div>
 			</div>
 
 			{details && (
 				<ProjectDetailsDialog
 					work={details}
-					open={details !== null}
+					open
 					onOpenChange={(open) => {
 						if (!open) setDetails(null);
 					}}
