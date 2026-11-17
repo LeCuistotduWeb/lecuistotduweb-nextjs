@@ -1,3 +1,24 @@
+import type { LucideIcon } from "lucide-react";
+import {
+	Award,
+	CalendarCheck,
+	CalendarClock,
+	Globe,
+	Handshake,
+	Images,
+	LayoutDashboard,
+	MapPin,
+	MapPinned,
+	PenTool,
+	Search,
+	ShieldCheck,
+	ShoppingBag,
+	Store,
+	Users,
+	UtensilsCrossed,
+	Wrench,
+} from "lucide-react";
+
 // Pages d'atterrissage du référencement local : une page par zone
 // (Vernon, Évreux, Eure) et une page par cible (restaurants, salons, TPE/PME).
 // Chaque page a un contenu propre (pas de simple changement de nom de ville)
@@ -19,10 +40,18 @@ export type LocalPage = {
 	title: string;
 	/** Meta description : 140 à 160 caractères */
 	description: string;
-	/** Titre visible (h1) */
+	/** Mot-clé visible en tête du h1 */
 	heading: string;
+	/** Accroche affichée en grand dans le h1, après le mot-clé */
+	hook: string;
 	intro: string[];
-	highlights: { title: string; text: string }[];
+	/** Illustration de l'en-tête : maquette de téléphone ou carte de la zone */
+	showcase: "map" | "menu" | "booking" | "vitrine";
+	/** Encart « De la cuisine au code » propre à la page (sinon texte commun) */
+	story?: string;
+	/** Réalisations mises en avant, par libellé de src/data/works.ts */
+	works: string[];
+	highlights: { icon: LucideIcon; title: string; text: string }[];
 	sections: LocalPageSection[];
 	faq: { question: string; answer: string }[];
 	/** Nom du service décrit (JSON-LD Service) */
@@ -63,20 +92,26 @@ export const LOCAL_PAGES: LocalPage[] = [
 		description:
 			"Développeur web freelance à Vernon (Eure) : création de sites internet pour commerçants, restaurants, salons et TPE. Devis gratuit, rendez-vous sur place.",
 		heading: "Création de site internet à Vernon",
+		hook: "Votre développeur web, à deux pas.",
 		intro: [
-			"Je m'appelle Gaëtan Boyron, développeur web freelance installé à Vernon. Je crée des sites internet sur mesure pour les commerçants, restaurateurs, salons et petites entreprises de Vernon, Saint-Marcel, Saint-Just, Giverny et des communes voisines.",
-			"Pendant 8 ans, j'ai développé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. J'applique aujourd'hui la même exigence aux entreprises de mon territoire, avec un avantage simple : un interlocuteur proche, qui vient vous voir.",
+			"Je m'appelle Gaëtan, je vis et je travaille à Vernon. Je crée des sites internet sur mesure pour les commerçants, restaurateurs, salons et petites entreprises d'ici : Vernon, Saint-Marcel, Saint-Just, Giverny et alentour.",
+			"Pendant 8 ans, j'ai codé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. Aujourd'hui, je mets cette exigence au service des entreprises de mon territoire, avec un vrai avantage : on peut se voir pour parler de votre projet autour d'un café.",
 		],
+		showcase: "map",
+		works: ["Le Poudrier de Fleur", "Mon VDI Assistant", "Fnac Darty"],
 		highlights: [
 			{
+				icon: MapPin,
 				title: "Un développeur à Vernon",
 				text: "Rendez-vous chez vous ou en visio, réponses rapides : vous savez à qui vous parlez.",
 			},
 			{
+				icon: PenTool,
 				title: "Un site sur mesure",
 				text: "Pas de modèle tout fait : le site reflète votre activité et vos clients.",
 			},
 			{
+				icon: Search,
 				title: "Pensé pour Google",
 				text: "Rapide, adapté au mobile et optimisé pour les recherches locales.",
 			},
@@ -98,15 +133,6 @@ export const LOCAL_PAGES: LocalPage[] = [
 				paragraphs: [
 					"Quand un habitant cherche « restaurant Vernon » ou « coiffeur Vernon », Google affiche d'abord les fiches Google et les sites les mieux référencés localement. Votre site doit dire clairement où vous êtes, ce que vous faites et pour qui.",
 					"Je travaille les pages, les titres, les données structurées et le lien avec votre fiche Google pour que votre entreprise ressorte à Vernon, mais aussi à Gaillon, Pacy-sur-Eure ou Bonnières-sur-Seine si vous y avez des clients.",
-				],
-			},
-			{
-				title: "Comment se déroule un projet",
-				points: [
-					"Un premier échange de 30 minutes, chez vous ou en visio, pour comprendre votre besoin",
-					"Un devis clair : périmètre, délais et prix",
-					"La réalisation, avec des points réguliers et un site visible avant la mise en ligne",
-					"La mise en ligne et une prise en main pour modifier vos contenus",
 				],
 			},
 		],
@@ -131,20 +157,26 @@ export const LOCAL_PAGES: LocalPage[] = [
 		description:
 			"Création de site internet à Évreux : développeur web freelance de l'Eure, sites vitrines, e-commerce et applications pour TPE, commerces et restaurants.",
 		heading: "Création de site internet à Évreux",
+		hook: "Un site qui donne envie de pousser votre porte.",
 		intro: [
-			"Vous êtes commerçant, artisan, restaurateur ou dirigeant de PME à Évreux ? Je conçois et développe votre site internet sur mesure, de la première maquette à la mise en ligne.",
-			"Basé à Vernon, dans l'Eure, je me déplace à Évreux pour les rendez-vous importants et je suis joignable directement tout au long du projet. Vous gardez un seul interlocuteur, qui écrit lui-même le code de votre site.",
+			"Commerçant, artisan, restaurateur ou dirigeant de PME à Évreux : votre site doit donner envie de venir vous voir, ou de vous appeler. Je le conçois et je le développe sur mesure, de la première maquette à la mise en ligne.",
+			"Installé à Vernon, dans l'Eure, je viens vous voir à Évreux pour les rendez-vous qui comptent. Vous avez un seul interlocuteur, et c'est lui qui écrit le code de votre site.",
 		],
+		showcase: "map",
+		works: ["Fnac Darty", "Infogreffe", "Mon VDI Assistant"],
 		highlights: [
 			{
+				icon: Handshake,
 				title: "Un freelance de l'Eure",
 				text: "Proche d'Évreux, disponible pour vous rencontrer sur place.",
 			},
 			{
+				icon: Award,
 				title: "Une expertise de grands comptes",
 				text: "8 ans sur des sites à fort trafic (Fnac Darty, Infogreffe), au service des PME.",
 			},
 			{
+				icon: ShieldCheck,
 				title: "Des sites durables",
 				text: "Code propre, rapide et facile à faire évoluer avec votre entreprise.",
 			},
@@ -196,20 +228,26 @@ export const LOCAL_PAGES: LocalPage[] = [
 		description:
 			"Développeur web freelance dans l'Eure (27), basé à Vernon : sites internet, e-commerce et applications web pour les entreprises de Gaillon, Pacy, Évreux…",
 		heading: "Développeur web freelance dans l'Eure",
+		hook: "Pas d'agence. Un développeur, en direct.",
 		intro: [
-			"Développeur web depuis 2017, je suis installé à Vernon et j'accompagne les entreprises de l'Eure dans leurs projets web : création de site internet, boutique en ligne, application sur mesure ou évolution d'un site existant.",
-			"Je travaille seul, en direct avec vous : pas d'intermédiaire, pas de sous-traitance. Le développeur que vous rencontrez est celui qui construit votre site.",
+			"Développeur web depuis 2017, je suis installé à Vernon. J'accompagne les entreprises de l'Eure sur leurs projets web : site internet, boutique en ligne, application sur mesure ou reprise d'un site existant.",
+			"Je travaille seul et en direct. Pas d'intermédiaire, pas de sous-traitance : la personne que vous rencontrez est celle qui construit votre site, et celle qui répond quand vous appelez.",
 		],
+		showcase: "map",
+		works: ["Infogreffe", "Blissim", "La Classe de Fleur"],
 		highlights: [
 			{
+				icon: Globe,
 				title: "Sites internet",
 				text: "Vitrine, e-commerce, réservation ou prise de rendez-vous en ligne.",
 			},
 			{
+				icon: LayoutDashboard,
 				title: "Applications web",
 				text: "Outils métier sur mesure en React et Node.js, pour gagner du temps au quotidien.",
 			},
 			{
+				icon: Users,
 				title: "Renfort technique",
 				text: "Intégration à votre équipe en régie, sur site ou à distance.",
 			},
@@ -260,20 +298,28 @@ export const LOCAL_PAGES: LocalPage[] = [
 		description:
 			"Création de site internet pour restaurant à Vernon et dans l'Eure : menu lisible sur mobile, photos, réservation ou commande à emporter, lien avec Google.",
 		heading: "Un site internet pour votre restaurant",
+		hook: "Un site qui donne faim.",
 		intro: [
-			"Avant de réserver, vos clients regardent votre carte sur leur téléphone, vos photos et vos avis. Un site clair et rapide fait souvent la différence entre une table réservée chez vous et une table réservée ailleurs.",
-			"Je crée des sites de restaurant pensés pour le mobile, faciles à mettre à jour et reliés à votre fiche Google, pour les restaurants, bistrots, pizzerias et traiteurs de Vernon et de l'Eure.",
+			"Avant de réserver, vos clients regardent votre carte sur leur téléphone, vos photos et vos avis. C'est souvent là que tout se joue : une table chez vous, ou une table ailleurs.",
+			"Je crée des sites pour les restaurants, bistrots, pizzerias et traiteurs de Vernon et de l'Eure : une carte appétissante sur mobile, la réservation en quelques clics, et une fiche Google qui renvoie au bon endroit.",
 		],
+		showcase: "menu",
+		story:
+			"Avant de devenir développeur en 2017, j'ai travaillé en cuisine professionnelle. Je sais ce qu'est un coup de feu. Alors je passe vous voir l'après-midi, entre deux services, et je vous livre un site que vous mettez à jour sans y passer vos soirées.",
+		works: ["Le Poudrier de Fleur", "La Classe de Fleur", "Marie Jade"],
 		highlights: [
 			{
+				icon: UtensilsCrossed,
 				title: "Une carte toujours à jour",
 				text: "Vous modifiez vos plats, menus du jour et prix vous-même, en quelques minutes.",
 			},
 			{
+				icon: CalendarCheck,
 				title: "Réservation et commande",
 				text: "Réservation de table, commande à emporter ou lien vers votre outil actuel.",
 			},
 			{
+				icon: MapPinned,
 				title: "Visible sur Google Maps",
 				text: "Site et fiche Google travaillés ensemble pour ressortir dans votre ville.",
 			},
@@ -294,12 +340,6 @@ export const LOCAL_PAGES: LocalPage[] = [
 				title: "Un restaurant bien référencé localement",
 				paragraphs: [
 					"Les recherches « restaurant près de moi » ou « restaurant Vernon » se jouent surtout sur Google Maps. J'ajoute à votre site les données structurées propres aux restaurants (type de cuisine, horaires, menu) et je vérifie que votre site et votre fiche Google donnent les mêmes informations.",
-				],
-			},
-			{
-				title: "Un rendez-vous qui respecte votre service",
-				paragraphs: [
-					"Je sais ce qu'est un coup de feu : avant de devenir développeur, j'ai travaillé en cuisine professionnelle. Je passe vous voir l'après-midi, entre deux services, et je vous livre un site que vous mettez à jour sans y passer vos soirées.",
 				],
 			},
 		],
@@ -328,20 +368,26 @@ export const LOCAL_PAGES: LocalPage[] = [
 		description:
 			"Site internet pour salon de coiffure, barbier ou institut de beauté à Vernon et dans l'Eure : prestations, galerie photo et prise de rendez-vous en ligne.",
 		heading: "Un site internet pour votre salon de coiffure ou d'esthétique",
+		hook: "Votre agenda se remplit, même salon fermé.",
 		intro: [
-			"Vos clientes et clients veulent voir vos réalisations, connaître vos prestations et réserver un créneau, souvent le soir, quand le salon est fermé. Un site bien conçu prend ces rendez-vous pour vous.",
-			"Je crée des sites pour les salons de coiffure, barbiers, instituts de beauté et prothésistes ongulaires de Vernon et de l'Eure : élégants, rapides sur mobile et reliés à votre agenda.",
+			"Vos clientes et vos clients veulent voir vos réalisations, connaître vos prestations et réserver un créneau. Souvent le soir, quand le salon est fermé et que personne ne décroche.",
+			"Je crée des sites pour les salons de coiffure, barbiers, instituts de beauté et prothésistes ongulaires de Vernon et de l'Eure. Des sites élégants, rapides sur mobile et reliés à votre agenda, qui prennent les rendez-vous à votre place.",
 		],
+		showcase: "booking",
+		works: ["Blissim", "Le Poudrier de Fleur", "Marie Jade"],
 		highlights: [
 			{
+				icon: CalendarClock,
 				title: "Rendez-vous en ligne",
 				text: "Réservation 24 h/24, connectée à votre agenda ou à votre logiciel de caisse.",
 			},
 			{
+				icon: Images,
 				title: "Vos réalisations en valeur",
 				text: "Une galerie photo soignée, qui donne envie de venir.",
 			},
 			{
+				icon: Search,
 				title: "Trouvé dans votre ville",
 				text: "Référencement local et fiche Google optimisés pour « coiffeur Vernon ».",
 			},
@@ -397,20 +443,26 @@ export const LOCAL_PAGES: LocalPage[] = [
 		description:
 			"Création de site internet et d'applications pour TPE, PME, artisans et commerçants de Vernon et de l'Eure : site vitrine, e-commerce, outils métier sur mesure.",
 		heading: "Un site internet pour votre TPE ou PME",
+		hook: "Le premier rendez-vous avec vos clients.",
 		intro: [
-			"Artisan, commerçant, profession libérale ou PME : votre site est souvent le premier contact avec un futur client. Il doit inspirer confiance, expliquer votre savoir-faire et donner envie de vous appeler.",
-			"Je conçois des sites et des outils web sur mesure pour les entreprises de Vernon et de l'Eure, avec la rigueur acquise sur de grands projets et la simplicité qu'attend une petite structure.",
+			"Artisan, commerçant, profession libérale ou PME : votre site est souvent le premier contact avec un futur client. En quelques secondes, il doit inspirer confiance et donner envie de vous appeler.",
+			"Je conçois des sites et des outils web sur mesure pour les entreprises de Vernon et de l'Eure. J'y mets la rigueur apprise sur de grands projets, et la simplicité qu'attend une petite structure.",
 		],
+		showcase: "vitrine",
+		works: ["Mon VDI Assistant", "Le Poudrier de Fleur", "Blissim"],
 		highlights: [
 			{
+				icon: Store,
 				title: "Site vitrine",
 				text: "Présenter votre activité, vos réalisations et recevoir des demandes de devis.",
 			},
 			{
+				icon: ShoppingBag,
 				title: "E-commerce",
 				text: "Vendre en ligne ou proposer le click & collect, avec une gestion simple.",
 			},
 			{
+				icon: Wrench,
 				title: "Outils sur mesure",
 				text: "Prise de commande, gestion de clients, tableaux de bord : ce dont votre métier a besoin.",
 			},
