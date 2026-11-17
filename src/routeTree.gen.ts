@@ -18,6 +18,7 @@ import { Route as DeveloppeurWebEureRouteImport } from './routes/developpeur-web
 import { Route as FreelanceRouteImport } from './routes/freelance'
 import { Route as LinkRouteImport } from './routes/link'
 import { Route as ProfilRouteImport } from './routes/profil'
+import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as SiteInternetRestaurantRouteImport } from './routes/site-internet-restaurant'
 import { Route as SiteInternetSalonCoiffureEsthetiqueRouteImport } from './routes/site-internet-salon-coiffure-esthetique'
 import { Route as SiteInternetTpePmeRouteImport } from './routes/site-internet-tpe-pme'
@@ -74,6 +75,11 @@ const LinkRoute = LinkRouteImport.update({
 const ProfilRoute = ProfilRouteImport.update({
   id: '/profil',
   path: '/profil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealisationsRoute = RealisationsRouteImport.update({
+  id: '/realisations',
+  path: '/realisations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SiteInternetRestaurantRoute = SiteInternetRestaurantRouteImport.update({
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
   '/profil': typeof ProfilRoute
+  '/realisations': typeof RealisationsRoute
   '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
   '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
   '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
@@ -163,6 +170,7 @@ export interface FileRoutesByTo {
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
   '/profil': typeof ProfilRoute
+  '/realisations': typeof RealisationsRoute
   '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
   '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
   '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
   '/profil': typeof ProfilRoute
+  '/realisations': typeof RealisationsRoute
   '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
   '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
   '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
@@ -210,6 +219,7 @@ export interface FileRouteTypes {
     | '/freelance'
     | '/link'
     | '/profil'
+    | '/realisations'
     | '/site-internet-restaurant'
     | '/site-internet-salon-coiffure-esthetique'
     | '/site-internet-tpe-pme'
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/freelance'
     | '/link'
     | '/profil'
+    | '/realisations'
     | '/site-internet-restaurant'
     | '/site-internet-salon-coiffure-esthetique'
     | '/site-internet-tpe-pme'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/freelance'
     | '/link'
     | '/profil'
+    | '/realisations'
     | '/site-internet-restaurant'
     | '/site-internet-salon-coiffure-esthetique'
     | '/site-internet-tpe-pme'
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
   ProfilRoute: typeof ProfilRoute
+  RealisationsRoute: typeof RealisationsRoute
   SiteInternetRestaurantRoute: typeof SiteInternetRestaurantRoute
   SiteInternetSalonCoiffureEsthetiqueRoute: typeof SiteInternetSalonCoiffureEsthetiqueRoute
   SiteInternetTpePmeRoute: typeof SiteInternetTpePmeRoute
@@ -346,6 +359,13 @@ declare module '@tanstack/react-router' {
       path: '/profil'
       fullPath: '/profil'
       preLoaderRoute: typeof ProfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/realisations': {
+      id: '/realisations'
+      path: '/realisations'
+      fullPath: '/realisations'
+      preLoaderRoute: typeof RealisationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/site-internet-restaurant': {
@@ -456,6 +476,7 @@ const rootRouteChildren: RootRouteChildren = {
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,
   ProfilRoute: ProfilRoute,
+  RealisationsRoute: RealisationsRoute,
   SiteInternetRestaurantRoute: SiteInternetRestaurantRoute,
   SiteInternetSalonCoiffureEsthetiqueRoute:
     SiteInternetSalonCoiffureEsthetiqueRoute,

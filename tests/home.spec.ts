@@ -125,20 +125,56 @@ test("projects story follows the scroll and opens details", async ({
 	await page.setViewportSize({ width: 1440, height: 900 });
 	await waitForHydration(page);
 	const story = page.locator("#projets");
-	const counter = story.getByText(/^\d{2} \/ 08 · /);
+	const counter = story.getByText(/^\d{2} \/ 03 · /);
 
 	// Le projet lu au milieu de l'écran pilote l'écran épinglé
 	await story
-		.getByRole("heading", { name: "Blissim", level: 3 })
+		.getByRole("heading", { name: "Infogreffe", level: 3 })
 		.first()
 		.evaluate((el) => el.scrollIntoView({ block: "center" }));
-	await expect(counter).toHaveText("03 / 08 · Blissim");
+	await expect(counter).toHaveText("02 / 03 · Infogreffe");
 
-	await story.getByRole("button", { name: "Voir le projet Blissim" }).click();
+	await story.getByRole("button", { name: "Voir le projet Infogreffe" }).click();
 	const dialog = page.getByRole("dialog");
-	await expect(dialog.getByRole("heading", { name: "Blissim" })).toBeVisible();
+	await expect(dialog.getByRole("heading", { name: "Infogreffe" })).toBeVisible();
 	await page.keyboard.press("Escape");
 	await expect(dialog).toBeHidden();
+});
+
+test("projects story links to all projects", async ({ page }) => {
+	await waitForHydration(page);
+	await page
+		.locator("#projets")
+		.getByRole("link", { name: "Voir toutes les réalisations" })
+		.click();
+	await expect(page).toHaveURL(/\/realisations$/);
+	await expect(page).toHaveTitle("Réalisations — Gaëtan Boyron");
+});
+
+test("/realisations lists every project with details", async ({ page }) => {
+	await page.goto("/realisations");
+	await expect(
+		page.getByRole("heading", { level: 1, name: /Réalisations/ }),
+	).toBeVisible();
+	const rows = page.getByRole("button", { name: /^Voir le projet / });
+	await expect(rows).toHaveCount(8);
+	await waitForHydration(page);
+	await page.getByRole("button", { name: "Voir le projet Blissim" }).click();
+	const dialog = page.getByRole("dialog");
+	await expect(dialog.getByRole("heading", { name: "Blissim" })).toBeVisible();
+});
+
+test("/realisations filters projects by kind", async ({ page }) => {
+	await page.goto("/realisations");
+	await waitForHydration(page);
+	const rows = page.getByRole("button", { name: /^Voir le projet / });
+	await page.getByRole("button", { name: /^Indépendants/ }).click();
+	await expect(rows).toHaveCount(4);
+	await expect(
+		page.getByRole("button", { name: "Voir le projet Fnac Darty" }),
+	).toHaveCount(0);
+	await page.getByRole("button", { name: /^Tous/ }).click();
+	await expect(rows).toHaveCount(8);
 });
 
 const CHAPTERS: { path: string; id: string; label: string; title?: string }[] = [

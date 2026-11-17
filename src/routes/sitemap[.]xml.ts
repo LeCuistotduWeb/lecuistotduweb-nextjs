@@ -4,7 +4,7 @@ import { LOCAL_PAGES } from "#/data/local-pages";
 import { VIEWS } from "#/lib/views";
 
 // Plan du site pour les moteurs de recherche, déclaré dans robots.txt.
-// Pages des chapitres, pages locales et CV ; pas /link (noindex) ni les
+// Pages des chapitres, pages locales, réalisations et CV ; pas /link (noindex) ni les
 // redirections (/profil, /freelance).
 const PAGES: { path: string; priority: string }[] = [
 	...VIEWS.map((view) => ({
@@ -12,6 +12,7 @@ const PAGES: { path: string; priority: string }[] = [
 		priority: view.path === "/" ? "1.0" : "0.7",
 	})),
 	...LOCAL_PAGES.map((page) => ({ path: page.path, priority: "0.9" })),
+	{ path: "/realisations", priority: "0.8" },
 	{ path: "/cv", priority: "0.5" },
 ];
 

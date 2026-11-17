@@ -1,5 +1,16 @@
+export type WorkKind = "mission" | "independant";
+
+export const WORK_KINDS: Record<WorkKind, string> = {
+	mission: "Missions en entreprise",
+	independant: "Sites et projets indépendants",
+};
+
 export type Work = {
 	label: string;
+	/** Mission en entreprise ou site / projet indépendant (filtre de /realisations). */
+	kind: WorkKind;
+	/** Mis en avant dans le chapitre Projets de l'accueil. */
+	featured?: boolean;
 	/** Résumé d'une ligne affiché dans le carrousel. */
 	description: string;
 	src: string;
@@ -19,6 +30,8 @@ export type Work = {
 export const WORKS: Work[] = [
 	{
 		label: "Fnac Darty",
+		kind: "mission",
+		featured: true,
 		description:
 			"Architecture front React / Next.js, design system Storybook et i18n.",
 		src: "/works/miniature-fnac-darty-1280.webp",
@@ -41,6 +54,8 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Infogreffe",
+		kind: "mission",
+		featured: true,
 		description:
 			"Parcours utilisateurs, Design System et constructeur de pages Strapi.",
 		src: "/works/miniature-site-web-portfolio-infogreffe-1280.webp",
@@ -62,6 +77,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Blissim",
+		kind: "mission",
 		description:
 			"E-commerce beauté migré en PWA : abonnement, shop et box sur-mesure.",
 		src: "/works/miniature-site-web-1280.webp",
@@ -83,6 +99,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Nomad Education",
+		kind: "mission",
 		description:
 			"Refonte du site vitrine et migration d'Angular vers Nuxt / Vue.",
 		src: "/works/thumbnail-worksite-web-nomad-education-1280.webp",
@@ -102,6 +119,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Mon VDI Assistant",
+		kind: "independant",
 		description: "SaaS pour gérer clients, commandes, produits et réunions.",
 		src: "/works/mon-vdi-assistant-miniature-1280.webp",
 		srcSet:
@@ -118,6 +136,8 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "La Classe de Fleur",
+		kind: "independant",
+		featured: true,
 		description:
 			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
 		src: "/works/miniature-site-web-laclassedefleur-1280.webp",
@@ -136,6 +156,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Le Poudrier de Fleur",
+		kind: "independant",
 		description:
 			"Refonte complète et identité visuelle du site lepoudrierdefleur.fr.",
 		src: "/works/miniature-lepoudrierdefleur-1280.webp",
@@ -152,6 +173,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Marie Jade",
+		kind: "independant",
 		description: "Portfolio sur mesure pour la danseuse Marie Jade Helmlinger.",
 		src: "/works/miniature-marie-hlg-portfolio-1280.webp",
 		srcSet:
@@ -163,3 +185,6 @@ export const WORKS: Work[] = [
 		},
 	},
 ];
+
+/** Projets du chapitre Projets de l'accueil ; la liste complète est sur /realisations. */
+export const FEATURED_WORKS = WORKS.filter((work) => work.featured);

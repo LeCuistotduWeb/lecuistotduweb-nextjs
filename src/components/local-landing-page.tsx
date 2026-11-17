@@ -30,7 +30,7 @@ import { ThemeToggle } from "./theme-toggle";
 // tout le contenu est visible dès le rendu serveur.
 
 const NAV = [
-	{ to: "/projets", label: "Projets" },
+	{ to: "/realisations", label: "Réalisations" },
 	{ to: "/offre", label: "Offre" },
 	{ to: "/contact", label: "Contact" },
 ] as const;
@@ -63,7 +63,7 @@ const STEPS = [
 	},
 ];
 
-function ContactButtons({
+export function ContactButtons({
 	source,
 	onDark = false,
 }: {
@@ -181,30 +181,7 @@ export function LocalLandingPage({ path }: { path: string }) {
 
 	return (
 		<div className="flex min-h-dvh flex-col">
-			<header
-				className={`mx-auto flex w-full ${WIDTH} flex-wrap items-center justify-between gap-3 px-4 py-5`}
-			>
-				<Link
-					to="/"
-					className="display-title text-xl font-bold text-[#253c59] dark:text-white"
-				>
-					<span className={STRONG}>{siteConfig.alias}</span>
-				</Link>
-				<nav aria-label="Navigation principale">
-					<ul className="flex items-center gap-1 text-sm font-semibold">
-						{NAV.map(({ to, label }) => (
-							<li key={to}>
-								<Link to={to} className="group rounded-md px-3 py-2">
-									<span className="text-[#4a6a8a] group-hover:text-[#253c59] dark:text-[#a1adbc] dark:group-hover:text-white">
-										{label}
-									</span>
-								</Link>
-							</li>
-						))}
-					</ul>
-				</nav>
-			</header>
-			<ThemeToggle />
+			<SiteHeader className={WIDTH} />
 
 			<main
 				className={`mx-auto flex w-full ${WIDTH} flex-1 flex-col gap-4 px-4 pb-24 md:gap-6`}
@@ -331,11 +308,11 @@ export function LocalLandingPage({ path }: { path: string }) {
 								</p>
 							</div>
 							<Link
-								to="/projets"
+								to="/realisations"
 								className="group inline-flex shrink-0 items-center gap-1.5 font-semibold"
 							>
 								<span className="text-[#b52f2f] dark:text-[#ff7a7a]">
-									Voir tous les projets
+									Voir toutes les réalisations
 								</span>
 								<ArrowRight
 									aria-hidden="true"
@@ -347,7 +324,7 @@ export function LocalLandingPage({ path }: { path: string }) {
 							{works.map((work, index) => (
 								<li key={work.label}>
 									<Appear on={animated} delay={index * 140}>
-										<Link to="/projets" className="group block">
+										<Link to="/realisations" className="group block">
 											<div className="overflow-hidden rounded-xl border border-[#d2c4a4] dark:border-[#253c59]">
 												<img
 													src={work.src}
@@ -421,6 +398,41 @@ export function LocalLandingPage({ path }: { path: string }) {
 
 			<LocalFooter wide={animated} />
 		</div>
+	);
+}
+
+/** En-tête des pages autonomes (pages locales, réalisations). */
+export function SiteHeader({ className }: { className?: string }) {
+	return (
+		<>
+			<header
+				className={cn(
+					"mx-auto flex w-full flex-wrap items-center justify-between gap-3 px-4 py-5",
+					className,
+				)}
+			>
+				<Link
+					to="/"
+					className="display-title text-xl font-bold text-[#253c59] dark:text-white"
+				>
+					<span className={STRONG}>{siteConfig.alias}</span>
+				</Link>
+				<nav aria-label="Navigation principale">
+					<ul className="flex items-center gap-1 text-sm font-semibold">
+						{NAV.map(({ to, label }) => (
+							<li key={to}>
+								<Link to={to} className="group rounded-md px-3 py-2">
+									<span className="text-[#4a6a8a] group-hover:text-[#253c59] dark:text-[#a1adbc] dark:group-hover:text-white">
+										{label}
+									</span>
+								</Link>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</header>
+			<ThemeToggle />
+		</>
 	);
 }
 

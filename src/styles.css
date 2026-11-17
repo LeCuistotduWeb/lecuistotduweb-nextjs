@@ -679,3 +679,19 @@ html::after {
     translate: 0 -10px;
   }
 }
+
+/* Capture en tête de la popup d'un projet : léger zoom arrière à l'ouverture */
+@keyframes dialog-cover {
+  from {
+    opacity: 0;
+    scale: 1.08;
+  }
+}
+
+/* Contenu de la popup d'un projet : apparition en cascade (--d = délai) */
+@keyframes dialog-rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
