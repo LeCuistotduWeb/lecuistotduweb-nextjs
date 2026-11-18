@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import {
 	ArrowRight,
 	Check,
@@ -105,6 +104,28 @@ function QuoteButton({ topic, onDark }: { topic: string; onDark?: boolean }) {
 					topic={`Devis — ${topic}`}
 				/>
 			)}
+		</>
+	);
+}
+
+/** Lien « Parlons-en » : formulaire de contact, sujet « Renfort ». */
+function RenfortLink() {
+	const [open, setOpen] = useState(false);
+	const topic = "Renfort fullstack React / Node.js";
+	return (
+		<>
+			<button
+				type="button"
+				aria-haspopup="dialog"
+				onClick={() => {
+					setOpen(true);
+					trackEvent("open_quote_dialog", { page: "/tarifs", offer: topic });
+				}}
+				className="cursor-pointer font-semibold text-[#b52f2f] underline underline-offset-4 hover:no-underline dark:text-[#ff7a7a]"
+			>
+				Parlons-en
+			</button>
+			{open && <QuoteDialog open={open} onOpenChange={setOpen} topic={topic} />}
 		</>
 	);
 }
@@ -435,15 +456,7 @@ export function PricingPage() {
 						</span>
 					</p>
 					<p>
-						Une mission de renfort React / Node.js ?{" "}
-						<Link
-							to="/"
-							hash="offre"
-							className="font-semibold text-[#b52f2f] underline underline-offset-4 hover:no-underline dark:text-[#ff7a7a]"
-						>
-							C'est sur devis
-						</Link>
-						.
+						Une mission de renfort React / Node.js ? <RenfortLink />
 					</p>
 				</Reveal>
 
