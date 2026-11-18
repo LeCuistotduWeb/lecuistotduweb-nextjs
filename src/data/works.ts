@@ -96,7 +96,7 @@ export const WORKS: Work[] = [
 				"Pour SOLIASSO, via l'ESN L'Atelier : le groupement solidaire créé par l'Unapei 92 et l'APEI Boucle de la Seine pour réaliser les prestations de qualification et les évaluations des dossiers de la Maison départementale des personnes handicapées (MDPH) des Hauts-de-Seine.",
 			period: "2026",
 			contributions: [
-				"Conception et développement de l'outil, du tableau de bord aux formulaires",
+				"Développement du front-end de l'outil, du tableau de bord aux formulaires",
 				"Import des lots de dossiers (CSV, XLSX) et suivi de leur avancement : non démarré, en cours, qualifié, évalué",
 				"Formulaires de qualification et d'évaluation (enfant et adulte), avec calcul automatique du complément AEEH",
 				"Liste des dossiers avec recherche, filtres par statut et par type, et téléchargement",
