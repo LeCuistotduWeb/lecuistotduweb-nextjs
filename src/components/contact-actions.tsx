@@ -22,12 +22,15 @@ const STRONG = "text-[#253c59] dark:text-white";
 /** Marqueur des groupes de boutons suivis par la barre flottante */
 const GROUP_ATTR = "data-contact-actions";
 
-function QuoteDialog({
+export function QuoteDialog({
 	open,
 	onOpenChange,
+	topic = "Demande de devis",
 }: {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
+	/** Sujet pré-rempli du formulaire */
+	topic?: string;
 }) {
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
@@ -46,7 +49,7 @@ function QuoteDialog({
 						je revienne vers vous avec un devis clair.
 					</DialogDescription>
 				</div>
-				<ContactForm defaultTopic="Demande de devis" />
+				<ContactForm defaultTopic={topic} />
 			</DialogContent>
 		</Dialog>
 	);

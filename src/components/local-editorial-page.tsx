@@ -303,7 +303,30 @@ export function LocalEditorialPage({ path }: { path: string }) {
 					),
 				)}
 
-				<Section eyebrow="Méthode" title="Comment ça se passe" stacked>
+				<Section
+					eyebrow="Méthode"
+					title="Comment ça se passe"
+					stacked
+					aside={
+						<Link
+							to="/tarifs"
+							onClick={() => trackEvent("click_pricing", { from: page.path })}
+							className="group inline-flex shrink-0 items-center gap-3 text-sm font-semibold whitespace-nowrap"
+						>
+							<span
+								className={`underline-offset-4 decoration-[#f25353] group-hover:underline ${STRONG}`}
+							>
+								Voir les tarifs
+							</span>
+							<span className="flex size-10 items-center justify-center rounded-full border border-[#253c59]/25 transition-[background-color,border-color,rotate] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-45 group-hover:border-[#f25353] group-hover:bg-[#f25353] dark:border-white/25">
+								<ArrowUpRight
+									aria-hidden="true"
+									className="size-4 text-[#253c59] transition-colors group-hover:text-white dark:text-white"
+								/>
+							</span>
+						</Link>
+					}
+				>
 					<ProcessTimeline steps={STEPS} animated />
 				</Section>
 

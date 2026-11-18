@@ -37,7 +37,7 @@ function ContactLink({ offer }: { offer: string }) {
 				trackEvent("click_offer_contact", { offer });
 				requestContactTopic(offer);
 			}}
-			className="group/link mt-auto inline-flex w-fit items-center gap-1.5 pt-2 text-sm font-semibold"
+			className="group/link inline-flex w-fit items-center gap-1.5 text-sm font-semibold"
 		>
 			<span className="text-[#b52f2f] dark:text-[#ff7a7a]">En parler</span>
 			<ArrowRight
@@ -181,7 +181,21 @@ export function SecondaryOffer({
 					</Reveal>
 				))}
 			</ul>
-			<ContactLink offer={title} />
+			<div className="mt-auto flex flex-wrap items-center gap-x-6 gap-y-2 pt-2">
+				<ContactLink offer={title} />
+				<Link
+					to="/tarifs"
+					hash={index === 0 ? "creation" : "maintenance"}
+					onClick={() =>
+						trackEvent("click_pricing", { from: "offer", offer: title })
+					}
+					className="group/link inline-flex w-fit items-center gap-1.5 text-sm font-semibold"
+				>
+					<span className="text-[#4a6a8a] underline-offset-4 group-hover/link:text-[#253c59] group-hover/link:underline dark:text-[#a1adbc] dark:group-hover/link:text-white">
+						Voir les tarifs
+					</span>
+				</Link>
+			</div>
 		</BentoCard>
 	);
 }

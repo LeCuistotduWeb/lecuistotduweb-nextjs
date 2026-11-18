@@ -1,3 +1,5 @@
+import { siteConfig } from "#/config";
+
 export type WorkKind = "entreprise" | "freelance" | "perso";
 
 /** Cadre du projet : salarié (poste, stage ou via l'ESN L'Atelier), client freelance ou projet perso. */
@@ -182,6 +184,29 @@ export const WORKS: Work[] = [
 				"Gestion centralisée des clients, des commandes, des produits et des réunions",
 			],
 			url: "https://mon-vdi-assistant.fr",
+		},
+	},
+	{
+		label: "Rangeo",
+		kind: "perso",
+		description:
+			"App Android de rangement et de déménagement : cartons QR, photos et checklist, 100 % hors ligne.",
+		src: "/works/miniature-rangeo-1280.webp",
+		srcSet:
+			"/works/miniature-rangeo-640.webp 640w, /works/miniature-rangeo-1280.webp 1280w",
+		details: {
+			context:
+				"Projet personnel : une application Android pour ranger et déménager sans perdre un objet. Tout reste sur le téléphone : pas de compte, pas de serveur, aucune donnée collectée.",
+			period: "2026",
+			contributions: [
+				"Conception et développement de A à Z, du design de l'interface à la page de présentation",
+				"Organisation en lieux, contenants et objets, avec un code par contenant (SAL-01, GAR-07…)",
+				"QR code par carton : un scan ouvre sa fiche, étiquettes prêtes à imprimer",
+				"Recherche instantanée par objet, description ou code",
+				"Parcours déménagement en trois étapes (préparer, charger, décharger) et checklist des démarches",
+				"Photos, export PDF des inventaires et sauvegarde complète en ZIP",
+			],
+			url: siteConfig.rangeo.url,
 		},
 	},
 	{

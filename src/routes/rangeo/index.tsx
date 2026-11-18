@@ -8,7 +8,12 @@ import {
 	ShieldCheck,
 	WifiOff,
 } from "lucide-react";
-import { RANGEO_ACCENT, RangeoShell } from "#/components/rangeo-shell";
+import {
+	RANGEO_ACCENT,
+	RANGEO_OG_IMAGE,
+	RangeoIcon,
+	RangeoShell,
+} from "#/components/rangeo-shell";
 import { Button } from "#/components/ui/button";
 import { siteConfig } from "#/config";
 import { trackEvent } from "#/lib/analytics";
@@ -26,6 +31,10 @@ export const Route = createFileRoute("/rangeo/")({
 			{ name: "og:description", content: DESCRIPTION },
 			{ name: "og:type", content: "website" },
 			{ name: "og:url", content: `${siteConfig.rangeo.url}/` },
+			{ name: "og:image", content: RANGEO_OG_IMAGE },
+			{ name: "og:image:width", content: "1024" },
+			{ name: "og:image:height", content: "500" },
+			{ name: "twitter:card", content: "summary_large_image" },
 		],
 		links: [{ rel: "canonical", href: `${siteConfig.rangeo.url}/` }],
 	}),
@@ -65,6 +74,30 @@ const FEATURES = [
 	},
 ];
 
+// Captures du Play Store (1080×1920, légende incluse dans l'image).
+const SCREENS = [
+	{
+		slug: "lieux",
+		alt: "Écran Mes lieux : pièces numérotées (Salon, Cuisine, Garage…) — « Chaque chose à sa place »",
+	},
+	{
+		slug: "recherche",
+		alt: "Écran Rechercher : un objet, un carton ou un code — « Retrouvez tout en 2 secondes »",
+	},
+	{
+		slug: "contenant",
+		alt: "Fiche du contenant SAL-01 avec emplacement, objets et photos — « Chaque carton détaillé »",
+	},
+	{
+		slug: "qr-code",
+		alt: "QR code du contenant SAL-01 prêt à imprimer — « Un QR code par carton »",
+	},
+	{
+		slug: "demenagement",
+		alt: "Écran Déménager : préparez, chargez, déchargez — « Déménagez sans rien perdre »",
+	},
+];
+
 function PlayStoreCta() {
 	const url = siteConfig.rangeo.playStoreUrl;
 	if (!url) {
@@ -96,6 +129,7 @@ function RangeoPage() {
 	return (
 		<RangeoShell>
 			<section className="py-12 md:py-20">
+				<RangeoIcon className="mb-6 size-16 rounded-2xl shadow-lg shadow-[#ff7b3d]/25" />
 				<p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#4a6a8a] dark:text-[#a1adbc]">
 					Application Android
 				</p>
@@ -111,6 +145,32 @@ function RangeoPage() {
 				<div className="mt-8">
 					<PlayStoreCta />
 				</div>
+			</section>
+
+			<section aria-labelledby="apercu" className="mb-12">
+				<h2 id="apercu" className="sr-only">
+					Aperçu de l'application
+				</h2>
+				<ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-4 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:px-0 lg:pb-0">
+					{SCREENS.map(({ slug, alt }) => (
+						<li
+							key={slug}
+							className="w-[62vw] max-w-[260px] shrink-0 snap-start lg:w-auto lg:max-w-none"
+						>
+							<img
+								src={`/rangeo/ecran-${slug}-720.webp`}
+								srcSet={`/rangeo/ecran-${slug}-360.webp 360w, /rangeo/ecran-${slug}-720.webp 720w`}
+								sizes="(min-width: 1024px) 190px, min(62vw, 260px)"
+								width={1080}
+								height={1920}
+								alt={alt}
+								loading="lazy"
+								decoding="async"
+								className="h-auto w-full rounded-2xl shadow-lg shadow-[#253c59]/15 dark:shadow-black/40"
+							/>
+						</li>
+					))}
+				</ul>
 			</section>
 
 			<section aria-labelledby="fonctionnalites">

@@ -9,6 +9,7 @@ const PAGES: { path: string; priority: string }[] = [
 	{ path: "/", priority: "1.0" },
 	...LOCAL_PAGES.map((page) => ({ path: page.path, priority: "0.9" })),
 	{ path: "/realisations", priority: "0.8" },
+	{ path: "/tarifs", priority: "0.8" },
 	{ path: "/cv", priority: "0.5" },
 ];
 

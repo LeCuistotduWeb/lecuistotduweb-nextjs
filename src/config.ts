@@ -1,12 +1,21 @@
 export type FreelanceStatus = "available" | "unavailable";
 
+// URL publique du site (VITE_SITE_URL, ex. https://lecuistotduweb.fr) : sert
+// aux liens canoniques, au JSON-LD et aux images de partage. Exposée au client
+// (préfixe VITE_), à définir dans .env et dans les variables d'env Vercel.
+const SITE_URL = import.meta.env.VITE_SITE_URL?.replace(/\/+$/, "");
+if (!SITE_URL) {
+	throw new Error("VITE_SITE_URL manquante (ex. https://lecuistotduweb.fr)");
+}
+const site = new URL(SITE_URL);
+
 export const siteConfig = {
 	name: "Gaëtan Boyron",
 	alias: "LeCuistotduWeb",
 	role: "Développeur Fullstack React/Node.js",
 	email: "contact@lecuistotduweb.fr",
-	url: "https://lecuistotduweb.fr",
-	shortUrl: "lecuistotduweb.fr",
+	url: site.origin,
+	shortUrl: site.host,
 	bio: "Je conçois et fais évoluer vos applications web, du front-end React / Next.js au back-end Node.js, jusqu'à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress. Basé à Vernon, dans l'Eure, je crée aussi des sites internet pour les restaurants, salons et TPE/PME de la région.",
 	social: {
 		github: "https://github.com/lecuistotduweb",
@@ -83,7 +92,7 @@ export const siteConfig = {
 	},
 	rangeo: {
 		// Sous-domaine dédié : la home du sous-domaine affiche /rangeo
-		url: "https://rangeo.lecuistotduweb.fr",
+		url: `${site.protocol}//rangeo.${site.host}`,
 		host: "rangeo.",
 		packageId: "fr.lecuistotduweb.rangeo",
 		// Fiche Google Play ; le bouton n'apparaît que s'il est renseigné

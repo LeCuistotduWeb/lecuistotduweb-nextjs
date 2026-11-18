@@ -13,7 +13,7 @@ import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
 	{ to: "/realisations", hash: undefined, label: "Réalisations" },
-	{ to: "/", hash: "offre", label: "Offres" },
+	{ to: "/tarifs", hash: undefined, label: "Tarifs" },
 ] as const;
 
 const STRONG = "text-[#253c59] dark:text-white";

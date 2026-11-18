@@ -25,6 +25,7 @@ import { Route as SiteInternetRestaurantRouteImport } from './routes/site-intern
 import { Route as SiteInternetSalonCoiffureEsthetiqueRouteImport } from './routes/site-internet-salon-coiffure-esthetique'
 import { Route as SiteInternetTpePmeRouteImport } from './routes/site-internet-tpe-pme'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as ViewsIndexRouteImport } from './routes/_views/index'
 import { Route as ViewsContactRouteImport } from './routes/_views/contact'
 import { Route as ViewsExperienceRouteImport } from './routes/_views/experience'
@@ -115,6 +116,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TarifsRoute = TarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ViewsIndexRoute = ViewsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
   '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
   '/offre': typeof ViewsOffreRoute
@@ -191,6 +198,7 @@ export interface FileRoutesByTo {
   '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
   '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
   '/offre': typeof ViewsOffreRoute
@@ -217,6 +225,7 @@ export interface FileRoutesById {
   '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
   '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
   '/_views/contact': typeof ViewsContactRoute
   '/_views/experience': typeof ViewsExperienceRoute
   '/_views/offre': typeof ViewsOffreRoute
@@ -244,6 +253,7 @@ export interface FileRouteTypes {
     | '/site-internet-salon-coiffure-esthetique'
     | '/site-internet-tpe-pme'
     | '/sitemap.xml'
+    | '/tarifs'
     | '/contact'
     | '/experience'
     | '/offre'
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/site-internet-salon-coiffure-esthetique'
     | '/site-internet-tpe-pme'
     | '/sitemap.xml'
+    | '/tarifs'
     | '/contact'
     | '/experience'
     | '/offre'
@@ -292,6 +303,7 @@ export interface FileRouteTypes {
     | '/site-internet-salon-coiffure-esthetique'
     | '/site-internet-tpe-pme'
     | '/sitemap.xml'
+    | '/tarifs'
     | '/_views/contact'
     | '/_views/experience'
     | '/_views/offre'
@@ -318,6 +330,7 @@ export interface RootRouteChildren {
   SiteInternetSalonCoiffureEsthetiqueRoute: typeof SiteInternetSalonCoiffureEsthetiqueRoute
   SiteInternetTpePmeRoute: typeof SiteInternetTpePmeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TarifsRoute: typeof TarifsRoute
   RangeoConfidentialiteRoute: typeof RangeoConfidentialiteRoute
   RangeoIndexRoute: typeof RangeoIndexRoute
 }
@@ -436,6 +449,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/tarifs': {
+      id: '/tarifs'
+      path: '/tarifs'
+      fullPath: '/tarifs'
+      preLoaderRoute: typeof TarifsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_views/': {
       id: '/_views/'
       path: '/'
@@ -524,6 +544,7 @@ const rootRouteChildren: RootRouteChildren = {
     SiteInternetSalonCoiffureEsthetiqueRoute,
   SiteInternetTpePmeRoute: SiteInternetTpePmeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TarifsRoute: TarifsRoute,
   RangeoConfidentialiteRoute: RangeoConfidentialiteRoute,
   RangeoIndexRoute: RangeoIndexRoute,
 }

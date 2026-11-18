@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { RANGEO_ACCENT, RangeoShell } from "#/components/rangeo-shell";
+import {
+	RANGEO_ACCENT,
+	RANGEO_OG_IMAGE,
+	RangeoShell,
+} from "#/components/rangeo-shell";
 import { siteConfig } from "#/config";
 
 const TITLE = "Rangeo — Politique de confidentialité";
@@ -16,6 +20,7 @@ export const Route = createFileRoute("/rangeo/confidentialite")({
 			{ name: "og:title", content: TITLE },
 			{ name: "og:description", content: DESCRIPTION },
 			{ name: "og:url", content: `${siteConfig.rangeo.url}/confidentialite` },
+			{ name: "og:image", content: RANGEO_OG_IMAGE },
 		],
 		links: [
 			{ rel: "canonical", href: `${siteConfig.rangeo.url}/confidentialite` },
