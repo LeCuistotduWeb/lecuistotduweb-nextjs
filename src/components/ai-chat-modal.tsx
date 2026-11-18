@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { ArrowUp, Trash2, X } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Markdown from "react-markdown";
@@ -304,7 +305,15 @@ export function AiChatModal({
 						</button>
 					</div>
 					<p className="mt-1.5 text-center text-[10px] text-[#8a7560] dark:text-[#a1adbc]/70">
-						Entrée pour envoyer · Maj+Entrée pour un saut de ligne
+						Réponses générées par Gemini (Google) · Évitez d'y mettre des
+						données personnelles ·{" "}
+						<Link
+							to="/confidentialite"
+							hash="assistant"
+							className="underline underline-offset-2 hover:no-underline"
+						>
+							En savoir plus
+						</Link>
 					</p>
 				</div>
 			</DialogContent>

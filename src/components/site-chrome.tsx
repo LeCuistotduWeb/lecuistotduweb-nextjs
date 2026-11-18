@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 import { siteConfig } from "#/config";
 import { LOCAL_PAGES } from "#/data/local-pages";
 import { trackEvent } from "#/lib/analytics";
+import { openConsentBanner } from "#/lib/consent";
 import { cn } from "#/lib/utils";
 import { StickyContactBar } from "./contact-actions";
 import { ThemeToggle } from "./theme-toggle";
@@ -174,10 +175,33 @@ export function LocalFooter({
 					</div>
 				</nav>
 			</div>
-			<p className="text-xs">
-				© {new Date().getFullYear()} {local.businessName} ·{" "}
-				{siteConfig.shortUrl}
-			</p>
+			<div className="flex flex-col gap-3 text-xs sm:flex-row sm:items-center sm:justify-between">
+				<p>
+					© {new Date().getFullYear()} {local.businessName} ·{" "}
+					{siteConfig.shortUrl}
+				</p>
+				<ul className="flex flex-wrap gap-x-5 gap-y-2 font-medium">
+					<li>
+						<Link to="/mentions-legales" className="group">
+							<span className={FOOTER_LINK}>Mentions légales</span>
+						</Link>
+					</li>
+					<li>
+						<Link to="/confidentialite" className="group">
+							<span className={FOOTER_LINK}>Confidentialité</span>
+						</Link>
+					</li>
+					<li>
+						<button
+							type="button"
+							onClick={openConsentBanner}
+							className="group cursor-pointer"
+						>
+							<span className={FOOTER_LINK}>Gérer les cookies</span>
+						</button>
+					</li>
+				</ul>
+			</div>
 		</footer>
 	);
 }

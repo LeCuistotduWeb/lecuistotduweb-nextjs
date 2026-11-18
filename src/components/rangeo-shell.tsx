@@ -50,6 +50,14 @@ export function RangeoShell({ children }: { children: ReactNode }) {
 							Politique de confidentialité
 						</span>
 					</Link>
+					<a
+						href={`${siteConfig.url}/mentions-legales`}
+						className="hover:underline"
+					>
+						<span className="text-[#4a6a8a] dark:text-[#a1adbc]">
+							Mentions légales
+						</span>
+					</a>
 					<a href={`mailto:${siteConfig.email}`} className="hover:underline">
 						<span className="text-[#4a6a8a] dark:text-[#a1adbc]">Contact</span>
 					</a>

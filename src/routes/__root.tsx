@@ -9,7 +9,9 @@ import {
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { AiAgentNote } from "#/components/ai-agent-note";
 import { AnimatedBackground } from "#/components/animated-background";
+import { CookieBanner } from "#/components/cookie-banner";
 import { Button } from "#/components/ui/button";
+import { consentScript } from "#/lib/consent";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -60,14 +62,6 @@ export const Route = createRootRoute({
 				href: "/apple-touch-icon.png",
 			},
 		],
-		scripts: import.meta.env.PROD
-			? [
-					{
-						src: "https://www.googletagmanager.com/gtag/js?id=G-D3ME6QTB34",
-						async: true,
-					},
-				]
-			: [],
 	}),
 	shellComponent: RootDocument,
 	notFoundComponent: NotFound,
@@ -98,7 +92,8 @@ const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t===
 // 4 s, on réaffiche tout (secours).
 const experienceScript = `(function(){var d=document.documentElement;try{var r=matchMedia('(prefers-reduced-motion: reduce)').matches;var p=location.hostname.indexOf('rangeo.')!==0&&/^\\/(experience|projets|offre|contact)?\\/?$/.test(location.pathname);if(!r){d.classList.add('reveal-ready');setTimeout(function(){if(!window.__lcdwAnim)d.classList.remove('reveal-ready')},4000)}if(r||!p||sessionStorage.getItem('lcdw-intro-seen'))d.classList.add('intro-skip');else d.classList.add('intro-playing')}catch(e){d.classList.add('intro-skip')}})();`;
 
-const gaScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D3ME6QTB34');`;
+// GA4 uniquement après accord du visiteur (voir #/lib/consent)
+const gaScript = consentScript(import.meta.env.PROD);
 
 // Fonction appelée par un agent IA qui a lu la note cachée (AiAgentNote) :
 // envoie l'event GA `ai_agent_visit`. Définie avant l'hydratation pour être
@@ -117,7 +112,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<noscript>
 					<style>{".intro-loader{display:none}"}</style>
 				</noscript>
-				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: GA4 init */}
+				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: GA4 init, soumis au consentement */}
 				<script dangerouslySetInnerHTML={{ __html: gaScript }} />
 				{/* biome-ignore lint/security/noDangerouslySetInnerHtml: AI agent signal */}
 				<script dangerouslySetInnerHTML={{ __html: aiAgentScript }} />
@@ -127,6 +122,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 				<AnimatedBackground />
 				{children}
 				<AiAgentNote />
+				<CookieBanner />
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",

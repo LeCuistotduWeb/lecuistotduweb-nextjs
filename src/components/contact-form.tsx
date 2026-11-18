@@ -1,4 +1,5 @@
 import { useForm } from "@tanstack/react-form";
+import { Link } from "@tanstack/react-router";
 import {
 	Check,
 	ChevronDown,
@@ -209,6 +210,16 @@ export function ContactForm({ defaultTopic = "" }: { defaultTopic?: string }) {
 					</button>
 				)}
 			</form.Subscribe>
+			<p className="text-xs leading-relaxed text-[#4a6a8a] dark:text-[#a1adbc]">
+				Vos informations servent uniquement à vous répondre.{" "}
+				<Link
+					to="/confidentialite"
+					hash="contact"
+					className="underline underline-offset-2 hover:no-underline"
+				>
+					En savoir plus
+				</Link>
+			</p>
 		</form>
 	);
 }

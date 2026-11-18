@@ -11,12 +11,14 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViewsRouteImport } from './routes/_views'
 import { Route as AiHelloRouteImport } from './routes/ai-hello'
+import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
 import { Route as CreationSiteInternetEvreuxRouteImport } from './routes/creation-site-internet-evreux'
 import { Route as CreationSiteInternetVernonRouteImport } from './routes/creation-site-internet-vernon'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as DeveloppeurWebEureRouteImport } from './routes/developpeur-web-eure'
 import { Route as FreelanceRouteImport } from './routes/freelance'
 import { Route as LinkRouteImport } from './routes/link'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ProfilRouteImport } from './routes/profil'
 import { Route as RealisationsRouteImport } from './routes/realisations'
 import { Route as SiteInternetRestaurantRouteImport } from './routes/site-internet-restaurant'
@@ -38,6 +40,11 @@ const ViewsRoute = ViewsRouteImport.update({
 const AiHelloRoute = AiHelloRouteImport.update({
   id: '/ai-hello',
   path: '/ai-hello',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CreationSiteInternetEvreuxRoute =
@@ -70,6 +77,11 @@ const FreelanceRoute = FreelanceRouteImport.update({
 const LinkRoute = LinkRouteImport.update({
   id: '/link',
   path: '/link',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfilRoute = ProfilRouteImport.update({
@@ -142,12 +154,14 @@ const RangeoConfidentialiteRoute = RangeoConfidentialiteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof ViewsIndexRoute
   '/ai-hello': typeof AiHelloRoute
+  '/confidentialite': typeof ConfidentialiteRoute
   '/creation-site-internet-evreux': typeof CreationSiteInternetEvreuxRoute
   '/creation-site-internet-vernon': typeof CreationSiteInternetVernonRoute
   '/cv': typeof CvRoute
   '/developpeur-web-eure': typeof DeveloppeurWebEureRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/profil': typeof ProfilRoute
   '/realisations': typeof RealisationsRoute
   '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
@@ -163,12 +177,14 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/ai-hello': typeof AiHelloRoute
+  '/confidentialite': typeof ConfidentialiteRoute
   '/creation-site-internet-evreux': typeof CreationSiteInternetEvreuxRoute
   '/creation-site-internet-vernon': typeof CreationSiteInternetVernonRoute
   '/cv': typeof CvRoute
   '/developpeur-web-eure': typeof DeveloppeurWebEureRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/profil': typeof ProfilRoute
   '/realisations': typeof RealisationsRoute
   '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
@@ -187,12 +203,14 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_views': typeof ViewsRouteWithChildren
   '/ai-hello': typeof AiHelloRoute
+  '/confidentialite': typeof ConfidentialiteRoute
   '/creation-site-internet-evreux': typeof CreationSiteInternetEvreuxRoute
   '/creation-site-internet-vernon': typeof CreationSiteInternetVernonRoute
   '/cv': typeof CvRoute
   '/developpeur-web-eure': typeof DeveloppeurWebEureRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/profil': typeof ProfilRoute
   '/realisations': typeof RealisationsRoute
   '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
@@ -212,12 +230,14 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ai-hello'
+    | '/confidentialite'
     | '/creation-site-internet-evreux'
     | '/creation-site-internet-vernon'
     | '/cv'
     | '/developpeur-web-eure'
     | '/freelance'
     | '/link'
+    | '/mentions-legales'
     | '/profil'
     | '/realisations'
     | '/site-internet-restaurant'
@@ -233,12 +253,14 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/ai-hello'
+    | '/confidentialite'
     | '/creation-site-internet-evreux'
     | '/creation-site-internet-vernon'
     | '/cv'
     | '/developpeur-web-eure'
     | '/freelance'
     | '/link'
+    | '/mentions-legales'
     | '/profil'
     | '/realisations'
     | '/site-internet-restaurant'
@@ -256,12 +278,14 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_views'
     | '/ai-hello'
+    | '/confidentialite'
     | '/creation-site-internet-evreux'
     | '/creation-site-internet-vernon'
     | '/cv'
     | '/developpeur-web-eure'
     | '/freelance'
     | '/link'
+    | '/mentions-legales'
     | '/profil'
     | '/realisations'
     | '/site-internet-restaurant'
@@ -280,12 +304,14 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   ViewsRoute: typeof ViewsRouteWithChildren
   AiHelloRoute: typeof AiHelloRoute
+  ConfidentialiteRoute: typeof ConfidentialiteRoute
   CreationSiteInternetEvreuxRoute: typeof CreationSiteInternetEvreuxRoute
   CreationSiteInternetVernonRoute: typeof CreationSiteInternetVernonRoute
   CvRoute: typeof CvRoute
   DeveloppeurWebEureRoute: typeof DeveloppeurWebEureRoute
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
   ProfilRoute: typeof ProfilRoute
   RealisationsRoute: typeof RealisationsRoute
   SiteInternetRestaurantRoute: typeof SiteInternetRestaurantRoute
@@ -310,6 +336,13 @@ declare module '@tanstack/react-router' {
       path: '/ai-hello'
       fullPath: '/ai-hello'
       preLoaderRoute: typeof AiHelloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentialite': {
+      id: '/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/confidentialite'
+      preLoaderRoute: typeof ConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/creation-site-internet-evreux': {
@@ -352,6 +385,13 @@ declare module '@tanstack/react-router' {
       path: '/link'
       fullPath: '/link'
       preLoaderRoute: typeof LinkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profil': {
@@ -469,12 +509,14 @@ const ViewsRouteWithChildren = ViewsRoute._addFileChildren(ViewsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   ViewsRoute: ViewsRouteWithChildren,
   AiHelloRoute: AiHelloRoute,
+  ConfidentialiteRoute: ConfidentialiteRoute,
   CreationSiteInternetEvreuxRoute: CreationSiteInternetEvreuxRoute,
   CreationSiteInternetVernonRoute: CreationSiteInternetVernonRoute,
   CvRoute: CvRoute,
   DeveloppeurWebEureRoute: DeveloppeurWebEureRoute,
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
   ProfilRoute: ProfilRoute,
   RealisationsRoute: RealisationsRoute,
   SiteInternetRestaurantRoute: SiteInternetRestaurantRoute,

@@ -63,6 +63,24 @@ export const siteConfig = {
 			| string
 			| undefined,
 	},
+	// Mentions légales (LCEN, art. 6-III) : identité de l'éditeur et hébergeur.
+	// SIRET et adresse sont obligatoires : un test (config.legal.test.ts) échoue tant
+	// qu'ils sont vides. L'adresse peut être une adresse de domiciliation.
+	legal: {
+		publisher: "Gaëtan Boyron",
+		status: "Entrepreneur individuel (micro-entreprise)",
+		siret: "915 227 839 00031" as string,
+		// Commune seulement : diffusion partielle INSEE, adresse de rue non publiée
+		address: "Vernon (27200), Eure" as string,
+		vat: "TVA non applicable, article 293 B du Code général des impôts",
+		host: {
+			name: "Vercel Inc.",
+			address: "440 N Barranca Ave #4133, Covina, CA 91723, États-Unis",
+			url: "https://vercel.com",
+		},
+		// Date affichée en haut des deux pages légales, à changer à chaque mise à jour
+		updatedAt: "18 novembre 2026",
+	},
 	rangeo: {
 		// Sous-domaine dédié : la home du sous-domaine affiche /rangeo
 		url: "https://rangeo.lecuistotduweb.fr",
