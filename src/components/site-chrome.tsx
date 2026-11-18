@@ -88,6 +88,15 @@ export function SiteHeader({ className }: { className?: string }) {
 	);
 }
 
+// Pages du site reprises dans le pied de page
+const SITE_LINKS = [
+	{ to: "/realisations", hash: undefined, label: "Réalisations" },
+	{ to: "/", hash: "offre", label: "Offres" },
+	{ to: "/tarifs", hash: undefined, label: "Tarifs" },
+	{ to: "/cv", hash: undefined, label: "CV" },
+	{ to: "/", hash: "contact", label: "Contact" },
+] as const;
+
 const FOOTER_LINK =
 	"text-[#4a6a8a] underline-offset-4 group-hover:text-[#253c59] group-hover:underline dark:text-[#a1adbc] dark:group-hover:text-white";
 
@@ -120,7 +129,7 @@ export function LocalFooter({
 				className,
 			)}
 		>
-			<div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-16">
+			<div className="grid gap-10 sm:grid-cols-[minmax(0,1fr)_auto] md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.6fr)] md:gap-16">
 				<div className="flex flex-col gap-3">
 					<p className={`display-title text-2xl font-bold ${STRONG}`}>
 						{local.businessName}
@@ -150,7 +159,27 @@ export function LocalFooter({
 						</a>
 					)}
 				</div>
-				<nav aria-labelledby="footer-local-title">
+				<nav aria-labelledby="footer-site-title">
+					<h2
+						id="footer-site-title"
+						className="text-xs font-semibold uppercase tracking-widest text-[#93a8be] dark:text-[#7a8fa0]"
+					>
+						Le site
+					</h2>
+					<ul className="mt-4 flex flex-col gap-1.5">
+						{SITE_LINKS.map(({ to, hash, label }) => (
+							<li key={label}>
+								<Link to={to} hash={hash} className="group font-medium">
+									<span className={FOOTER_LINK}>{label}</span>
+								</Link>
+							</li>
+						))}
+					</ul>
+				</nav>
+				<nav
+					aria-labelledby="footer-local-title"
+					className="sm:col-span-2 md:col-span-1"
+				>
 					<h2
 						id="footer-local-title"
 						className="text-xs font-semibold uppercase tracking-widest text-[#93a8be] dark:text-[#7a8fa0]"
