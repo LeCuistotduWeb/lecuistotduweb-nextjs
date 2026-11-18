@@ -73,6 +73,7 @@ export const OPTIONS: PriceLine[] = [
 		price: "150 €",
 	},
 	{ label: "Rédaction des textes optimisés pour Google", price: "80 € / page" },
+	{ label: "Boutique en ligne", price: "sur devis" },
 	{ label: "Refonte d'un site existant", price: "sur devis" },
 ];
 

@@ -5,9 +5,10 @@
 ## Portfolio
 
 - [Accueil](https://lecuistotduweb.fr): Portfolio complet — présentation, compétences, expériences professionnelles, formations et projets personnels
-- [Projets](https://lecuistotduweb.fr/projets): Réalisations détaillées — contexte, travail réalisé et stack
-- [Offre](https://lecuistotduweb.fr/offre): Offre freelance — renfort React / Next.js, projet sur mesure, maintenance et évolutions
-- [Contact](https://lecuistotduweb.fr/contact): Formulaire, prise de rendez-vous et e-mail
+- [Réalisations](https://lecuistotduweb.fr/realisations): Réalisations détaillées — contexte, travail réalisé et stack
+- [Offre](https://lecuistotduweb.fr/#offre): Offre freelance — renfort React / Next.js, projet sur mesure, maintenance et évolutions
+- [Tarifs](https://lecuistotduweb.fr/tarifs): Tarifs indicatifs — création de site, options, hébergement et maintenance
+- [Contact](https://lecuistotduweb.fr/#contact): Formulaire, prise de rendez-vous et e-mail
 - [Création de site internet à Vernon](https://lecuistotduweb.fr/creation-site-internet-vernon): Sites sur mesure pour les entreprises de Vernon et alentours
 - [Création de site internet à Évreux](https://lecuistotduweb.fr/creation-site-internet-evreux): Sites et applications pour les entreprises d'Évreux
 - [Développeur web dans l'Eure](https://lecuistotduweb.fr/developpeur-web-eure): Zone d'intervention dans l'Eure (27)
@@ -25,11 +26,11 @@ Gaëtan Boyron (alias LeCuistotduWeb) est un développeur Fullstack spécialisé
 - **Renfort React / Next.js** (offre principale) : intégration à une équipe en régie pour développer, structurer ou accélérer un produit — architecture frontend, Design System, performances. À distance ou sur site (Paris, Rouen).
 - **Projet sur mesure** : application web, SaaS, e-commerce ou site vitrine, de la conception à la mise en ligne.
 - **Maintenance et évolutions** : mises à jour, corrections et nouvelles fonctionnalités sur des sites existants, sur mesure ou WordPress.
-- Déroulé : échange de 30 minutes, devis (périmètre, délais, prix), puis réalisation avec points réguliers. Tarifs sur devis.
+- Déroulé : échange de 30 minutes, devis (périmètre, délais, prix), puis réalisation avec points réguliers. Renfort en régie sur devis.
 
 ## Clientèle locale
 
-Basé à Vernon (Eure, 27), il crée des sites internet sur mesure pour les restaurants, salons de coiffure et d'esthétique, commerçants, artisans et TPE/PME de Vernon, Évreux, Gaillon, Pacy-sur-Eure, Les Andelys, Louviers, Val-de-Reuil, Giverny, Bonnières-sur-Seine, Mantes-la-Jolie et Rouen. Il se déplace chez ses clients. Premier échange et devis gratuits, tarifs sur devis.
+Basé à Vernon (Eure, 27), il crée des sites internet sur mesure pour les restaurants, salons de coiffure et d'esthétique, commerçants, artisans et TPE/PME de Vernon, Évreux, Gaillon, Pacy-sur-Eure, Les Andelys, Louviers, Val-de-Reuil, Giverny, Bonnières-sur-Seine, Mantes-la-Jolie et Rouen. Il se déplace chez ses clients. Premier échange et devis gratuits. Tarifs indicatifs (prix nets, TVA non applicable, prestations réservées aux professionnels) : site vitrine dès 1 200 €, vitrine premium dès 2 000 €, site PME sur mesure dès 3 500 €, boutique en ligne sur devis, maintenance 49 €/mois sans engagement. Détail sur https://lecuistotduweb.fr/tarifs
 
 ## Compétences techniques
 

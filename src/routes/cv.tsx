@@ -30,6 +30,7 @@ export const Route = createFileRoute("/cv")({
 			{ name: "og:url", content: `${siteConfig.url}/cv` },
 			{ name: "og:image", content: "/lcdw-avatar.png" },
 		],
+		links: [{ rel: "canonical", href: `${siteConfig.url}/cv` }],
 	}),
 	component: CvPage,
 });
