@@ -7,9 +7,9 @@ import type { ParcoursId } from "#/lib/views";
 import { ContactCard } from "./contact-card";
 import { ExperienceTimeline } from "./experience-timeline";
 import { HomeHero } from "./home-hero";
-import { LocalFooter } from "./local-landing-page";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
 import { ProjectsStory } from "./projects-story";
+import { LocalFooter } from "./site-chrome";
 import { StackBand } from "./stack-band";
 import { ViewIntro } from "./view-intro";
 

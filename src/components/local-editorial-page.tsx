@@ -12,16 +12,38 @@ import {
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { ContactButtons } from "./contact-actions";
-import { LocalFooter, SiteHeader, STEPS, STORY } from "./local-landing-page";
 import { ScrollyStory } from "./local-scrolly";
 import { LocalShowcase, PhoneMockup, ZoneMap } from "./local-showcase";
 import { OrbitAvatar } from "./orbit-avatar";
 import { ProcessTimeline } from "./process-timeline";
+import { LocalFooter, SiteHeader } from "./site-chrome";
 
 // Gabarit éditorial des pages locales, dans la DA de l'accueil : pas de
 // cartes, de grands titres précédés d'un sur-titre rouge, des sections
 // ouvertes séparées par de simples filets. Seul l'appel final reste un bloc,
 // pour ressortir. Tout le contenu est dans le HTML serveur.
+
+const STORY =
+	"Avant de devenir développeur en 2017, j'ai travaillé en cuisine professionnelle. J'en ai gardé le goût du travail bien fait, le sens du timing et l'envie de voir le client repartir content. C'est de là que vient LeCuistotduWeb.";
+
+const STEPS = [
+	{
+		title: "On fait connaissance",
+		text: "30 minutes en visio, ou en personne si vous préférez (déplacement possible autour de Vernon), pour comprendre votre activité.",
+	},
+	{
+		title: "Vous recevez un devis",
+		text: "Périmètre, délais et prix : clair et sans engagement.",
+	},
+	{
+		title: "Je construis votre site",
+		text: "Avec des points réguliers et un aperçu en ligne tout au long du projet.",
+	},
+	{
+		title: "On le met en ligne",
+		text: "Et je vous montre comment modifier vos contenus vous-même.",
+	},
+];
 
 const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
 const STRONG = "text-[#253c59] dark:text-white";
@@ -397,9 +419,9 @@ export function LocalEditorialPage({ path }: { path: string }) {
 								On en parle autour d'un café ?
 							</h2>
 							<p className="max-w-2xl text-lg font-medium leading-relaxed text-[#d5e0ec]">
-								30 minutes en visio, ou autour d'un café si vous êtes près de{" "}
-								{local.city}. Vous recevez ensuite un devis clair, sans
-								engagement.
+								30 minutes en visio ou par téléphone, ou en personne si vous
+								préférez : déplacement possible autour de {local.city}. Vous
+								recevez ensuite un devis clair, sans engagement.
 							</p>
 							<ContactButtons source={`${page.path}-bottom`} onDark />
 						</div>

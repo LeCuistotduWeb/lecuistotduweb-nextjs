@@ -9,8 +9,8 @@ import {
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { ContactButtons } from "./contact-actions";
-import { LocalFooter, SiteHeader } from "./local-landing-page";
 import { ProjectDetailsDialog } from "./project-details-dialog";
+import { LocalFooter, SiteHeader } from "./site-chrome";
 
 // Page de toutes les réalisations : un filtre par type de projet et une
 // grille éditoriale à deux colonnes décalées (grande capture, type, période,

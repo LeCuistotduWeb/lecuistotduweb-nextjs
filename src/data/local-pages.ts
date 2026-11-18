@@ -41,12 +41,20 @@ export type PhoneScreen =
 	| "booking-confirmed"
 	| "gallery"
 	| "maps-salon"
+	| "salon"
+	| "booking-link"
 	| "quote"
 	| "shop"
 	| "dashboard";
 
 /** Contenu du panneau épinglé des pages de zone (src/components/local-panels.tsx) */
-export type ZonePanelId = "map" | "design" | "google";
+export type ZonePanelId =
+	| "map"
+	| "design"
+	| "google"
+	| "references"
+	| "code"
+	| "app";
 
 export type LocalPage = {
 	/** Chemin de la route, sans slash final */
@@ -64,7 +72,7 @@ export type LocalPage = {
 	hook: string;
 	intro: string[];
 	/** Illustration de l'en-tête : maquette de téléphone ou carte de la zone */
-	showcase: "map" | "menu" | "booking" | "vitrine";
+	showcase: "map" | "menu" | "booking" | "vitrine" | "salon";
 	/** Encart « De la cuisine au code » propre à la page (sinon texte commun) */
 	story?: string;
 	/** Réalisations mises en avant, par libellé de src/data/works.ts */
@@ -94,7 +102,7 @@ const COMMON_FAQ = {
 	deplacement: {
 		question: "Vous déplacez-vous pour un premier rendez-vous ?",
 		answer:
-			"Ce n'est pas obligatoire : le premier échange se fait très bien en visio ou par téléphone, comme le reste du projet. Si vous préférez qu'on se voie, je peux me déplacer à Vernon et dans les communes voisines.",
+			"Oui, un déplacement est possible à Vernon et dans les communes voisines, mais il n'est pas obligatoire : le premier échange se fait aussi très bien en visio ou par téléphone, comme le reste du projet.",
 	},
 	devis: {
 		question: "Combien coûte un site internet ?",
@@ -125,7 +133,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 		hook: "Votre développeur web, à deux pas.",
 		intro: [
 			"Je m'appelle Gaëtan, je vis et je travaille à Vernon. Je crée des sites internet sur mesure pour les commerçants, restaurateurs, salons et petites entreprises d'ici : Vernon, Saint-Marcel, Saint-Just, Giverny et alentour.",
-			"Pendant 8 ans, j'ai codé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. Aujourd'hui, je mets cette exigence au service des entreprises de mon territoire : on se voit autour d'un café si vous le souhaitez, sinon on échange en visio, et vous avez toujours le même interlocuteur au bout du fil.",
+			"Pendant 8 ans, j'ai codé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. Aujourd'hui, je mets cette exigence au service des entreprises de mon territoire : déplacement possible autour de Vernon, ou échange en visio si vous préférez, et toujours le même interlocuteur au bout du fil.",
 		],
 		showcase: "map",
 		scrolly: [
@@ -145,7 +153,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				icon: MapPin,
 				title: "Un développeur à Vernon",
-				text: "Échange en visio, ou en personne autour de Vernon, et réponses rapides : vous savez à qui vous parlez.",
+				text: "Déplacement possible autour de Vernon, ou échange en visio, et réponses rapides : vous savez à qui vous parlez.",
 			},
 			{
 				icon: PenTool,
@@ -165,7 +173,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 					"Site vitrine pour présenter votre activité et être trouvé sur Google",
 					"Site de restaurant avec menu en ligne et réservation",
 					"Site de salon de coiffure ou d'esthétique avec prise de rendez-vous",
-					"Boutique en ligne ou click & collect pour les commerces",
+					"Boutique en ligne pour les commerces",
 					"Refonte d'un site existant devenu lent ou difficile à modifier",
 					"Création et optimisation de votre fiche Google Business Profile",
 				],
@@ -202,19 +210,17 @@ export const LOCAL_PAGES: LocalPage[] = [
 		hook: "Un site qui donne envie de pousser votre porte.",
 		intro: [
 			"Commerçant, artisan, restaurateur ou dirigeant de PME à Évreux : votre site doit donner envie de venir vous voir, ou de vous appeler. Je le conçois et je le développe sur mesure, de la première maquette à la mise en ligne.",
-			"Installé à Vernon, dans l'Eure, je vous accompagne en visio et par téléphone, du premier échange à la mise en ligne. Vous avez un seul interlocuteur, et c'est lui qui écrit le code de votre site.",
+			"Installé à Vernon, dans l'Eure, je vous accompagne en visio et par téléphone, du premier échange à la mise en ligne, avec un site de démonstration toujours accessible. Vous avez un seul interlocuteur, et c'est lui qui écrit le code de votre site.",
 		],
 		showcase: "map",
 		scrolly: [
 			{
-				title: "Un freelance de l'Eure",
-				text: "Installé à Vernon, je travaille avec les entreprises d'Évreux à distance : le projet se suit facilement en visio, avec un site de démonstration toujours accessible.",
-			},
-			{
+				panel: "references",
 				title: "Une expertise de grands comptes",
 				text: "Fnac Darty, Infogreffe, Blissim : 8 ans sur des sites à fort trafic. J'en garde des méthodes solides, que j'applique à la taille de votre entreprise.",
 			},
 			{
+				panel: "code",
 				title: "Des sites durables",
 				text: "Un code propre, rapide et documenté, que vous pourrez faire évoluer sans tout reconstruire. Et un suivi de maintenance si vous le souhaitez.",
 			},
@@ -249,8 +255,8 @@ export const LOCAL_PAGES: LocalPage[] = [
 				title: "Mes prestations",
 				points: [
 					"Site vitrine et site d'entreprise",
-					"Site e-commerce et click & collect",
-					"Application web sur mesure : prise de commande, gestion de clients, tableaux de bord",
+					"Site e-commerce",
+					"Application web sur mesure : prise de commande, gestion de clients, tableaux de bord, ou vos fichiers Excel transformés en une interface simple pour les gérer",
 					"Refonte de site existant, y compris WordPress",
 					"Référencement local et fiche Google Business Profile",
 					"Maintenance, hébergement et évolutions",
@@ -292,14 +298,17 @@ export const LOCAL_PAGES: LocalPage[] = [
 		showcase: "map",
 		scrolly: [
 			{
+				panel: "design",
 				title: "Sites internet",
 				text: "Site vitrine, boutique en ligne, réservation ou prise de rendez-vous : je crée le site dont votre activité a besoin, pour les entreprises de tout l'est de l'Eure.",
 			},
 			{
+				panel: "app",
 				title: "Applications web",
-				text: "Prise de commande, suivi des clients, tableaux de bord : des outils sur mesure en React et Node.js, pour gagner du temps au quotidien.",
+				text: "Prise de commande, suivi des clients, tableaux de bord, ou vos fichiers Excel transformés en application : des outils sur mesure en React et Node.js, pour gagner du temps au quotidien.",
 			},
 			{
+				panel: "references",
 				title: "Renfort technique",
 				text: "Vous avez déjà une équipe ? Je la rejoins en régie, sur site ou à distance, pour développer, structurer ou accélérer votre produit.",
 			},
@@ -327,7 +336,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 				title: "Les communes où j'interviens",
 				paragraphs: [
 					"J'accompagne les entreprises de l'est de l'Eure et des Yvelines voisines : Vernon, Saint-Marcel, Saint-Just, Gaillon, Pacy-sur-Eure, Les Andelys, Évreux, Louviers, Val-de-Reuil, Giverny, Bonnières-sur-Seine, Mantes-la-Jolie et Rouen.",
-					"Autour de Vernon, on peut se rencontrer si vous le souhaitez. Ailleurs, tout se fait très bien à distance, avec des points en visio et un site de démonstration accessible pendant la réalisation.",
+					"Autour de Vernon, un déplacement est possible si vous le souhaitez, sans obligation. Ailleurs, tout se fait très bien à distance, avec des points en visio et un site de démonstration accessible pendant la réalisation.",
 				],
 			},
 			{
@@ -453,20 +462,15 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Site internet pour salon de coiffure et d'esthétique",
 		title: "Site internet pour salon de coiffure et d'esthétique — Vernon",
 		description:
-			"Site internet pour salon de coiffure, barbier ou institut de beauté à Vernon et dans l'Eure : prestations, galerie photo et prise de rendez-vous en ligne.",
+			"Site internet pour salon de coiffure, barbier ou institut de beauté à Vernon et dans l'Eure : galerie photo, ambiance du salon, prestations et lien vers votre réservation.",
 		heading: "Un site internet pour votre salon de coiffure ou d'esthétique",
-		hook: "Votre agenda se remplit, même salon fermé.",
+		hook: "Votre salon, aussi beau en ligne qu'en vrai.",
 		intro: [
-			"Vos clientes et vos clients veulent voir vos réalisations, connaître vos prestations et réserver un créneau. Souvent le soir, quand le salon est fermé et que personne ne décroche.",
-			"Je crée des sites pour les salons de coiffure, barbiers, instituts de beauté et prothésistes ongulaires de Vernon et de l'Eure. Des sites élégants, rapides sur mobile et reliés à votre agenda, qui prennent les rendez-vous à votre place.",
+			"Avant de prendre rendez-vous, vos clientes et vos clients veulent voir vos réalisations, l'ambiance du salon et votre équipe. C'est souvent sur leur téléphone, en quelques secondes, qu'ils se décident.",
+			"Je crée des sites pour les salons de coiffure, barbiers, instituts de beauté et prothésistes ongulaires de Vernon et de l'Eure. Des sites élégants et rapides sur mobile, qui mettent en valeur votre savoir-faire et renvoient vers votre outil de réservation.",
 		],
-		showcase: "booking",
+		showcase: "salon",
 		scrolly: [
-			{
-				screen: "booking-confirmed",
-				title: "Rendez-vous en ligne",
-				text: "Vos clients choisissent leur prestation et leur créneau, de jour comme de nuit. Le rendez-vous arrive dans votre agenda, et un rappel automatique limite les oublis.",
-			},
 			{
 				screen: "gallery",
 				title: "Vos réalisations en valeur",
@@ -477,18 +481,23 @@ export const LOCAL_PAGES: LocalPage[] = [
 				title: "Trouvé dans votre ville",
 				text: "Quand on cherche « coiffeur Vernon », c'est souvent sur Google Maps qu'on vous découvre. Site et fiche Google travaillent ensemble, avec un bouton pour réserver.",
 			},
+			{
+				screen: "booking-link",
+				title: "Votre outil de réservation, en un clic",
+				text: "Vous utilisez déjà Planity ou un autre outil ? Un bouton « Prendre rendez-vous » y mène directement : vous gardez votre planning comme aujourd'hui, sans rien changer à vos habitudes.",
+			},
 		],
 		works: ["Blissim", "Le Poudrier de Fleur", "Marie Jade"],
 		highlights: [
 			{
-				icon: CalendarClock,
-				title: "Rendez-vous en ligne",
-				text: "Réservation 24 h/24, connectée à votre agenda ou à votre logiciel de caisse.",
-			},
-			{
 				icon: Images,
 				title: "Vos réalisations en valeur",
 				text: "Une galerie photo soignée, qui donne envie de venir.",
+			},
+			{
+				icon: CalendarClock,
+				title: "Votre réservation en un clic",
+				text: "Un bouton vers votre outil de réservation actuel.",
 			},
 			{
 				icon: Search,
@@ -500,18 +509,19 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				title: "Ce que je mets sur le site de votre salon",
 				points: [
-					"Vos prestations et leur durée, présentées clairement",
 					"Une galerie de vos coupes, couleurs ou soins",
-					"La prise de rendez-vous en ligne, ou un lien vers votre outil actuel",
-					"Votre équipe, vos marques et produits partenaires",
+					"L'ambiance du salon : votre décor, votre équipe, vos marques partenaires",
+					"Vos prestations et leur durée, présentées clairement",
+					"Un bouton « Prendre rendez-vous » vers votre outil de réservation actuel",
 					"Horaires, adresse, plan et bouton d'appel direct",
 					"Vos avis Google et vos réseaux sociaux",
 				],
 			},
 			{
-				title: "Moins de téléphone, plus de clients",
+				title: "Votre savoir-faire, en images",
 				paragraphs: [
-					"La prise de rendez-vous en ligne réduit les appels pendant les prestations et les oublis, grâce aux rappels automatiques. Je l'intègre au site de façon fluide, pour que la réservation se fasse en quelques clics depuis un téléphone.",
+					"Une belle photo de coupe, de couleur ou de soin convainc mieux qu'un long texte. Je mets en scène vos réalisations, votre équipe et l'ambiance du salon, avec des pages qui restent rapides même avec beaucoup de photos.",
+					"Et quand une cliente a trouvé son style, le bouton « Prendre rendez-vous » l'emmène directement sur votre outil de réservation.",
 				],
 			},
 			{
@@ -525,7 +535,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				question: "Pouvez-vous connecter mon logiciel de réservation actuel ?",
 				answer:
-					"Dans la plupart des cas, oui : la plupart des outils de réservation pour salons proposent un lien ou un module à intégrer. Je vérifie la compatibilité lors du premier échange.",
+					"Oui : si vous utilisez Planity ou un autre outil, le site y renvoie avec un bouton « Prendre rendez-vous », et vous gardez votre planning comme aujourd'hui. Je vérifie les possibilités de votre outil lors du premier échange.",
 			},
 			{
 				question: "Le site est-il adapté aux barbiers et instituts de beauté ?",
@@ -562,12 +572,12 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				screen: "shop",
 				title: "E-commerce",
-				text: "Vendre en ligne ou proposer le click & collect, avec une gestion simple de vos produits, de vos stocks et de vos commandes.",
+				text: "Vendre en ligne, avec une gestion simple de vos produits, de vos stocks et de vos commandes.",
 			},
 			{
 				screen: "dashboard",
 				title: "Outils sur mesure",
-				text: "Prise de commande, gestion de clients, tableaux de bord : je développe les outils dont votre métier a besoin, comme Mon VDI Assistant pour les vendeurs à domicile.",
+				text: "Prise de commande, gestion de clients, tableaux de bord, ou vos fichiers Excel transformés en application : je développe les outils dont votre métier a besoin, comme Mon VDI Assistant pour les vendeurs à domicile.",
 			},
 		],
 		works: ["Mon VDI Assistant", "Le Poudrier de Fleur", "Blissim"],
@@ -580,7 +590,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				icon: ShoppingBag,
 				title: "E-commerce",
-				text: "Vendre en ligne ou proposer le click & collect, avec une gestion simple.",
+				text: "Vendre en ligne, avec une gestion simple de vos produits et de vos commandes.",
 			},
 			{
 				icon: Wrench,
@@ -594,7 +604,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 				points: [
 					"Site vitrine pour artisans, commerçants et professions libérales",
 					"Site d'entreprise avec pages de services et formulaire de devis",
-					"Boutique en ligne et click & collect",
+					"Boutique en ligne",
 					"Application web métier, comme Mon VDI Assistant, un SaaS que j'ai conçu pour les vendeurs à domicile",
 					"Refonte et maintenance de sites existants, y compris WordPress",
 				],

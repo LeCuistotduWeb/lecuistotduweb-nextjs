@@ -5,6 +5,7 @@ import {
 	Check,
 	CircleCheck,
 	Clock,
+	ExternalLink,
 	FileText,
 	Globe,
 	MapPin,
@@ -45,6 +46,8 @@ const SCREENS: Record<PhoneScreen, () => React.ReactNode> = {
 	"maps-salon": () => (
 		<MapsScreen name="Votre salon" category="Salon de coiffure" />
 	),
+	salon: () => <SalonScreen />,
+	"booking-link": () => <BookingLinkScreen />,
 	quote: () => <QuoteScreen />,
 	shop: () => <ShopScreen />,
 	dashboard: () => <DashboardScreen />,
@@ -393,6 +396,84 @@ function BookingConfirmedScreen() {
 	);
 }
 
+/** Salon : l'ambiance et l'équipe, puis le lien vers l'outil de réservation */
+function SalonScreen() {
+	const team = [
+		{ role: "Coiffeuse", tone: "from-[#f25353] to-[#e4b962]" },
+		{ role: "Coloriste", tone: "from-[#b56fd8] to-[#f25353]" },
+		{ role: "Barbier", tone: "from-[#253c59] to-[#4a6a8a]" },
+	];
+	return (
+		<>
+			<div className="relative flex h-36 flex-col justify-end overflow-hidden rounded-xl bg-linear-to-br from-[#e4b962] via-[#f25353] to-[#b56fd8] p-3 text-white">
+				<Sparkles className="absolute top-3 right-3 size-4 opacity-80" />
+				<p className="text-[10px] font-semibold uppercase tracking-widest opacity-90">
+					Bienvenue
+				</p>
+				<p className="display-title text-lg leading-tight font-bold">
+					Votre salon
+				</p>
+			</div>
+			<ScreenTitle kicker="L'équipe" title="Ceux qui vous coiffent" />
+			<ul className="grid grid-cols-3 gap-2">
+				{team.map(({ role, tone }) => (
+					<li key={role} className="flex flex-col items-center gap-1">
+						<span
+							className={cn("size-11 rounded-full bg-linear-to-br", tone)}
+						/>
+						<span className="text-[10px] font-semibold">{role}</span>
+					</li>
+				))}
+			</ul>
+			<p className={cn("flex items-center gap-1.5 text-[11px]", MUTED)}>
+				<MapPin className="size-3.5 shrink-0 text-[#f25353]" />
+				Centre-ville · Ouvert du mardi au samedi
+			</p>
+			<p className="mt-auto rounded-full bg-[#f25353] py-2 text-center text-xs font-semibold text-white">
+				Prendre rendez-vous
+			</p>
+		</>
+	);
+}
+
+/** Prestations du salon et bouton vers son outil de réservation externe */
+function BookingLinkScreen() {
+	const services = [
+		{ name: "Coupe & brushing", time: "45 min" },
+		{ name: "Couleur", time: "1 h 30" },
+		{ name: "Soin profond", time: "30 min" },
+		{ name: "Taille de barbe", time: "30 min" },
+	];
+	return (
+		<>
+			<ScreenTitle kicker="Nos prestations" title="Votre salon" />
+			<ul className="flex flex-col gap-1.5">
+				{services.map((service) => (
+					<li
+						key={service.name}
+						className="flex items-center justify-between rounded-lg border border-[#253c59]/10 px-3 py-2 text-sm dark:border-white/10"
+					>
+						{service.name}
+						<span className={cn("flex items-center gap-1 text-[11px]", MUTED)}>
+							<Clock className="size-3" />
+							{service.time}
+						</span>
+					</li>
+				))}
+			</ul>
+			<div className="mt-auto flex flex-col gap-2">
+				<p className="flex items-center justify-center gap-1.5 rounded-full bg-[#f25353] py-2 text-center text-xs font-semibold text-white">
+					Prendre rendez-vous
+					<ExternalLink className="size-3.5" />
+				</p>
+				<p className={cn("text-center text-[10px]", MUTED)}>
+					Ouvre votre outil de réservation habituel
+				</p>
+			</div>
+		</>
+	);
+}
+
 function GalleryScreen() {
 	const tiles = [
 		{ icon: Scissors, label: "Coupes", tone: "from-[#f25353] to-[#e4b962]" },
@@ -513,7 +594,7 @@ function ShopScreen() {
 					MUTED,
 				)}
 			>
-				Livraison ou retrait en boutique (click & collect)
+				Livraison ou retrait en boutique
 			</p>
 			<p className="mt-auto rounded-full bg-[#f25353] py-2 text-center text-xs font-semibold text-white">
 				Voir mon panier
@@ -740,7 +821,7 @@ export function ZoneMap({
 				</text>
 			</svg>
 			<figcaption className={cn("mt-2 text-center text-xs", MUTED)}>
-				Basé à Vernon · rendez-vous possibles alentour, visio partout ailleurs
+				Basé à Vernon · déplacement possible alentour, visio partout ailleurs
 			</figcaption>
 		</figure>
 	);
