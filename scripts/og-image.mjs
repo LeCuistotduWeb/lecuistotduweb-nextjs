@@ -1,5 +1,5 @@
 // Génère l'image de partage public/og-image.png (1200×630, LinkedIn, Slack…).
-// Usage : node scripts/og-image.mjs
+// Usage : node scripts/og-image.mjs — puis incrémenter ?v= dans src/config.ts
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -34,22 +34,15 @@ body {
 .alias { font-size: 22px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #ff8a8a; }
 h1 { font-family: Fraunces, serif; font-size: 84px; font-weight: 600; line-height: 1; letter-spacing: -.02em; }
 .role { font-size: 34px; font-weight: 600; color: #c5d5e5; }
-.pills { display: flex; gap: 12px; margin-top: 8px; }
-.pill { font-size: 22px; font-weight: 700; padding: 10px 20px; border-radius: 999px; }
-.pill.main { background: #f25353; }
-.pill.ghost { border: 2px solid rgba(255, 255, 255, .25); }
-.refs { font-size: 22px; color: #a1adbc; margin-top: 6px; }
-.refs b { color: #fff; font-weight: 700; }
 .avatar { position: relative; width: 380px; height: 380px; flex-shrink: 0; }
 .avatar img { width: 100%; height: 100%; }
 .url { position: absolute; right: 80px; bottom: 44px; font-size: 22px; font-weight: 700; color: #c5d5e5; }
 </style></head><body>
 <div class="glow coral"></div><div class="glow gold"></div>
 <div class="text">
-	<p class="alias">LeCuistotduWeb</p>
+	<p class="alias">Le Cuistot du Web</p>
 	<h1>Gaëtan Boyron</h1>
-	<p class="role">Développeur Fullstack React / Node.js</p>
-	<div class="pills"><span class="pill main">Freelance</span><span class="pill ghost">Régie ou forfait</span></div>
+	<p class="role">Développeur web freelance</p>
 </div>
 <div class="avatar"><img src="data:image/png;base64,${avatar}" alt=""></div>
 <p class="url">lecuistotduweb.fr</p>

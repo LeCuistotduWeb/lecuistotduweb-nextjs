@@ -15,6 +15,9 @@ export const siteConfig = {
 	role: "Développeur Fullstack React/Node.js",
 	email: "contact@lecuistotduweb.fr",
 	url: site.origin,
+	// Image de partage (1200×630), générée par scripts/og-image.mjs. Incrémenter
+	// ?v= à chaque nouvelle image : LinkedIn, Slack… la gardent en cache par URL.
+	ogImage: `${site.origin}/og-image.png?v=2`,
 	shortUrl: site.host,
 	bio: "Je conçois et fais évoluer vos applications web, du front-end React / Next.js au back-end Node.js, jusqu'à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress. Basé à Vernon, dans l'Eure, je crée aussi des sites internet pour les restaurants, salons et TPE/PME de la région.",
 	social: {
