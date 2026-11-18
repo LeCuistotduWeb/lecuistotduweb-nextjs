@@ -11,10 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViewsRouteImport } from './routes/_views'
 import { Route as AiHelloRouteImport } from './routes/ai-hello'
+import { Route as ConfidentialiteRouteImport } from './routes/confidentialite'
+import { Route as CreationSiteInternetEvreuxRouteImport } from './routes/creation-site-internet-evreux'
+import { Route as CreationSiteInternetVernonRouteImport } from './routes/creation-site-internet-vernon'
 import { Route as CvRouteImport } from './routes/cv'
+import { Route as DeveloppeurWebEureRouteImport } from './routes/developpeur-web-eure'
 import { Route as FreelanceRouteImport } from './routes/freelance'
 import { Route as LinkRouteImport } from './routes/link'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as ProfilRouteImport } from './routes/profil'
+import { Route as RealisationsRouteImport } from './routes/realisations'
+import { Route as SiteInternetRestaurantRouteImport } from './routes/site-internet-restaurant'
+import { Route as SiteInternetSalonCoiffureEsthetiqueRouteImport } from './routes/site-internet-salon-coiffure-esthetique'
+import { Route as SiteInternetTpePmeRouteImport } from './routes/site-internet-tpe-pme'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TarifsRouteImport } from './routes/tarifs'
 import { Route as ViewsIndexRouteImport } from './routes/_views/index'
 import { Route as ViewsContactRouteImport } from './routes/_views/contact'
 import { Route as ViewsExperienceRouteImport } from './routes/_views/experience'
@@ -32,9 +43,31 @@ const AiHelloRoute = AiHelloRouteImport.update({
   path: '/ai-hello',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConfidentialiteRoute = ConfidentialiteRouteImport.update({
+  id: '/confidentialite',
+  path: '/confidentialite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreationSiteInternetEvreuxRoute =
+  CreationSiteInternetEvreuxRouteImport.update({
+    id: '/creation-site-internet-evreux',
+    path: '/creation-site-internet-evreux',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CreationSiteInternetVernonRoute =
+  CreationSiteInternetVernonRouteImport.update({
+    id: '/creation-site-internet-vernon',
+    path: '/creation-site-internet-vernon',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CvRoute = CvRouteImport.update({
   id: '/cv',
   path: '/cv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DeveloppeurWebEureRoute = DeveloppeurWebEureRouteImport.update({
+  id: '/developpeur-web-eure',
+  path: '/developpeur-web-eure',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FreelanceRoute = FreelanceRouteImport.update({
@@ -47,9 +80,45 @@ const LinkRoute = LinkRouteImport.update({
   path: '/link',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProfilRoute = ProfilRouteImport.update({
   id: '/profil',
   path: '/profil',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealisationsRoute = RealisationsRouteImport.update({
+  id: '/realisations',
+  path: '/realisations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteInternetRestaurantRoute = SiteInternetRestaurantRouteImport.update({
+  id: '/site-internet-restaurant',
+  path: '/site-internet-restaurant',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SiteInternetSalonCoiffureEsthetiqueRoute =
+  SiteInternetSalonCoiffureEsthetiqueRouteImport.update({
+    id: '/site-internet-salon-coiffure-esthetique',
+    path: '/site-internet-salon-coiffure-esthetique',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SiteInternetTpePmeRoute = SiteInternetTpePmeRouteImport.update({
+  id: '/site-internet-tpe-pme',
+  path: '/site-internet-tpe-pme',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TarifsRoute = TarifsRouteImport.update({
+  id: '/tarifs',
+  path: '/tarifs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ViewsIndexRoute = ViewsIndexRouteImport.update({
@@ -91,10 +160,21 @@ const RangeoConfidentialiteRoute = RangeoConfidentialiteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof ViewsIndexRoute
   '/ai-hello': typeof AiHelloRoute
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/creation-site-internet-evreux': typeof CreationSiteInternetEvreuxRoute
+  '/creation-site-internet-vernon': typeof CreationSiteInternetVernonRoute
   '/cv': typeof CvRoute
+  '/developpeur-web-eure': typeof DeveloppeurWebEureRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/profil': typeof ProfilRoute
+  '/realisations': typeof RealisationsRoute
+  '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
+  '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
+  '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
   '/offre': typeof ViewsOffreRoute
@@ -104,10 +184,21 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/ai-hello': typeof AiHelloRoute
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/creation-site-internet-evreux': typeof CreationSiteInternetEvreuxRoute
+  '/creation-site-internet-vernon': typeof CreationSiteInternetVernonRoute
   '/cv': typeof CvRoute
+  '/developpeur-web-eure': typeof DeveloppeurWebEureRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/profil': typeof ProfilRoute
+  '/realisations': typeof RealisationsRoute
+  '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
+  '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
+  '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
   '/contact': typeof ViewsContactRoute
   '/experience': typeof ViewsExperienceRoute
   '/offre': typeof ViewsOffreRoute
@@ -120,10 +211,21 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_views': typeof ViewsRouteWithChildren
   '/ai-hello': typeof AiHelloRoute
+  '/confidentialite': typeof ConfidentialiteRoute
+  '/creation-site-internet-evreux': typeof CreationSiteInternetEvreuxRoute
+  '/creation-site-internet-vernon': typeof CreationSiteInternetVernonRoute
   '/cv': typeof CvRoute
+  '/developpeur-web-eure': typeof DeveloppeurWebEureRoute
   '/freelance': typeof FreelanceRoute
   '/link': typeof LinkRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/profil': typeof ProfilRoute
+  '/realisations': typeof RealisationsRoute
+  '/site-internet-restaurant': typeof SiteInternetRestaurantRoute
+  '/site-internet-salon-coiffure-esthetique': typeof SiteInternetSalonCoiffureEsthetiqueRoute
+  '/site-internet-tpe-pme': typeof SiteInternetTpePmeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/tarifs': typeof TarifsRoute
   '/_views/contact': typeof ViewsContactRoute
   '/_views/experience': typeof ViewsExperienceRoute
   '/_views/offre': typeof ViewsOffreRoute
@@ -137,10 +239,21 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ai-hello'
+    | '/confidentialite'
+    | '/creation-site-internet-evreux'
+    | '/creation-site-internet-vernon'
     | '/cv'
+    | '/developpeur-web-eure'
     | '/freelance'
     | '/link'
+    | '/mentions-legales'
     | '/profil'
+    | '/realisations'
+    | '/site-internet-restaurant'
+    | '/site-internet-salon-coiffure-esthetique'
+    | '/site-internet-tpe-pme'
+    | '/sitemap.xml'
+    | '/tarifs'
     | '/contact'
     | '/experience'
     | '/offre'
@@ -150,10 +263,21 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/ai-hello'
+    | '/confidentialite'
+    | '/creation-site-internet-evreux'
+    | '/creation-site-internet-vernon'
     | '/cv'
+    | '/developpeur-web-eure'
     | '/freelance'
     | '/link'
+    | '/mentions-legales'
     | '/profil'
+    | '/realisations'
+    | '/site-internet-restaurant'
+    | '/site-internet-salon-coiffure-esthetique'
+    | '/site-internet-tpe-pme'
+    | '/sitemap.xml'
+    | '/tarifs'
     | '/contact'
     | '/experience'
     | '/offre'
@@ -165,10 +289,21 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_views'
     | '/ai-hello'
+    | '/confidentialite'
+    | '/creation-site-internet-evreux'
+    | '/creation-site-internet-vernon'
     | '/cv'
+    | '/developpeur-web-eure'
     | '/freelance'
     | '/link'
+    | '/mentions-legales'
     | '/profil'
+    | '/realisations'
+    | '/site-internet-restaurant'
+    | '/site-internet-salon-coiffure-esthetique'
+    | '/site-internet-tpe-pme'
+    | '/sitemap.xml'
+    | '/tarifs'
     | '/_views/contact'
     | '/_views/experience'
     | '/_views/offre'
@@ -181,10 +316,21 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   ViewsRoute: typeof ViewsRouteWithChildren
   AiHelloRoute: typeof AiHelloRoute
+  ConfidentialiteRoute: typeof ConfidentialiteRoute
+  CreationSiteInternetEvreuxRoute: typeof CreationSiteInternetEvreuxRoute
+  CreationSiteInternetVernonRoute: typeof CreationSiteInternetVernonRoute
   CvRoute: typeof CvRoute
+  DeveloppeurWebEureRoute: typeof DeveloppeurWebEureRoute
   FreelanceRoute: typeof FreelanceRoute
   LinkRoute: typeof LinkRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
   ProfilRoute: typeof ProfilRoute
+  RealisationsRoute: typeof RealisationsRoute
+  SiteInternetRestaurantRoute: typeof SiteInternetRestaurantRoute
+  SiteInternetSalonCoiffureEsthetiqueRoute: typeof SiteInternetSalonCoiffureEsthetiqueRoute
+  SiteInternetTpePmeRoute: typeof SiteInternetTpePmeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TarifsRoute: typeof TarifsRoute
   RangeoConfidentialiteRoute: typeof RangeoConfidentialiteRoute
   RangeoIndexRoute: typeof RangeoIndexRoute
 }
@@ -205,11 +351,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiHelloRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/confidentialite': {
+      id: '/confidentialite'
+      path: '/confidentialite'
+      fullPath: '/confidentialite'
+      preLoaderRoute: typeof ConfidentialiteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creation-site-internet-evreux': {
+      id: '/creation-site-internet-evreux'
+      path: '/creation-site-internet-evreux'
+      fullPath: '/creation-site-internet-evreux'
+      preLoaderRoute: typeof CreationSiteInternetEvreuxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/creation-site-internet-vernon': {
+      id: '/creation-site-internet-vernon'
+      path: '/creation-site-internet-vernon'
+      fullPath: '/creation-site-internet-vernon'
+      preLoaderRoute: typeof CreationSiteInternetVernonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cv': {
       id: '/cv'
       path: '/cv'
       fullPath: '/cv'
       preLoaderRoute: typeof CvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/developpeur-web-eure': {
+      id: '/developpeur-web-eure'
+      path: '/developpeur-web-eure'
+      fullPath: '/developpeur-web-eure'
+      preLoaderRoute: typeof DeveloppeurWebEureRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/freelance': {
@@ -226,11 +400,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LinkRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/profil': {
       id: '/profil'
       path: '/profil'
       fullPath: '/profil'
       preLoaderRoute: typeof ProfilRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/realisations': {
+      id: '/realisations'
+      path: '/realisations'
+      fullPath: '/realisations'
+      preLoaderRoute: typeof RealisationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/site-internet-restaurant': {
+      id: '/site-internet-restaurant'
+      path: '/site-internet-restaurant'
+      fullPath: '/site-internet-restaurant'
+      preLoaderRoute: typeof SiteInternetRestaurantRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/site-internet-salon-coiffure-esthetique': {
+      id: '/site-internet-salon-coiffure-esthetique'
+      path: '/site-internet-salon-coiffure-esthetique'
+      fullPath: '/site-internet-salon-coiffure-esthetique'
+      preLoaderRoute: typeof SiteInternetSalonCoiffureEsthetiqueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/site-internet-tpe-pme': {
+      id: '/site-internet-tpe-pme'
+      path: '/site-internet-tpe-pme'
+      fullPath: '/site-internet-tpe-pme'
+      preLoaderRoute: typeof SiteInternetTpePmeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tarifs': {
+      id: '/tarifs'
+      path: '/tarifs'
+      fullPath: '/tarifs'
+      preLoaderRoute: typeof TarifsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_views/': {
@@ -306,10 +529,22 @@ const ViewsRouteWithChildren = ViewsRoute._addFileChildren(ViewsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   ViewsRoute: ViewsRouteWithChildren,
   AiHelloRoute: AiHelloRoute,
+  ConfidentialiteRoute: ConfidentialiteRoute,
+  CreationSiteInternetEvreuxRoute: CreationSiteInternetEvreuxRoute,
+  CreationSiteInternetVernonRoute: CreationSiteInternetVernonRoute,
   CvRoute: CvRoute,
+  DeveloppeurWebEureRoute: DeveloppeurWebEureRoute,
   FreelanceRoute: FreelanceRoute,
   LinkRoute: LinkRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
   ProfilRoute: ProfilRoute,
+  RealisationsRoute: RealisationsRoute,
+  SiteInternetRestaurantRoute: SiteInternetRestaurantRoute,
+  SiteInternetSalonCoiffureEsthetiqueRoute:
+    SiteInternetSalonCoiffureEsthetiqueRoute,
+  SiteInternetTpePmeRoute: SiteInternetTpePmeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TarifsRoute: TarifsRoute,
   RangeoConfidentialiteRoute: RangeoConfidentialiteRoute,
   RangeoIndexRoute: RangeoIndexRoute,
 }

@@ -4,26 +4,31 @@ import type { ReactNode } from "react";
 import { Reveal } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import type { ParcoursId } from "#/lib/views";
-import { AvatarCard } from "./avatar-card";
-import { BioCard } from "./bio-card";
 import { ContactCard } from "./contact-card";
-import { CvCard } from "./cv-card";
-import { ExperiencesCard } from "./experiences-card";
-import { LinkedInCard } from "./linkedin-card";
-import { MissionsCard } from "./missions-card";
+import { ExperienceTimeline } from "./experience-timeline";
+import { HomeHero } from "./home-hero";
 import { FeaturedOffer, ProcessCard, SecondaryOffer } from "./offers";
-import ProjectCard from "./project-card";
-import { SocialCard } from "./social-card";
-import { StackCard } from "./stack-card";
+import { ProjectsStory } from "./projects-story";
+import { LocalFooter } from "./site-chrome";
+import { StackBand } from "./stack-band";
 import { ViewIntro } from "./view-intro";
 
 const FULL = "col-span-1 sm:col-span-2 md:col-span-4";
 
 // grid-flow-row-dense : à 2 colonnes, comble les trous laissés par une carte
 // d'1 colonne suivie d'une carte plus large.
-function Grid({ children }: { children: ReactNode }) {
+// Les grilles de cartes restent à largeur de lecture ; seuls les chapitres en
+// récit au scroll (`wide`) occupent toute la largeur de l'écran.
+const READABLE = "mx-auto w-full max-w-7xl";
+
+function Grid({ children, wide }: { children: ReactNode; wide?: boolean }) {
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 sm:grid-flow-row-dense">
+		<div
+			className={cn(
+				"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 sm:grid-flow-row-dense",
+				!wide && READABLE,
+			)}
+		>
 			{children}
 		</div>
 	);
@@ -50,10 +55,12 @@ function Item({
 function Chapter({
 	id,
 	className,
+	wide,
 	children,
 }: {
 	id: ParcoursId;
 	className?: string;
+	wide?: boolean;
 	children: ReactNode;
 }) {
 	return (
@@ -65,8 +72,8 @@ function Chapter({
 				className,
 			)}
 		>
-			<ViewIntro view={id} />
-			<Grid>{children}</Grid>
+			<ViewIntro view={id} className={wide ? undefined : READABLE} />
+			<Grid wide={wide}>{children}</Grid>
 		</section>
 	);
 }
@@ -75,8 +82,10 @@ function ScrollCue() {
 	return (
 		<Reveal variant="fade" delay={900} className="flex justify-center">
 			<Link
-				to="/experience"
+				to="/"
+				hash="experience"
 				resetScroll={false}
+				hashScrollIntoView={false}
 				className="group flex flex-col items-center gap-1 text-sm font-semibold"
 			>
 				<span className="text-[#4a6a8a] dark:text-[#a1adbc] group-hover:text-[#253c59] dark:group-hover:text-white transition-colors">
@@ -99,43 +108,18 @@ export function Chapters() {
 				aria-label="Présentation"
 				className="scroll-mt-4 sm:scroll-mt-20 flex min-h-[calc(100svh-6rem)] md:min-h-[calc(100svh-9rem)] flex-col justify-center gap-10"
 			>
-				<Grid>
-					<Item className="col-span-1 sm:col-span-2 md:col-span-3">
-						<BioCard />
-					</Item>
-					{/* Pas de révélation : l'avatar de l'écran de chargement atterrit ici */}
-					<div className="col-span-1">
-						<AvatarCard />
-					</div>
-				</Grid>
+				<HomeHero />
 				<ScrollCue />
 			</section>
 
 			<Chapter id="experience">
-				<Item className="col-span-1">
-					<div className="flex flex-col gap-3">
-						<LinkedInCard />
-						<CvCard />
-					</div>
-				</Item>
-				<Item className="col-span-1 sm:col-span-2 md:col-span-2" delay={120}>
-					<ExperiencesCard />
-				</Item>
-				<Item className="col-span-1" delay={240}>
-					<div className="flex flex-col gap-3">
-						<StackCard />
-						<SocialCard />
-					</div>
-				</Item>
+				<ExperienceTimeline />
+				<StackBand />
 			</Chapter>
 
-			<Chapter id="projets">
-				<Item className={FULL}>
-					<ProjectCard />
-				</Item>
-				<Item className={FULL} delay={120}>
-					<MissionsCard />
-				</Item>
+			<Chapter id="projets" wide>
+				{/* Pas de Reveal autour : l'écran épinglé (sticky) doit rester libre */}
+				<ProjectsStory />
 			</Chapter>
 
 			<Chapter id="offre">
@@ -153,11 +137,15 @@ export function Chapters() {
 				</Item>
 			</Chapter>
 
-			<Chapter id="contact" className="min-h-[80svh] pb-24">
+			<Chapter id="contact" className="min-h-svh justify-center pb-16">
 				<Item className={FULL}>
 					<ContactCard />
 				</Item>
 			</Chapter>
+
+			{/* Pied de page : nom, ville, contact (cohérence NAP) et zones
+			    d'intervention (maillage vers les pages locales) */}
+			<LocalFooter className="mt-8 max-w-7xl px-1 pb-4 sm:pb-4 md:px-1 lg:px-1" />
 		</>
 	);
 }

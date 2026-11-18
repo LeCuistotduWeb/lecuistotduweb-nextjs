@@ -6,10 +6,10 @@ export type Offer = {
 
 /** Offre principale, mise en avant dans le chapitre Offre. */
 export const FEATURED_OFFER: Offer & { references: string } = {
-	title: "Renfort React / Next.js",
+	title: "Renfort fullstack React / Node.js",
 	text: "J'intègre votre équipe en régie pour développer, structurer ou accélérer votre produit.",
 	benefits: [
-		"Opérationnel rapidement sur votre base React / Next.js / TypeScript",
+		"Opérationnel rapidement sur votre base React, Next.js, Node.js et TypeScript",
 		"Architecture frontend, Design System et performances",
 		"Code testé, revu et documenté, transmis à votre équipe",
 		"À distance ou sur site : Paris et Rouen en ligne directe",

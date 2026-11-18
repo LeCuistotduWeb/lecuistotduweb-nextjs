@@ -1,13 +1,22 @@
 export type FreelanceStatus = "available" | "unavailable";
 
+// URL publique du site (VITE_SITE_URL, ex. https://lecuistotduweb.fr) : sert
+// aux liens canoniques, au JSON-LD et aux images de partage. Exposée au client
+// (préfixe VITE_), à définir dans .env et dans les variables d'env Vercel.
+const SITE_URL = import.meta.env.VITE_SITE_URL?.replace(/\/+$/, "");
+if (!SITE_URL) {
+	throw new Error("VITE_SITE_URL manquante (ex. https://lecuistotduweb.fr)");
+}
+const site = new URL(SITE_URL);
+
 export const siteConfig = {
 	name: "Gaëtan Boyron",
 	alias: "LeCuistotduWeb",
 	role: "Développeur Fullstack React/Node.js",
 	email: "contact@lecuistotduweb.fr",
-	url: "https://lecuistotduweb.fr",
-	shortUrl: "lecuistotduweb.fr",
-	bio: "Je conçois et fais évoluer vos applications web React / Next.js, de l'idée à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress.",
+	url: site.origin,
+	shortUrl: site.host,
+	bio: "Je conçois et fais évoluer vos applications web, du front-end React / Next.js au back-end Node.js, jusqu'à la mise en production : rapides, accessibles et faciles à maintenir. Développeur depuis plus de 8 ans, j'ai travaillé pour Fnac Darty et Infogreffe sur des produits à fort trafic, main dans la main avec les équipes Produit, UX et Backend. En renfort de votre équipe, sur un projet clé en main ou pour faire évoluer votre site WordPress. Basé à Vernon, dans l'Eure, je crée aussi des sites internet pour les restaurants, salons et TPE/PME de la région.",
 	social: {
 		github: "https://github.com/lecuistotduweb",
 		linkedin: "https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/",
@@ -26,15 +35,70 @@ export const siteConfig = {
 		// RDV n'apparaît que s'il est renseigné
 		calLink: "lecuistotduweb/30min" as string | undefined,
 	},
+	local: {
+		// Nom commercial, écrit exactement comme sur la fiche Google Business
+		// Profile (cohérence NAP). Le logo garde l'écriture « LeCuistotduWeb ».
+		businessName: "Le Cuistot du Web",
+		// Ancrage local (SEO) : ville de rattachement, sans adresse précise
+		// (adresse masquée sur la fiche Google, zone desservie autour de Vernon)
+		city: "Vernon",
+		postalCode: "27200",
+		department: "Eure",
+		region: "Normandie",
+		// Centre-ville de Vernon : sert au JSON-LD (geo), pas d'adresse exacte
+		geo: { latitude: 49.0929, longitude: 1.4848 },
+		// Communes desservies, reprises de la fiche Google Business Profile
+		areaServed: [
+			"Vernon",
+			"Saint-Marcel",
+			"Saint-Just",
+			"Gaillon",
+			"Pacy-sur-Eure",
+			"Les Andelys",
+			"Évreux",
+			"Louviers",
+			"Val-de-Reuil",
+			"Bonnières-sur-Seine",
+			"Giverny",
+			"Mantes-la-Jolie",
+			"Rouen",
+		],
+		// Lien public de la fiche Google Business Profile (« Partager le
+		// profil » → lien g.page ou maps.app.goo.gl). Le lien « Voir la fiche
+		// Google » et le sameAs du JSON-LD n'apparaissent que s'il est renseigné.
+		googleBusinessUrl: "https://g.page/r/CTw8bcz8lHnTEBM" as string | undefined,
+		// Lien « Laisser un avis » de la fiche ; bouton masqué tant qu'il est vide
+		googleReviewUrl: "https://g.page/r/CTw8bcz8lHnTEBM/review" as
+			| string
+			| undefined,
+	},
+	// Mentions légales (LCEN, art. 6-III) : identité de l'éditeur et hébergeur.
+	// SIRET et adresse sont obligatoires : un test (config.legal.test.ts) échoue tant
+	// qu'ils sont vides. L'adresse peut être une adresse de domiciliation.
+	legal: {
+		publisher: "Gaëtan Boyron",
+		status: "Entrepreneur individuel (micro-entreprise)",
+		siret: "915 227 839 00031" as string,
+		// Commune seulement : diffusion partielle INSEE, adresse de rue non publiée
+		address: "Vernon (27200), Eure" as string,
+		vat: "TVA non applicable, article 293 B du Code général des impôts",
+		host: {
+			name: "Vercel Inc.",
+			address: "440 N Barranca Ave #4133, Covina, CA 91723, États-Unis",
+			url: "https://vercel.com",
+		},
+		// Date affichée en haut des deux pages légales, à changer à chaque mise à jour
+		updatedAt: "18 novembre 2026",
+	},
 	rangeo: {
 		// Sous-domaine dédié : la home du sous-domaine affiche /rangeo
-		url: "https://rangeo.lecuistotduweb.fr",
+		url: `${site.protocol}//rangeo.${site.host}`,
 		host: "rangeo.",
 		packageId: "fr.lecuistotduweb.rangeo",
 		// Fiche Google Play ; le bouton n'apparaît que s'il est renseigné
 		playStoreUrl: undefined as string | undefined,
 	},
-	title: "Gaëtan Boyron — Développeur Fullstack React/Node.js",
+	title: "Gaëtan Boyron — Développeur web freelance à Vernon (Eure)",
 	description:
-		"Développeur Fullstack React/Node.js freelance, 8 ans d'expérience (Fnac Darty, Infogreffe). Applications web, SaaS, e-commerce et sites sur mesure, en régie ou au forfait.",
+		"Développeur web freelance à Vernon (Eure), 8 ans d'expérience (Fnac Darty, Infogreffe). Sites internet sur mesure pour restaurants, salons et TPE/PME, applications React/Node.js en régie ou au forfait.",
 } as const;

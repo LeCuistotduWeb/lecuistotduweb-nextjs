@@ -1,5 +1,25 @@
+import { siteConfig } from "#/config";
+
+export type WorkKind = "entreprise" | "freelance" | "perso";
+
+/** Cadre du projet : salarié (poste, stage ou via l'ESN L'Atelier), client freelance ou projet perso. */
+export const WORK_KINDS: Record<WorkKind, string> = {
+	entreprise: "En entreprise",
+	freelance: "En freelance",
+	perso: "Projet perso",
+};
+
 export type Work = {
 	label: string;
+	/** En entreprise, en freelance ou projet perso (filtre de /realisations). */
+	kind: WorkKind;
+	/**
+	 * Précision sur la couverture générée par scripts/work-cover.mjs (visuel
+	 * d'illustration, données de démonstration), affichée sous l'image de la popup.
+	 */
+	coverNote?: string;
+	/** Mis en avant dans le chapitre Projets de l'accueil. */
+	featured?: boolean;
 	/** Résumé d'une ligne affiché dans le carrousel. */
 	description: string;
 	src: string;
@@ -19,6 +39,8 @@ export type Work = {
 export const WORKS: Work[] = [
 	{
 		label: "Fnac Darty",
+		kind: "entreprise",
+		featured: true,
 		description:
 			"Architecture front React / Next.js, design system Storybook et i18n.",
 		src: "/works/miniature-fnac-darty-1280.webp",
@@ -26,7 +48,7 @@ export const WORKS: Work[] = [
 			"/works/miniature-fnac-darty-640.webp 640w, /works/miniature-fnac-darty-1280.webp 1280w",
 		details: {
 			context:
-				"Mission pour Fnac Darty : développement d'applications web marketplace, en lien quotidien avec les équipes Produit, UX et Backend.",
+				"Mission longue chez Fnac Darty, via l'ESN L'Atelier : développement d'applications web marketplace, en lien quotidien avec les équipes Produit, UX et Backend.",
 			period: "2024 — 2025",
 			contributions: [
 				"Conception de l'architecture frontend, modulaire et scalable",
@@ -41,6 +63,8 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Infogreffe",
+		kind: "entreprise",
+		featured: true,
 		description:
 			"Parcours utilisateurs, Design System et constructeur de pages Strapi.",
 		src: "/works/miniature-site-web-portfolio-infogreffe-1280.webp",
@@ -48,7 +72,7 @@ export const WORKS: Work[] = [
 			"/works/miniature-site-web-portfolio-infogreffe-640.webp 640w, /works/miniature-site-web-portfolio-infogreffe-1280.webp 1280w",
 		details: {
 			context:
-				"Mission pour Infogreffe : évolution du site, de ses parcours utilisateurs et de son Design System.",
+				"Mission longue chez Infogreffe, via l'ESN L'Atelier : évolution du site, de ses parcours utilisateurs et de son Design System.",
 			period: "2023 — 2024",
 			contributions: [
 				"Intégration des maquettes et développement des parcours utilisateurs",
@@ -61,7 +85,51 @@ export const WORKS: Work[] = [
 		},
 	},
 	{
+		label: "SOLIASSO",
+		kind: "entreprise",
+		coverNote: "Captures avec des données de démonstration",
+		description:
+			"Outil métier pour qualifier et évaluer les dossiers de la MDPH des Hauts-de-Seine.",
+		src: "/works/miniature-soliasso-1280.webp",
+		srcSet:
+			"/works/miniature-soliasso-640.webp 640w, /works/miniature-soliasso-1280.webp 1280w",
+		details: {
+			context:
+				"Pour SOLIASSO, via l'ESN L'Atelier : le groupement solidaire créé par l'Unapei 92 et l'APEI Boucle de la Seine pour réaliser les prestations de qualification et les évaluations des dossiers de la Maison départementale des personnes handicapées (MDPH) des Hauts-de-Seine.",
+			period: "2026",
+			contributions: [
+				"Développement du front-end de l'outil, du tableau de bord aux formulaires",
+				"Import des lots de dossiers (CSV, XLSX) et suivi de leur avancement : non démarré, en cours, qualifié, évalué",
+				"Formulaires de qualification et d'évaluation (enfant et adulte), avec calcul automatique du complément AEEH",
+				"Liste des dossiers avec recherche, filtres par statut et par type, et téléchargement",
+				"Interface responsive, utilisable sur ordinateur comme sur mobile",
+			],
+		},
+	},
+	{
+		label: "TrustMyContent",
+		kind: "entreprise",
+		coverNote: "Visuel d'illustration",
+		description:
+			"Plateforme qui certifie l'origine des images : signature C2PA, détection IA et filigrane invisible.",
+		src: "/works/miniature-trustmycontent-1280.webp",
+		srcSet:
+			"/works/miniature-trustmycontent-640.webp 640w, /works/miniature-trustmycontent-1280.webp 1280w",
+		details: {
+			context:
+				"Pour TrustMyContent, via l'ESN L'Atelier : Provenance4Trust, une plateforme qui certifie l'origine et l'authenticité des contenus numériques pour les médias, les journalistes et les institutions.",
+			contributions: [
+				"Participation au développement de la plateforme de labellisation d'images (JPEG, PNG, TIFF)",
+				"Parcours en trois étapes : import et inspection des métadonnées (EXIF, IPTC, C2PA), étiquetage de la fiche de provenance, signature et publication",
+				"Intégration des services partenaires : détection de contenus générés par IA (UncovAI), filigrane invisible (IMATAG) et certification éditoriale JTI",
+				"Signature C2PA des contenus, interopérable avec les Content Credentials (Adobe, Google, Meta)",
+			],
+			url: "https://www.provenance4trust.org",
+		},
+	},
+	{
 		label: "Blissim",
+		kind: "entreprise",
 		description:
 			"E-commerce beauté migré en PWA : abonnement, shop et box sur-mesure.",
 		src: "/works/miniature-site-web-1280.webp",
@@ -83,6 +151,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Nomad Education",
+		kind: "entreprise",
 		description:
 			"Refonte du site vitrine et migration d'Angular vers Nuxt / Vue.",
 		src: "/works/thumbnail-worksite-web-nomad-education-1280.webp",
@@ -102,6 +171,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Mon VDI Assistant",
+		kind: "perso",
 		description: "SaaS pour gérer clients, commandes, produits et réunions.",
 		src: "/works/mon-vdi-assistant-miniature-1280.webp",
 		srcSet:
@@ -117,7 +187,32 @@ export const WORKS: Work[] = [
 		},
 	},
 	{
+		label: "Rangeo",
+		kind: "perso",
+		description:
+			"App Android de rangement et de déménagement : cartons QR, photos et checklist, 100 % hors ligne.",
+		src: "/works/miniature-rangeo-1280.webp",
+		srcSet:
+			"/works/miniature-rangeo-640.webp 640w, /works/miniature-rangeo-1280.webp 1280w",
+		details: {
+			context:
+				"Projet personnel : une application Android pour ranger et déménager sans perdre un objet. Tout reste sur le téléphone : pas de compte, pas de serveur, aucune donnée collectée.",
+			period: "2026",
+			contributions: [
+				"Conception et développement de A à Z, du design de l'interface à la page de présentation",
+				"Organisation en lieux, contenants et objets, avec un code par contenant (SAL-01, GAR-07…)",
+				"QR code par carton : un scan ouvre sa fiche, étiquettes prêtes à imprimer",
+				"Recherche instantanée par objet, description ou code",
+				"Parcours déménagement en trois étapes (préparer, charger, décharger) et checklist des démarches",
+				"Photos, export PDF des inventaires et sauvegarde complète en ZIP",
+			],
+			url: siteConfig.rangeo.url,
+		},
+	},
+	{
 		label: "La Classe de Fleur",
+		kind: "freelance",
+		featured: true,
 		description:
 			"Site pédagogique pour apprendre le français : vidéos, méthodologie et e-books.",
 		src: "/works/miniature-site-web-laclassedefleur-1280.webp",
@@ -136,6 +231,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Le Poudrier de Fleur",
+		kind: "freelance",
 		description:
 			"Refonte complète et identité visuelle du site lepoudrierdefleur.fr.",
 		src: "/works/miniature-lepoudrierdefleur-1280.webp",
@@ -152,6 +248,7 @@ export const WORKS: Work[] = [
 	},
 	{
 		label: "Marie Jade",
+		kind: "freelance",
 		description: "Portfolio sur mesure pour la danseuse Marie Jade Helmlinger.",
 		src: "/works/miniature-marie-hlg-portfolio-1280.webp",
 		srcSet:
@@ -163,3 +260,6 @@ export const WORKS: Work[] = [
 		},
 	},
 ];
+
+/** Projets du chapitre Projets de l'accueil ; la liste complète est sur /realisations. */
+export const FEATURED_WORKS = WORKS.filter((work) => work.featured);

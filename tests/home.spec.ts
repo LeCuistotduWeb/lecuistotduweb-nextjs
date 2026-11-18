@@ -4,6 +4,7 @@ const LINKEDIN_URL =
 	"https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/";
 
 const INTRO_KEY = "lcdw-intro-seen";
+const HOME_TITLE = "Gaëtan Boyron — Développeur web freelance à Vernon (Eure)";
 
 // Hors tests dédiés, l'écran de chargement est considéré comme déjà vu
 test.beforeEach(async ({ page }, testInfo) => {
@@ -32,13 +33,15 @@ async function waitForHydration(page: Page) {
 
 test("has title", async ({ page }) => {
 	await expect(page).toHaveTitle(
-		"Gaëtan Boyron — Développeur Fullstack React/Node.js",
+		"Gaëtan Boyron — Développeur web freelance à Vernon (Eure)",
 	);
 });
 
-test("CV card links to the /cv page", async ({ page }) => {
-	const link = cardByTitle(page, "Curriculum Vitae").locator('a[href="/cv"]');
-	await expect(link).toBeVisible();
+test("experience chapter links to the /cv page", async ({ page }) => {
+	const link = page
+		.locator("#experience")
+		.getByRole("link", { name: "Voir mon CV" });
+	await expect(link).toHaveAttribute("href", "/cv");
 });
 
 test("/cv renders the ATS resume", async ({ page }) => {
@@ -91,20 +94,18 @@ test("contact form validates before sending", async ({ page }) => {
 
 test("/profil redirects to the experience chapter", async ({ page }) => {
 	await page.goto("/profil");
-	await expect(page).toHaveURL(/\/experience$/);
-	await expect(page).toHaveTitle("Expérience — Gaëtan Boyron");
+	await expect(page).toHaveURL(/\/#experience$/);
 });
 
 test("/freelance redirects to the offer chapter", async ({ page }) => {
 	await page.goto("/freelance");
-	await expect(page).toHaveURL(/\/offre$/);
-	await expect(page).toHaveTitle("Offre freelance — Gaëtan Boyron");
+	await expect(page).toHaveURL(/\/#offre$/);
 });
 
 test("offer link prefills the contact topic", async ({ page }) => {
 	await waitForHydration(page);
 	await page.getByRole("link", { name: "En parler" }).first().click();
-	await expect(page).toHaveURL(/\/contact$/);
+	await expect(page).toHaveURL(/\/#contact$/);
 	const form = cardByTitle(page, "Contact").getByRole("form", {
 		name: "Formulaire de contact",
 	});
@@ -113,51 +114,94 @@ test("offer link prefills the contact topic", async ({ page }) => {
 	);
 });
 
-test("links to LinkedIn in a new tab", async ({ page }) => {
-	const link = page.getByRole("link", { name: "Voir mon profil LinkedIn" });
+test("contact card links to LinkedIn in a new tab", async ({ page }) => {
+	const link = cardByTitle(page, "Contact").getByRole("link", {
+		name: "LinkedIn",
+	});
 	await expect(link).toHaveAttribute("href", LINKEDIN_URL);
 	await expect(link).toHaveAttribute("target", "_blank");
 });
 
-test("project carousel navigates, autoplays and pauses", async ({ page }) => {
-	const card = cardByTitle(page, "Projets");
-	const counter = card.getByText(/^\d{2} \/ 08$/);
-	await expect(counter).toHaveText("01 / 08");
+test("projects story follows the scroll and opens details", async ({
+	page,
+}) => {
+	await page.setViewportSize({ width: 1440, height: 900 });
+	await waitForHydration(page);
+	const story = page.locator("#projets");
+	const counter = story.getByText(/^\d{2} \/ 03 · /);
 
-	// Avance automatique (5 s) — la souris ne doit pas survoler la carte
-	await page.mouse.move(0, 0);
-	await expect(counter).toHaveText("02 / 08", { timeout: 8000 });
+	// Le projet lu au milieu de l'écran pilote l'écran épinglé
+	await story
+		.getByRole("heading", { name: "Infogreffe", level: 3 })
+		.first()
+		.evaluate((el) => el.scrollIntoView({ block: "center" }));
+	await expect(counter).toHaveText("02 / 03 · Infogreffe");
 
-	await card.getByRole("button", { name: "Mettre le défilement en pause" }).click();
-	await card.getByRole("button", { name: "Projet suivant" }).click();
-	await expect(counter).toHaveText("03 / 08");
-
-	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await card.getByRole("button", { name: "Projet précédent" }).click();
-	await expect(counter).toHaveText("08 / 08");
-
-	await page.mouse.move(0, 0);
-	await page.waitForTimeout(6000);
-	await expect(counter).toHaveText("08 / 08");
-	await expect(
-		card.getByRole("button", { name: "Reprendre le défilement" }),
-	).toBeVisible();
+	await story.getByRole("button", { name: "Voir le projet Infogreffe" }).click();
+	const dialog = page.getByRole("dialog");
+	await expect(dialog.getByRole("heading", { name: "Infogreffe" })).toBeVisible();
+	await page.keyboard.press("Escape");
+	await expect(dialog).toBeHidden();
 });
 
-const CHAPTERS: { path: string; id: string; label: string; title?: string }[] = [
-	{ path: "/experience", id: "experience", label: "Expérience" },
-	{ path: "/projets", id: "projets", label: "Projets" },
-	{ path: "/offre", id: "offre", label: "Offre", title: "Offre freelance" },
-	{ path: "/contact", id: "contact", label: "Contact" },
+test("projects story links to all projects", async ({ page }) => {
+	await waitForHydration(page);
+	await page
+		.locator("#projets")
+		.getByRole("link", { name: "Voir toutes les réalisations" })
+		.click();
+	await expect(page).toHaveURL(/\/realisations$/);
+	await expect(page).toHaveTitle("Réalisations — Gaëtan Boyron");
+});
+
+/** Nombre affiché sur un bouton de filtre (« Tous 11 », « Freelance 03 »). */
+async function filterCount(page: Page, name: RegExp) {
+	const text = await page.getByRole("button", { name }).textContent();
+	return Number(text?.match(/\d+/)?.[0]);
+}
+
+test("/realisations lists every project with details", async ({ page }) => {
+	await page.goto("/realisations");
+	await expect(
+		page.getByRole("heading", { level: 1, name: /Réalisations/ }),
+	).toBeVisible();
+	const rows = page.getByRole("button", { name: /^Voir le projet / });
+	const total = await filterCount(page, /^Tous/);
+	expect(total).toBeGreaterThanOrEqual(10);
+	await expect(rows).toHaveCount(total);
+	await waitForHydration(page);
+	await page.getByRole("button", { name: "Voir le projet Blissim" }).click();
+	const dialog = page.getByRole("dialog");
+	await expect(dialog.getByRole("heading", { name: "Blissim" })).toBeVisible();
+});
+
+test("/realisations filters projects by kind", async ({ page }) => {
+	await page.goto("/realisations");
+	await waitForHydration(page);
+	const rows = page.getByRole("button", { name: /^Voir le projet / });
+	const total = await filterCount(page, /^Tous/);
+	const freelance = await filterCount(page, /^Freelance/);
+	expect(freelance).toBeGreaterThan(0);
+	await page.getByRole("button", { name: /^Freelance/ }).click();
+	await expect(rows).toHaveCount(freelance);
+	await expect(
+		page.getByRole("button", { name: "Voir le projet Fnac Darty" }),
+	).toHaveCount(0);
+	await page.getByRole("button", { name: /^Tous/ }).click();
+	await expect(rows).toHaveCount(total);
+});
+
+const CHAPTERS: { id: string; label: string }[] = [
+	{ id: "experience", label: "Expérience" },
+	{ id: "projets", label: "Réalisations" },
+	{ id: "offre", label: "Offres" },
+	{ id: "contact", label: "Contact" },
 ];
 
 for (const chapter of CHAPTERS) {
-	test(`route ${chapter.path} lands on its chapter`, async ({ page }) => {
-		await page.goto(chapter.path);
-		await expect(page).toHaveTitle(
-			`${chapter.title ?? chapter.label} — Gaëtan Boyron`,
-		);
+	test(`anchor #${chapter.id} lands on its chapter`, async ({ page }) => {
+		await page.goto(`/#${chapter.id}`);
+		await expect(page).toHaveTitle(HOME_TITLE);
 		const nav = page.getByRole("navigation", { name: "Chapitres" });
 		await expect(
 			nav.getByRole("link", { name: chapter.label, exact: true }),
@@ -170,6 +214,11 @@ for (const chapter of CHAPTERS) {
 			)
 			.toBeLessThan(120);
 	});
+
+	test(`old route /${chapter.id} redirects to its anchor`, async ({ page }) => {
+		await page.goto(`/${chapter.id}`);
+		await expect(page).toHaveURL(new RegExp(`/#${chapter.id}$`));
+	});
 }
 
 test("scrolling updates the active chapter, URL and title", async ({ page }) => {
@@ -177,12 +226,12 @@ test("scrolling updates the active chapter, URL and title", async ({ page }) => 
 	await page.evaluate(() =>
 		window.scrollTo(0, document.getElementById("projets")?.offsetTop ?? 0),
 	);
-	await expect(page).toHaveURL(/\/projets$/);
-	await expect(page).toHaveTitle("Projets — Gaëtan Boyron");
+	await expect(page).toHaveURL(/\/#projets$/);
+	await expect(page).toHaveTitle(HOME_TITLE);
 	await expect(
 		page
 			.getByRole("navigation", { name: "Chapitres" })
-			.getByRole("link", { name: "Projets", exact: true }),
+			.getByRole("link", { name: "Réalisations", exact: true }),
 	).toHaveAttribute("aria-current", "page");
 });
 
@@ -195,7 +244,7 @@ test("menu scrolls to a chapter without reloading", async ({ page }) => {
 		.getByRole("navigation", { name: "Chapitres" })
 		.getByRole("link", { name: "Contact", exact: true })
 		.click();
-	await expect(page).toHaveURL(/\/contact$/);
+	await expect(page).toHaveURL(/\/#contact$/);
 	await expect
 		.poll(() =>
 			page
@@ -230,12 +279,14 @@ test("intro ends on its own and reveals the page", async ({ page }) => {
 	await expect(
 		page.locator("[data-avatar-target]"),
 	).toBeVisible();
-	await expect(page.getByRole("heading", { name: "LeCuistotduWeb" })).toBeInViewport();
+	await expect(
+		page.getByRole("heading", { level: 1, name: /Du web fait maison/ }),
+	).toBeInViewport();
 });
 
 test("contact card copies the e-mail address", async ({ page, context }) => {
 	await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-	await page.goto("/contact");
+	await page.goto("/#contact");
 	const card = cardByTitle(page, "Contact");
 	await expect
 		.poll(async () => {

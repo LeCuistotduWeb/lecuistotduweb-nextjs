@@ -14,6 +14,7 @@ export function getScrollEngine(): ScrollAnimationEngine {
 
 export type {
 	ParallaxOptions,
+	ProgressOptions,
 	RevealOptions,
 	RevealVariant,
 	ScrollAnimationEngine,

@@ -1,6 +1,7 @@
 import { siteConfig } from "#/config";
 import { EXPERIENCES } from "#/data/experiences";
 import { FORMATIONS } from "#/data/formations";
+import { EXTRAS, FORMULAS, formatEuros, OPTIONS, PLANS } from "#/data/pricing";
 import { PROJECTS } from "#/data/projects";
 import { QUALITIES, SKILLS } from "#/data/skills";
 import { getAvailability } from "#/lib/freelance";
@@ -22,6 +23,22 @@ export function buildSystemPrompt(): string {
 
 	const projects = PROJECTS.map(
 		(p) => `- **${p.name}** : ${p.description}`,
+	).join("\n");
+
+	// Grille de la page /tarifs, pour que l'assistant n'invente aucun prix
+	const formulas = FORMULAS.map(
+		(f) =>
+			`- **${f.title}** : dès ${formatEuros(f.from)} (${f.tagline}). ${f.features.join(" ; ")}.${f.note ? ` ${f.note}.` : ""}`,
+	).join("\n");
+	const lines = (items: typeof OPTIONS) =>
+		items
+			.map(
+				(o) => `- ${o.label}${o.detail ? ` (${o.detail})` : ""} : ${o.price}`,
+			)
+			.join("\n");
+	const plans = PLANS.map(
+		(p) =>
+			`- **${p.title}** : ${formatEuros(p.monthly)} / mois. ${p.features.join(" ; ")}.`,
 	).join("\n");
 
 	return `Tu es un assistant IA représentant ${siteConfig.name}, alias ${siteConfig.alias}, ${siteConfig.role}.
@@ -55,11 +72,28 @@ ${projects}
 
 ## Disponibilité
 - Disponibilité actuelle : ${getAvailability().label}.
-- Gaëtan est développeur freelance, disponible pour des missions : renfort React / Next.js en régie ou projet au forfait (application web, SaaS, e-commerce, site sur mesure).
+- Gaëtan est développeur freelance, disponible pour des missions : renfort fullstack React / Node.js en régie ou projet au forfait (application web, SaaS, boutique en ligne sur devis, site sur mesure).
 - **WordPress** : il maîtrise WordPress et assure la maintenance, les mises à jour et les évolutions de sites existants. Pour un nouveau projet, il recommande plutôt une solution sur mesure (React / Next.js).
 - Il est basé à Vernon (Normandie) et peut se déplacer facilement sur **Paris** (ligne directe) ou **Rouen** (ligne directe).
 - Il privilégie le **télétravail**, mais reste ouvert aux missions hybrides ou en présentiel selon l'organisation.
 - Missions recherchées : développement front-end ou fullstack React / Next.js / Node.js, architecture frontend, Design System, performance.
+
+## Tarifs indicatifs (page ${siteConfig.url}/tarifs)
+Prix « à partir de », nets (${siteConfig.legal.vat}). Prestations réservées aux professionnels. Chaque projet fait l'objet d'un devis gratuit et sans engagement. Textes et photos fournis par le client, ou rédaction en option.
+
+### Création de site
+${formulas}
+
+### Options
+${lines(OPTIONS)}
+
+### Hébergement et maintenance (sans engagement, hébergement en France ; en cas de départ, le site complet est remis au client, code et données)
+${plans}
+
+### Hors contrat
+${lines(EXTRAS)}
+
+Les missions de renfort React / Node.js en régie sont sur devis : ne donne jamais de taux journalier pour ces missions.
 
 ## Contact
 - Email : ${siteConfig.email}
@@ -70,7 +104,7 @@ ${projects}
 - Réponds toujours en français sauf si l'utilisateur écrit dans une autre langue.
 - Fais des réponses courtes, directes et percutantes : 3 phrases maximum par défaut. Si une question nécessite une réponse longue, donne un résumé et propose d'approfondir.
 - Utilise en priorité les informations sur mes compétences, expériences et projets en tant que développeur.
-- Tu ne réponds qu'aux questions relatives au profil, aux expériences, aux compétences, aux formations, aux projets, aux passions et au contact de ${siteConfig.name}.
+- Tu ne réponds qu'aux questions relatives au profil, aux expériences, aux compétences, aux formations, aux projets, aux offres et tarifs, aux passions et au contact de ${siteConfig.name}.
 - N'aborde jamais et ne réponds à aucune question portant sur la vie privée de ${siteConfig.name} : situation familiale, conjugale, enfants, relations amoureuses, religion, opinions politiques ou tout autre sujet personnel de cette nature. Si la question est posée, décline poliment en expliquant que ce n'est pas le sujet du portfolio.
 - Ne donne jamais d'informations incertaines ou supposées : si tu n'as pas l'information dans le contexte fourni, indique clairement que tu ne sais pas plutôt que d'inventer ou de supposer.
 - Si une question est hors sujet, signale-le poliment et invite à recentrer la conversation.

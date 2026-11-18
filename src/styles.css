@@ -395,6 +395,38 @@ a {
   transform: translateY(0.55em) rotate(2deg);
 }
 
+/* Haut de page (prop `instant`) : mêmes effets, joués en CSS dès le premier
+   affichage, sans attendre l'hydratation (meilleur LCP). */
+.reveal-ready [data-reveal-instant]:not([data-reveal-instant="words"]) {
+  animation: reveal-instant-fade 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+.reveal-ready [data-reveal-instant="rise"] {
+  animation-name: reveal-instant-rise;
+  animation-duration: 1000ms;
+}
+.reveal-ready [data-reveal-instant="words"] .reveal-word {
+  animation: reveal-instant-word 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) + var(--i, 0) * 70ms);
+}
+@keyframes reveal-instant-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes reveal-instant-rise {
+  from {
+    opacity: 0;
+    transform: translateY(56px) scale(0.98);
+  }
+}
+@keyframes reveal-instant-word {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em) rotate(2deg);
+  }
+}
+
 /* Experience — fake loading screen (once per session, see __root head script).
    html.intro-skip hides it before first paint; without JS it fades out after
    6 s on its own. */
@@ -592,20 +624,10 @@ html::after {
   }
 }
 
-/* Project card — autoplay progress (animationend advances the slide).
-   In a layer so Tailwind's [animation-play-state:paused] utilities win. */
-@layer components {
-  .project-progress {
-    animation: project-progress 5s linear both;
-  }
-}
-
-@keyframes project-progress {
-  from {
-    transform: scaleX(0);
-  }
+/* Experience — bandes de la stack qui défilent en boucle */
+@keyframes stack-marquee {
   to {
-    transform: scaleX(1);
+    transform: translateX(-50%);
   }
 }
 
@@ -683,5 +705,32 @@ html::after {
   html,
   body {
     background: #fff !important;
+  }
+}
+
+/* Home hero — floating chips around the avatar */
+@keyframes hero-float {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+/* Capture en tête de la popup d'un projet : léger zoom arrière à l'ouverture */
+@keyframes dialog-cover {
+  from {
+    opacity: 0;
+    scale: 1.08;
+  }
+}
+
+/* Contenu de la popup d'un projet : apparition en cascade (--d = délai) */
+@keyframes dialog-rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
   }
 }

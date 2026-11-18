@@ -4,6 +4,6 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 // liens déjà partagés.
 export const Route = createFileRoute("/freelance")({
 	beforeLoad: () => {
-		throw redirect({ to: "/offre", statusCode: 301 });
+		throw redirect({ to: "/", hash: "offre", statusCode: 301 });
 	},
 });

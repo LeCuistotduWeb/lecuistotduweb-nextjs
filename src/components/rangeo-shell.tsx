@@ -7,14 +7,32 @@ import { siteConfig } from "#/config";
 // sur rangeo.lecuistotduweb.fr. Couleur d'accent : l'orange de l'app.
 export const RANGEO_ACCENT = "text-[#c4501d] dark:text-[#ff9c6e]";
 
+// Bannière Play Store (1024×500), servie depuis public/rangeo.
+export const RANGEO_OG_IMAGE = `${siteConfig.rangeo.url}/rangeo/og-rangeo.png`;
+
+export function RangeoIcon({ className }: { className?: string }) {
+	return (
+		<img
+			src="/rangeo/icone-128.webp"
+			srcSet="/rangeo/icone-64.webp 64w, /rangeo/icone-128.webp 128w"
+			sizes="64px"
+			width={128}
+			height={128}
+			alt=""
+			className={className}
+		/>
+	);
+}
+
 export function RangeoShell({ children }: { children: ReactNode }) {
 	return (
 		<div className="flex min-h-dvh flex-col">
 			<header className="mx-auto flex w-full max-w-5xl items-center justify-between gap-4 px-4 py-5">
 				<Link
 					to="/rangeo"
-					className="display-title text-xl font-bold text-[#253c59] dark:text-white"
+					className="display-title flex items-center gap-2.5 text-xl font-bold text-[#253c59] dark:text-white"
 				>
+					<RangeoIcon className="size-8 rounded-lg" />
 					<span className={RANGEO_ACCENT}>Rangeo</span>
 				</Link>
 				<nav className="flex items-center gap-1 text-sm">
@@ -50,6 +68,14 @@ export function RangeoShell({ children }: { children: ReactNode }) {
 							Politique de confidentialité
 						</span>
 					</Link>
+					<a
+						href={`${siteConfig.url}/mentions-legales`}
+						className="hover:underline"
+					>
+						<span className="text-[#4a6a8a] dark:text-[#a1adbc]">
+							Mentions légales
+						</span>
+					</a>
 					<a href={`mailto:${siteConfig.email}`} className="hover:underline">
 						<span className="text-[#4a6a8a] dark:text-[#a1adbc]">Contact</span>
 					</a>

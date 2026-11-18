@@ -1,5 +1,6 @@
 import type {
 	ParallaxOptions,
+	ProgressOptions,
 	RevealOptions,
 	ScrollAnimationEngine,
 } from "./types";
@@ -19,6 +20,7 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 	const waiting = new Set<HTMLElement>();
 
 	const parallaxItems = new Map<HTMLElement, ParallaxOptions>();
+	const progressItems = new Map<HTMLElement, ProgressOptions["mode"]>();
 	let frame = 0;
 
 	function show(element: HTMLElement) {
@@ -47,9 +49,33 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 		return observer;
 	}
 
-	function updateParallax() {
+	function listen() {
+		if (parallaxItems.size + progressItems.size > 0) return;
+		window.addEventListener("scroll", onScroll, { passive: true });
+		window.addEventListener("resize", onScroll, { passive: true });
+	}
+
+	function unlisten() {
+		if (parallaxItems.size + progressItems.size > 0) return;
+		window.removeEventListener("scroll", onScroll);
+		window.removeEventListener("resize", onScroll);
+	}
+
+	function update() {
 		frame = 0;
-		const viewportCenter = window.innerHeight / 2;
+		const vh = window.innerHeight;
+		for (const [element, mode] of progressItems) {
+			const rect = element.getBoundingClientRect();
+			const raw =
+				mode === "follow"
+					? (vh * 0.55 - rect.top) / Math.max(1, rect.height)
+					: mode === "pin"
+						? -rect.top / Math.max(1, rect.height - vh)
+						: (vh - rect.top) / (vh * 0.4 + rect.height);
+			const value = Math.min(1, Math.max(0, raw));
+			element.style.setProperty("--scroll-progress", value.toFixed(3));
+		}
+		const viewportCenter = vh / 2;
 		for (const [element, { speed }] of parallaxItems) {
 			const rect = element.getBoundingClientRect();
 			// Utilise la position sans la translation déjà appliquée
@@ -62,7 +88,7 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 	}
 
 	function onScroll() {
-		if (!frame) frame = requestAnimationFrame(updateParallax);
+		if (!frame) frame = requestAnimationFrame(update);
 	}
 
 	return {
@@ -82,20 +108,33 @@ export function createIntersectionEngine(): ScrollAnimationEngine {
 
 		parallax(element, options) {
 			if (prefersReducedMotion()) return () => {};
-			if (parallaxItems.size === 0) {
-				window.addEventListener("scroll", onScroll, { passive: true });
-				window.addEventListener("resize", onScroll, { passive: true });
-			}
+			listen();
 			parallaxItems.set(element, options);
 			onScroll();
 			return () => {
 				parallaxItems.delete(element);
 				element.style.translate = "";
 				delete element.dataset.parallaxY;
-				if (parallaxItems.size === 0) {
-					window.removeEventListener("scroll", onScroll);
-					window.removeEventListener("resize", onScroll);
-				}
+				unlisten();
+			};
+		},
+
+		progress(element, { mode = "enter" }: ProgressOptions = {}) {
+			if (prefersReducedMotion()) {
+				// Rien ne bouge : état final (frise dessinée), ou début si épinglé
+				element.style.setProperty(
+					"--scroll-progress",
+					mode === "pin" ? "0" : "1",
+				);
+				return () => {};
+			}
+			listen();
+			progressItems.set(element, mode);
+			onScroll();
+			return () => {
+				progressItems.delete(element);
+				element.style.removeProperty("--scroll-progress");
+				unlisten();
 			};
 		},
 

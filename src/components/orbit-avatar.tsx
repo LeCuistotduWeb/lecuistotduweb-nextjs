@@ -7,10 +7,13 @@ const AVATAR_RATIO = 150 / 176;
 export function OrbitAvatar({
 	size = 176,
 	text = "OPEN TO WORK",
+	repeat = 3,
 	className,
 }: {
 	size?: number;
 	text?: string;
+	/** Nombre de répétitions du texte sur l'anneau (moins si le texte est long) */
+	repeat?: number;
 	className?: string;
 }) {
 	const uid = useId().replace(/[^a-zA-Z0-9]/g, "");
@@ -35,7 +38,9 @@ export function OrbitAvatar({
 					/>
 				</defs>
 				<text fontSize="11" fontWeight="700" fill="#f25353" letterSpacing="6">
-					<textPath href={`#${orbitId}`}>{`${text} • `.repeat(3)}</textPath>
+					<textPath href={`#${orbitId}`}>
+						{`${text} • `.repeat(repeat)}
+					</textPath>
 				</text>
 			</svg>
 			<div className="absolute inset-0 flex items-center justify-center">
@@ -46,6 +51,8 @@ export function OrbitAvatar({
 					alt="Avatar de LeCuistotduWeb"
 					width={avatarSize}
 					height={avatarSize}
+					// En % du cercle : suit la taille si une classe la redéfinit
+					style={{ width: `${AVATAR_RATIO * 100}%`, height: "auto" }}
 				/>
 			</div>
 		</div>
