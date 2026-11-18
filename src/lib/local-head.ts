@@ -9,7 +9,7 @@ import {
 
 const OG_IMAGE = `${siteConfig.url}/og-image.png`;
 
-// <head> d'une page locale : balises SEO + JSON-LD (Service, fil d'Ariane, FAQ)
+// <head> d'une page locale : balises SEO + JSON-LD (Service, FAQ)
 export function localPageHead(path: string) {
 	const page = getLocalPage(path);
 	const url = `${siteConfig.url}${page.path}`;
@@ -25,7 +25,6 @@ export function localPageHead(path: string) {
 				description: page.description,
 				inLanguage: "fr-FR",
 				about: { "@id": `${url}#service` },
-				breadcrumb: { "@id": `${url}#breadcrumb` },
 			},
 			{
 				"@type": "Service",
@@ -36,24 +35,6 @@ export function localPageHead(path: string) {
 				url,
 				provider: { "@id": serviceId },
 				areaServed: areaServedNodes(page.area),
-			},
-			{
-				"@type": "BreadcrumbList",
-				"@id": `${url}#breadcrumb`,
-				itemListElement: [
-					{
-						"@type": "ListItem",
-						position: 1,
-						name: "Accueil",
-						item: siteConfig.url,
-					},
-					{
-						"@type": "ListItem",
-						position: 2,
-						name: page.label,
-						item: url,
-					},
-				],
 			},
 			{
 				"@type": "FAQPage",

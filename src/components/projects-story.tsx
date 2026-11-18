@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Maximize2 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { FEATURED_WORKS as WORKS, type Work } from "#/data/works";
+import { WORK_KINDS, FEATURED_WORKS as WORKS, type Work } from "#/data/works";
 import { trackEvent } from "#/lib/analytics";
 import {
 	RevealWords,
@@ -160,14 +160,12 @@ export function ProjectsStory() {
 								current === index ? "md:opacity-100" : "md:opacity-30",
 							)}
 						>
-							<p className="flex items-baseline gap-4">
-								<span className="display-title text-6xl font-bold text-transparent [-webkit-text-stroke:1.5px_#f25353] md:text-7xl">
-									{pad(index + 1)}
+							<p className={`text-sm font-semibold ${TEXT}`}>
+								<span className="text-[#b52f2f] dark:text-[#ff7a7a]">
+									{WORK_KINDS[work.kind]}
 								</span>
 								{work.details.period && (
-									<span className={`text-sm font-semibold ${TEXT}`}>
-										{work.details.period}
-									</span>
+									<span className="tabular-nums"> · {work.details.period}</span>
 								)}
 							</p>
 							<RevealWords

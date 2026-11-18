@@ -1,4 +1,3 @@
-import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { useLayoutEffect, useRef, useState } from "react";
 import { WORK_KINDS, WORKS, type Work, type WorkKind } from "#/data/works";
@@ -9,13 +8,14 @@ import {
 	useStartScrollAnimations,
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
-import { ContactButtons, LocalFooter, SiteHeader } from "./local-landing-page";
+import { ContactButtons } from "./contact-actions";
+import { LocalFooter, SiteHeader } from "./local-landing-page";
 import { ProjectDetailsDialog } from "./project-details-dialog";
 
-// Page de toutes les réalisations, en index éditorial : les noms des projets
-// en grande typographie, une capture qui se dévoile au survol (souris fine,
-// grand écran), un filtre par type de projet. Sur écran tactile, chaque ligne
-// a sa capture. Tout le texte est dans le HTML serveur.
+// Page de toutes les réalisations : un filtre par type de projet et une
+// grille éditoriale à deux colonnes décalées (grande capture, type, période,
+// nom, description). Un clic ouvre l'étude de cas. Tout le texte est dans le
+// HTML serveur.
 
 const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
 const STRONG = "text-[#253c59] dark:text-white";
@@ -26,10 +26,13 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 type Filter = "tous" | WorkKind;
 
+// Libellés courts : les quatre boutons tiennent sur une ligne en mobile
+// (les badges des projets gardent les libellés complets de WORK_KINDS).
 const FILTERS: { id: Filter; label: string }[] = [
 	{ id: "tous", label: "Tous" },
-	{ id: "mission", label: "Missions" },
-	{ id: "independant", label: "Indépendants" },
+	{ id: "entreprise", label: "Entreprise" },
+	{ id: "freelance", label: "Freelance" },
+	{ id: "perso", label: "Perso" },
 ];
 
 const count = (filter: Filter) =>
@@ -101,7 +104,7 @@ function FilterBar({
 						{label}
 						<span
 							className={cn(
-								"text-xs tabular-nums transition-opacity",
+								"hidden text-xs tabular-nums transition-opacity sm:inline",
 								active ? "opacity-70" : "opacity-50",
 							)}
 						>
@@ -114,94 +117,61 @@ function FilterBar({
 	);
 }
 
-function WorkRow({
+function WorkCard({
 	work,
-	index,
 	delay,
 	onOpen,
 }: {
 	work: Work;
-	index: number;
 	delay: number;
 	onOpen: () => void;
 }) {
 	return (
-		<Reveal as="li" delay={delay} className="group/row">
+		<Reveal as="li" delay={delay} className="group/card">
 			<button
 				type="button"
 				onClick={onOpen}
 				aria-label={`Voir le projet ${work.label}`}
-				className="relative grid w-full cursor-pointer grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-4 border-b border-[#d2c4a4] py-7 text-left transition-opacity duration-500 group-hover/list:opacity-35 hover:opacity-100! focus-visible:opacity-100! md:grid-cols-[5.5rem_minmax(0,1fr)_auto] md:gap-x-8 md:py-9 dark:border-[#253c59]"
+				className="flex w-full cursor-pointer flex-col gap-5 rounded-3xl text-left transition-opacity duration-500 group-hover/list:opacity-60 hover:opacity-100! focus-visible:opacity-100! focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-[#f25353]"
 			>
-				{/* Trait rouge qui se dessine au survol */}
-				<span
-					aria-hidden="true"
-					className="absolute inset-x-0 -bottom-px h-0.5 origin-left scale-x-0 bg-[#f25353] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/row:scale-x-100"
-				/>
-				<span className={`${OUTLINE} self-start text-3xl md:pt-2 md:text-5xl`}>
-					{pad(index + 1)}
-				</span>
-
-				<span className="flex min-w-0 flex-col gap-2">
-					<span
-						className={`display-title text-4xl leading-[1.02] font-bold transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/row:translate-x-3 md:text-6xl lg:text-7xl ${STRONG}`}
-					>
-						{work.label}
-					</span>
-					<span
-						className={`max-w-2xl text-base font-medium leading-relaxed md:text-lg ${TEXT}`}
-					>
-						{work.description}
-					</span>
-				</span>
-
-				{/* Grand écran à la souris : capture dévoilée en balayage au survol,
-				    à droite du nom, sans le couvrir */}
-				<span
-					aria-hidden="true"
-					className="pointer-events-none absolute top-1/2 right-32 z-10 hidden w-56 -translate-y-1/2 overflow-hidden rounded-xl shadow-xl shadow-[#253c59]/25 [clip-path:inset(0_0_0_100%_round_0.75rem)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/row:[clip-path:inset(0_0_0_0_round_0.75rem)] group-has-[:focus-visible]/row:[clip-path:inset(0_0_0_0_round_0.75rem)] motion-reduce:transition-none [@media(hover:hover)_and_(pointer:fine)]:xl:block"
-				>
-					<img
-						src={work.src.replace("-1280.", "-640.")}
-						alt=""
-						width={640}
-						height={400}
-						loading="lazy"
-						decoding="async"
-						className="aspect-[16/10] w-full scale-110 object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/row:scale-100 motion-reduce:transition-none"
-					/>
-				</span>
-				{/* Capture en ligne : écrans tactiles, mobiles et écrans moyens */}
-				<span className="col-span-full overflow-hidden rounded-xl border border-[#d2c4a4] [@media(hover:hover)_and_(pointer:fine)]:xl:hidden dark:border-[#253c59]">
+				<span className="relative block overflow-hidden rounded-3xl shadow-xl shadow-[#253c59]/10 ring-1 ring-[#253c59]/10 dark:shadow-black/30 dark:ring-white/10">
 					<img
 						src={work.src}
 						srcSet={work.srcSet}
-						sizes="(min-width: 768px) 80vw, 100vw"
+						sizes="(min-width: 1280px) 600px, (min-width: 768px) 50vw, 100vw"
 						alt=""
 						width={640}
 						height={400}
 						loading="lazy"
 						decoding="async"
-						className="aspect-[16/10] w-full object-cover"
+						className="aspect-[16/10] w-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-[1.04] motion-reduce:transition-none"
 					/>
+					{/* Flèche qui apparaît au survol (toujours visible au tactile) */}
+					<span className="absolute top-4 right-4 flex size-12 scale-75 items-center justify-center rounded-full bg-[#f25353] opacity-0 shadow-lg shadow-black/20 transition-[opacity,scale,rotate] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:scale-100 group-hover/card:rotate-45 group-hover/card:opacity-100 [@media(hover:none)]:scale-100 [@media(hover:none)]:opacity-100">
+						<ArrowUpRight aria-hidden="true" className="size-5 text-white" />
+					</span>
 				</span>
-
-				<span className="col-span-full flex items-center justify-between gap-6 md:col-span-1 md:flex-col md:items-end md:justify-center md:gap-4">
-					<span
-						className={`flex flex-col text-sm font-semibold md:items-end ${TEXT}`}
-					>
+				<span className="flex flex-col gap-2 px-1">
+					<span className={`text-sm font-semibold ${TEXT}`}>
 						<span className="text-[#b52f2f] dark:text-[#ff7a7a]">
-							{work.kind === "mission" ? "Mission" : "Indépendant"}
+							{WORK_KINDS[work.kind]}
 						</span>
 						{work.details.period && (
-							<span className="tabular-nums">{work.details.period}</span>
+							<span className="tabular-nums"> · {work.details.period}</span>
 						)}
 					</span>
-					<span className="flex size-12 shrink-0 items-center justify-center rounded-full border border-[#253c59]/25 transition-[background-color,border-color,rotate] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/row:rotate-45 group-hover/row:border-[#f25353] group-hover/row:bg-[#f25353] md:size-14 dark:border-white/25">
-						<ArrowUpRight
-							aria-hidden="true"
-							className="size-5 text-[#253c59] transition-colors group-hover/row:text-white dark:text-white"
-						/>
+					<span
+						className={`display-title text-3xl leading-tight font-bold md:text-4xl ${STRONG}`}
+					>
+						{/* Soulignement qui se dessine au survol */}
+						<span className="bg-[linear-gradient(#f25353,#f25353)] bg-[length:0%_3px] bg-left-bottom bg-no-repeat pb-1 transition-[background-size] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/card:bg-[length:100%_3px]">
+							{work.label}
+						</span>
+					</span>
+					<span
+						className={`max-w-xl text-base font-medium leading-relaxed ${TEXT}`}
+					>
+						{work.description}
 					</span>
 				</span>
 			</button>
@@ -214,8 +184,8 @@ export function RealisationsPage() {
 	const [filter, setFilter] = useState<Filter>("tous");
 	const [details, setDetails] = useState<Work | null>(null);
 
-	const works = WORKS.map((work, index) => ({ work, index })).filter(
-		({ work }) => filter === "tous" || work.kind === filter,
+	const works = WORKS.filter(
+		(work) => filter === "tous" || work.kind === filter,
 	);
 
 	function changeFilter(next: Filter) {
@@ -235,20 +205,6 @@ export function RealisationsPage() {
 			<main
 				className={`mx-auto flex w-full ${WIDTH} flex-1 flex-col px-4 pb-24`}
 			>
-				<nav aria-label="Fil d'Ariane" className={`text-sm ${TEXT}`}>
-					<ol className="flex flex-wrap items-center gap-1.5">
-						<li>
-							<Link to="/" className="hover:underline">
-								<span className={TEXT}>Accueil</span>
-							</Link>
-						</li>
-						<li aria-hidden="true">/</li>
-						<li aria-current="page" className="font-medium">
-							Réalisations
-						</li>
-					</ol>
-				</nav>
-
 				<header className="grid gap-8 pt-12 pb-14 md:pt-20 md:pb-20 lg:grid-cols-[auto_minmax(0,22rem)] lg:items-end lg:justify-between lg:gap-12 xl:grid-cols-[auto_minmax(0,28rem)]">
 					<div className="flex flex-col gap-5">
 						<Reveal
@@ -282,7 +238,7 @@ export function RealisationsPage() {
 							Infogreffe aux sites d'indépendants : chaque projet est pensé,
 							construit et livré avec le même soin du détail.
 						</p>
-						<dl className="grid grid-cols-2 gap-4 border-t border-[#d2c4a4] pt-5 dark:border-[#253c59]">
+						<dl className="grid grid-cols-3 gap-4 border-t border-[#d2c4a4] pt-5 dark:border-[#253c59]">
 							{(Object.keys(WORK_KINDS) as WorkKind[]).map((kind) => (
 								<div key={kind} className="flex flex-col gap-1">
 									<dt className={`text-sm font-medium ${TEXT}`}>
@@ -308,16 +264,16 @@ export function RealisationsPage() {
 						{works.length} projets affichés
 					</p>
 					<ul
-						// Clé par filtre : les lignes réapparaissent en cascade
+						// Clé par filtre : les projets réapparaissent en cascade.
+						// Deux colonnes décalées : la droite démarre plus bas.
 						key={filter}
-						className="group/list border-t border-[#d2c4a4] dark:border-[#253c59]"
+						className="group/list mt-4 grid gap-x-10 gap-y-16 md:grid-cols-2 md:gap-y-20 lg:gap-x-16 md:pb-32 md:[&>li:nth-child(even)]:[transform:translateY(8rem)]"
 					>
-						{works.map(({ work, index }, position) => (
-							<WorkRow
+						{works.map((work, position) => (
+							<WorkCard
 								key={work.label}
 								work={work}
-								index={index}
-								delay={position * 70}
+								delay={(position % 2) * 120}
 								onOpen={() => openDetails(work)}
 							/>
 						))}

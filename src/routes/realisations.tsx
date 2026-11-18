@@ -10,7 +10,7 @@ const TITLE = `Réalisations — ${siteConfig.name}`;
 const DESCRIPTION = `Tous les projets de ${siteConfig.name}, développeur web freelance : missions pour Fnac Darty et Infogreffe, e-commerce, SaaS, sites vitrines et portfolios.`;
 const OG_IMAGE = `${siteConfig.url}/og-image.png`;
 
-// JSON-LD : page de collection, fil d'Ariane et liste des projets
+// JSON-LD : page de collection et liste des projets
 const pageGraph = {
 	"@context": "https://schema.org",
 	"@graph": [
@@ -21,26 +21,7 @@ const pageGraph = {
 			name: TITLE,
 			description: DESCRIPTION,
 			inLanguage: "fr-FR",
-			breadcrumb: { "@id": `${PAGE_URL}#breadcrumb` },
 			mainEntity: { "@id": `${PAGE_URL}#works` },
-		},
-		{
-			"@type": "BreadcrumbList",
-			"@id": `${PAGE_URL}#breadcrumb`,
-			itemListElement: [
-				{
-					"@type": "ListItem",
-					position: 1,
-					name: "Accueil",
-					item: siteConfig.url,
-				},
-				{
-					"@type": "ListItem",
-					position: 2,
-					name: "Réalisations",
-					item: PAGE_URL,
-				},
-			],
 		},
 		{
 			"@type": "ItemList",

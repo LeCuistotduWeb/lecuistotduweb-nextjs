@@ -1,17 +1,9 @@
-import { Link } from "@tanstack/react-router";
-import {
-	ArrowRight,
-	CalendarDays,
-	Check,
-	ChefHat,
-	ChevronDown,
-	MapPin,
-} from "lucide-react";
+import { Link, useLocation } from "@tanstack/react-router";
+import { ArrowRight, Check, ChefHat, ChevronDown, MapPin } from "lucide-react";
 import { siteConfig } from "#/config";
 import { getLocalPage, LOCAL_PAGES } from "#/data/local-pages";
 import { WORKS } from "#/data/works";
 import { trackEvent } from "#/lib/analytics";
-import { bookingUrl, openBooking } from "#/lib/booking";
 import {
 	Reveal,
 	RevealWords,
@@ -19,6 +11,7 @@ import {
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
 import { BentoCard } from "./bento-card";
+import { ContactButtons, StickyContactBar } from "./contact-actions";
 import { ScrollyStory } from "./local-scrolly";
 import { LocalShowcase, PhoneMockup, ZoneMap } from "./local-showcase";
 import { OrbitAvatar } from "./orbit-avatar";
@@ -30,9 +23,8 @@ import { ThemeToggle } from "./theme-toggle";
 // tout le contenu est visible dès le rendu serveur.
 
 const NAV = [
-	{ to: "/realisations", label: "Réalisations" },
-	{ to: "/offre", label: "Offres" },
-	{ to: "/contact", label: "Contact" },
+	{ to: "/realisations", hash: undefined, label: "Réalisations" },
+	{ to: "/", hash: "offre", label: "Offres" },
 ] as const;
 
 const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
@@ -41,13 +33,13 @@ const HOOK =
 	"display-title text-4xl font-bold leading-[1.05] text-[#253c59] md:text-6xl dark:text-white";
 const H2 = `display-title text-2xl font-semibold md:text-3xl ${STRONG}`;
 
-const STORY =
+export const STORY =
 	"Avant de devenir développeur en 2017, j'ai travaillé en cuisine professionnelle. J'en ai gardé le goût du travail bien fait, le sens du timing et l'envie de voir le client repartir content. C'est de là que vient LeCuistotduWeb.";
 
-const STEPS = [
+export const STEPS = [
 	{
-		title: "On se rencontre",
-		text: "30 minutes, chez vous ou en visio, pour comprendre votre activité.",
+		title: "On fait connaissance",
+		text: "30 minutes en visio, ou en personne autour de Vernon, pour comprendre votre activité.",
 	},
 	{
 		title: "Vous recevez un devis",
@@ -62,45 +54,6 @@ const STEPS = [
 		text: "Et je vous montre comment modifier vos contenus vous-même.",
 	},
 ];
-
-export function ContactButtons({
-	source,
-	onDark = false,
-}: {
-	source: string;
-	onDark?: boolean;
-}) {
-	return (
-		<div className="flex flex-wrap gap-3">
-			{bookingUrl && (
-				<a
-					href={bookingUrl}
-					target="_blank"
-					rel="noopener noreferrer"
-					onClick={(event) => openBooking(event, source)}
-					className="inline-flex items-center gap-2 rounded-full bg-[#f25353] px-5 py-2.5 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#e04444]"
-				>
-					<CalendarDays aria-hidden="true" className="size-4 text-white" />
-					<span className="text-white">Discutons de votre projet</span>
-				</a>
-			)}
-			<Link
-				to="/contact"
-				onClick={() => trackEvent("click_local_contact", { page: source })}
-				className={cn(
-					"inline-flex items-center gap-2 rounded-full border px-5 py-2.5 font-semibold transition-colors",
-					onDark
-						? "border-white/30 hover:bg-white/10"
-						: "border-[#253c59]/25 hover:bg-[#253c59]/5 dark:border-white/25 dark:hover:bg-white/10",
-				)}
-			>
-				<span className={onDark ? "text-white" : STRONG}>
-					Demander un devis
-				</span>
-			</Link>
-		</div>
-	);
-}
 
 /** Apparition au scroll, seulement sur les pages en récit (`scrolly`). */
 function Appear({
@@ -186,20 +139,6 @@ export function LocalLandingPage({ path }: { path: string }) {
 			<main
 				className={`mx-auto flex w-full ${WIDTH} flex-1 flex-col gap-4 px-4 pb-24 md:gap-6`}
 			>
-				<nav aria-label="Fil d'Ariane" className={`text-sm ${TEXT}`}>
-					<ol className="flex flex-wrap items-center gap-1.5">
-						<li>
-							<Link to="/" className="hover:underline">
-								<span className={TEXT}>Accueil</span>
-							</Link>
-						</li>
-						<li aria-hidden="true">/</li>
-						<li aria-current="page" className="font-medium">
-							{page.label}
-						</li>
-					</ol>
-				</nav>
-
 				{scrolly ? (
 					<ScrollyStory
 						steps={scrolly}
@@ -386,9 +325,9 @@ export function LocalLandingPage({ path }: { path: string }) {
 								On en parle autour d'un café ?
 							</h2>
 							<p className="max-w-2xl text-lg font-medium leading-relaxed text-[#d5e0ec]">
-								Premier échange gratuit de 30 minutes, à {local.city}, chez vous
-								ou en visio. Vous recevez ensuite un devis clair, sans
-								engagement.
+								Premier échange gratuit de 30 minutes, en visio ou autour d'un
+								café si vous êtes près de {local.city}. Vous recevez ensuite un
+								devis clair, sans engagement.
 							</p>
 							<ContactButtons source={`${page.path}-bottom`} onDark />
 						</div>
@@ -401,38 +340,72 @@ export function LocalLandingPage({ path }: { path: string }) {
 	);
 }
 
-/** En-tête des pages autonomes (pages locales, réalisations). */
+/**
+ * En-tête des pages autonomes (pages locales, réalisations) : barre en pilule
+ * comme la nav de l'accueil, avatar + nom, page en cours en texte foncé, contact
+ * en bouton rouge et choix du thème intégré.
+ */
 export function SiteHeader({ className }: { className?: string }) {
+	const pathname = useLocation({ select: (location) => location.pathname });
 	return (
-		<>
-			<header
-				className={cn(
-					"mx-auto flex w-full flex-wrap items-center justify-between gap-3 px-4 py-5",
-					className,
-				)}
-			>
+		<header className={cn("mx-auto w-full px-4 pt-4 pb-2 md:pt-6", className)}>
+			<div className="flex items-center justify-between gap-2 rounded-full border border-[#d2c4a4] bg-[#faf5ec]/80 p-1.5 shadow-sm backdrop-blur-md dark:border-[#253c59] dark:bg-[#172231]/80">
 				<Link
 					to="/"
-					className="display-title text-xl font-bold text-[#253c59] dark:text-white"
+					aria-label={`${siteConfig.alias}, accueil`}
+					className="group flex shrink-0 items-center gap-2.5 rounded-full pr-2"
 				>
-					<span className={STRONG}>{siteConfig.alias}</span>
+					<img
+						src="/lcdw-avatar-300.webp"
+						alt=""
+						width={36}
+						height={36}
+						className="size-9 rounded-full bg-[#e6d3ae] ring-2 ring-[#f25353]/25 transition-transform duration-500 group-hover:-rotate-6"
+					/>
+					<span
+						className={`display-title hidden text-lg font-bold sm:inline ${STRONG}`}
+					>
+						{siteConfig.alias}
+					</span>
 				</Link>
-				<nav aria-label="Navigation principale">
-					<ul className="flex items-center gap-1 text-sm font-semibold">
-						{NAV.map(({ to, label }) => (
-							<li key={to}>
-								<Link to={to} className="group rounded-md px-3 py-2">
-									<span className="text-[#4a6a8a] group-hover:text-[#253c59] dark:text-[#a1adbc] dark:group-hover:text-white">
+				<nav
+					aria-label="Navigation principale"
+					className="flex min-w-0 items-center gap-0.5 sm:gap-1"
+				>
+					<ul className="flex items-center gap-0.5 text-sm font-semibold">
+						{NAV.map(({ to, hash, label }) => (
+							<li key={label}>
+								<Link
+									to={to}
+									hash={hash}
+									activeOptions={{ exact: true, includeHash: true }}
+									className="group block px-2.5 py-2 sm:px-3"
+								>
+									<span className="text-[#4a6a8a] transition-colors group-hover:text-[#253c59] group-data-[status=active]:text-[#253c59] dark:text-[#a1adbc] dark:group-hover:text-white dark:group-data-[status=active]:text-white">
 										{label}
 									</span>
 								</Link>
 							</li>
 						))}
 					</ul>
+					<Link
+						to="/"
+						hash="contact"
+						onClick={() => trackEvent("click_header_contact")}
+						className="rounded-full bg-[#f25353] px-3 py-2 text-sm font-semibold sm:px-4 shadow-md shadow-[#f25353]/25 transition-colors hover:bg-[#e04444]"
+					>
+						<span className="text-white">Contact</span>
+					</Link>
+					<span
+						aria-hidden="true"
+						className="mx-0.5 hidden h-5 w-px bg-[#d2c4a4] sm:block dark:bg-[#253c59]"
+					/>
+					<ThemeToggle variant="nav" />
 				</nav>
-			</header>
-			<ThemeToggle />
-		</>
+			</div>
+			{/* Boutons d'action toujours à portée (voir contact-actions.tsx) */}
+			<StickyContactBar source={pathname} />
+		</header>
 	);
 }
 

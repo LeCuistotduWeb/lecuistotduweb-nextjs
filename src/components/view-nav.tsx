@@ -10,7 +10,7 @@ import {
 import { useLayoutEffect, useRef, useState } from "react";
 import { trackEvent } from "#/lib/analytics";
 import { cn } from "#/lib/utils";
-import { VIEWS, type ViewId } from "#/lib/views";
+import { VIEWS, type ViewId, viewHash } from "#/lib/views";
 import { ThemeToggle } from "./theme-toggle";
 
 const VIEW_ICONS: Record<ViewId, LucideIcon> = {
@@ -93,15 +93,16 @@ export function ViewNav({
 								)}
 							>
 								<Link
-									to={view.path}
+									to="/"
+									hash={viewHash(view.id)}
 									data-view={view.id}
-									activeOptions={{ exact: true }}
+									activeOptions={{ exact: true, includeHash: true }}
 									resetScroll={false}
+									hashScrollIntoView={false}
 									onClick={(e) => {
 										trackEvent("select_view", { view: view.id });
-										if (
-											e.currentTarget.getAttribute("aria-current") === "page"
-										) {
+										// Chapitre déjà affiché : pas de navigation, on y re-défile
+										if (view.id === current) {
 											e.preventDefault();
 											onReselect(view.id);
 										}

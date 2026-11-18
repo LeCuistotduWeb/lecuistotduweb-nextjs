@@ -45,6 +45,9 @@ export type PhoneScreen =
 	| "shop"
 	| "dashboard";
 
+/** Contenu du panneau épinglé des pages de zone (src/components/local-panels.tsx) */
+export type ZonePanelId = "map" | "design" | "google";
+
 export type LocalPage = {
 	/** Chemin de la route, sans slash final */
 	path: string;
@@ -70,9 +73,15 @@ export type LocalPage = {
 	/**
 	 * Récit au scroll : le téléphone (ou la carte, pour les pages de zone)
 	 * reste épinglé et change à chaque étape. Remplace la grille des atouts
-	 * quand il est renseigné. `screen` : écran du téléphone (pas de carte).
+	 * quand il est renseigné. `screen` : écran du téléphone (pages métier) ;
+	 * `panel` : contenu du panneau des pages de zone (carte par défaut).
 	 */
-	scrolly?: { screen?: PhoneScreen; title: string; text: string }[];
+	scrolly?: {
+		screen?: PhoneScreen;
+		panel?: ZonePanelId;
+		title: string;
+		text: string;
+	}[];
 	sections: LocalPageSection[];
 	faq: { question: string; answer: string }[];
 	/** Nom du service décrit (JSON-LD Service) */
@@ -85,7 +94,7 @@ const COMMON_FAQ = {
 	deplacement: {
 		question: "Vous déplacez-vous pour un premier rendez-vous ?",
 		answer:
-			"Oui. Je suis basé à Vernon et je me déplace chez vous dans l'Eure et alentours pour le premier échange, la présentation du site et la prise en main. Le reste du projet peut se suivre à distance, par téléphone ou en visio.",
+			"Ce n'est pas obligatoire : le premier échange se fait très bien en visio ou par téléphone, comme le reste du projet. Si vous préférez qu'on se voie, je peux me déplacer à Vernon et dans les communes voisines.",
 	},
 	devis: {
 		question: "Combien coûte un site internet ?",
@@ -111,24 +120,22 @@ export const LOCAL_PAGES: LocalPage[] = [
 		label: "Création de site internet à Vernon",
 		title: "Création de site internet à Vernon (27) — Le Cuistot du Web",
 		description:
-			"Développeur web freelance à Vernon (Eure) : création de sites internet pour commerçants, restaurants, salons et TPE. Devis gratuit, rendez-vous sur place.",
+			"Développeur web freelance à Vernon (Eure) : création de sites internet pour commerçants, restaurants, salons et TPE. Devis gratuit, échange en visio ou à Vernon.",
 		heading: "Création de site internet à Vernon",
 		hook: "Votre développeur web, à deux pas.",
 		intro: [
 			"Je m'appelle Gaëtan, je vis et je travaille à Vernon. Je crée des sites internet sur mesure pour les commerçants, restaurateurs, salons et petites entreprises d'ici : Vernon, Saint-Marcel, Saint-Just, Giverny et alentour.",
-			"Pendant 8 ans, j'ai codé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. Aujourd'hui, je mets cette exigence au service des entreprises de mon territoire, avec un vrai avantage : on peut se voir pour parler de votre projet autour d'un café.",
+			"Pendant 8 ans, j'ai codé des sites à fort trafic pour Fnac Darty, Infogreffe ou Blissim. Aujourd'hui, je mets cette exigence au service des entreprises de mon territoire : on se voit autour d'un café si vous le souhaitez, sinon on échange en visio, et vous avez toujours le même interlocuteur au bout du fil.",
 		],
 		showcase: "map",
 		scrolly: [
 			{
-				title: "Un développeur à Vernon",
-				text: "Je vis et je travaille à Vernon. On se rencontre chez vous, dans votre commerce ou autour d'un café, et vous avez toujours le même interlocuteur au bout du fil.",
-			},
-			{
+				panel: "design",
 				title: "Un site sur mesure",
 				text: "Pas de modèle acheté puis recoloré : je dessine et je code votre site à partir de votre activité, de vos clients et de vos photos. Il vous ressemble, et il évolue avec vous.",
 			},
 			{
+				panel: "google",
 				title: "Pensé pour Google",
 				text: "Pages rapides, adaptées au mobile, données structurées et lien avec votre fiche Google : tout est fait pour que les habitants de Vernon, Gaillon ou Pacy-sur-Eure vous trouvent.",
 			},
@@ -138,7 +145,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				icon: MapPin,
 				title: "Un développeur à Vernon",
-				text: "Rendez-vous chez vous ou en visio, réponses rapides : vous savez à qui vous parlez.",
+				text: "Échange en visio, ou en personne autour de Vernon, et réponses rapides : vous savez à qui vous parlez.",
 			},
 			{
 				icon: PenTool,
@@ -195,13 +202,13 @@ export const LOCAL_PAGES: LocalPage[] = [
 		hook: "Un site qui donne envie de pousser votre porte.",
 		intro: [
 			"Commerçant, artisan, restaurateur ou dirigeant de PME à Évreux : votre site doit donner envie de venir vous voir, ou de vous appeler. Je le conçois et je le développe sur mesure, de la première maquette à la mise en ligne.",
-			"Installé à Vernon, dans l'Eure, je viens vous voir à Évreux pour les rendez-vous qui comptent. Vous avez un seul interlocuteur, et c'est lui qui écrit le code de votre site.",
+			"Installé à Vernon, dans l'Eure, je vous accompagne en visio et par téléphone, du premier échange à la mise en ligne. Vous avez un seul interlocuteur, et c'est lui qui écrit le code de votre site.",
 		],
 		showcase: "map",
 		scrolly: [
 			{
 				title: "Un freelance de l'Eure",
-				text: "Installé à Vernon, je viens vous voir à Évreux pour les rendez-vous qui comptent. Le reste du projet se suit facilement en visio, avec un site de démonstration toujours accessible.",
+				text: "Installé à Vernon, je travaille avec les entreprises d'Évreux à distance : le projet se suit facilement en visio, avec un site de démonstration toujours accessible.",
 			},
 			{
 				title: "Une expertise de grands comptes",
@@ -217,7 +224,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				icon: Handshake,
 				title: "Un freelance de l'Eure",
-				text: "Proche d'Évreux, disponible pour vous rencontrer sur place.",
+				text: "Basé dans l'Eure, joignable facilement en visio ou par téléphone.",
 			},
 			{
 				icon: Award,
@@ -252,7 +259,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				title: "Évreux et les communes voisines",
 				paragraphs: [
-					"J'accompagne aussi les entreprises de Louviers, Val-de-Reuil, Pacy-sur-Eure et Gaillon. Le premier échange peut se faire en visio pour gagner du temps, puis nous nous rencontrons quand le projet le demande.",
+					"J'accompagne aussi les entreprises de Louviers, Val-de-Reuil, Pacy-sur-Eure et Gaillon. Le premier échange et les points de suivi se font en visio, sans que vous ayez à vous déplacer.",
 				],
 			},
 		],
@@ -319,8 +326,8 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				title: "Les communes où j'interviens",
 				paragraphs: [
-					"Je me déplace dans tout l'est de l'Eure et jusqu'aux Yvelines voisines : Vernon, Saint-Marcel, Saint-Just, Gaillon, Pacy-sur-Eure, Les Andelys, Évreux, Louviers, Val-de-Reuil, Giverny, Bonnières-sur-Seine, Mantes-la-Jolie et Rouen.",
-					"Pour les projets plus éloignés, tout se fait très bien à distance, avec des points en visio et un site de démonstration accessible pendant la réalisation.",
+					"J'accompagne les entreprises de l'est de l'Eure et des Yvelines voisines : Vernon, Saint-Marcel, Saint-Just, Gaillon, Pacy-sur-Eure, Les Andelys, Évreux, Louviers, Val-de-Reuil, Giverny, Bonnières-sur-Seine, Mantes-la-Jolie et Rouen.",
+					"Autour de Vernon, on peut se rencontrer si vous le souhaitez. Ailleurs, tout se fait très bien à distance, avec des points en visio et un site de démonstration accessible pendant la réalisation.",
 				],
 			},
 			{
@@ -385,7 +392,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			},
 		],
 		story:
-			"Avant de devenir développeur en 2017, j'ai travaillé en cuisine professionnelle. Je sais ce qu'est un coup de feu. Alors je passe vous voir l'après-midi, entre deux services, et je vous livre un site que vous mettez à jour sans y passer vos soirées.",
+			"Avant de devenir développeur en 2017, j'ai travaillé en cuisine professionnelle. Je sais ce qu'est un coup de feu. Alors on échange l'après-midi, entre deux services, en visio ou dans votre restaurant si vous êtes près de Vernon, et je vous livre un site que vous mettez à jour sans y passer vos soirées.",
 		works: ["Le Poudrier de Fleur", "La Classe de Fleur", "Marie Jade"],
 		highlights: [
 			{

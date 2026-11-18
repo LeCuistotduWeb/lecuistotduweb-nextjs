@@ -740,7 +740,7 @@ export function ZoneMap({
 				</text>
 			</svg>
 			<figcaption className={cn("mt-2 text-center text-xs", MUTED)}>
-				Basé à Vernon · je me déplace dans l'Eure et alentour
+				Basé à Vernon · rendez-vous possibles alentour, visio partout ailleurs
 			</figcaption>
 		</figure>
 	);

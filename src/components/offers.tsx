@@ -29,8 +29,10 @@ const STEP_ICONS: LucideIcon[] = [PhoneCall, FileText, Rocket];
 function ContactLink({ offer }: { offer: string }) {
 	return (
 		<Link
-			to="/contact"
+			to="/"
+			hash="contact"
 			resetScroll={false}
+			hashScrollIntoView={false}
 			onClick={() => {
 				trackEvent("click_offer_contact", { offer });
 				requestContactTopic(offer);
@@ -113,8 +115,10 @@ export function FeaturedOffer({ className }: { className?: string }) {
 						</a>
 					)}
 					<Link
-						to="/contact"
+						to="/"
+						hash="contact"
 						resetScroll={false}
+						hashScrollIntoView={false}
 						onClick={() => {
 							trackEvent("click_offer_contact", {
 								offer: FEATURED_OFFER.title,

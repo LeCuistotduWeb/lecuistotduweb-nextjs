@@ -2,44 +2,14 @@ import { siteConfig } from "#/config";
 import { structuredData } from "#/lib/structured-data";
 
 // Chapitres de la page d'accueil, dans l'ordre du scroll. Chaque chapitre a
-// aussi sa route (/experience, /projets…) : point d'entrée partageable et indexable
-// qui fait défiler jusqu'au chapitre.
+// son ancre (/#experience, /#projets…) ; les anciennes routes (/experience…)
+// redirigent vers elle.
 export const VIEWS = [
-	{
-		id: "accueil",
-		path: "/",
-		label: "Présentation",
-		title: siteConfig.title,
-		description: siteConfig.description,
-	},
-	{
-		id: "experience",
-		path: "/experience",
-		label: "Expérience",
-		title: `Expérience — ${siteConfig.name}`,
-		description: `Parcours, expériences et stack de ${siteConfig.name}, ${siteConfig.role}.`,
-	},
-	{
-		id: "projets",
-		path: "/projets",
-		label: "Projets",
-		title: `Projets — ${siteConfig.name}`,
-		description: `Projets et missions réalisés par ${siteConfig.name} : e-commerce, SaaS, sites vitrines et applications web et mobiles.`,
-	},
-	{
-		id: "offre",
-		path: "/offre",
-		label: "Offres",
-		title: `Offre freelance — ${siteConfig.name}`,
-		description: `Renfort fullstack React / Node.js en régie, projet sur mesure ou maintenance de site : l'offre freelance de ${siteConfig.name}.`,
-	},
-	{
-		id: "contact",
-		path: "/contact",
-		label: "Contact",
-		title: `Contact — ${siteConfig.name}`,
-		description: `Contacter ${siteConfig.name}, ${siteConfig.role} freelance : formulaire, prise de rendez-vous, e-mail, LinkedIn, GitHub.`,
-	},
+	{ id: "accueil", label: "Présentation" },
+	{ id: "experience", label: "Expérience" },
+	{ id: "projets", label: "Réalisations" },
+	{ id: "offre", label: "Offres" },
+	{ id: "contact", label: "Contact" },
 ] as const;
 
 export type View = (typeof VIEWS)[number];
@@ -49,10 +19,14 @@ export function getView(id: ViewId): View {
 	return VIEWS.find((v) => v.id === id) ?? VIEWS[0];
 }
 
-export function getViewByPath(pathname: string): View {
-	const path = pathname.replace(/\/+$/, "") || "/";
-	return VIEWS.find((v) => v.path === path) ?? VIEWS[0];
+/** Chapitre d'une ancre d'URL (« experience », « #experience ») ; accueil sinon. */
+export function getViewByHash(hash: string): View {
+	const id = hash.replace(/^#/, "");
+	return VIEWS.find((v) => v.id === id) ?? VIEWS[0];
 }
+
+/** Ancre d'un chapitre (aucune pour l'accueil). */
+export const viewHash = (id: ViewId) => (id === "accueil" ? undefined : id);
 
 // Parcours : les chapitres numérotés (après l'accueil) et leur accroche.
 export const PARCOURS = ["experience", "projets", "offre", "contact"] as const;
@@ -87,9 +61,9 @@ export const PARCOURS_CONTENT: Record<
 // Image de partage (1200×630) : générée par scripts/og-image.mjs
 const OG_IMAGE = `${siteConfig.url}/og-image.png`;
 
-export function viewHead(id: ViewId) {
-	const { title, description, path } = getView(id);
-	const url = `${siteConfig.url}${path === "/" ? "" : path}`;
+/** <head> de l'accueil (une seule page : les chapitres sont des ancres). */
+export function viewHead() {
+	const { title, description, url } = siteConfig;
 	return {
 		meta: [
 			{ title },

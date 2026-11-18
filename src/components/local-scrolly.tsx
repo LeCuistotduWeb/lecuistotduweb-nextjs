@@ -1,15 +1,16 @@
-import type { LocalPage, PhoneScreen } from "#/data/local-pages";
+import type { LocalPage, PhoneScreen, ZonePanelId } from "#/data/local-pages";
 import {
 	RevealWords,
 	useActiveStep,
 	useParallax,
 } from "#/lib/scroll-animations/react";
 import { cn } from "#/lib/utils";
-import { PhoneMockup, ZoneMap } from "./local-showcase";
+import { ZonePanel, ZonePanels } from "./local-panels";
+import { PhoneMockup } from "./local-showcase";
 
-// Récit au scroll des pages locales : le téléphone (métiers) ou la carte
+// Récit au scroll des pages locales : le téléphone (métiers) ou le panneau
 // (zones) reste épinglé à droite pendant que les étapes défilent à gauche ;
-// l'écran du téléphone suit l'étape lue, la carte s'allume cercle par cercle.
+// l'écran du téléphone et le contenu du panneau suivent l'étape lue.
 // Tout le texte est dans le HTML serveur ; le JS ne fait que la mise en scène.
 
 const TEXT = "text-[#4a6a8a] dark:text-[#a1adbc]";
@@ -22,12 +23,15 @@ export function ScrollyStory({
 	hero,
 	initialScreen,
 	mapArea,
+	numbered = true,
 }: {
 	steps: Step[];
 	hero: React.ReactNode;
 	initialScreen: PhoneScreen;
 	/** Pages de zone : carte épinglée, communes visées mises en avant */
 	mapArea?: string[];
+	/** Numéros 01, 02… devant les étapes (absents du nouveau gabarit) */
+	numbered?: boolean;
 }) {
 	const { active, register } = useActiveStep(steps.length);
 	const parallax = useParallax<HTMLDivElement>(0.06);
@@ -37,9 +41,15 @@ export function ScrollyStory({
 	];
 	const current =
 		(active >= 0 ? steps[active].screen : undefined) ?? initialScreen;
+	// Pages de zone : panneau de l'étape lue (carte avant la 1re étape)
+	const panels = [
+		...new Set<ZonePanelId>(["map", ...steps.flatMap((s) => s.panel ?? [])]),
+	];
+	const currentPanel: ZonePanelId =
+		(active >= 0 ? steps[active].panel : undefined) ?? "map";
 
 	return (
-		<div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-x-12 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-x-20 2xl:grid-cols-2">
+		<div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_18rem] md:gap-x-12 lg:grid-cols-[minmax(0,1fr)_28rem] lg:gap-x-16 xl:grid-cols-[minmax(0,1fr)_34rem] xl:gap-x-20 2xl:grid-cols-2">
 			<div className="flex min-w-0 flex-col gap-4 md:gap-6">
 				<div className="flex flex-col justify-center md:min-h-[calc(100svh-7rem)]">
 					{hero}
@@ -54,9 +64,11 @@ export function ScrollyStory({
 								active === index ? "md:opacity-100" : "md:opacity-30",
 							)}
 						>
-							<p className="display-title text-6xl font-bold text-transparent [-webkit-text-stroke:1.5px_#f25353] md:text-7xl">
-								{String(index + 1).padStart(2, "0")}
-							</p>
+							{numbered && (
+								<p className="display-title text-6xl font-bold text-transparent [-webkit-text-stroke:1.5px_#f25353] md:text-7xl">
+									{String(index + 1).padStart(2, "0")}
+								</p>
+							)}
 							<RevealWords
 								text={step.title}
 								className={`display-title text-3xl font-bold leading-[1.05] md:text-6xl lg:text-7xl ${STRONG}`}
@@ -66,6 +78,13 @@ export function ScrollyStory({
 							>
 								{step.text}
 							</p>
+							{/* Mobile : pas d'épinglage, le panneau de l'étape (la carte est
+							    déjà affichée dans l'en-tête) */}
+							{mapArea && step.panel && step.panel !== "map" && (
+								<div className="mt-4 md:hidden">
+									<ZonePanel id={step.panel} area={mapArea} />
+								</div>
+							)}
 							{/* Mobile : pas d'épinglage, un téléphone par étape */}
 							{step.screen && (
 								<PhoneMockup
@@ -86,10 +105,17 @@ export function ScrollyStory({
 						className={cn("w-full", !mapArea && "lg:scale-125 2xl:scale-150")}
 					>
 						{mapArea ? (
-							<ZoneMap
-								highlight={mapArea}
-								reach={active + 1}
-								className="md:w-full md:max-w-[30rem] 2xl:max-w-[36rem]"
+							<ZonePanels
+								panels={panels}
+								active={currentPanel}
+								area={mapArea}
+								// Carte présente dans le récit : elle s'allume cercle par cercle ;
+								// sinon (carte du seul en-tête), les communes visées sont allumées
+								reach={
+									steps.some((step) => step.panel === "map")
+										? active + 1
+										: undefined
+								}
 							/>
 						) : (
 							<PhoneMockup screens={screens} active={current} />

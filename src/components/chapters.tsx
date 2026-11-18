@@ -82,8 +82,10 @@ function ScrollCue() {
 	return (
 		<Reveal variant="fade" delay={900} className="flex justify-center">
 			<Link
-				to="/experience"
+				to="/"
+				hash="experience"
 				resetScroll={false}
+				hashScrollIntoView={false}
 				className="group flex flex-col items-center gap-1 text-sm font-semibold"
 			>
 				<span className="text-[#4a6a8a] dark:text-[#a1adbc] group-hover:text-[#253c59] dark:group-hover:text-white transition-colors">

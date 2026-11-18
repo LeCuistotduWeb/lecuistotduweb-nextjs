@@ -1,16 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { siteConfig } from "#/config";
 import { LOCAL_PAGES } from "#/data/local-pages";
-import { VIEWS } from "#/lib/views";
 
 // Plan du site pour les moteurs de recherche, déclaré dans robots.txt.
-// Pages des chapitres, pages locales, réalisations et CV ; pas /link (noindex) ni les
-// redirections (/profil, /freelance).
+// Accueil (ses chapitres sont des ancres), pages locales, réalisations et CV ;
+// pas /link (noindex) ni les redirections (/experience, /profil…).
 const PAGES: { path: string; priority: string }[] = [
-	...VIEWS.map((view) => ({
-		path: view.path,
-		priority: view.path === "/" ? "1.0" : "0.7",
-	})),
+	{ path: "/", priority: "1.0" },
 	...LOCAL_PAGES.map((page) => ({ path: page.path, priority: "0.9" })),
 	{ path: "/realisations", priority: "0.8" },
 	{ path: "/cv", priority: "0.5" },

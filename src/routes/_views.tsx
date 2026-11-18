@@ -1,8 +1,9 @@
 import {
 	createFileRoute,
 	Outlet,
-	useMatches,
+	useLocation,
 	useNavigate,
+	useRouter,
 } from "@tanstack/react-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AiCard } from "#/components/ai-card";
@@ -12,17 +13,17 @@ import { ViewNav } from "#/components/view-nav";
 import { trackEvent } from "#/lib/analytics";
 import { useStartScrollAnimations } from "#/lib/scroll-animations/react";
 import {
-	getView,
-	getViewByPath,
+	getViewByHash,
 	PARCOURS,
 	VIEWS,
 	type ViewId,
+	viewHash,
 } from "#/lib/views";
 
-// Page d'accueil en chapitres. Les routes /, /experience, /projets et
-// /contact affichent toutes cette page (/profil et /freelance redirigent) :
-// - arriver sur une route (ou cliquer dans le menu) fait défiler au chapitre ;
-// - défiler met à jour le chapitre actif, puis l'URL (replace) et le titre.
+// Page d'accueil en chapitres, adressés par ancre (/#experience, /#projets…) ;
+// les anciennes routes (/experience, /profil…) redirigent vers l'ancre :
+// - arriver sur une ancre (ou cliquer dans le menu) fait défiler au chapitre ;
+// - défiler met à jour le chapitre actif, puis l'ancre de l'URL (replace).
 export const Route = createFileRoute("/_views")({
 	component: ViewsLayout,
 });
@@ -32,10 +33,11 @@ function prefersReducedMotion() {
 }
 
 function ViewsLayout() {
-	const routeView = useMatches({
-		select: (matches) => getViewByPath(matches.at(-1)?.pathname ?? "/").id,
+	const routeView = useLocation({
+		select: (location) => getViewByHash(location.hash).id,
 	});
 	const navigate = useNavigate();
+	const router = useRouter();
 	const [active, setActive] = useState<ViewId>(routeView);
 	const [introDone, setIntroDone] = useState(false);
 	useStartScrollAnimations(introDone);
@@ -104,11 +106,20 @@ function ViewsLayout() {
 		if (active === routeView) return;
 		const timer = setTimeout(() => {
 			if (programmatic.current) return;
+			// Un lien vers une autre page (ex. /realisations) a pu être cliqué
+			// entre-temps : ne pas annuler cette navigation en revenant au chapitre.
+			if (router.latestLocation.pathname !== "/") return;
 			fromSpy.current = active;
-			navigate({ to: getView(active).path, replace: true, resetScroll: false });
+			navigate({
+				to: "/",
+				hash: viewHash(active),
+				replace: true,
+				resetScroll: false,
+				hashScrollIntoView: false,
+			});
 		}, 400);
 		return () => clearTimeout(timer);
-	}, [active, routeView, navigate]);
+	}, [active, routeView, navigate, router]);
 
 	return (
 		<>

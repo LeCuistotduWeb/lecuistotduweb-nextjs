@@ -4,6 +4,7 @@ const LINKEDIN_URL =
 	"https://www.linkedin.com/in/ga%C3%ABtan-boyron-developpeur-web/";
 
 const INTRO_KEY = "lcdw-intro-seen";
+const HOME_TITLE = "Gaëtan Boyron — Développeur web freelance à Vernon (Eure)";
 
 // Hors tests dédiés, l'écran de chargement est considéré comme déjà vu
 test.beforeEach(async ({ page }, testInfo) => {
@@ -93,20 +94,18 @@ test("contact form validates before sending", async ({ page }) => {
 
 test("/profil redirects to the experience chapter", async ({ page }) => {
 	await page.goto("/profil");
-	await expect(page).toHaveURL(/\/experience$/);
-	await expect(page).toHaveTitle("Expérience — Gaëtan Boyron");
+	await expect(page).toHaveURL(/\/#experience$/);
 });
 
 test("/freelance redirects to the offer chapter", async ({ page }) => {
 	await page.goto("/freelance");
-	await expect(page).toHaveURL(/\/offre$/);
-	await expect(page).toHaveTitle("Offre freelance — Gaëtan Boyron");
+	await expect(page).toHaveURL(/\/#offre$/);
 });
 
 test("offer link prefills the contact topic", async ({ page }) => {
 	await waitForHydration(page);
 	await page.getByRole("link", { name: "En parler" }).first().click();
-	await expect(page).toHaveURL(/\/contact$/);
+	await expect(page).toHaveURL(/\/#contact$/);
 	const form = cardByTitle(page, "Contact").getByRole("form", {
 		name: "Formulaire de contact",
 	});
@@ -161,7 +160,7 @@ test("/realisations lists every project with details", async ({ page }) => {
 		page.getByRole("heading", { level: 1, name: /Réalisations/ }),
 	).toBeVisible();
 	const rows = page.getByRole("button", { name: /^Voir le projet / });
-	await expect(rows).toHaveCount(8);
+	await expect(rows).toHaveCount(10);
 	await waitForHydration(page);
 	await page.getByRole("button", { name: "Voir le projet Blissim" }).click();
 	const dialog = page.getByRole("dialog");
@@ -172,28 +171,26 @@ test("/realisations filters projects by kind", async ({ page }) => {
 	await page.goto("/realisations");
 	await waitForHydration(page);
 	const rows = page.getByRole("button", { name: /^Voir le projet / });
-	await page.getByRole("button", { name: /^Indépendants/ }).click();
-	await expect(rows).toHaveCount(4);
+	await page.getByRole("button", { name: /^Freelance/ }).click();
+	await expect(rows).toHaveCount(3);
 	await expect(
 		page.getByRole("button", { name: "Voir le projet Fnac Darty" }),
 	).toHaveCount(0);
 	await page.getByRole("button", { name: /^Tous/ }).click();
-	await expect(rows).toHaveCount(8);
+	await expect(rows).toHaveCount(10);
 });
 
-const CHAPTERS: { path: string; id: string; label: string; title?: string }[] = [
-	{ path: "/experience", id: "experience", label: "Expérience" },
-	{ path: "/projets", id: "projets", label: "Projets" },
-	{ path: "/offre", id: "offre", label: "Offres", title: "Offre freelance" },
-	{ path: "/contact", id: "contact", label: "Contact" },
+const CHAPTERS: { id: string; label: string }[] = [
+	{ id: "experience", label: "Expérience" },
+	{ id: "projets", label: "Réalisations" },
+	{ id: "offre", label: "Offres" },
+	{ id: "contact", label: "Contact" },
 ];
 
 for (const chapter of CHAPTERS) {
-	test(`route ${chapter.path} lands on its chapter`, async ({ page }) => {
-		await page.goto(chapter.path);
-		await expect(page).toHaveTitle(
-			`${chapter.title ?? chapter.label} — Gaëtan Boyron`,
-		);
+	test(`anchor #${chapter.id} lands on its chapter`, async ({ page }) => {
+		await page.goto(`/#${chapter.id}`);
+		await expect(page).toHaveTitle(HOME_TITLE);
 		const nav = page.getByRole("navigation", { name: "Chapitres" });
 		await expect(
 			nav.getByRole("link", { name: chapter.label, exact: true }),
@@ -206,6 +203,11 @@ for (const chapter of CHAPTERS) {
 			)
 			.toBeLessThan(120);
 	});
+
+	test(`old route /${chapter.id} redirects to its anchor`, async ({ page }) => {
+		await page.goto(`/${chapter.id}`);
+		await expect(page).toHaveURL(new RegExp(`/#${chapter.id}$`));
+	});
 }
 
 test("scrolling updates the active chapter, URL and title", async ({ page }) => {
@@ -213,12 +215,12 @@ test("scrolling updates the active chapter, URL and title", async ({ page }) => 
 	await page.evaluate(() =>
 		window.scrollTo(0, document.getElementById("projets")?.offsetTop ?? 0),
 	);
-	await expect(page).toHaveURL(/\/projets$/);
-	await expect(page).toHaveTitle("Projets — Gaëtan Boyron");
+	await expect(page).toHaveURL(/\/#projets$/);
+	await expect(page).toHaveTitle(HOME_TITLE);
 	await expect(
 		page
 			.getByRole("navigation", { name: "Chapitres" })
-			.getByRole("link", { name: "Projets", exact: true }),
+			.getByRole("link", { name: "Réalisations", exact: true }),
 	).toHaveAttribute("aria-current", "page");
 });
 
@@ -231,7 +233,7 @@ test("menu scrolls to a chapter without reloading", async ({ page }) => {
 		.getByRole("navigation", { name: "Chapitres" })
 		.getByRole("link", { name: "Contact", exact: true })
 		.click();
-	await expect(page).toHaveURL(/\/contact$/);
+	await expect(page).toHaveURL(/\/#contact$/);
 	await expect
 		.poll(() =>
 			page
@@ -273,7 +275,7 @@ test("intro ends on its own and reveals the page", async ({ page }) => {
 
 test("contact card copies the e-mail address", async ({ page, context }) => {
 	await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-	await page.goto("/contact");
+	await page.goto("/#contact");
 	const card = cardByTitle(page, "Contact");
 	await expect
 		.poll(async () => {

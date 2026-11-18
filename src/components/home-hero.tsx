@@ -93,13 +93,15 @@ export function HomeHero() {
 						</a>
 					)}
 					<Link
-						to="/projets"
+						to="/"
+						hash="projets"
 						resetScroll={false}
+						hashScrollIntoView={false}
 						onClick={() => trackEvent("click_hero_projects")}
 						className="group inline-flex items-center gap-2 rounded-full border border-[#253c59]/25 px-6 py-3 font-semibold transition-colors hover:bg-[#253c59]/5 dark:border-white/25 dark:hover:bg-white/10"
 					>
 						<span className="text-[#253c59] dark:text-white">
-							Voir mes projets
+							Voir mes réalisations
 						</span>
 						<ArrowRight
 							aria-hidden="true"

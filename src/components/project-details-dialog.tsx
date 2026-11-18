@@ -6,7 +6,7 @@ import {
 	DialogDescription,
 	DialogTitle,
 } from "#/components/ui/dialog";
-import type { Work } from "#/data/works";
+import { WORK_KINDS, type Work } from "#/data/works";
 import { trackEvent } from "#/lib/analytics";
 
 // Étude de cas d'un projet : capture à gauche (en entier, sur un fond flouté
@@ -61,6 +61,11 @@ export function ProjectDetailsDialog({
 						decoding="async"
 						className="relative aspect-[16/10] w-full animate-[dialog-cover_0.9s_cubic-bezier(0.16,1,0.3,1)_both] rounded-xl object-cover shadow-2xl shadow-black/30 ring-1 ring-white/20 motion-reduce:animate-none"
 					/>
+					{work.coverNote && (
+						<p className="absolute bottom-3 left-1/2 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 rounded-full bg-black/45 px-3 py-1 text-center text-xs font-medium text-white backdrop-blur-sm">
+							{work.coverNote}
+						</p>
+					)}
 				</div>
 
 				<div className="flex min-h-0 flex-col gap-6 p-6 md:max-h-[88svh] md:overflow-y-auto md:p-10">
@@ -70,9 +75,7 @@ export function ProjectDetailsDialog({
 							className={`flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold ${RISE}`}
 						>
 							<span className="text-[#b52f2f] dark:text-[#ff7a7a]">
-								{work.kind === "mission"
-									? "Mission en entreprise"
-									: "Projet indépendant"}
+								{WORK_KINDS[work.kind]}
 							</span>
 							{details.period && (
 								<span className="tabular-nums text-[#4a6a8a] dark:text-[#a1adbc]">

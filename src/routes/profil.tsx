@@ -4,6 +4,6 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 // déjà partagés.
 export const Route = createFileRoute("/profil")({
 	beforeLoad: () => {
-		throw redirect({ to: "/experience", statusCode: 301 });
+		throw redirect({ to: "/", hash: "experience", statusCode: 301 });
 	},
 });
