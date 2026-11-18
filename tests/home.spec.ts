@@ -154,13 +154,21 @@ test("projects story links to all projects", async ({ page }) => {
 	await expect(page).toHaveTitle("Réalisations — Gaëtan Boyron");
 });
 
+/** Nombre affiché sur un bouton de filtre (« Tous 11 », « Freelance 03 »). */
+async function filterCount(page: Page, name: RegExp) {
+	const text = await page.getByRole("button", { name }).textContent();
+	return Number(text?.match(/\d+/)?.[0]);
+}
+
 test("/realisations lists every project with details", async ({ page }) => {
 	await page.goto("/realisations");
 	await expect(
 		page.getByRole("heading", { level: 1, name: /Réalisations/ }),
 	).toBeVisible();
 	const rows = page.getByRole("button", { name: /^Voir le projet / });
-	await expect(rows).toHaveCount(10);
+	const total = await filterCount(page, /^Tous/);
+	expect(total).toBeGreaterThanOrEqual(10);
+	await expect(rows).toHaveCount(total);
 	await waitForHydration(page);
 	await page.getByRole("button", { name: "Voir le projet Blissim" }).click();
 	const dialog = page.getByRole("dialog");
@@ -171,13 +179,16 @@ test("/realisations filters projects by kind", async ({ page }) => {
 	await page.goto("/realisations");
 	await waitForHydration(page);
 	const rows = page.getByRole("button", { name: /^Voir le projet / });
+	const total = await filterCount(page, /^Tous/);
+	const freelance = await filterCount(page, /^Freelance/);
+	expect(freelance).toBeGreaterThan(0);
 	await page.getByRole("button", { name: /^Freelance/ }).click();
-	await expect(rows).toHaveCount(3);
+	await expect(rows).toHaveCount(freelance);
 	await expect(
 		page.getByRole("button", { name: "Voir le projet Fnac Darty" }),
 	).toHaveCount(0);
 	await page.getByRole("button", { name: /^Tous/ }).click();
-	await expect(rows).toHaveCount(10);
+	await expect(rows).toHaveCount(total);
 });
 
 const CHAPTERS: { id: string; label: string }[] = [
