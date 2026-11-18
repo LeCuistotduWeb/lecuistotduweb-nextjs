@@ -58,8 +58,7 @@ export const PARCOURS_CONTENT: Record<
 	},
 };
 
-// Image de partage (1200×630) : générée par scripts/og-image.mjs
-const OG_IMAGE = `${siteConfig.url}/og-image.png`;
+const OG_IMAGE = siteConfig.ogImage;
 
 /** <head> de l'accueil (une seule page : les chapitres sont des ancres). */
 export function viewHead() {
@@ -77,7 +76,7 @@ export function viewHead() {
 			{ property: "og:image:height", content: "630" },
 			{
 				property: "og:image:alt",
-				content: `${siteConfig.name} — ${siteConfig.role} freelance`,
+				content: `${siteConfig.name}, développeur web freelance`,
 			},
 			{ name: "twitter:card", content: "summary_large_image" },
 			{ name: "twitter:title", content: title },

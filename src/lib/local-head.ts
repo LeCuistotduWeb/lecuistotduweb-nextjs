@@ -7,7 +7,7 @@ import {
 	structuredData,
 } from "#/lib/structured-data";
 
-const OG_IMAGE = `${siteConfig.url}/og-image.png`;
+const OG_IMAGE = siteConfig.ogImage;
 
 // <head> d'une page locale : balises SEO + JSON-LD (Service, FAQ)
 export function localPageHead(path: string) {

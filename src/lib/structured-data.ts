@@ -75,7 +75,7 @@ export function structuredData() {
 			],
 			url: siteConfig.url,
 			description: siteConfig.description,
-			image: `${siteConfig.url}/og-image.png`,
+			image: siteConfig.ogImage,
 			logo: `${siteConfig.url}/icon-512.png`,
 			email: siteConfig.email,
 			founder: { "@id": personId },

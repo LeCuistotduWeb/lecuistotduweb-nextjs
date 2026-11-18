@@ -8,7 +8,7 @@ const PATH = "/tarifs";
 const PAGE_URL = `${siteConfig.url}${PATH}`;
 const TITLE = `Tarifs création de site internet à ${siteConfig.local.city} — ${siteConfig.local.businessName}`;
 const DESCRIPTION = `Site vitrine dès 1 200 €, maintenance dès 49 €/mois : les tarifs de ${siteConfig.name}, développeur web freelance à ${siteConfig.local.city} (${siteConfig.local.department}). Devis gratuit.`;
-const OG_IMAGE = `${siteConfig.url}/og-image.png`;
+const OG_IMAGE = siteConfig.ogImage;
 
 // JSON-LD : catalogue des formules, rattaché au ProfessionalService du site
 const pageGraph = {

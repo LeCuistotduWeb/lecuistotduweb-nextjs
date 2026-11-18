@@ -8,7 +8,7 @@ const PATH = "/realisations";
 const PAGE_URL = `${siteConfig.url}${PATH}`;
 const TITLE = `Réalisations — ${siteConfig.name}`;
 const DESCRIPTION = `Tous les projets de ${siteConfig.name}, développeur web freelance : missions pour Fnac Darty et Infogreffe, e-commerce, SaaS, sites vitrines et portfolios.`;
-const OG_IMAGE = `${siteConfig.url}/og-image.png`;
+const OG_IMAGE = siteConfig.ogImage;
 
 // JSON-LD : page de collection et liste des projets
 const pageGraph = {

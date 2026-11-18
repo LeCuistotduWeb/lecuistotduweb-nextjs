@@ -341,7 +341,7 @@ export function LocalEditorialPage({ path }: { path: string }) {
 
 				<Section
 					eyebrow="Réalisations"
-					title="Le même soin, de Fnac Darty aux indépendants"
+					title="Le même soin pour chaque projet"
 					stacked
 					aside={
 						<Link

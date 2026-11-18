@@ -71,7 +71,7 @@ export function HomeHero() {
 				>
 					Je conçois et fais évoluer vos applications web, du front-end React /
 					Next.js au back-end Node.js, jusqu'à la mise en production. Plus de 8
-					ans d'expérience, dont Fnac Darty et Infogreffe : en renfort de votre
+					ans d'expérience sur des produits à fort trafic : en renfort de votre
 					équipe, en projet clé en main, ou pour le site de votre commerce dans
 					l'Eure.
 				</Reveal>
