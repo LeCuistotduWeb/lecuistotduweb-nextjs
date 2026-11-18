@@ -42,6 +42,19 @@ const COVERS = {
 			["Terminé", "#3aa17e"],
 		],
 	},
+	// App mobile : trois écrans en éventail sur l'orange de l'app, sans ordinateur.
+	rangeo: {
+		file: "miniature-rangeo",
+		name: "Rangeo",
+		color: "#ff7b3d",
+		tagline: "Rangez, étiquetez, retrouvez.",
+		icon: "scripts/covers/rangeo/icone.webp",
+		phones: [
+			"scripts/covers/rangeo/contenant.webp",
+			"scripts/covers/rangeo/lieux.webp",
+			"scripts/covers/rangeo/demenagement.webp",
+		],
+	},
 	trustmycontent: {
 		file: "miniature-trustmycontent",
 		name: "TrustMyContent",
@@ -84,19 +97,21 @@ const manrope = asset(
 const image = (path) => `data:image/webp;base64,${asset(path)}`;
 const shots = cover.screens;
 
-const bar = (w, tone = "#e6e9ee") =>
-	`<span class="bar" style="width:${w}px;background:${tone}"></span>`;
+// Mode « ordinateur + téléphone » (sites et outils web).
+function laptopHtml() {
+	const bar = (w, tone = "#e6e9ee") =>
+		`<span class="bar" style="width:${w}px;background:${tone}"></span>`;
 
-const rows = Array.from({ length: 6 }, (_, i) => {
-	const [label, color] = cover.statuses[i % cover.statuses.length];
-	return `<div class="row">
+	const rows = Array.from({ length: 6 }, (_, i) => {
+		const [label, color] = cover.statuses[i % cover.statuses.length];
+		return `<div class="row">
 		<span class="avatar"></span>${bar(110 + ((i * 37) % 60), "#dfe3ea")}
 		${bar(70 + ((i * 23) % 40))}${bar(54)}
 		<span class="pill" style="color:${color};background:${color}1f">${label}</span>
 	</div>`;
-}).join("");
+	}).join("");
 
-const screen = `
+	const screen = `
 <div class="app">
 	<aside>
 		<div class="logo"><span class="mark"></span>${cover.name}</div>
@@ -115,7 +130,7 @@ const screen = `
 	</main>
 </div>`;
 
-const html = `<!doctype html>
+	const html = `<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><style>
 @font-face { font-family: Fraunces; src: url(data:font/woff2;base64,${fraunces}) format("woff2"); font-weight: 100 900; }
 @font-face { font-family: Manrope; src: url(data:font/woff2;base64,${manrope}) format("woff2"); font-weight: 200 800; }
@@ -183,12 +198,43 @@ h2 { font-family: Fraunces, serif; font-size: 18px; font-weight: 700; }
 	}</div></div><div class="base"></div></div>
 	${shots?.phone ? `<div class="phone"><img src="${image(shots.phone)}" alt=""></div>` : ""}
 </body></html>`;
+	return html;
+}
+
+// Mode « app mobile » : nom et icône à gauche, trois téléphones à droite.
+const phonesHtml =
+	cover.phones &&
+	`<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><style>
+@font-face { font-family: Fraunces; src: url(data:font/woff2;base64,${fraunces}) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: Manrope; src: url(data:font/woff2;base64,${manrope}) format("woff2"); font-weight: 200 800; }
+* { margin: 0; box-sizing: border-box; }
+body { width: 1280px; height: 720px; overflow: hidden; position: relative; font-family: Manrope, sans-serif; color: #fff;
+	background: radial-gradient(circle at 78% 40%, #ff9a63 0, ${cover.color} 55%, #f2692b 100%); }
+.brand { position: absolute; left: 96px; top: 50%; transform: translateY(-50%); }
+.brand img { display: block; width: 104px; height: 104px; border-radius: 26px; box-shadow: 0 0 0 4px rgba(255,255,255,.9), 0 16px 30px rgba(120,40,0,.25); }
+.brand h1 { margin-top: 34px; font-family: Fraunces, serif; font-size: 92px; font-weight: 700; line-height: 1; letter-spacing: -.01em; }
+.brand p { margin-top: 18px; font-size: 26px; font-weight: 600; opacity: .95; }
+.phone { position: absolute; width: 236px; padding: 9px; border-radius: 38px; background: #141110;
+	box-shadow: 0 0 0 2px #3a3330 inset, 0 30px 50px rgba(90,30,0,.35); }
+.phone img { display: block; width: 100%; border-radius: 30px; }
+.p1 { left: 630px; top: 150px; transform: rotate(-7deg); }
+.p3 { left: 970px; top: 150px; transform: rotate(7deg); }
+.p2 { left: 795px; top: 80px; width: 262px; z-index: 1; }
+</style></head><body>
+	<div class="brand">
+		<img src="${image(cover.icon)}" alt="">
+		<h1>${cover.name}</h1>
+		<p>${cover.tagline}</p>
+	</div>
+	${cover.phones.map((src, i) => `<div class="phone p${i + 1}"><img src="${image(src)}" alt=""></div>`).join("")}
+</body></html>`;
 
 const out = mkdtempSync(join(tmpdir(), "work-cover-"));
 const png = join(out, "cover.png");
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
-await page.setContent(html);
+await page.setContent(cover.phones ? phonesHtml : laptopHtml());
 await page.evaluate(() => document.fonts.ready);
 await page.screenshot({ path: png });
 await browser.close();
