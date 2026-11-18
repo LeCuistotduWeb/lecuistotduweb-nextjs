@@ -107,7 +107,7 @@ const COMMON_FAQ = {
 	devis: {
 		question: "Combien coûte un site internet ?",
 		answer:
-			"Chaque projet est chiffré sur devis, après un premier échange gratuit de 30 minutes. Le devis détaille le périmètre, les délais et le prix, sans engagement.",
+			"Un site vitrine démarre à 1 200 €, et la maintenance coûte 49 € par mois, sans engagement : tous les tarifs indicatifs sont sur la page Tarifs. Chaque projet est ensuite chiffré sur devis, après un premier échange gratuit de 30 minutes.",
 	},
 	google: {
 		question: "Mon site sera-t-il visible sur Google ?",
