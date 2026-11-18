@@ -234,9 +234,9 @@ export function RealisationsPage() {
 						<p
 							className={`text-lg font-medium leading-relaxed md:text-xl ${TEXT}`}
 						>
-							Des missions pour des grands comptes comme Fnac Darty ou
-							Infogreffe aux sites d'indépendants : chaque projet est pensé,
-							construit et livré avec le même soin du détail.
+							Des missions pour de grands comptes aux sites d'indépendants :
+							chaque projet est pensé, construit et livré avec le même soin du
+							détail.
 						</p>
 						<dl className="grid grid-cols-3 gap-4 border-t border-[#d2c4a4] pt-5 dark:border-[#253c59]">
 							{(Object.keys(WORK_KINDS) as WorkKind[]).map((kind) => (

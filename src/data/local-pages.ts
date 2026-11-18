@@ -225,7 +225,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 				text: "Un code propre, rapide et documenté, que vous pourrez faire évoluer sans tout reconstruire. Et un suivi de maintenance si vous le souhaitez.",
 			},
 		],
-		works: ["Fnac Darty", "Infogreffe", "Mon VDI Assistant"],
+		works: ["Le Poudrier de Fleur", "Mon VDI Assistant", "Marie Jade"],
 		highlights: [
 			{
 				icon: Handshake,
@@ -235,7 +235,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 			{
 				icon: Award,
 				title: "Une expertise de grands comptes",
-				text: "8 ans sur des sites à fort trafic (Fnac Darty, Infogreffe), au service des PME.",
+				text: "8 ans sur des sites à fort trafic, au service des PME.",
 			},
 			{
 				icon: ShieldCheck,
@@ -344,7 +344,7 @@ export const LOCAL_PAGES: LocalPage[] = [
 				points: [
 					"Un seul interlocuteur, du premier rendez-vous à la maintenance",
 					"Un site codé sur mesure, rapide et sans extensions superflues",
-					"Une expérience acquise sur de grands sites (Fnac Darty, Infogreffe, Blissim)",
+					"Une expérience acquise sur de grands sites à fort trafic",
 					"Une proximité réelle : je connais le tissu économique local",
 				],
 			},
