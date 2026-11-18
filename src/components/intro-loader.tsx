@@ -4,7 +4,7 @@ import { OrbitAvatar } from "./orbit-avatar";
 
 const STORAGE_KEY = "lcdw-intro-seen";
 const LOADER_SIZE = 220;
-const DURATION = 1400;
+const DURATION = 900;
 
 // Courbe « chargement » : démarre vite, marque une pause vers 70 %, finit.
 function fakeProgress(t: number) {
@@ -21,10 +21,13 @@ function fakeProgress(t: number) {
  */
 export function IntroLoader({ onDone }: { onDone: () => void }) {
 	const [visible, setVisible] = useState(true);
-	const [progress, setProgress] = useState(0);
 	const [loaded, setLoaded] = useState(false);
 	const overlayRef = useRef<HTMLDivElement>(null);
 	const avatarRef = useRef<HTMLDivElement>(null);
+	// Pourcentage et barre mis à jour directement dans le DOM : pas de rendu
+	// React à chaque image (coûteux sur mobile)
+	const percentRef = useRef<HTMLSpanElement>(null);
+	const barRef = useRef<HTMLDivElement>(null);
 	const exiting = useRef(false);
 	const onDoneRef = useRef(onDone);
 	onDoneRef.current = onDone;
@@ -59,7 +62,7 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
 			if (exiting.current) return;
 			exiting.current = true;
 			cancelAnimationFrame(frame);
-			setProgress(100);
+			setProgressDom(1);
 			setLoaded(true);
 			trackEvent("intro_end", { skipped: skipped ? 1 : 0 });
 			// Les cartes de l'accueil se révèlent pendant le vol de l'avatar
@@ -84,8 +87,8 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
 							},
 						],
 						{
-							duration: skipped ? 450 : 800,
-							delay: skipped ? 0 : 100,
+							duration: skipped ? 450 : 650,
+							delay: skipped ? 0 : 50,
 							easing: "cubic-bezier(0.65, 0, 0.35, 1)",
 							fill: "forwards",
 						},
@@ -106,8 +109,8 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
 				"[data-intro-backdrop]",
 			);
 			backdrop?.animate([{ opacity: 1 }, { opacity: 0 }], {
-				duration: skipped ? 400 : 700,
-				delay: skipped ? 0 : 150,
+				duration: skipped ? 400 : 550,
+				delay: skipped ? 0 : 100,
 				easing: "ease-out",
 				fill: "forwards",
 			});
@@ -115,15 +118,21 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
 			fly.finished.then(finish, finish);
 		}
 
+		function setProgressDom(value: number) {
+			if (percentRef.current)
+				percentRef.current.textContent = String(Math.round(value * 100));
+			if (barRef.current) barRef.current.style.transform = `scaleX(${value})`;
+		}
+
 		let frame = 0;
 		const start = performance.now();
 		function tick(now: number) {
 			const t = Math.min((now - start) / DURATION, 1);
-			setProgress(Math.round(fakeProgress(t) * 100));
+			setProgressDom(fakeProgress(t));
 			if (t < 1) frame = requestAnimationFrame(tick);
 			else {
 				setLoaded(true);
-				setTimeout(() => exit(false), 200);
+				setTimeout(() => exit(false), 120);
 			}
 		}
 		frame = requestAnimationFrame(tick);
@@ -160,13 +169,14 @@ export function IntroLoader({ onDone }: { onDone: () => void }) {
 					aria-hidden="true"
 					className="display-title text-3xl font-semibold tabular-nums text-[#253c59] dark:text-white"
 				>
-					{progress}
+					<span ref={percentRef}>0</span>
 					<span className="text-[#b52f2f] dark:text-[#ff7a7a]">%</span>
 				</p>
 				<div className="h-0.5 w-full overflow-hidden rounded-full bg-[#d2c4a4] dark:bg-[#253c59]">
 					<div
+						ref={barRef}
 						className="h-full origin-left rounded-full bg-[#f25353]"
-						style={{ transform: `scaleX(${progress / 100})` }}
+						style={{ transform: "scaleX(0)" }}
 					/>
 				</div>
 			</div>

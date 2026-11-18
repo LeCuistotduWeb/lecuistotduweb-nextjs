@@ -125,6 +125,7 @@ function Hero({ path }: { path: string }) {
 	return (
 		<header className="flex flex-col gap-6 py-6 md:py-10">
 			<Reveal
+				instant
 				as="p"
 				variant="fade"
 				className="inline-flex w-fit items-center gap-1.5 rounded-full bg-[#f25353]/10 px-3 py-1 text-sm font-semibold text-[#b52f2f] dark:bg-[#f25353]/15 dark:text-[#ff7a7a]"
@@ -133,10 +134,17 @@ function Hero({ path }: { path: string }) {
 				Développeur web à {local.city} ({local.postalCode.slice(0, 2)})
 			</Reveal>
 			<h1 className="flex flex-col gap-4">
-				<Reveal as="span" variant="fade" delay={100} className={EYEBROW}>
+				<Reveal
+					instant
+					as="span"
+					variant="fade"
+					delay={100}
+					className={EYEBROW}
+				>
 					{page.heading}
 				</Reveal>
 				<RevealWords
+					instant
 					as="span"
 					text={page.hook}
 					delay={200}
@@ -144,6 +152,7 @@ function Hero({ path }: { path: string }) {
 				/>
 			</h1>
 			<Reveal
+				instant
 				delay={450}
 				className={`flex max-w-2xl flex-col gap-4 text-lg font-medium leading-relaxed ${TEXT}`}
 			>
@@ -151,7 +160,7 @@ function Hero({ path }: { path: string }) {
 					<p key={paragraph}>{paragraph}</p>
 				))}
 			</Reveal>
-			<Reveal delay={600}>
+			<Reveal instant delay={600}>
 				<ContactButtons source={page.path} />
 			</Reveal>
 			{/* Mobile : la carte ou le téléphone, épinglés à droite sur grand écran */}

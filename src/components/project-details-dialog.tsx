@@ -141,7 +141,7 @@ export function ProjectDetailsDialog({
 							onClick={() =>
 								trackEvent("click_project_link", { project: work.label })
 							}
-							className={`group mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#f25353] px-5 py-2.5 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#e04444] ${RISE}`}
+							className={`group mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#d93a3a] px-5 py-2.5 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#c93434] ${RISE}`}
 						>
 							{/* Couleur portée par un span : le style global `a { color }` est hors layer */}
 							<span className="text-white">Voir le site</span>

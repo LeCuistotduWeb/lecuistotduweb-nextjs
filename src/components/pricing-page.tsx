@@ -82,7 +82,7 @@ function QuoteButton({ topic, onDark }: { topic: string; onDark?: boolean }) {
 				className={cn(
 					"group/quote mt-auto inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-colors",
 					onDark
-						? "bg-[#f25353] shadow-lg shadow-[#f25353]/30 hover:bg-[#e04444]"
+						? "bg-[#d93a3a] shadow-lg shadow-[#f25353]/30 hover:bg-[#c93434]"
 						: "border border-[#253c59]/25 hover:bg-[#253c59]/5 dark:border-white/25 dark:hover:bg-white/10",
 				)}
 			>
@@ -350,10 +350,11 @@ export function PricingPage() {
 			<main className="mx-auto w-full max-w-7xl flex-1 px-4">
 				<header className="grid gap-8 pt-10 pb-16 md:pt-16 md:pb-24 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:items-end lg:gap-20">
 					<div className="flex flex-col gap-5">
-						<Reveal as="p" variant="fade" className={EYEBROW}>
+						<Reveal instant as="p" variant="fade" className={EYEBROW}>
 							Tarifs
 						</Reveal>
 						<RevealWords
+							instant
 							as="h1"
 							text="Des prix clairs, avant même d'en parler."
 							delay={100}
@@ -361,6 +362,7 @@ export function PricingPage() {
 						/>
 					</div>
 					<Reveal
+						instant
 						as="p"
 						delay={300}
 						className={`text-lg font-medium leading-relaxed ${TEXT}`}

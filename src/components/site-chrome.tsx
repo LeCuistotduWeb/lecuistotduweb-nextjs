@@ -71,7 +71,7 @@ export function SiteHeader({ className }: { className?: string }) {
 						to="/"
 						hash="contact"
 						onClick={() => trackEvent("click_header_contact")}
-						className="rounded-full bg-[#f25353] px-3 py-2 text-sm font-semibold sm:px-4 shadow-md shadow-[#f25353]/25 transition-colors hover:bg-[#e04444]"
+						className="rounded-full bg-[#d93a3a] px-3 py-2 text-sm font-semibold sm:px-4 shadow-md shadow-[#f25353]/25 transition-colors hover:bg-[#c93434]"
 					>
 						<span className="text-white">Contact</span>
 					</Link>

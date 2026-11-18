@@ -1,3 +1,4 @@
+import frauncesLatin from "@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url";
 import manropeLatin from "@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import {
@@ -29,6 +30,15 @@ export const Route = createRootRoute({
 			},
 		],
 		links: [
+			// Police des titres préchargée aussi : évite que le titre change de
+			// taille à son arrivée et décale la page (CLS)
+			{
+				rel: "preload",
+				href: frauncesLatin,
+				as: "font",
+				type: "font/woff2",
+				crossOrigin: "anonymous",
+			},
 			{
 				rel: "preload",
 				href: manropeLatin,

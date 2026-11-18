@@ -44,7 +44,7 @@ export function ProcessTimeline({
 						</span>
 					)}
 					<span
-						className="display-title relative flex size-12 shrink-0 items-center justify-center rounded-full bg-[#f25353] text-lg font-bold text-white shadow-lg shadow-[#f25353]/30"
+						className="display-title relative flex size-12 shrink-0 items-center justify-center rounded-full bg-[#d93a3a] text-lg font-bold text-white shadow-lg shadow-[#f25353]/30"
 						style={{ scale: `clamp(0.75, ${level(index, 1)}, 1)` }}
 					>
 						{index + 1}

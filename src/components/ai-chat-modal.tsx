@@ -299,7 +299,7 @@ export function AiChatModal({
 							onClick={handleSend}
 							disabled={!input.trim() || loading}
 							aria-label="Envoyer"
-							className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#f25353] text-white shadow-md shadow-[#f25353]/30 transition-colors hover:bg-[#e04444] disabled:cursor-default disabled:bg-[#d2c4a4] disabled:shadow-none dark:disabled:bg-[#253c59]"
+							className="flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-[#d93a3a] text-white shadow-md shadow-[#f25353]/30 transition-colors hover:bg-[#c93434] disabled:cursor-default disabled:bg-[#d2c4a4] disabled:shadow-none dark:disabled:bg-[#253c59]"
 						>
 							<ArrowUp className="size-4" />
 						</button>

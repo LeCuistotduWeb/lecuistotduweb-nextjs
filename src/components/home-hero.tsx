@@ -86,7 +86,7 @@ export function HomeHero() {
 							target="_blank"
 							rel="noopener noreferrer"
 							onClick={(event) => openBooking(event, "hero")}
-							className="inline-flex items-center gap-2 rounded-full bg-[#f25353] px-6 py-3 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#e04444]"
+							className="inline-flex items-center gap-2 rounded-full bg-[#d93a3a] px-6 py-3 font-semibold shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#c93434]"
 						>
 							<CalendarDays aria-hidden="true" className="size-4 text-white" />
 							<span className="text-white">Discutons de votre projet</span>

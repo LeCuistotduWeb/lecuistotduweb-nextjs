@@ -108,7 +108,7 @@ export function FeaturedOffer({ className }: { className?: string }) {
 							target="_blank"
 							rel="noopener noreferrer"
 							onClick={(event) => openBooking(event, "offer")}
-							className="inline-flex items-center gap-2 rounded-full bg-[#f25353] px-5 py-2.5 font-semibold shadow-lg shadow-[#f25353]/30 hover:bg-[#e04444] transition-colors"
+							className="inline-flex items-center gap-2 rounded-full bg-[#d93a3a] px-5 py-2.5 font-semibold shadow-lg shadow-[#f25353]/30 hover:bg-[#c93434] transition-colors"
 						>
 							<CalendarDays aria-hidden="true" className="size-4 text-white" />
 							<span className="text-white">Discutons de votre projet</span>
@@ -237,7 +237,7 @@ export function ProcessCard({ className }: { className?: string }) {
 							)}
 							<span className="relative flex size-14 shrink-0 items-center justify-center rounded-full border-2 border-[#f25353]/30 bg-[#fdf3ec] ring-6 ring-[#faf5ec] transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110 dark:bg-[#2a2a38] dark:ring-[#172231]">
 								<Icon aria-hidden="true" className="size-6 text-[#f25353]" />
-								<span className="absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full bg-[#f25353] text-xs font-semibold tabular-nums text-white shadow-md shadow-[#f25353]/30">
+								<span className="absolute -top-1 -right-1 flex size-6 items-center justify-center rounded-full bg-[#d93a3a] text-xs font-semibold tabular-nums text-white shadow-md shadow-[#f25353]/30">
 									{i + 1}
 								</span>
 							</span>

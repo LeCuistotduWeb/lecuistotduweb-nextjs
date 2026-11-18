@@ -88,7 +88,7 @@ export function ContactButtons({
 					rel="noopener noreferrer"
 					onClick={(event) => openBooking(event, source)}
 					className={cn(
-						"inline-flex items-center gap-2 rounded-full bg-[#f25353] font-semibold whitespace-nowrap shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#e04444]",
+						"inline-flex items-center gap-2 rounded-full bg-[#d93a3a] font-semibold whitespace-nowrap shadow-lg shadow-[#f25353]/30 transition-colors hover:bg-[#c93434]",
 						size,
 					)}
 				>

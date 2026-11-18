@@ -96,16 +96,39 @@ type RevealProps<T extends ElementType> = {
 	as?: T;
 	variant?: RevealOptions["variant"];
 	delay?: number;
+	/**
+	 * Haut de page : animation en CSS pur, jouée dès le premier affichage sans
+	 * attendre le JavaScript (meilleur LCP). Même rendu que la révélation au
+	 * scroll ; voir [data-reveal-instant] dans styles.css.
+	 */
+	instant?: boolean;
 } & Omit<ComponentPropsWithoutRef<T>, "as">;
+
+function instantProps(
+	variant: string,
+	delay: number | undefined,
+	style: React.CSSProperties | undefined,
+) {
+	return {
+		"data-reveal-instant": variant,
+		style: {
+			...style,
+			"--reveal-delay": `${delay ?? 0}ms`,
+		} as React.CSSProperties,
+	};
+}
 
 export function Reveal<T extends ElementType = "div">({
 	as,
 	variant = "rise",
 	delay,
+	instant = false,
 	...props
 }: RevealProps<T>) {
 	const Tag = (as ?? "div") as ElementType;
 	const ref = useReveal<HTMLElement>({ variant, delay });
+	if (instant)
+		return <Tag {...props} {...instantProps(variant, delay, props.style)} />;
 	return <Tag ref={ref} {...props} />;
 }
 
@@ -114,17 +137,23 @@ export function RevealWords<T extends ElementType = "h2">({
 	as,
 	text,
 	delay,
+	instant = false,
 	...props
 }: {
 	as?: T;
 	text: string;
 	delay?: number;
+	/** Voir Reveal : animation CSS dès le premier affichage */
+	instant?: boolean;
 } & Omit<ComponentPropsWithoutRef<T>, "as" | "children">) {
 	const Tag = (as ?? "h2") as ElementType;
 	const ref = useReveal<HTMLElement>({ variant: "words", delay });
 	const words = text.split(" ");
+	const tagProps = instant
+		? { ...props, ...instantProps("words", delay, props.style) }
+		: { ...props, ref };
 	return (
-		<Tag ref={ref} {...props}>
+		<Tag {...tagProps}>
 			{words.map((word, i) => (
 				// biome-ignore lint/suspicious/noArrayIndexKey: mots statiques, l'ordre ne change pas
 				<span key={i}>

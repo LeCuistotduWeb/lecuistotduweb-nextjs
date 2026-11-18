@@ -76,23 +76,25 @@ export function LegalPage({
 			<SiteHeader className="max-w-7xl" />
 			<main className="mx-auto w-full max-w-7xl flex-1 px-4 pb-24">
 				<header className="flex flex-col gap-5 pt-10 pb-14 md:pt-16 md:pb-20">
-					<Reveal as="p" variant="fade" className={EYEBROW}>
+					<Reveal instant as="p" variant="fade" className={EYEBROW}>
 						{eyebrow}
 					</Reveal>
 					<RevealWords
+						instant
 						as="h1"
 						text={title}
 						delay={100}
 						className={`display-title max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight text-balance md:text-7xl ${STRONG_TEXT}`}
 					/>
 					<Reveal
+						instant
 						as="div"
 						delay={250}
 						className={`max-w-2xl text-lg font-medium leading-relaxed ${TEXT}`}
 					>
 						{intro}
 					</Reveal>
-					<Reveal as="p" variant="fade" delay={350} className="text-sm">
+					<Reveal instant as="p" variant="fade" delay={350} className="text-sm">
 						<span className="text-[#93a8be] dark:text-[#7a8fa0]">
 							Dernière mise à jour : {siteConfig.legal.updatedAt}
 						</span>
